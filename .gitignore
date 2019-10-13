@@ -118,3 +118,5 @@ Temporary Items
 .apdisk
 
 # End of https://www.gitignore.io/api/c,c++,linux,macos
+# IntelliJ IDEA
+/.idea
