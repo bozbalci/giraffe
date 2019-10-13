@@ -1,0 +1,13 @@
+#!/bin/bash
+
+PROJECT_ROOT=`git rev-parse --show-toplevel`
+CLANG_FORMAT="${PROJECT_ROOT}/.clang-format"
+SOURCE_FILES=`find "${PROJECT_ROOT}" -path "*src*" -name "*.cpp" -o -name ".h"`
+
+for file in $SOURCE_FILES; do
+    if [ -f $file ]; then
+        echo "Formatting ${file}"
+        clang-format -i -style=file ${file}
+        git add ${file}
+    fi
+done
