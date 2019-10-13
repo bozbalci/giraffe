@@ -1,13 +1,16 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+shopt -s globstar
 
 PROJECT_ROOT=`git rev-parse --show-toplevel`
-CLANG_FORMAT="${PROJECT_ROOT}/.clang-format"
-SOURCE_FILES=`find "${PROJECT_ROOT}" -path "*src*" -name "*.cpp" -o -name ".h"`
+cd "${PROJECT_ROOT}"
 
-for file in $SOURCE_FILES; do
-    if [ -f $file ]; then
-        echo "Formatting ${file}"
-        clang-format -i -style=file ${file}
-        git add ${file}
-    fi
+for file in **/*.{c,cc,cpp,h,hh,hpp}; do
+    [[ ! -e $file ]] && continue
+
+    echo "Formatting ${file}"
+    clang-format -i -style=file ${file}
+    git add ${file}
 done
+
+cd -
