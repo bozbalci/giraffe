@@ -12,7 +12,7 @@ class Shape
     int id;       // Id of the shape
     int matIndex; // Material index of the shape
 
-    virtual ReturnVal intersect(const Ray &ray)
+    virtual HitRecord intersect(const Ray &ray)
         const = 0; // Pure virtual method for intersection test. You must
                    // implement this for sphere, triangle, and mesh.
 
@@ -29,7 +29,7 @@ class Sphere : public Shape
   public:
     Sphere(void);                                      // Constructor
     Sphere(int id, int matIndex, int cIndex, float R); // Constructor
-    ReturnVal intersect(const Ray &ray)
+    HitRecord intersect(const Ray &ray)
         const; // Will take a ray and return a structure related to the
                // intersection information. You will implement this.
 
@@ -44,7 +44,7 @@ class Triangle : public Shape
     Triangle(void); // Constructor
     Triangle(int id, int matIndex, int p1Index, int p2Index,
              int p3Index); // Constructor
-    ReturnVal intersect(const Ray &ray)
+    HitRecord intersect(const Ray &ray)
         const; // Will take a ray and return a structure related to the
                // intersection information. You will implement this.
 
@@ -59,7 +59,7 @@ class Mesh : public Shape
     Mesh(void); // Constructor
     Mesh(int id, int matIndex,
          const std::vector<Triangle> &faces); // Constructor
-    ReturnVal intersect(const Ray &ray)
+    HitRecord intersect(const Ray &ray)
         const; // Will take a ray and return a structure related to the
                // intersection information. You will implement this.
 

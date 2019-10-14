@@ -9,14 +9,14 @@ for example, coordinate of the intersection point, surface normal at the
 intersection point etc.
 Think about the variables you will need for this purpose and declare them here
 inside of this structure. */
-typedef struct ReturnVal {
+typedef struct HitRecord {
     /***********************************************
      *                                             *
      * TODO: Implement this structure              *
      *                                             *
      ***********************************************
      */
-} ReturnVal;
+} HitRecord;
 
 /* 3 dimensional vector holding floating point numbers.
 Used for both coordinates and color.
