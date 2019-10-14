@@ -12,12 +12,13 @@ Camera::Camera(int id, const char *imageName, const vec3f &pos,
 
 Ray Camera::getPrimaryRay(int col, int row) const
 {
-    float u, v; // UV coordinates of the requested pixel
-
-    u = (col + 0.5) * (imgPlane.right - imgPlane.left) / imgPlane.nx;
-    v = (row + 0.5) * (imgPlane.top - imgPlane.bottom) / imgPlane.ny;
+    // UV coordinates of the requested pixel
+    float u = (col + 0.5) * (imgPlane.right - imgPlane.left) / imgPlane.nx;
+    float v = (row + 0.5) * (imgPlane.top - imgPlane.bottom) / imgPlane.ny;
 
     vec3f pixelPos = imageCenter + u * right - v * up;
+    vec3f origin = pos;
+    vec3f direction = (pixelPos - pos).normalize();
 
-    return Ray(pos, pixelPos - pos);
+    return Ray(origin, direction);
 }

@@ -5,36 +5,28 @@
 #include "defs.h"
 #include <vector>
 
-// Base class for any shape object
 class Shape
 {
   public:
-    int id;       // Id of the shape
-    int matIndex; // Material index of the shape
+    int id;
+    int matIndex;
 
-    virtual HitRecord intersect(const Ray &ray)
-        const = 0; // Pure virtual method for intersection test. You must
-                   // implement this for sphere, triangle, and mesh.
+    virtual HitRecord intersect(const Ray &ray) const = 0;
 
     Shape(void);
-    Shape(int id, int matIndex); // Constructor
-
-  private:
-    // Write any other stuff here
+    Shape(int id, int matIndex);
 };
 
-// Class for sphere
 class Sphere : public Shape
 {
   public:
-    Sphere(void);                                      // Constructor
-    Sphere(int id, int matIndex, int cIndex, float R); // Constructor
-    HitRecord intersect(const Ray &ray)
-        const; // Will take a ray and return a structure related to the
-               // intersection information. You will implement this.
+    Sphere(void);
+    Sphere(int id, int matIndex, int cIndex, float R);
+    HitRecord intersect(const Ray &ray) const;
 
   private:
-    // Write any other stuff here
+    int centerIdx;
+    float radius;
 };
 
 // Class for triangle
