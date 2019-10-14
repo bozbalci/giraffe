@@ -5,4 +5,4 @@ all:
 
 
 clean:
-    rm raytracer
+	rm raytracer

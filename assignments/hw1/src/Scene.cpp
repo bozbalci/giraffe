@@ -1,4 +1,5 @@
 #include <cstddef>
+#include <iostream>
 
 #include "tinyxml2.h"
 
@@ -6,6 +7,7 @@
 #include "Image.h"
 #include "Light.h"
 #include "Material.h"
+#include "Ray.h"
 #include "Scene.h"
 #include "Shape.h"
 
@@ -18,18 +20,39 @@ void Scene::renderScene(void)
         auto height = camera->imgPlane.ny;
         Image image(width, height);
 
+        int hits = 0;
+        int misses = 0;
+
         for (std::size_t i = 0; i < width; ++i) {
-            for (std::size_t j = 0; j < width; ++j) {
+            for (std::size_t j = 0; j < height; ++j) {
+                Ray ray = camera->getPrimaryRay(i, j);
                 Color color;
 
-                color.red = (unsigned char)backgroundColor.r;
-                color.grn = (unsigned char)backgroundColor.g;
-                color.blu = (unsigned char)backgroundColor.b;
+                for (auto object : objects) {
+                    HitRecord hr = object->intersect(ray);
+
+                    if (hr.hit) {
+                        color.red = 255;
+                        color.grn = 0;
+                        color.blu = 0;
+
+                        hits++;
+                        break;
+                    } else {
+                        // No hit, use background color
+                        color.red = (unsigned char)backgroundColor.r;
+                        color.grn = (unsigned char)backgroundColor.g;
+                        color.blu = (unsigned char)backgroundColor.b;
+
+                        misses++;
+                    }
+                }
 
                 image.setPixelValue(i, j, color);
             }
         }
 
+        std::cout << "Hits: " << hits << ", misses: " << misses << '\n';
         image.saveImage(camera->imageName.c_str());
     }
 }
