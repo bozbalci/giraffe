@@ -4,7 +4,6 @@
 #include "Ray.h"
 #include "defs.h"
 
-// Structure for holding variables related to the image plane
 typedef struct ImagePlane {
     float left;     // "u" coordinate of the left edge
     float right;    // "u" coordinate of the right edge
@@ -33,9 +32,13 @@ class Camera
     Ray getPrimaryRay(int row, int col) const;
 
   private:
-    //
-    // You can add member functions and variables here
-    //
+    vec3f pos;
+    vec3f gaze;
+    vec3f up;
+    vec3f right;
+
+    vec3f imageCenter;
+    vec3f imageTopLeft;
 };
 
 #endif

@@ -1,29 +1,23 @@
 #include "Camera.h"
 
-Camera::Camera(int id,                     // Id of the camera
-               const char *imageName,      // Name of the output PPM file
-               const vec3f &pos,           // Camera position
-               const vec3f &gaze,          // Camera gaze direction
-               const vec3f &up,            // Camera up direction
-               const ImagePlane &imgPlane) // Image plane parameters
+Camera::Camera(int id, const char *imageName, const vec3f &pos,
+               const vec3f &gaze, const vec3f &up, const ImagePlane &imgPlane)
+    : id(id), imageName(imageName), pos(pos), gaze(gaze), up(up),
+      imgPlane(imgPlane)
 {
-    /***********************************************
-     *                                             *
-     * TODO: Implement this function               *
-     *                                             *
-     ***********************************************
-     */
+    right = giraffe::cross(gaze, up);
+    imageCenter = pos + distance * gaze;
+    imageTopLeft = imageCenter + imgPlane->left * right + imgPlane->top * up;
 }
 
-/* Takes coordinate of an image pixel as row and col, and
- * returns the ray going through that pixel.
- */
 Ray Camera::getPrimaryRay(int col, int row) const
 {
-    /***********************************************
-     *                                             *
-     * TODO: Implement this function               *
-     *                                             *
-     ***********************************************
-     */
+    float u, v; // UV coordinates of the requested pixel
+
+    u = (col + 0.5) * (imgPlane->right - imgPlane->left) / imgPlane->nx;
+    v = (row + 0.5) * (imgPlane->top - imgPlane->bottom) / imgPlane->ny;
+
+    vec3f pixelPos = imageCenter + su * right - sv * up;
+
+    return Ray(pos, pixelPos - pos);
 }

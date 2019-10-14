@@ -3,7 +3,7 @@
 
 #include "defs.h"
 
-// Class for Ray object. You will implement the methods
+// Class for Ray object.
 class Ray
 {
   public:
