@@ -20,39 +20,46 @@ void Scene::renderScene(void)
         auto height = camera->imgPlane.ny;
         Image image(width, height);
 
-        int hits = 0;
-        int misses = 0;
-
         for (std::size_t i = 0; i < width; ++i) {
             for (std::size_t j = 0; j < height; ++j) {
+                Color pColor;
+                vec3f color;
                 Ray ray = camera->getPrimaryRay(i, j);
-                Color color;
+
+                float t_min = 3.4e+38; // TODO
+                HitRecord hr_min = NO_HIT;
 
                 for (auto object : objects) {
                     HitRecord hr = object->intersect(ray);
+                    auto t_hit = hr.t;
 
-                    if (hr.t > 0) {
-                        color.red = 255;
-                        color.grn = 0;
-                        color.blu = 0;
-
-                        hits++;
-                        break;
-                    } else {
-                        // No hit, use background color
-                        color.red = (unsigned char)backgroundColor.r;
-                        color.grn = (unsigned char)backgroundColor.g;
-                        color.blu = (unsigned char)backgroundColor.b;
-
-                        misses++;
+                    if (t_hit > 0 && t_hit < t_min) {
+                        t_min = t_hit;
+                        hr_min = hr;
                     }
                 }
 
-                image.setPixelValue(i, j, color);
+                if (hr_min.t > 0) {
+                    // Viewing ray intersected with an object.
+                    color = giraffe::oymak(
+                        ambientLight,
+                        materials[hr_min.materialIdx - 1]->ambientRef);
+
+                    pColor.red = (unsigned char)color.r;
+                    pColor.grn = (unsigned char)color.g;
+                    pColor.blu = (unsigned char)color.b;
+                } else {
+                    // No hits, use background color.
+
+                    pColor.red = (unsigned char)backgroundColor.r;
+                    pColor.grn = (unsigned char)backgroundColor.g;
+                    pColor.blu = (unsigned char)backgroundColor.b;
+                }
+
+                image.setPixelValue(i, j, pColor);
             }
         }
 
-        std::cout << "Hits: " << hits << ", misses: " << misses << '\n';
         image.saveImage(camera->imageName.c_str());
     }
 }

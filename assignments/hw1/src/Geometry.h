@@ -36,6 +36,9 @@ float operator*(vec3f lhs, vec3f rhs);
 float dot(vec3f lhs, vec3f rhs);
 vec3f cross(vec3f lhs, vec3f rhs);
 
+// Oymak product
+vec3f oymak(vec3f lhs, vec3f rhs);
+
 } // namespace giraffe
 
 #endif // GIRAFFE_GEOMETRY_H

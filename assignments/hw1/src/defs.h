@@ -14,6 +14,8 @@ struct HitRecord {
     int materialIdx;
 };
 
+constexpr HitRecord NO_HIT = {-1, {0, 0, 0}, {0, 0, 0}, -1};
+
 extern Scene *pScene;
 
 #endif

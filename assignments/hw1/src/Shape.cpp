@@ -5,8 +5,6 @@
 #include "Scene.h"
 #include "Shape.h"
 
-constexpr HitRecord NO_HIT = {-1, {0, 0, 0}, {0, 0, 0}, -1};
-
 Shape::Shape(void) {}
 
 Shape::Shape(int id, int matIndex) : id(id), matIndex(matIndex) {}

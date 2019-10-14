@@ -49,4 +49,9 @@ vec3f cross(vec3f lhs, vec3f rhs)
             lhs.x * rhs.y - lhs.y * rhs.x};
 }
 
+vec3f oymak(vec3f lhs, vec3f rhs)
+{
+    return {lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z};
+}
+
 } // namespace giraffe
