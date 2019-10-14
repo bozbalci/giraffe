@@ -214,7 +214,7 @@ Scene::Scene(const char *xmlPath)
         int p3Index;
         int cursor = 0;
         int vertexOffset = 0;
-        vector<Triangle> faces;
+        std::vector<Triangle> faces;
 
         eResult = pObject->QueryIntAttribute("id", &id);
         objElement = pObject->FirstChildElement("Material");

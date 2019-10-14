@@ -5,8 +5,6 @@
 #include "defs.h"
 #include <vector>
 
-using namespace std;
-
 // Base class for any shape object
 class Shape
 {
@@ -58,8 +56,9 @@ class Triangle : public Shape
 class Mesh : public Shape
 {
   public:
-    Mesh(void);                                                // Constructor
-    Mesh(int id, int matIndex, const vector<Triangle> &faces); // Constructor
+    Mesh(void); // Constructor
+    Mesh(int id, int matIndex,
+         const std::vector<Triangle> &faces); // Constructor
     ReturnVal intersect(const Ray &ray)
         const; // Will take a ray and return a structure related to the
                // intersection information. You will implement this.

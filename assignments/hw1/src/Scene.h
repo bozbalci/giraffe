@@ -17,8 +17,6 @@ class PointLight;
 class Material;
 class Shape;
 
-using namespace std;
-
 // Class to hold everything related to a scene.
 class Scene
 {
@@ -31,11 +29,11 @@ class Scene
     Vector3f backgroundColor; // Background color
     Vector3f ambientLight;    // Ambient light radiance
 
-    vector<Camera *> cameras;     // Vector holding all cameras
-    vector<PointLight *> lights;  // Vector holding all point lights
-    vector<Material *> materials; // Vector holding all materials
-    vector<Vector3f> vertices;    // Vector holding all vertices (vertex data)
-    vector<Shape *> objects;      // Vector holding all shapes
+    std::vector<Camera *> cameras;     // Vector holding all cameras
+    std::vector<PointLight *> lights;  // Vector holding all point lights
+    std::vector<Material *> materials; // Vector holding all materials
+    std::vector<Vector3f> vertices; // Vector holding all vertices (vertex data)
+    std::vector<Shape *> objects;   // Vector holding all shapes
 
     Scene(const char *xmlPath); // Constructor. Parses XML file and initializes
                                 // vectors above. Implemented for you.

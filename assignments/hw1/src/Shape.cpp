@@ -66,7 +66,7 @@ ReturnVal Triangle::intersect(const Ray &ray) const
 Mesh::Mesh() {}
 
 /* Constructor for mesh. You will implement this. */
-Mesh::Mesh(int id, int matIndex, const vector<Triangle> &faces)
+Mesh::Mesh(int id, int matIndex, const std::vector<Triangle> &faces)
     : Shape(id, matIndex)
 {
     /***********************************************
