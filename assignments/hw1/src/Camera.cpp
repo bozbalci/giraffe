@@ -2,9 +2,9 @@
 
 Camera::Camera(int id,                     // Id of the camera
                const char *imageName,      // Name of the output PPM file
-               const Vector3f &pos,        // Camera position
-               const Vector3f &gaze,       // Camera gaze direction
-               const Vector3f &up,         // Camera up direction
+               const vec3f &pos,           // Camera position
+               const vec3f &gaze,          // Camera gaze direction
+               const vec3f &up,            // Camera up direction
                const ImagePlane &imgPlane) // Image plane parameters
 {
     /***********************************************

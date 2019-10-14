@@ -26,14 +26,14 @@ class Scene
                         // implementing intersect routines in Shape class
     float shadowRayEps; // ShadowRayEpsilon. You will need this one while
                         // generating shadow rays.
-    Vector3f backgroundColor; // Background color
-    Vector3f ambientLight;    // Ambient light radiance
+    vec3f backgroundColor; // Background color
+    vec3f ambientLight;    // Ambient light radiance
 
     std::vector<Camera *> cameras;     // Vector holding all cameras
     std::vector<PointLight *> lights;  // Vector holding all point lights
     std::vector<Material *> materials; // Vector holding all materials
-    std::vector<Vector3f> vertices; // Vector holding all vertices (vertex data)
-    std::vector<Shape *> objects;   // Vector holding all shapes
+    std::vector<vec3f> vertices;  // Vector holding all vertices (vertex data)
+    std::vector<Shape *> objects; // Vector holding all shapes
 
     Scene(const char *xmlPath); // Constructor. Parses XML file and initializes
                                 // vectors above. Implemented for you.

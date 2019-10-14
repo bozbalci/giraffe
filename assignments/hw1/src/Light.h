@@ -7,15 +7,15 @@
 class PointLight
 {
   public:
-    Vector3f position; // Position of the point light
+    vec3f position; // Position of the point light
 
-    PointLight(const Vector3f &position,
-               const Vector3f &intensity); // Constructor
-    Vector3f computeLightContribution(
-        const Vector3f &p); // Compute the contribution of light at point p
+    PointLight(const vec3f &position,
+               const vec3f &intensity); // Constructor
+    vec3f computeLightContribution(
+        const vec3f &p); // Compute the contribution of light at point p
 
   private:
-    Vector3f intensity; // Intensity of the point light
+    vec3f intensity; // Intensity of the point light
 };
 
 #endif

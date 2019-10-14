@@ -7,12 +7,12 @@
 class Material
 {
   public:
-    int id;               // Material id
-    int phongExp;         // Phong exponent
-    Vector3f ambientRef;  // Coefficients for ambient reflection
-    Vector3f diffuseRef;  // Coefficients for diffuse reflection
-    Vector3f specularRef; // Coefficients for specular reflection
-    Vector3f mirrorRef;   // Coefficients for mirror reflection
+    int id;            // Material id
+    int phongExp;      // Phong exponent
+    vec3f ambientRef;  // Coefficients for ambient reflection
+    vec3f diffuseRef;  // Coefficients for diffuse reflection
+    vec3f specularRef; // Coefficients for specular reflection
+    vec3f mirrorRef;   // Coefficients for mirror reflection
 
     Material(void); // Constructor
 

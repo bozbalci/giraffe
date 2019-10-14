@@ -60,7 +60,7 @@ Scene::Scene(const char *xmlPath)
     while (pCamera != nullptr) {
         int id;
         char imageName[64];
-        Vector3f pos, gaze, up;
+        vec3f pos, gaze, up;
         ImagePlane imgPlane;
 
         eResult = pCamera->QueryIntAttribute("id", &id);
@@ -135,7 +135,7 @@ Scene::Scene(const char *xmlPath)
     // Parse vertex data
     pElement = pRoot->FirstChildElement("VertexData");
     int cursor = 0;
-    Vector3f tmpPoint;
+    vec3f tmpPoint;
     str = pElement->GetText();
     while (str[cursor] == ' ' || str[cursor] == '\t' || str[cursor] == '\n')
         cursor++;
@@ -250,8 +250,8 @@ Scene::Scene(const char *xmlPath)
 
     // Parse lights
     int id;
-    Vector3f position;
-    Vector3f intensity;
+    vec3f position;
+    vec3f intensity;
     pElement = pRoot->FirstChildElement("Lights");
 
     XMLElement *pLight = pElement->FirstChildElement("AmbientLight");
