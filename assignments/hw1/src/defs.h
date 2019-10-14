@@ -8,7 +8,7 @@ using giraffe::vec3f;
 class Scene;
 
 struct HitRecord {
-    bool hit;
+    float t;
     vec3f pos;
     vec3f normal;
     int materialIdx;

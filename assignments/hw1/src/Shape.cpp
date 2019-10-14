@@ -5,16 +5,17 @@
 #include "Scene.h"
 #include "Shape.h"
 
+constexpr HitRecord NO_HIT = {-1, {0, 0, 0}, {0, 0, 0}, -1};
+
 Shape::Shape(void) {}
 
 Shape::Shape(int id, int matIndex) : id(id), matIndex(matIndex) {}
 
 Sphere::Sphere(void) {}
 
-Sphere::Sphere(int id, int matIndex, int cIndex, float R) : Shape(id, matIndex)
+Sphere::Sphere(int id, int matIndex, int cIndex, float R)
+    : Shape(id, matIndex), centerIdx(cIndex), radius(R)
 {
-    centerIdx = cIndex;
-    radius = R;
 }
 
 HitRecord Sphere::intersect(const Ray &ray) const
@@ -35,7 +36,7 @@ HitRecord Sphere::intersect(const Ray &ray) const
         auto t2 = (-b + std::sqrt(discriminant)) / 2 * a;
 
         if (t1 < 0 && t2 < 0) {
-            goto no_hit;
+            return NO_HIT;
         } else if (t1 > 0 && t2 > 0) {
             t_hit = std::min(t1, t2);
         } else {
@@ -45,35 +46,86 @@ HitRecord Sphere::intersect(const Ray &ray) const
         vec3f pos_hit = ray.origin + t_hit * ray.direction;
         vec3f normal_hit = (pos_hit - sphereCenter).normalize();
 
-        return {true, pos_hit, normal_hit, matIndex};
+        return {t_hit, pos_hit, normal_hit, matIndex};
     }
 
-no_hit:
-    return {false, {0, 0, 0}, {0, 0, 0}, -1};
+    return NO_HIT;
 }
 
 Triangle::Triangle(void) {}
 
 Triangle::Triangle(int id, int matIndex, int p1Index, int p2Index, int p3Index)
-    : Shape(id, matIndex)
+    : Shape(id, matIndex), aIdx(p1Index), bIdx(p2Index), cIdx(p3Index)
 {
-    // TODO
 }
 
 HitRecord Triangle::intersect(const Ray &ray) const
 {
-    return {false, {0, 0, 0}, {0, 0, 0}, -1};
+    vec3f a = pScene->vertices[aIdx - 1];
+    vec3f b = pScene->vertices[bIdx - 1];
+    vec3f c = pScene->vertices[cIdx - 1];
+
+    vec3f ab = a - b, ac = a - c;
+
+    float ei_minus_hf = ac.y * ray.direction.z - ray.direction.y * ac.z,
+          gf_minus_di = ray.direction.x * ac.z - ac.x * ray.direction.z,
+          dh_minus_eg = ac.x * ray.direction.y - ac.y * ray.direction.x,
+          j = a.x - ray.origin.x, k = a.y - ray.origin.y,
+          l = a.z - ray.origin.z, ak_minus_jb = ab.x * k - j * ab.y,
+          jc_minus_al = j * ab.z - ab.x * l, bl_minus_kc = ab.y * l - k * ab.z,
+          m = ab.x * (ei_minus_hf) + ab.y * (gf_minus_di) +
+              ab.z * (dh_minus_eg),
+          t_hit =
+              -(ac.z * ak_minus_jb + ac.y * jc_minus_al + ac.x * bl_minus_kc) /
+              m;
+
+    if (t_hit <= 0)
+        return NO_HIT;
+
+    float gamma =
+        (ray.direction.z * ak_minus_jb + ray.direction.y * jc_minus_al +
+         ray.direction.x * bl_minus_kc) /
+        m;
+
+    if (gamma < 0 || gamma > 1)
+        return NO_HIT;
+
+    float beta = (j * ei_minus_hf + k * gf_minus_di + l * dh_minus_eg) / m;
+
+    if (beta < 0 || beta > 1 - gamma)
+        return NO_HIT;
+
+    vec3f pos_hit = ray.origin + t_hit * ray.direction;
+    vec3f normal_hit = giraffe::cross(b - a, c - a).normalize();
+
+    return {t_hit, pos_hit, normal_hit, matIndex};
 }
 
 Mesh::Mesh() {}
 
 Mesh::Mesh(int id, int matIndex, const std::vector<Triangle> &faces)
-    : Shape(id, matIndex)
+    : Shape(id, matIndex), faces(faces)
 {
-    // TODO
 }
 
 HitRecord Mesh::intersect(const Ray &ray) const
 {
-    return {false, {0, 0, 0}, {0, 0, 0}, -1};
+    // TODO Rewrite this with std::transform
+    float t_min = 3.4e+38; // Approximately infinite
+    HitRecord hr_min = NO_HIT;
+
+    for (auto face : faces) {
+        auto hr = face.intersect(ray);
+        auto t_hit = hr.t;
+
+        if (t_hit <= 0)
+            continue;
+
+        if (t_hit < t_min) {
+            t_min = t_hit;
+            hr_min = hr;
+        }
+    }
+
+    return hr_min;
 }

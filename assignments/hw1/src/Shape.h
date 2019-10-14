@@ -29,34 +29,26 @@ class Sphere : public Shape
     float radius;
 };
 
-// Class for triangle
 class Triangle : public Shape
 {
   public:
-    Triangle(void); // Constructor
-    Triangle(int id, int matIndex, int p1Index, int p2Index,
-             int p3Index); // Constructor
-    HitRecord intersect(const Ray &ray)
-        const; // Will take a ray and return a structure related to the
-               // intersection information. You will implement this.
+    Triangle(void);
+    Triangle(int id, int matIndex, int p1Index, int p2Index, int p3Index);
+    HitRecord intersect(const Ray &ray) const;
 
   private:
-    // Write any other stuff here
+    int aIdx, bIdx, cIdx;
 };
 
-// Class for mesh
 class Mesh : public Shape
 {
   public:
-    Mesh(void); // Constructor
-    Mesh(int id, int matIndex,
-         const std::vector<Triangle> &faces); // Constructor
-    HitRecord intersect(const Ray &ray)
-        const; // Will take a ray and return a structure related to the
-               // intersection information. You will implement this.
+    Mesh(void);
+    Mesh(int id, int matIndex, const std::vector<Triangle> &faces);
+    HitRecord intersect(const Ray &ray) const;
 
   private:
-    // Write any other stuff here
+    std::vector<Triangle> faces;
 };
 
 #endif

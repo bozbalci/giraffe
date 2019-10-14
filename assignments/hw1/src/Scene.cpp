@@ -31,7 +31,7 @@ void Scene::renderScene(void)
                 for (auto object : objects) {
                     HitRecord hr = object->intersect(ray);
 
-                    if (hr.hit) {
+                    if (hr.t > 0) {
                         color.red = 255;
                         color.grn = 0;
                         color.blu = 0;
