@@ -38,7 +38,6 @@ class Camera
     vec3f gaze;
     vec3f up;
     vec3f right;
-
     vec3f imageCenter;
     vec3f imageTopLeft;
 };
