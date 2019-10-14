@@ -1,27 +1,39 @@
-#include "Scene.h"
+#include <cstddef>
+
+#include "tinyxml2.h"
+
 #include "Camera.h"
+#include "Image.h"
 #include "Light.h"
 #include "Material.h"
+#include "Scene.h"
 #include "Shape.h"
-#include "tinyxml2.h"
 
 using namespace tinyxml2;
 
-/*
- * Must render the scene from each camera's viewpoint and create an image.
- * You can use the methods of the Image class to save the image as a PPM file.
- */
 void Scene::renderScene(void)
 {
-    /***********************************************
-     *                                             *
-     * TODO: Implement this function               *
-     *                                             *
-     ***********************************************
-     */
+    for (auto camera : cameras) {
+        auto width = camera->imgPlane.nx;
+        auto height = camera->imgPlane.ny;
+        Image image(width, height);
+
+        for (std::size_t i = 0; i < width; ++i) {
+            for (std::size_t j = 0; j < width; ++j) {
+                Color color;
+
+                color.red = (unsigned char)backgroundColor.r;
+                color.grn = (unsigned char)backgroundColor.g;
+                color.blu = (unsigned char)backgroundColor.b;
+
+                image.setPixelValue(i, j, color);
+            }
+        }
+
+        image.saveImage(camera->imageName.c_str());
+    }
 }
 
-// Parses XML file.
 Scene::Scene(const char *xmlPath)
 {
     const char *str;
