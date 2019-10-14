@@ -6,18 +6,18 @@ Camera::Camera(int id, const char *imageName, const vec3f &pos,
       imgPlane(imgPlane)
 {
     right = giraffe::cross(gaze, up);
-    imageCenter = pos + distance * gaze;
-    imageTopLeft = imageCenter + imgPlane->left * right + imgPlane->top * up;
+    imageCenter = pos + imgPlane.distance * gaze;
+    imageTopLeft = imageCenter + imgPlane.left * right + imgPlane.top * up;
 }
 
 Ray Camera::getPrimaryRay(int col, int row) const
 {
     float u, v; // UV coordinates of the requested pixel
 
-    u = (col + 0.5) * (imgPlane->right - imgPlane->left) / imgPlane->nx;
-    v = (row + 0.5) * (imgPlane->top - imgPlane->bottom) / imgPlane->ny;
+    u = (col + 0.5) * (imgPlane.right - imgPlane.left) / imgPlane.nx;
+    v = (row + 0.5) * (imgPlane.top - imgPlane.bottom) / imgPlane.ny;
 
-    vec3f pixelPos = imageCenter + su * right - sv * up;
+    vec3f pixelPos = imageCenter + u * right - v * up;
 
     return Ray(pos, pixelPos - pos);
 }

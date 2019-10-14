@@ -4,6 +4,8 @@
 #include "Ray.h"
 #include "defs.h"
 
+#include <string>
+
 typedef struct ImagePlane {
     float left;     // "u" coordinate of the left edge
     float right;    // "u" coordinate of the right edge
@@ -17,7 +19,7 @@ typedef struct ImagePlane {
 class Camera
 {
   public:
-    char imageName[32];
+    std::string imageName;
     int id;
     ImagePlane imgPlane; // Image plane
 
