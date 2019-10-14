@@ -1,3 +1,5 @@
+#include <algorithm>
+#include <cmath>
 #include <cstddef>
 #include <iostream>
 
@@ -13,6 +15,89 @@
 
 using namespace tinyxml2;
 
+vec3f Scene::ray_color(Ray ray, int depth) const
+{
+    vec3f color = {0, 0, 0};
+
+    if (depth > maxRecursionDepth)
+        return color;
+
+    float t_min = 3.4e+38; // TODO
+    HitRecord hr_min = NO_HIT;
+
+    for (auto object : objects) {
+        HitRecord hr = object->intersect(ray);
+        auto t_hit = hr.t;
+
+        if (t_hit > 0 && t_hit < t_min) {
+            t_min = t_hit;
+            hr_min = hr;
+        }
+    }
+
+    if (hr_min.t > 0) {
+        // Viewing ray intersected with an object.
+        Material *material = materials[hr_min.materialIdx - 1];
+
+        if (material->mirrorRef.norm() > 0) {
+            vec3f reflection_vector =
+                ray.direction -
+                2.0f * (hr_min.normal * ray.direction) * hr_min.normal;
+            Ray reflection_ray(hr_min.pos + shadowRayEps * reflection_vector,
+                               reflection_vector.normalize());
+
+            // Mirror component
+            vec3f mirror = giraffe::oymak(material->mirrorRef,
+                                          ray_color(reflection_ray, depth + 1));
+            color = color + mirror;
+        }
+
+        // Ambient shading
+        vec3f ambient = giraffe::oymak(ambientLight, material->ambientRef);
+        color = color + ambient;
+
+        for (auto light : lights) {
+            vec3f light_vector = light->position - hr_min.pos;
+            float light_distance = light_vector.norm();
+            vec3f light_contribution =
+                light->computeLightContribution(hr_min.pos);
+            Ray light_ray(hr_min.pos + shadowRayEps * light_vector.normalize(),
+                          light_vector.normalize());
+
+            // Shadow computation
+            HitRecord hr_shadow;
+            bool in_shadow = false;
+            for (auto object : objects) {
+                hr_shadow = object->intersect(light_ray);
+
+                if (hr_shadow.t > 0 && hr_shadow.t <= light_distance)
+                    in_shadow = true;
+            }
+            if (in_shadow)
+                break;
+
+            // Diffuse component
+            vec3f diffuse =
+                std::max(0.0f, hr_min.normal * light_vector.normalize()) *
+                giraffe::oymak(material->diffuseRef, light_contribution);
+            color = color + diffuse;
+
+            // Specular component (Blinn-Phong)
+            vec3f h = -ray.direction.normalize() + light_vector.normalize();
+            h = h / h.norm();
+            vec3f specular =
+                std::pow(std::max(0.0f, hr_min.normal * h),
+                         material->phongExp) *
+                giraffe::oymak(material->specularRef, light_contribution);
+            color = color + specular;
+        }
+
+        return color;
+    }
+
+    return backgroundColor;
+}
+
 void Scene::renderScene(void)
 {
     for (auto camera : cameras) {
@@ -22,39 +107,17 @@ void Scene::renderScene(void)
 
         for (std::size_t i = 0; i < width; ++i) {
             for (std::size_t j = 0; j < height; ++j) {
-                Color pColor;
-                vec3f color;
                 Ray ray = camera->getPrimaryRay(i, j);
+                vec3f color = ray_color(ray, 0);
 
-                float t_min = 3.4e+38; // TODO
-                HitRecord hr_min = NO_HIT;
+                color.r = std::min(color.r, 255.0f);
+                color.g = std::min(color.g, 255.0f);
+                color.b = std::min(color.b, 255.0f);
 
-                for (auto object : objects) {
-                    HitRecord hr = object->intersect(ray);
-                    auto t_hit = hr.t;
-
-                    if (t_hit > 0 && t_hit < t_min) {
-                        t_min = t_hit;
-                        hr_min = hr;
-                    }
-                }
-
-                if (hr_min.t > 0) {
-                    // Viewing ray intersected with an object.
-                    color = giraffe::oymak(
-                        ambientLight,
-                        materials[hr_min.materialIdx - 1]->ambientRef);
-
-                    pColor.red = (unsigned char)color.r;
-                    pColor.grn = (unsigned char)color.g;
-                    pColor.blu = (unsigned char)color.b;
-                } else {
-                    // No hits, use background color.
-
-                    pColor.red = (unsigned char)backgroundColor.r;
-                    pColor.grn = (unsigned char)backgroundColor.g;
-                    pColor.blu = (unsigned char)backgroundColor.b;
-                }
+                Color pColor;
+                pColor.red = (unsigned char)color.r;
+                pColor.grn = (unsigned char)color.g;
+                pColor.blu = (unsigned char)color.b;
 
                 image.setPixelValue(i, j, pColor);
             }

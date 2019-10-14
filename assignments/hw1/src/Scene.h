@@ -43,7 +43,7 @@ class Scene
                        // camera in the scene. You will implement this.
 
   private:
-    // Write any other stuff here
+    vec3f ray_color(Ray ray, int depth) const;
 };
 
 #endif
