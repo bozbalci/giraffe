@@ -3,19 +3,16 @@
 
 #include "defs.h"
 
-// Class for point lights
 class PointLight
 {
   public:
-    vec3f position; // Position of the point light
+    vec3f position;
 
-    PointLight(const vec3f &position,
-               const vec3f &intensity); // Constructor
-    vec3f computeLightContribution(
-        const vec3f &p); // Compute the contribution of light at point p
+    PointLight(const vec3f &position, const vec3f &intensity);
+    vec3f computeLightContribution(const vec3f &p);
 
   private:
-    vec3f intensity; // Intensity of the point light
+    vec3f intensity;
 };
 
 #endif
