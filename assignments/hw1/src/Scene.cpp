@@ -134,31 +134,25 @@ void Scene::renderScene(void)
         const unsigned int num_threads =
             std::max(std::thread::hardware_concurrency(), 1u);
 
+        const int stride = static_cast<int>(height / num_threads);
+
+        // Block scope for async tasks ensure they are waited for, before saving
+        // the image.
         {
-            auto task1 = std::async(std::launch::async, [&] {
-                render_partial(image, camera, 0, 100);
-            });
-            auto task2 = std::async(std::launch::async, [&] {
-                render_partial(image, camera, 100, 200);
-            });
-            auto task3 = std::async(std::launch::async, [&] {
-                render_partial(image, camera, 200, 300);
-            });
-            auto task4 = std::async(std::launch::async, [&] {
-                render_partial(image, camera, 300, 400);
-            });
-            auto task5 = std::async(std::launch::async, [&] {
-                render_partial(image, camera, 400, 500);
-            });
-            auto task6 = std::async(std::launch::async, [&] {
-                render_partial(image, camera, 500, 600);
-            });
-            auto task7 = std::async(std::launch::async, [&] {
-                render_partial(image, camera, 600, 700);
-            });
-            auto task8 = std::async(std::launch::async, [&] {
-                render_partial(image, camera, 700, 800);
-            });
+            std::vector<std::future<void>> tasks;
+
+            for (std::size_t i = 0; i < num_threads; ++i) {
+                tasks.push_back(std::async(std::launch::async, [&, i] {
+                    render_partial(image, camera, i * stride, (i + 1) * stride);
+                }));
+            }
+
+            // One last thread in case height is not divisible by num_threads
+            if (height % num_threads) {
+                tasks.push_back(std::async(std::launch::async, [&] {
+                    render_partial(image, camera, num_threads * stride, height);
+                }));
+            }
         }
 
         image.saveImage(camera->imageName.c_str());
