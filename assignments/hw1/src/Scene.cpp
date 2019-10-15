@@ -15,6 +15,13 @@
 
 using namespace tinyxml2;
 
+Color to_output_color(vec3f color)
+{
+    return {(unsigned char)std::min(color.r, 255.0f),
+            (unsigned char)std::min(color.g, 255.0f),
+            (unsigned char)std::min(color.b, 255.0f)};
+}
+
 vec3f Scene::ray_color(Ray ray, int depth) const
 {
     vec3f color = {0, 0, 0};
@@ -107,16 +114,7 @@ void Scene::renderScene(void)
             for (std::size_t j = 0; j < height; ++j) {
                 Ray ray = camera->getPrimaryRay(i, j);
                 vec3f color = ray_color(ray, 0);
-
-                color.r = std::min(color.r, 255.0f);
-                color.g = std::min(color.g, 255.0f);
-                color.b = std::min(color.b, 255.0f);
-
-                Color pColor;
-                pColor.red = (unsigned char)color.r;
-                pColor.grn = (unsigned char)color.g;
-                pColor.blu = (unsigned char)color.b;
-
+                Color pColor = to_output_color(color);
                 image.setPixelValue(i, j, pColor);
             }
         }
