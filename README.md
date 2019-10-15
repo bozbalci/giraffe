@@ -9,11 +9,12 @@ Coursework for *CENG447 - Introduction to Computer Graphics (Fall 2019),* by [Ya
 |--|--|
 |[hw1 spec](https://github.com/bozbalci/giraffe/tree/master/assignments/hw1/hw1.pdf)|[hw1](https://github.com/bozbalci/giraffe/tree/master/assignments/hw1/src)|
 
-### TODO
+### Performance
 
-- [ ] Read and understand the assignment (Yağmur)
-- [ ] Read and understand the assignment (Berk)
-- [ ] More items to follow
+|Optimizations|Test file|Time (s)|Speedup|
+|--|--|--|--|
+|Baseline|`past_examples/dragon_lowres.xml`|495.57|-|
+|Threads|`past_examples/dragon_lowres.xml`|107.69|4.59x|
 
 ## clang-format
 Run
