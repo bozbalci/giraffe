@@ -7,7 +7,12 @@ class Material
 {
   public:
     int id;
-    int phongExp;
+    /*
+     * Some materials in some scenes do not have a PhongExponent defined.
+     * This leads to phongExp remaining uninitialized and results in nasal
+     * demons. Defaulting this to 0 should fix this.
+     */
+    int phongExp = 0;
     vec3f ambientRef;
     vec3f diffuseRef;
     vec3f specularRef;
