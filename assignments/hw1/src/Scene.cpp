@@ -72,7 +72,7 @@ vec3f Scene::ray_color(Ray ray, int depth) const
                     return hr_shadow.t > 0 && hr_shadow.t <= light_distance;
                 });
             if (in_shadow)
-                break;
+                continue;
 
             // Diffuse component
             vec3f diffuse =
