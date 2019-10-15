@@ -65,16 +65,12 @@ vec3f Scene::ray_color(Ray ray, int depth) const
                           light_vector.normalize());
 
             // Shadow computation
-            HitRecord hr_shadow;
-            bool in_shadow = false;
             for (auto object : objects) {
-                hr_shadow = object->intersect(light_ray);
+                HitRecord hr_shadow = object->intersect(light_ray);
 
                 if (hr_shadow.t > 0 && hr_shadow.t <= light_distance)
-                    in_shadow = true;
+                    break;
             }
-            if (in_shadow)
-                break;
 
             // Diffuse component
             vec3f diffuse =
