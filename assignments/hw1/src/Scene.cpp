@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
+#include <future>
 #include <iostream>
 #include <thread>
 
@@ -133,14 +134,32 @@ void Scene::renderScene(void)
         const unsigned int num_threads =
             std::max(std::thread::hardware_concurrency(), 1u);
 
-        render_partial(image, camera, 0, 100);
-        render_partial(image, camera, 100, 200);
-        render_partial(image, camera, 200, 300);
-        render_partial(image, camera, 300, 400);
-        render_partial(image, camera, 400, 500);
-        render_partial(image, camera, 500, 600);
-        render_partial(image, camera, 600, 700);
-        render_partial(image, camera, 700, 800);
+        {
+            auto task1 = std::async(std::launch::async, [&] {
+                render_partial(image, camera, 0, 100);
+            });
+            auto task2 = std::async(std::launch::async, [&] {
+                render_partial(image, camera, 100, 200);
+            });
+            auto task3 = std::async(std::launch::async, [&] {
+                render_partial(image, camera, 200, 300);
+            });
+            auto task4 = std::async(std::launch::async, [&] {
+                render_partial(image, camera, 300, 400);
+            });
+            auto task5 = std::async(std::launch::async, [&] {
+                render_partial(image, camera, 400, 500);
+            });
+            auto task6 = std::async(std::launch::async, [&] {
+                render_partial(image, camera, 500, 600);
+            });
+            auto task7 = std::async(std::launch::async, [&] {
+                render_partial(image, camera, 600, 700);
+            });
+            auto task8 = std::async(std::launch::async, [&] {
+                render_partial(image, camera, 700, 800);
+            });
+        }
 
         image.saveImage(camera->imageName.c_str());
     }
