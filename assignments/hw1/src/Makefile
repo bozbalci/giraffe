@@ -1,7 +1,7 @@
 src = *.cpp
 
 all:
-	g++ $(src) -std=c++17 -O3 -o raytracer
+	g++ $(src) -std=c++17 -O3 -o raytracer -pthread
 
 clean:
 	rm raytracer *.ppm

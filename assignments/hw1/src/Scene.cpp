@@ -1,7 +1,9 @@
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
+#include <future>
 #include <iostream>
+#include <thread>
 
 #include "tinyxml2.h"
 
@@ -14,6 +16,28 @@
 #include "Shape.h"
 
 using namespace tinyxml2;
+
+Color to_output_color(vec3f color)
+{
+    return {(unsigned char)std::min(color.r, 255.0f),
+            (unsigned char)std::min(color.g, 255.0f),
+            (unsigned char)std::min(color.b, 255.0f)};
+}
+
+void Scene::render_partial(Image &image, Camera *camera, int u_min,
+                           int u_max) const
+{
+    auto width = camera->imgPlane.nx;
+    auto height = camera->imgPlane.ny;
+
+    for (std::size_t i = u_min; i < u_max; ++i) {
+        for (std::size_t j = 0; j < width; ++j) {
+            Ray ray = camera->getPrimaryRay(i, j);
+            vec3f color = ray_color(ray, 0);
+            image.setPixelValue(i, j, to_output_color(color));
+        }
+    }
+}
 
 vec3f Scene::ray_color(Ray ray, int depth) const
 {
@@ -101,23 +125,33 @@ void Scene::renderScene(void)
     for (auto camera : cameras) {
         auto width = camera->imgPlane.nx;
         auto height = camera->imgPlane.ny;
+
         Image image(width, height);
 
-        for (std::size_t i = 0; i < width; ++i) {
-            for (std::size_t j = 0; j < height; ++j) {
-                Ray ray = camera->getPrimaryRay(i, j);
-                vec3f color = ray_color(ray, 0);
+        // std::thread::hardware_concurrency returns zero when the value is not
+        // well defined or computable, so we force the rendering to run in a
+        // single thread in that case.
+        const unsigned int num_threads =
+            std::max(std::thread::hardware_concurrency(), 1u);
 
-                color.r = std::min(color.r, 255.0f);
-                color.g = std::min(color.g, 255.0f);
-                color.b = std::min(color.b, 255.0f);
+        const int stride = static_cast<int>(height / num_threads);
 
-                Color pColor;
-                pColor.red = (unsigned char)color.r;
-                pColor.grn = (unsigned char)color.g;
-                pColor.blu = (unsigned char)color.b;
+        // Block scope for async tasks ensure they are waited for, before saving
+        // the image.
+        {
+            std::vector<std::future<void>> tasks;
 
-                image.setPixelValue(i, j, pColor);
+            for (std::size_t i = 0; i < num_threads; ++i) {
+                tasks.push_back(std::async(std::launch::async, [&, i] {
+                    render_partial(image, camera, i * stride, (i + 1) * stride);
+                }));
+            }
+
+            // One last thread in case height is not divisible by num_threads
+            if (height % num_threads) {
+                tasks.push_back(std::async(std::launch::async, [&] {
+                    render_partial(image, camera, num_threads * stride, height);
+                }));
             }
         }
 
