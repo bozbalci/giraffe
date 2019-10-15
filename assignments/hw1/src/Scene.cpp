@@ -31,7 +31,7 @@ void Scene::render_partial(Image &image, Camera *camera, int u_min,
     auto height = camera->imgPlane.ny;
 
     for (std::size_t i = u_min; i < u_max; ++i) {
-        for (std::size_t j = 0; j < width; ++j) {
+        for (std::size_t j = 0; j < height; ++j) {
             Ray ray = camera->getPrimaryRay(i, j);
             vec3f color = ray_color(ray, 0);
             image.setPixelValue(i, j, to_output_color(color));
@@ -134,7 +134,7 @@ void Scene::renderScene(void)
         const unsigned int num_threads =
             std::max(std::thread::hardware_concurrency(), 1u);
 
-        const int stride = static_cast<int>(height / num_threads);
+        const int stride = static_cast<int>(width / num_threads);
 
         // Block scope for async tasks ensure they are waited for, before saving
         // the image.
@@ -147,10 +147,10 @@ void Scene::renderScene(void)
                 }));
             }
 
-            // One last thread in case height is not divisible by num_threads
+            // One last thread in case width is not divisible by num_threads
             if (height % num_threads) {
                 tasks.push_back(std::async(std::launch::async, [&] {
-                    render_partial(image, camera, num_threads * stride, height);
+                    render_partial(image, camera, num_threads * stride, width);
                 }));
             }
         }

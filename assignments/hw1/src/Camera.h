@@ -30,7 +30,6 @@ class Camera
            const vec3f &up,             // Camera up direction
            const ImagePlane &imgPlane); // Image plane parameters
 
-    // Computes the primary ray through pixel (row, col)
     Ray getPrimaryRay(int row, int col) const;
 
   private:
