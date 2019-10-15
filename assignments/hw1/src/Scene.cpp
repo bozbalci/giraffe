@@ -2,6 +2,7 @@
 #include <cmath>
 #include <cstddef>
 #include <iostream>
+#include <thread>
 
 #include "tinyxml2.h"
 
@@ -20,6 +21,21 @@ Color to_output_color(vec3f color)
     return {(unsigned char)std::min(color.r, 255.0f),
             (unsigned char)std::min(color.g, 255.0f),
             (unsigned char)std::min(color.b, 255.0f)};
+}
+
+void Scene::render_partial(Image &image, Camera *camera, int u_min,
+                           int u_max) const
+{
+    auto width = camera->imgPlane.nx;
+    auto height = camera->imgPlane.ny;
+
+    for (std::size_t i = u_min; i < u_max; ++i) {
+        for (std::size_t j = 0; j < width; ++j) {
+            Ray ray = camera->getPrimaryRay(i, j);
+            vec3f color = ray_color(ray, 0);
+            image.setPixelValue(i, j, to_output_color(color));
+        }
+    }
 }
 
 vec3f Scene::ray_color(Ray ray, int depth) const
@@ -108,16 +124,23 @@ void Scene::renderScene(void)
     for (auto camera : cameras) {
         auto width = camera->imgPlane.nx;
         auto height = camera->imgPlane.ny;
+
         Image image(width, height);
 
-        for (std::size_t i = 0; i < width; ++i) {
-            for (std::size_t j = 0; j < height; ++j) {
-                Ray ray = camera->getPrimaryRay(i, j);
-                vec3f color = ray_color(ray, 0);
-                Color pColor = to_output_color(color);
-                image.setPixelValue(i, j, pColor);
-            }
-        }
+        // std::thread::hardware_concurrency returns zero when the value is not
+        // well defined or computable, so we force the rendering to run in a
+        // single thread in that case.
+        const unsigned int num_threads =
+            std::max(std::thread::hardware_concurrency(), 1u);
+
+        render_partial(image, camera, 0, 100);
+        render_partial(image, camera, 100, 200);
+        render_partial(image, camera, 200, 300);
+        render_partial(image, camera, 300, 400);
+        render_partial(image, camera, 400, 500);
+        render_partial(image, camera, 500, 600);
+        render_partial(image, camera, 600, 700);
+        render_partial(image, camera, 700, 800);
 
         image.saveImage(camera->imageName.c_str());
     }

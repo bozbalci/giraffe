@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 
+#include "Image.h"
 #include "Ray.h"
 #include "defs.h"
 
@@ -43,6 +44,7 @@ class Scene
                        // camera in the scene. You will implement this.
 
   private:
+    void render_partial(Image &image, Camera *camera, int minV, int maxV) const;
     vec3f ray_color(Ray ray, int depth) const;
 };
 
