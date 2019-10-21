@@ -15,6 +15,7 @@ Coursework for *CENG447 - Introduction to Computer Graphics (Fall 2019),* by [Ya
 |--|--|--|--|
 |Baseline|`past_examples/dragon_lowres.xml`|495.57|-|
 |Threads|`past_examples/dragon_lowres.xml`|107.69|4.59x|
+|Better optzn. flags|`past_examples/dragon_lowres.xml`|77.24|6.41x|
 |**TODO** Misc. Optzns.|`past_examples/dragon_lowres.xml`|-|-|
 |**TODO** BVH|`past_examples/dragon_lowres.xml`|-|-|
 
