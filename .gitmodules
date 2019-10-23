@@ -1,0 +1,3 @@
+[submodule "assignments/hw1/src/tools/ceng477hw1tools"]
+	path = assignments/hw1/src/tools/ceng477hw1tools
+	url = https://github.com/denizmsayin/ceng477hw1tools
