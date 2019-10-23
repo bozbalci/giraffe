@@ -56,6 +56,8 @@ class Mesh : public Shape
     std::vector<Triangle> faces;
     std::vector<int> *pIndices;
     std::vector<vec3f> *vertices;
+
+    vec3f bb_min, bb_max;
 };
 
 #endif

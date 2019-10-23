@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdio>
+#include <limits>
 
 #include "Scene.h"
 #include "Shape.h"
@@ -108,12 +109,65 @@ Mesh::Mesh(int id, int matIndex, const std::vector<Triangle> &faces,
            std::vector<int> *pIndices, std::vector<vec3f> *vertices)
     : Shape(id, matIndex), faces(faces), pIndices(pIndices), vertices(vertices)
 {
+    float x_min, y_min, z_min;
+    float x_max, y_max, z_max;
+
+    x_min = y_min = z_min = std::numeric_limits<float>::max();
+    x_max = y_max = z_max = std::numeric_limits<float>::min();
+
+    for (auto index : *pIndices) {
+        vec3f vertex = 0 [vertices][index - 1]; // Art for art's sake
+
+#define IFY(op, a, b)                                                          \
+    if ((a)op(b))                                                              \
+        b = a;
+
+        IFY(<, vertex.x, x_min);
+        IFY(>, vertex.x, x_max);
+        IFY(<, vertex.y, y_min);
+        IFY(>, vertex.y, y_max);
+        IFY(<, vertex.z, z_min);
+        IFY(>, vertex.z, z_max);
+
+#undef IFY
+
+        bb_min = {x_min, y_min, z_min};
+        bb_max = {x_max, y_max, z_max};
+    }
 }
 
 HitRecord Mesh::intersect(const Ray &ray) const
 {
+
+    float dx = 1 / ray.direction.x;
+    float dy = 1 / ray.direction.y;
+    float dz = 1 / ray.direction.z;
+
+    float t_x_min, t_x_max, t_y_min, t_y_max, t_z_min, t_z_max;
+
+#define BERK(C)                                                                \
+    if ((d##C) >= 0) {                                                         \
+        t_##C##_min = (d##C) * (bb_min.C - ray.origin.C);                      \
+        t_##C##_max = (d##C) * (bb_max.C - ray.origin.C);                      \
+    } else {                                                                   \
+        t_##C##_min = (d##C) * (bb_max.C - ray.origin.C);                      \
+        t_##C##_max = (d##C) * (bb_min.C - ray.origin.C);                      \
+    }
+
+    BERK(x);
+    BERK(y);
+    BERK(z);
+
+#undef BERK
+
+    float t_min = std::max(std::max(t_x_min, t_y_min), t_z_min);
+    float t_max = std::min(std::min(t_x_max, t_y_max), t_z_max);
+
+    if (t_min > t_max)
+        return NO_HIT;
+
     // TODO Rewrite this with std::transform
-    float t_min = 3.4e+38; // Approximately infinite
+    t_min = 3.4e+38; // Approximately infinite
     HitRecord hr_min = NO_HIT;
 
     for (auto face : faces) {
