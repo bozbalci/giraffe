@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdio>
+#include <limits>
 
 #include "Scene.h"
 #include "Shape.h"
@@ -112,8 +113,7 @@ Mesh::Mesh(int id, int matIndex, const std::vector<Triangle> &faces,
 
 HitRecord Mesh::intersect(const Ray &ray) const
 {
-    // TODO Rewrite this with std::transform
-    float t_min = 3.4e+38; // Approximately infinite
+    float t_min = std::numeric_limits<float>::max();
     HitRecord hr_min = NO_HIT;
 
     for (auto face : faces) {
