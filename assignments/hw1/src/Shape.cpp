@@ -22,10 +22,10 @@ HitRecord Sphere::intersect(const Ray &ray) const
     float a, b, c; // Coefficients of the quadratic equation.
     vec3f sphereCenter = pScene->vertices[centerIdx - 1];
 
+    auto ro_minus_sc = ray.origin - sphereCenter;
     a = ray.direction * ray.direction;
-    b = 2.0 * ray.direction * (ray.origin - sphereCenter);
-    c = (ray.origin - sphereCenter) * (ray.origin - sphereCenter) -
-        (radius * radius);
+    b = 2.0 * ray.direction * ro_minus_sc;
+    c = ro_minus_sc * ro_minus_sc - (radius * radius);
 
     auto discriminant = b * b - 4 * a * c;
     float t_hit;
