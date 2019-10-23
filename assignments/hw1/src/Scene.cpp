@@ -148,7 +148,7 @@ void Scene::renderScene(void)
             }
 
             // One last thread in case width is not divisible by num_threads
-            if (height % num_threads) {
+            if (width % num_threads) {
                 tasks.push_back(std::async(std::launch::async, [&] {
                     render_partial(image, camera, num_threads * stride, width);
                 }));
