@@ -159,6 +159,7 @@ void Scene::renderScene(void)
     }
 }
 
+// Parses XML file.
 Scene::Scene(const char *xmlPath)
 {
     const char *str;
@@ -314,7 +315,7 @@ Scene::Scene(const char *xmlPath)
         objElement = pObject->FirstChildElement("Radius");
         eResult = objElement->QueryFloatText(&R);
 
-        objects.push_back(new Sphere(id, matIndex, cIndex, R));
+        objects.push_back(new Sphere(id, matIndex, cIndex, R, &vertices));
 
         pObject = pObject->NextSiblingElement("Sphere");
     }
@@ -336,7 +337,7 @@ Scene::Scene(const char *xmlPath)
         sscanf(str, "%d %d %d", &p1Index, &p2Index, &p3Index);
 
         objects.push_back(
-            new Triangle(id, matIndex, p1Index, p2Index, p3Index));
+            new Triangle(id, matIndex, p1Index, p2Index, p3Index, &vertices));
 
         pObject = pObject->NextSiblingElement("Triangle");
     }
@@ -352,6 +353,7 @@ Scene::Scene(const char *xmlPath)
         int cursor = 0;
         int vertexOffset = 0;
         std::vector<Triangle> faces;
+        std::vector<int> *meshIndices = new std::vector<int>;
 
         eResult = pObject->QueryIntAttribute("id", &id);
         objElement = pObject->FirstChildElement("Material");
@@ -376,11 +378,15 @@ Scene::Scene(const char *xmlPath)
                        str[cursor] == '\n')
                     cursor++;
             }
-            faces.push_back(
-                *(new Triangle(-1, matIndex, p1Index, p2Index, p3Index)));
+            faces.push_back(*(new Triangle(-1, matIndex, p1Index, p2Index,
+                                           p3Index, &vertices)));
+            meshIndices->push_back(p1Index);
+            meshIndices->push_back(p2Index);
+            meshIndices->push_back(p3Index);
         }
 
-        objects.push_back(new Mesh(id, matIndex, faces));
+        objects.push_back(
+            new Mesh(id, matIndex, faces, meshIndices, &vertices));
 
         pObject = pObject->NextSiblingElement("Mesh");
     }

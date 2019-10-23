@@ -11,8 +11,9 @@ Shape::Shape(int id, int matIndex) : id(id), matIndex(matIndex) {}
 
 Sphere::Sphere(void) {}
 
-Sphere::Sphere(int id, int matIndex, int cIndex, float R)
-    : Shape(id, matIndex), centerIdx(cIndex), radius(R)
+Sphere::Sphere(int id, int matIndex, int cIndex, float R,
+               std::vector<vec3f> *vertices)
+    : Shape(id, matIndex), centerIdx(cIndex), radius(R), vertices(vertices)
 {
 }
 
@@ -52,8 +53,10 @@ HitRecord Sphere::intersect(const Ray &ray) const
 
 Triangle::Triangle(void) {}
 
-Triangle::Triangle(int id, int matIndex, int p1Index, int p2Index, int p3Index)
-    : Shape(id, matIndex), aIdx(p1Index), bIdx(p2Index), cIdx(p3Index)
+Triangle::Triangle(int id, int matIndex, int p1Index, int p2Index, int p3Index,
+                   std::vector<vec3f> *vertices)
+    : Shape(id, matIndex), aIdx(p1Index), bIdx(p2Index), cIdx(p3Index),
+      vertices(vertices)
 {
 }
 
@@ -101,8 +104,9 @@ HitRecord Triangle::intersect(const Ray &ray) const
 
 Mesh::Mesh() {}
 
-Mesh::Mesh(int id, int matIndex, const std::vector<Triangle> &faces)
-    : Shape(id, matIndex), faces(faces)
+Mesh::Mesh(int id, int matIndex, const std::vector<Triangle> &faces,
+           std::vector<int> *pIndices, std::vector<vec3f> *vertices)
+    : Shape(id, matIndex), faces(faces), pIndices(pIndices), vertices(vertices)
 {
 }
 
