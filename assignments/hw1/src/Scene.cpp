@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <future>
 #include <iostream>
+#include <limits>
 #include <thread>
 
 #include "tinyxml2.h"
@@ -46,7 +47,7 @@ vec3f Scene::ray_color(Ray ray, int depth) const
     if (depth > maxRecursionDepth)
         return color;
 
-    float t_min = 3.4e+38; // TODO
+    float t_min = std::numeric_limits<float>::max();
     HitRecord hr_min = NO_HIT;
 
     for (auto object : objects) {

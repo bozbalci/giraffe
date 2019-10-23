@@ -166,8 +166,7 @@ HitRecord Mesh::intersect(const Ray &ray) const
     if (t_min > t_max)
         return NO_HIT;
 
-    // TODO Rewrite this with std::transform
-    t_min = 3.4e+38; // Approximately infinite
+    t_min = std::numeric_limits<float>::max();
     HitRecord hr_min = NO_HIT;
 
     for (auto face : faces) {
