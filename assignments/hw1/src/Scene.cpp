@@ -35,11 +35,11 @@ void Scene::render_partial(Image &image, Camera *camera, int u_min,
     for (std::size_t i = u_min; i < u_max; ++i) {
         for (std::size_t j = 0; j < height; ++j) {
             auto rays = camera->get_rays(i, j);
-            auto colors =
-                std::transform(rays.begin(), rays.end(), rays.begin(),
-                               [](auto ray) { return ray_color(ray, 0); });
+            std::vector<vec3f> colors(rays.size());
+            std::transform(rays.begin(), rays.end(), colors.begin(),
+                           [this](auto ray) { return ray_color(ray, 0); });
             auto color_avg =
-                std::reduce(colors.begin(), colors.end(), {0, 0, 0}) /
+                std::reduce(colors.begin(), colors.end(), vec3f{0, 0, 0}) /
                 colors.size();
             image.setPixelValue(i, j, to_output_color(color_avg));
         }
