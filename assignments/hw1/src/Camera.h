@@ -5,6 +5,7 @@
 #include "defs.h"
 
 #include <string>
+#include <vector>
 
 typedef struct ImagePlane {
     float left;     // "u" coordinate of the left edge
@@ -31,6 +32,8 @@ class Camera
            const ImagePlane &imgPlane); // Image plane parameters
 
     Ray getPrimaryRay(int row, int col) const;
+
+    std::vector<Ray> get_rays(int row, int col) const;
 
   private:
     vec3f pos;
