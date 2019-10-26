@@ -79,10 +79,9 @@ class Mesh : public Shape
     std::vector<int> *pIndices;
     std::vector<vec3f> *vertices;
 
-    Box bounding_box;
     BVH bvh;
 };
 
-Box bbox_triangle(std::vector<vec3f> *vertices, Triangle *triangle);
+Box bbox_triangle(std::vector<vec3f> *vertices, const Triangle *triangle);
 
 #endif

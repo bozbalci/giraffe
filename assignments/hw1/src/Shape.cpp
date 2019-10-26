@@ -109,23 +109,10 @@ Mesh::Mesh(int id, int matIndex, const std::vector<Triangle> &faces,
            std::vector<int> *pIndices, std::vector<vec3f> *vertices)
     : Shape(id, matIndex), faces(faces), pIndices(pIndices), vertices(vertices)
 {
-    bounding_box = Box();
-
-    for (auto index : *pIndices) {
-        vec3f vertex = 0 [vertices][index - 1]; // Art for art's sake
-        bounding_box.update(vertex);
-    }
-
     bvh = BVH(vertices, this->faces, 0);
 }
 
-HitRecord Mesh::intersect(const Ray &ray) const
-{
-    if (!bounding_box.intersects(ray))
-        return NO_HIT;
-
-    return bvh.intersect(ray);
-}
+HitRecord Mesh::intersect(const Ray &ray) const { return bvh.intersect(ray); }
 
 Box::Box()
 {
@@ -211,6 +198,14 @@ BVH::BVH(std::vector<vec3f> *vertices, const std::vector<Triangle> &triangles,
         Box right_bounding_box = bbox_triangle(vertices, (Triangle *)right);
         bounding_box = Box(left_bounding_box, right_bounding_box);
     } else {
+        bounding_box = Box();
+
+        for (const auto &triangle : triangles) {
+            Box triangle_bounds = bbox_triangle(vertices, &triangle);
+            bounding_box.update(triangle_bounds.min_point);
+            bounding_box.update(triangle_bounds.max_point);
+        }
+
         auto half_triangle_count = triangle_count / 2;
         auto triangles_copy = triangles;
 
@@ -275,7 +270,7 @@ HitRecord BVH::intersect(const Ray &ray) const
     return NO_HIT;
 }
 
-Box bbox_triangle(std::vector<vec3f> *vertices, Triangle *triangle)
+Box bbox_triangle(std::vector<vec3f> *vertices, const Triangle *triangle)
 {
     Box bounding_box;
 
