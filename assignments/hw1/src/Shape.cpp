@@ -116,7 +116,7 @@ Mesh::Mesh(int id, int matIndex, const std::vector<Triangle> &faces,
         bounding_box.update(vertex);
     }
 
-    bvh = BVH(faces, 0);
+    bvh = BVH(vertices, faces, 0);
 }
 
 HitRecord Mesh::intersect(const Ray &ray) const
@@ -192,7 +192,9 @@ bool Box::intersects(const Ray &ray) const
     return t_min <= t_max;
 }
 
-BVH::BVH(const std::vector<Triangle> &triangles, int axisIndex)
+BVH::BVH(std::vector<vec3f> *vertices, const std::vector<Triangle> &triangles,
+         int axisIndex)
+    : Shape(-1, -1)
 {
     auto triangle_count = triangles.size();
 
@@ -201,22 +203,22 @@ BVH::BVH(const std::vector<Triangle> &triangles, int axisIndex)
     } else if (triangle_count == 1) {
         left = (Shape *)&triangles[0];
         right = nullptr;
-        bounding_box = bbox_triangle((Triangle *)left);
+        bounding_box = bbox_triangle(vertices, (Triangle *)left);
     } else if (triangle_count == 2) {
         left = (Shape *)&triangles[0];
         right = (Shape *)&triangles[1];
-        Box left_bounding_box = bbox_triangle((Triangle *)left);
-        Box right_bounding_box = bbox_triangle((Triangle *)right);
+        Box left_bounding_box = bbox_triangle(vertices, (Triangle *)left);
+        Box right_bounding_box = bbox_triangle(vertices, (Triangle *)right);
         bounding_box = Box(left_bounding_box, right_bounding_box);
     } else {
         auto half_triangle_count = triangle_count / 2;
         auto triangles_copy = triangles;
 
         std::sort(triangles_copy.begin(), triangles_copy.end(),
-                  [axisIndex](Triangle s1, Triangle s2) {
+                  [vertices, axisIndex](Triangle s1, Triangle s2) {
                       Box s1_box, s2_box;
-                      s1_box = bbox_triangle(&s1);
-                      s2_box = bbox_triangle(&s2);
+                      s1_box = bbox_triangle(vertices, &s1);
+                      s2_box = bbox_triangle(vertices, &s2);
                       auto s1_mid_point =
                           (s1_box.min_point + s1_box.max_point) / 2;
                       auto s2_mid_point =
@@ -241,8 +243,8 @@ BVH::BVH(const std::vector<Triangle> &triangles, int axisIndex)
         std::vector<Triangle> rights(
             triangles_copy.begin() + half_triangle_count, triangles_copy.end());
         auto next_axis = (axisIndex + 1) % 3;
-        left = new BVH(lefts, next_axis);
-        right = new BVH(rights, next_axis);
+        left = new BVH(vertices, lefts, next_axis);
+        right = new BVH(vertices, rights, next_axis);
     }
 }
 
@@ -273,20 +275,13 @@ HitRecord BVH::intersect(const Ray &ray) const
     return NO_HIT;
 }
 
-struct Poetry {
-    void *fee, *fi, *fo;
-    int fum, i, smell;
-    void *the_blood_of_an_englishman;
-};
-
-Box bbox_triangle(Triangle *triangle)
+Box bbox_triangle(std::vector<vec3f> *vertices, Triangle *triangle)
 {
-    Poetry *poetry = (Poetry *)triangle;
     Box bounding_box;
 
-    vec3f a = pScene->vertices[poetry->fum - 1];
-    vec3f b = pScene->vertices[poetry->i - 1];
-    vec3f c = pScene->vertices[poetry->smell - 1];
+    vec3f a = 0 [vertices][triangle->aIdx - 1];
+    vec3f b = 0 [vertices][triangle->bIdx - 1];
+    vec3f c = 0 [vertices][triangle->cIdx - 1];
 
     bounding_box.update(a);
     bounding_box.update(b);
