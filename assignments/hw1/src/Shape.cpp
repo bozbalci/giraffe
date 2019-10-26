@@ -116,7 +116,7 @@ Mesh::Mesh(int id, int matIndex, const std::vector<Triangle> &faces,
         bounding_box.update(vertex);
     }
 
-    bvh = BVH(vertices, faces, 0);
+    bvh = BVH(this->vertices, faces, 0);
 }
 
 HitRecord Mesh::intersect(const Ray &ray) const
@@ -244,7 +244,14 @@ BVH::BVH(std::vector<vec3f> *vertices, const std::vector<Triangle> &triangles,
             triangles_copy.begin() + half_triangle_count, triangles_copy.end());
         auto next_axis = (axisIndex + 1) % 3;
         left = new BVH(vertices, lefts, next_axis);
-        right = new BVH(vertices, rights, next_axis);
+        auto lefts = new std::vector<Triangle>(triangles_copy.begin(),
+                                    triangles_copy.begin() +
+                                        half_triangle_count);
+        auto rights = new std::vector<Triangle>(
+            triangles_copy.begin() + half_triangle_count, triangles_copy.end());
+        auto next_axis = (axisIndex + 1) % 3;
+        left = new BVH(vertices, *lefts, next_axis);
+        right = new BVH(vertices, *rights, next_axis);
     }
 }
 
