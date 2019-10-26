@@ -5,6 +5,20 @@
 #include "defs.h"
 #include <vector>
 
+// Acceleration classes
+class Box
+{
+  public:
+    Box(vec3f min_point, vec3f max_point);
+    Box();
+    bool intersects(const Ray &ray) const;
+
+  private:
+    vec3f min_point, max_point;
+};
+
+// Shapes
+
 class Shape
 {
   public:
@@ -57,7 +71,7 @@ class Mesh : public Shape
     std::vector<int> *pIndices;
     std::vector<vec3f> *vertices;
 
-    vec3f bb_min, bb_max;
+    Box bounding_box;
 };
 
 #endif

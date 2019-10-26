@@ -109,8 +109,7 @@ Mesh::Mesh(int id, int matIndex, const std::vector<Triangle> &faces,
            std::vector<int> *pIndices, std::vector<vec3f> *vertices)
     : Shape(id, matIndex), faces(faces), pIndices(pIndices), vertices(vertices)
 {
-    float x_min, y_min, z_min;
-    float x_max, y_max, z_max;
+    float x_min, y_min, z_min, x_max, y_max, z_max;
 
     x_min = y_min = z_min = std::numeric_limits<float>::max();
     x_max = y_max = z_max = std::numeric_limits<float>::min();
@@ -131,42 +130,18 @@ Mesh::Mesh(int id, int matIndex, const std::vector<Triangle> &faces,
 
 #undef IFY
 
-        bb_min = {x_min, y_min, z_min};
-        bb_max = {x_max, y_max, z_max};
+        auto bb_min = vec3f{x_min, y_min, z_min};
+        auto bb_max = vec3f{x_max, y_max, z_max};
+        bounding_box = Box(bb_min, bb_max);
     }
 }
 
 HitRecord Mesh::intersect(const Ray &ray) const
 {
-
-    float dx = 1 / ray.direction.x;
-    float dy = 1 / ray.direction.y;
-    float dz = 1 / ray.direction.z;
-
-    float t_x_min, t_x_max, t_y_min, t_y_max, t_z_min, t_z_max;
-
-#define BERK(C)                                                                \
-    if ((d##C) >= 0) {                                                         \
-        t_##C##_min = (d##C) * (bb_min.C - ray.origin.C);                      \
-        t_##C##_max = (d##C) * (bb_max.C - ray.origin.C);                      \
-    } else {                                                                   \
-        t_##C##_min = (d##C) * (bb_max.C - ray.origin.C);                      \
-        t_##C##_max = (d##C) * (bb_min.C - ray.origin.C);                      \
-    }
-
-    BERK(x);
-    BERK(y);
-    BERK(z);
-
-#undef BERK
-
-    float t_min = std::max(std::max(t_x_min, t_y_min), t_z_min);
-    float t_max = std::min(std::min(t_x_max, t_y_max), t_z_max);
-
-    if (t_min > t_max)
+    if (!bounding_box.intersects(ray))
         return NO_HIT;
 
-    t_min = std::numeric_limits<float>::max();
+    auto t_min = std::numeric_limits<float>::max();
     HitRecord hr_min = NO_HIT;
 
     for (auto face : faces) {
@@ -183,4 +158,44 @@ HitRecord Mesh::intersect(const Ray &ray) const
     }
 
     return hr_min;
+}
+
+Box::Box()
+{
+    min_point = {0, 0, 0};
+    max_point = {0, 0, 0};
+}
+
+Box::Box(vec3f min_point, vec3f max_point)
+    : min_point(min_point), max_point(max_point)
+{
+}
+
+bool Box::intersects(const Ray &ray) const
+{
+    float dx = 1 / ray.direction.x;
+    float dy = 1 / ray.direction.y;
+    float dz = 1 / ray.direction.z;
+
+    float t_x_min, t_x_max, t_y_min, t_y_max, t_z_min, t_z_max;
+
+#define BERK(C)                                                                \
+    if ((d##C) >= 0) {                                                         \
+        t_##C##_min = (d##C) * (min_point.C - ray.origin.C);                   \
+        t_##C##_max = (d##C) * (max_point.C - ray.origin.C);                   \
+    } else {                                                                   \
+        t_##C##_min = (d##C) * (max_point.C - ray.origin.C);                   \
+        t_##C##_max = (d##C) * (min_point.C - ray.origin.C);                   \
+    }
+
+    BERK(x);
+    BERK(y);
+    BERK(z);
+
+#undef BERK
+
+    float t_min = std::max(std::max(t_x_min, t_y_min), t_z_min);
+    float t_max = std::min(std::min(t_x_max, t_y_max), t_z_max);
+
+    return t_min <= t_max;
 }
