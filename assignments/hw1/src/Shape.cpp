@@ -109,31 +109,14 @@ Mesh::Mesh(int id, int matIndex, const std::vector<Triangle> &faces,
            std::vector<int> *pIndices, std::vector<vec3f> *vertices)
     : Shape(id, matIndex), faces(faces), pIndices(pIndices), vertices(vertices)
 {
-    float x_min, y_min, z_min, x_max, y_max, z_max;
-
-    x_min = y_min = z_min = std::numeric_limits<float>::max();
-    x_max = y_max = z_max = std::numeric_limits<float>::min();
+    bounding_box = Box();
 
     for (auto index : *pIndices) {
         vec3f vertex = 0 [vertices][index - 1]; // Art for art's sake
-
-#define IFY(op, a, b)                                                          \
-    if ((a)op(b))                                                              \
-        b = a;
-
-        IFY(<, vertex.x, x_min);
-        IFY(>, vertex.x, x_max);
-        IFY(<, vertex.y, y_min);
-        IFY(>, vertex.y, y_max);
-        IFY(<, vertex.z, z_min);
-        IFY(>, vertex.z, z_max);
-
-#undef IFY
-
-        auto bb_min = vec3f{x_min, y_min, z_min};
-        auto bb_max = vec3f{x_max, y_max, z_max};
-        bounding_box = Box(bb_min, bb_max);
+        bounding_box.update(vertex);
     }
+
+    bvh = BVH(faces, 0);
 }
 
 HitRecord Mesh::intersect(const Ray &ray) const
@@ -141,29 +124,16 @@ HitRecord Mesh::intersect(const Ray &ray) const
     if (!bounding_box.intersects(ray))
         return NO_HIT;
 
-    auto t_min = std::numeric_limits<float>::max();
-    HitRecord hr_min = NO_HIT;
-
-    for (auto face : faces) {
-        auto hr = face.intersect(ray);
-        auto t_hit = hr.t;
-
-        if (t_hit <= 0)
-            continue;
-
-        if (t_hit < t_min) {
-            t_min = t_hit;
-            hr_min = hr;
-        }
-    }
-
-    return hr_min;
+    return bvh.intersect(ray);
 }
 
 Box::Box()
 {
-    min_point = {0, 0, 0};
-    max_point = {0, 0, 0};
+    constexpr auto float_max = std::numeric_limits<float>::max(),
+                   float_min = std::numeric_limits<float>::lowest();
+
+    min_point = {float_max, float_max, float_max};
+    max_point = {float_min, float_min, float_min};
 }
 
 Box::Box(vec3f min_point, vec3f max_point)
@@ -171,13 +141,35 @@ Box::Box(vec3f min_point, vec3f max_point)
 {
 }
 
+Box::Box(const Box &left, const Box &right) : Box()
+{
+    update(left.min_point);
+    update(left.max_point);
+    update(right.min_point);
+    update(right.max_point);
+}
+
+void Box::update(const vec3f &p)
+{
+#define IFY(op, a, b)                                                          \
+    if ((a)op(b))                                                              \
+        b = a;
+
+    IFY(<, p.x, min_point.x);
+    IFY(<, p.y, min_point.y);
+    IFY(<, p.z, min_point.z);
+    IFY(>, p.x, max_point.x);
+    IFY(>, p.y, max_point.y);
+    IFY(>, p.z, max_point.z);
+
+#undef IFY
+}
+
 bool Box::intersects(const Ray &ray) const
 {
-    float dx = 1 / ray.direction.x;
-    float dy = 1 / ray.direction.y;
-    float dz = 1 / ray.direction.z;
-
-    float t_x_min, t_x_max, t_y_min, t_y_max, t_z_min, t_z_max;
+    float dx = 1 / ray.direction.x, dy = 1 / ray.direction.y,
+          dz = 1 / ray.direction.z, t_x_min, t_x_max, t_y_min, t_y_max, t_z_min,
+          t_z_max;
 
 #define BERK(C)                                                                \
     if ((d##C) >= 0) {                                                         \
@@ -194,8 +186,111 @@ bool Box::intersects(const Ray &ray) const
 
 #undef BERK
 
-    float t_min = std::max(std::max(t_x_min, t_y_min), t_z_min);
-    float t_max = std::min(std::min(t_x_max, t_y_max), t_z_max);
+    float t_min = std::max(std::max(t_x_min, t_y_min), t_z_min),
+          t_max = std::min(std::min(t_x_max, t_y_max), t_z_max);
 
     return t_min <= t_max;
+}
+
+BVH::BVH(const std::vector<Triangle> &triangles, int axisIndex)
+{
+    auto triangle_count = triangles.size();
+
+    if (triangle_count == 0) {
+        left = right = nullptr;
+    } else if (triangle_count == 1) {
+        left = (Shape *)&triangles[0];
+        right = nullptr;
+        bounding_box = bbox_triangle((Triangle *)left);
+    } else if (triangle_count == 2) {
+        left = (Shape *)&triangles[0];
+        right = (Shape *)&triangles[1];
+        Box left_bounding_box = bbox_triangle((Triangle *)left);
+        Box right_bounding_box = bbox_triangle((Triangle *)right);
+        bounding_box = Box(left_bounding_box, right_bounding_box);
+    } else {
+        auto half_triangle_count = triangle_count / 2;
+        auto triangles_copy = triangles;
+
+        std::sort(triangles_copy.begin(), triangles_copy.end(),
+                  [axisIndex](Triangle s1, Triangle s2) {
+                      Box s1_box, s2_box;
+                      s1_box = bbox_triangle(&s1);
+                      s2_box = bbox_triangle(&s2);
+                      auto s1_mid_point =
+                          (s1_box.min_point + s1_box.max_point) / 2;
+                      auto s2_mid_point =
+                          (s2_box.min_point + s2_box.max_point) / 2;
+                      float s1_mp, s2_mp;
+                      if (axisIndex == 0) {
+                          s1_mp = s1_mid_point.x;
+                          s2_mp = s2_mid_point.x;
+                      } else if (axisIndex == 1) {
+                          s1_mp = s1_mid_point.y;
+                          s2_mp = s2_mid_point.y;
+                      } else if (axisIndex == 2) {
+                          s1_mp = s1_mid_point.y;
+                          s2_mp = s2_mid_point.y;
+                      }
+                      return s1_mp < s2_mp;
+                  });
+
+        std::vector<Triangle> lefts(triangles_copy.begin(),
+                                    triangles_copy.begin() +
+                                        half_triangle_count);
+        std::vector<Triangle> rights(
+            triangles_copy.begin() + half_triangle_count, triangles_copy.end());
+        auto next_axis = (axisIndex + 1) % 3;
+        left = new BVH(lefts, next_axis);
+        right = new BVH(rights, next_axis);
+    }
+}
+
+HitRecord BVH::intersect(const Ray &ray) const
+{
+    HitRecord right_hr, left_hr;
+
+    if (!bounding_box.intersects(ray))
+        return NO_HIT;
+
+    if (left)
+        left_hr = left->intersect(ray);
+    if (right)
+        right_hr = right->intersect(ray);
+
+    if (left_hr.t > 0 && right_hr.t > 0) {
+        if (left_hr.t >= right_hr.t)
+            return left_hr;
+        else
+            return right_hr;
+    }
+
+    if (left_hr.t > 0)
+        return left_hr;
+    if (right_hr.t > 0)
+        return right_hr;
+
+    return NO_HIT;
+}
+
+struct Poetry {
+    void *fee, *fi, *fo;
+    int fum, i, smell;
+    void *the_blood_of_an_englishman;
+};
+
+Box bbox_triangle(Triangle *triangle)
+{
+    Poetry *poetry = (Poetry *)triangle;
+    Box bounding_box;
+
+    vec3f a = pScene->vertices[poetry->fum - 1];
+    vec3f b = pScene->vertices[poetry->i - 1];
+    vec3f c = pScene->vertices[poetry->smell - 1];
+
+    bounding_box.update(a);
+    bounding_box.update(b);
+    bounding_box.update(c);
+
+    return bounding_box;
 }

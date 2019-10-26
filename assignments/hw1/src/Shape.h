@@ -5,19 +5,14 @@
 #include "defs.h"
 #include <vector>
 
-// Acceleration classes
-class Box
-{
-  public:
+struct Box {
     Box(vec3f min_point, vec3f max_point);
     Box();
+    Box(const Box &left, const Box &right);
+    void update(const vec3f &p);
     bool intersects(const Ray &ray) const;
-
-  private:
     vec3f min_point, max_point;
 };
-
-// Shapes
 
 class Shape
 {
@@ -58,6 +53,18 @@ class Triangle : public Shape
     std::vector<vec3f> *vertices;
 };
 
+class BVH : public Shape
+{
+  public:
+    BVH() = default;
+    BVH(const std::vector<Triangle> &triangles, int axisIndex);
+    HitRecord intersect(const Ray &ray) const;
+
+    bool is_leaf;
+    Box bounding_box;
+    Shape *left, *right;
+};
+
 class Mesh : public Shape
 {
   public:
@@ -72,6 +79,9 @@ class Mesh : public Shape
     std::vector<vec3f> *vertices;
 
     Box bounding_box;
+    BVH bvh;
 };
+
+Box bbox_triangle(Triangle *triangle);
 
 #endif
