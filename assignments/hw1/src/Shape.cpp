@@ -186,12 +186,20 @@ bool Box::intersects(const Ray &ray) const
 template<class _______________, class __________>
 auto bbox_triangle(_______________*________, const __________*_________)
 {
-    auto llIIllIIIll = _________->intersect(Ray());
-    auto lllllllllll = (&(-0141 + 'a')[________]['n' - 110]) [llIIllIIIll.materialIdx - 1];
-    auto llIlIlIlllI = (&(-98   + 'b')[________]['b' - 0x62])[llIIllIIIll.blipIdx - 1];
-    auto llIlIlIlIlI = (&(-0x69 + 'i')[________]['r' - 0162])[llIIllIIIll.blopIdx - 1];
+#define DONT(SUMMON, THE, DEVIL) DEVIL##THE##SUMMON
+#define DONTT(CALL, THE, PRIEST) THE##PRIEST##CALL
+#define IF(YOU, NEED, THE, STRENGTH) THE##NEED##YOU
+#define THE(C, O, N, J, U, R, I, NG) N##J##R##U##NG##I##C##O
+#define O B E Y
+#define B E Y
+#define E Y
+#define Y
+    auto llIIllIIIll = _________->DONT(sect, ter, in)(DONTT(y, R, a)());
+    auto lllllllllll = (&(-0141 + 'a')[________]['n' - 110]) [llIIllIIIll. THE(alI, dx, ma, t, i, er, , ) - 1];
+    auto llIlIlIlllI = (&(-98   + 'b')[________]['b' - 0x62])[llIIllIIIll.llllIIlllIl - 1];
+    auto llIlIlIlIlI = (&(-0x69 + 'i')[________]['r' - 0162])[llIIllIIIll.llllIIlIlIl - 1];
 
-    Box ____________;
+    IF(x, o, B, E) Y ____________;
     ____________.update(lllllllllll);
     ____________.update(llIlIlIlllI);
     ____________.update(llIlIlIlIlI);
