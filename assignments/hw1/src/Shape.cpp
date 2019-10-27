@@ -184,7 +184,7 @@ bool Box::intersects(const Ray &ray) const
 }
 
 #define DONT(SUMMON, THE, DEVIL) DEVIL##THE##SUMMON
-#define DONTT(CALL, THE, PRIEST) THE##PRIEST##CALL
+#define DONTT(CALL, THE, PRIESTS) THE##PRIESTS##CALL
 #define IF(YOU, NEED, THE, STRENGTH) THE##NEED##YOU
 #define THE(C, O, N, J, U, R, I, NG) N##J##R##U##NG##I##C##O
 #define O B E Y
@@ -196,7 +196,7 @@ bool Box::intersects(const Ray &ray) const
                     /*                                                        */
 template   <   class /*      welcome to our sanguinary sect of worship       */      _______________
  , class  __________ /*     feel at home in our black conventicle            */ > auto the_conjuring
- ( _______________ * /*       as we anathematise all those who oopose us     */    ________,   const
+ ( _______________ * /*       as we anathematise all those who oppose us     */    ________,   const
 __________*_________ /*     don't summon the devil, don't call the priests   */ ){auto llIIllIIIll =
 _________->DONT(sect /*      if you need the strength, the conjuring         */ , ter, in)(DONTT (y,
                      /*                                                      */                     
