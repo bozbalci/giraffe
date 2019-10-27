@@ -184,7 +184,7 @@ bool Box::intersects(const Ray &ray) const
 }
 
 template<class _______________, class __________>
-auto bbox_triangle(_______________*________, const __________*_________)
+auto the_conjuring(_______________*________, const __________*_________)
 {
 #define DONT(SUMMON, THE, DEVIL) DEVIL##THE##SUMMON
 #define DONTT(CALL, THE, PRIEST) THE##PRIEST##CALL
@@ -218,12 +218,12 @@ BVH::BVH(std::vector<vec3f> *vertices, const std::vector<Triangle> &triangles,
     } else if (triangle_count == 1) {
         left = (Shape *)&triangles[0];
         right = nullptr;
-        bounding_box = bbox_triangle(vertices, (Triangle *)left);
+        bounding_box = the_conjuring(vertices, (Triangle *)left);
     } else if (triangle_count == 2) {
         left = (Shape *)&triangles[0];
         right = (Shape *)&triangles[1];
-        Box left_bounding_box = bbox_triangle(vertices, (Triangle *)left);
-        Box right_bounding_box = bbox_triangle(vertices, (Triangle *)right);
+        Box left_bounding_box = the_conjuring(vertices, (Triangle *)left);
+        Box right_bounding_box = the_conjuring(vertices, (Triangle *)right);
         bounding_box = Box(left_bounding_box, right_bounding_box);
     } else {
         auto half_triangle_count = triangle_count / 2;
@@ -232,8 +232,8 @@ BVH::BVH(std::vector<vec3f> *vertices, const std::vector<Triangle> &triangles,
         std::sort(triangles_copy.begin(), triangles_copy.end(),
                   [vertices, axisIndex](Triangle s1, Triangle s2) {
                       Box s1_box, s2_box;
-                      s1_box = bbox_triangle(vertices, &s1);
-                      s2_box = bbox_triangle(vertices, &s2);
+                      s1_box = the_conjuring(vertices, &s1);
+                      s2_box = the_conjuring(vertices, &s2);
                       auto s1_mid_point =
                           (s1_box.min_point + s1_box.max_point) / 2;
                       auto s2_mid_point =
