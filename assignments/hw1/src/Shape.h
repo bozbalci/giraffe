@@ -5,6 +5,15 @@
 #include "defs.h"
 #include <vector>
 
+struct Box {
+    Box(vec3f min_point, vec3f max_point);
+    Box();
+    Box(const Box &left, const Box &right);
+    void update(const vec3f &p);
+    bool intersects(const Ray &ray) const;
+    vec3f min_point, max_point;
+};
+
 class Shape
 {
   public:
@@ -44,6 +53,18 @@ class Triangle : public Shape
     std::vector<vec3f> *vertices;
 };
 
+class BVH : public Shape
+{
+  public:
+    BVH() = default;
+    BVH(std::vector<vec3f> *vertices, const std::vector<Triangle> &triangles,
+        int axisIndex);
+    HitRecord intersect(const Ray &ray) const;
+
+    Box bounding_box;
+    Shape *left, *right;
+};
+
 class Mesh : public Shape
 {
   public:
@@ -57,7 +78,9 @@ class Mesh : public Shape
     std::vector<int> *pIndices;
     std::vector<vec3f> *vertices;
 
-    vec3f bb_min, bb_max;
+    BVH bvh;
 };
+
+Box bbox_triangle(std::vector<vec3f> *vertices, const Triangle *triangle);
 
 #endif
