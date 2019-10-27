@@ -28,7 +28,6 @@ Color to_output_color(vec3f color)
 void Scene::render_partial(Image &image, Camera *camera, int u_min,
                            int u_max) const
 {
-    auto width = camera->imgPlane.nx;
     auto height = camera->imgPlane.ny;
 
     for (std::size_t i = u_min; i < u_max; ++i) {

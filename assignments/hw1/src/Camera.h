@@ -34,7 +34,6 @@ class Camera
 
   private:
     vec3f pos;
-    vec3f gaze;
     vec3f up;
     vec3f right;
     vec3f imageCenter;

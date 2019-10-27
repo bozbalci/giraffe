@@ -37,7 +37,6 @@ class Sphere : public Shape
   private:
     int centerIdx;
     float radius;
-    std::vector<vec3f> *vertices;
 };
 
 class Triangle : public Shape
@@ -50,7 +49,6 @@ class Triangle : public Shape
 
   private:
     int aIdx, bIdx, cIdx;
-    std::vector<vec3f> *vertices;
 };
 
 class BVH : public Shape
@@ -75,9 +73,6 @@ class Mesh : public Shape
 
   private:
     std::vector<Triangle> faces;
-    std::vector<int> *pIndices;
-    std::vector<vec3f> *vertices;
-
     BVH bvh;
 };
 

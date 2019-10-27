@@ -14,7 +14,7 @@ Sphere::Sphere(void) {}
 
 Sphere::Sphere(int id, int matIndex, int cIndex, float R,
                std::vector<vec3f> *vertices)
-    : Shape(id, matIndex), centerIdx(cIndex), radius(R), vertices(vertices)
+    : Shape(id, matIndex), centerIdx(cIndex), radius(R)
 {
 }
 
@@ -56,8 +56,7 @@ Triangle::Triangle(void) {}
 
 Triangle::Triangle(int id, int matIndex, int p1Index, int p2Index, int p3Index,
                    std::vector<vec3f> *vertices)
-    : Shape(id, matIndex), aIdx(p1Index), bIdx(p2Index), cIdx(p3Index),
-      vertices(vertices)
+    : Shape(id, matIndex), aIdx(p1Index), bIdx(p2Index), cIdx(p3Index)
 {
 }
 
@@ -111,7 +110,7 @@ Mesh::Mesh() {}
 
 Mesh::Mesh(int id, int matIndex, const std::vector<Triangle> &faces,
            std::vector<int> *pIndices, std::vector<vec3f> *vertices)
-    : Shape(id, matIndex), faces(faces), pIndices(pIndices), vertices(vertices)
+    : Shape(id, matIndex), faces(faces)
 {
     bvh = BVH(vertices, this->faces, 0);
 }

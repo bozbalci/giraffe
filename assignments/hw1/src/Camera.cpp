@@ -2,8 +2,7 @@
 
 Camera::Camera(int id, const char *imageName, const vec3f &pos,
                const vec3f &gaze, const vec3f &up, const ImagePlane &imgPlane)
-    : id(id), imageName(imageName), pos(pos), gaze(gaze), up(up),
-      imgPlane(imgPlane)
+    : id(id), imageName(imageName), pos(pos), up(up), imgPlane(imgPlane)
 {
     right = giraffe::cross(gaze, up);
     imageCenter = pos + imgPlane.distance * gaze;
