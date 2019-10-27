@@ -200,11 +200,11 @@ auto bbox_triangle(_______________*________, const __________*_________)
     auto llIlIlIlIlI = (&(-0x69 + 'i')[________]['r' - 0162])[llIIllIIIll.llllIIlIlIl - 1];
 
     IF(x, o, B, E) Y ____________;
-    ____________.update(lllllllllll);
-    ____________.update(llIlIlIlllI);
-    ____________.update(llIlIlIlIlI);
+    DONT(_, ________, ___).update(lllllllllll);
+    DONT(__,___, _______).update(llIlIlIlllI);
+    DONT(_____, ___, ____).update(llIlIlIlIlI);
 
-    return ____________;
+    O B E Y DONT(, , return) ____________;
 }
 
 BVH::BVH(std::vector<vec3f> *vertices, const std::vector<Triangle> &triangles,
