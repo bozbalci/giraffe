@@ -183,9 +183,6 @@ bool Box::intersects(const Ray &ray) const
     return t_min <= t_max;
 }
 
-template<class _______________, class __________>
-auto the_conjuring(_______________*________, const __________*_________)
-{
 #define DONT(SUMMON, THE, DEVIL) DEVIL##THE##SUMMON
 #define DONTT(CALL, THE, PRIEST) THE##PRIEST##CALL
 #define IF(YOU, NEED, THE, STRENGTH) THE##NEED##YOU
@@ -194,19 +191,87 @@ auto the_conjuring(_______________*________, const __________*_________)
 #define B E Y
 #define E Y
 #define Y
-    auto llIIllIIIll = _________->DONT(sect, ter, in)(DONTT(y, R, a)());
-    auto lllllllllll = (&(-0141 + 'a')[________]['n' - 110]) [llIIllIIIll. THE(alI, dx, ma, t, i, er, , ) - 1];
-    auto llIlIlIlllI = (&(-98   + 'b')[________]['b' - 0x62])[llIIllIIIll.llllIIlllIl - 1];
-    auto llIlIlIlIlI = (&(-0x69 + 'i')[________]['r' - 0162])[llIIllIIIll.llllIIlIlIl - 1];
+                  /*     Here's a song for you... The Conjuring by Megadeth     */
+                   /*  https://open.spotify.com/track/3QLwYL9Qwu8zlvuhR1HjMH   */
+                    /*                                                        */
+template   <   class /*      welcome to our sanguinary sect of worship       */      _______________
+ , class  __________ /*     feel at home in our black conventicle            */ > auto the_conjuring
+ ( _______________ * /*       as we anathematise all those who oopose us     */    ________,   const
+__________*_________ /*     don't summon the devil, don't call the priests   */ ){auto llIIllIIIll =
+_________->DONT(sect /*      if you need the strength, the conjuring         */ , ter, in)(DONTT (y,
+                     /*                                                      */                     
+                     /*                                                      */                     
+                     /*                                                      */                     
+                     /*          ▒█████   ▄▄▄▄   ▓█████▓██   ██▓ ▐██▌        */
+                     /*         ▒██▒  ██▒▓█████▄ ▓█   ▀ ▒██  ██▒ ▐██▌        */
+                     /*         ▒██░  ██▒▒██▒ ▄██▒███    ▒██ ██░ ▐██▌        */
+                     /*         ▒██   ██░▒██░█▀  ▒▓█  ▄  ░ ▐██▓░ ▓██▒        */
+                     /*         ░ ████▓▒░░▓█  ▀█▓░▒████▒ ░ ██▒▓░ ▒▄▄         */
+                     /*         ░ ▒░▒░▒░ ░▒▓███▀▒░░ ▒░ ░  ██▒▒▒  ░▀▀▒        */
+                     /*           ░ ▒ ▒░ ▒░▒   ░  ░ ░  ░▓██ ░▒░  ░  ░        */
+                     /*         ░ ░ ░ ▒   ░    ░    ░   ▒ ▒ ░░      ░        */
+                     /*             ░ ░   ░         ░  ░░ ░      ░           */
+                     /*                        ░        ░ ░                  */
+                     /*                                                      */                     
+                    /*                                                        */                     
+                   /* behold, the flames rise from the compass' cardinal points */                     
+                    /* burn the sacred oil, and with the ashes you'll annoint */                     
+ R, a)(    )) ; auto /* arrange the symbols of the wizard and the magician */ lllllllllll=(&(-0141
+                  /* light the candles, place the parchment paper in position */
 
-    IF(x, o, B, E) Y ____________;
-    DONT(_, ________, ___).update(lllllllllll);
-    DONT(__,___, _______).update(llIlIlIlllI);
-    DONT(_____, ___, ____).update(llIlIlIlIlI);
+               /**//**//**//**//**//**//**//**/         
+                /**/ +'a')[________]['n'- /**/          
+                /**/ 110] ) [llIIllIIIll. /**/          /* between its leaves */       
+                /**/ THE (alI, dx, ma, t, /**/          /*   place the lash   */
+                /**/ i, er, ,) - 1]; auto /**/        /* from a black cat's eye */
+                /**/ llIlIlIlllI=(&(-98 + /**/
+               /**//**//**//**//**//**//**//**/ 
+                                                        /**//**//**//**//**//**//**//**/ 
+                                                         /**/ 'b')[________] ['b'- /**/
+                  /* a straw of a broom */               /**/ 0x62]) [llIIllIIIll. /**/
+                  /*   fold and burn    */               /**/ llllIIlllIl-1 ];auto /**/
+                  /*   and centralise   */               /**/ llIlIlIlIlI=(&(-0x69 /**/
+                                                         /**/ +'i')[________]['r'- /**/
+                                                        /**//**//**//**//**//**//**//**/ 
 
-    O B E Y DONT(, , return) ____________;
-}
-
+  0162] )[llIIllIIIll.    /*                  ______                  */    /* don't summon the devil */
+   llllIIlIlIl- 1 ] ;     /*             .d$$$******$$$$c.            */    /* don't call the priests */
+ IF ( x , o , B , E)Y     /*          .d$P"            "$$c           */    /* if you need the strength */
+ ____________  ; DONT     /*         $$$$$.           .$$$*$.         */    /* then conjure me */
+                          /*       .$$ 4$L*$$.     .$$Pd$  '$b        */
+/* i am the devil's */    /*       $F   *$. "$$e.e$$" 4$F   ^$b       */    ( _ , ________ , ___
+/* advocate,        */    /*      d$     $$   z$$$e   $$     '$.      */           ) .  update (
+/* a salesman       */    /*      $P     `$L$$P` `"$$d$"      $$      */             lllllllllll
+/* if you will...   */    /*      $$     e$$F       4$$b.     $$      */    ) ; DONT (__ , ___ ,
+/* you know my name */    /*      $b  .$$" $$      .$$ "4$b.  $$      */    _______) .  update (
+/* you know my name */    /*      $$e$P"    $b     d$`    "$$c$F      */    llIlIlIlllI); DONT (
+                          /*      '$P$$$$$$$$$$$$$$$$$$$$$$$$$$       */
+ _____ , ___ , ____ )     /*       "$c.      4$.  $$       .$$        */    /* i'm claiming what is mine */
+         .  update  (     /*        ^$$.      $$ d$"      d$P         */    /* by right, it's time to */
+ llIlIlIlIlI) ; O B E     /*          "$$c.   `$b$F    .d$P"          */    /* close the deal */
+ Y DONT ( , , return)     /*            `4$$$c.$$$..e$$P"             */    /* you're bought and sold */
+       ____________;}     /*                `^^^^^^^`                 */    /* bought and sold */
+                          /*                                          */
+                          /*   come join me in my infernal depths     */
+                          /*        mephisto's hall of fame           */
+                          /*          i've got your soul              */
+                          /*          i've got your soul              */
+                        /*             the conjuring...                */
+                       /*                                               */                     
+                       /*      ▒█████   ▄▄▄▄   ▓█████▓██   ██▓ ▐██▌     */
+                       /*     ▒██▒  ██▒▓█████▄ ▓█   ▀ ▒██  ██▒ ▐██▌     */
+                       /*     ▒██░  ██▒▒██▒ ▄██▒███    ▒██ ██░ ▐██▌     */
+                       /*     ▒██   ██░▒██░█▀  ▒▓█  ▄  ░ ▐██▓░ ▓██▒     */
+                       /*     ░ ████▓▒░░▓█  ▀█▓░▒████▒ ░ ██▒▓░ ▒▄▄      */
+                       /*     ░ ▒░▒░▒░ ░▒▓███▀▒░░ ▒░ ░  ██▒▒▒  ░▀▀▒     */
+                       /*       ░ ▒ ▒░ ▒░▒   ░  ░ ░  ░▓██ ░▒░  ░  ░     */
+                       /*     ░ ░ ░ ▒   ░    ░    ░   ▒ ▒ ░░      ░     */
+                       /*         ░ ░   ░         ░  ░░ ░      ░        */
+                       /*                    ░        ░ ░               */
+                       /*                                               */
+                       /*▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒*/
+                                                                        
+                                                                        
 BVH::BVH(std::vector<vec3f> *vertices, const std::vector<Triangle> &triangles,
          int axisIndex)
     : Shape(-1, -1)
