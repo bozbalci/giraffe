@@ -48,7 +48,7 @@ class Triangle : public Shape
              std::vector<vec3f> *vertices);
     HitRecord intersect(const Ray &ray) const;
 
-    //  private: FUck you çağlar
+  private:
     int aIdx, bIdx, cIdx;
     std::vector<vec3f> *vertices;
 };
@@ -61,7 +61,6 @@ class BVH : public Shape
         int axisIndex);
     HitRecord intersect(const Ray &ray) const;
 
-    bool is_leaf;
     Box bounding_box;
     Shape *left, *right;
 };

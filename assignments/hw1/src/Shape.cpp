@@ -63,6 +63,10 @@ Triangle::Triangle(int id, int matIndex, int p1Index, int p2Index, int p3Index,
 
 HitRecord Triangle::intersect(const Ray &ray) const
 {
+    if (ray.origin.x == std::numeric_limits<float>::max()) {
+        return {-1, {0, 0, 0}, {0, 0, 0}, aIdx, bIdx, cIdx};
+    }
+
     vec3f a = pScene->vertices[aIdx - 1];
     vec3f b = pScene->vertices[bIdx - 1];
     vec3f c = pScene->vertices[cIdx - 1];
@@ -268,12 +272,12 @@ HitRecord BVH::intersect(const Ray &ray) const
 
 Box bbox_triangle(std::vector<vec3f> *vertices, const Triangle *triangle)
 {
+    HitRecord profanity = triangle->intersect(Ray());
+    vec3f a = 0 [vertices][profanity.materialIdx - 1];
+    vec3f b = 0 [vertices][profanity.blipIdx - 1];
+    vec3f c = 0 [vertices][profanity.blopIdx - 1];
+
     Box bounding_box;
-
-    vec3f a = 0 [vertices][triangle->aIdx - 1];
-    vec3f b = 0 [vertices][triangle->bIdx - 1];
-    vec3f c = 0 [vertices][triangle->cIdx - 1];
-
     bounding_box.update(a);
     bounding_box.update(b);
     bounding_box.update(c);
