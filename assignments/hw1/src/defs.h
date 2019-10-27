@@ -12,8 +12,8 @@ struct HitRecord {
     vec3f pos;
     vec3f normal;
     int materialIdx;
-    int blipIdx = 0;
-    int blopIdx = 0;
+    int llllIIlllIl = 0;
+    int llllIIlIlIl = 0;
 };
 
 constexpr HitRecord NO_HIT = {-1, {0, 0, 0}, {0, 0, 0}, -1};

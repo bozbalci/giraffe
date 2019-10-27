@@ -183,6 +183,95 @@ bool Box::intersects(const Ray &ray) const
     return t_min <= t_max;
 }
 
+#define DONT(SUMMON, THE, DEVIL) DEVIL##THE##SUMMON
+#define DONTT(CALL, THE, PRIEST) THE##PRIEST##CALL
+#define IF(YOU, NEED, THE, STRENGTH) THE##NEED##YOU
+#define THE(C, O, N, J, U, R, I, NG) N##J##R##U##NG##I##C##O
+#define O B E Y
+#define B E Y
+#define E Y
+#define Y
+                  /*     Here's a song for you... The Conjuring by Megadeth     */
+                   /*  https://open.spotify.com/track/3QLwYL9Qwu8zlvuhR1HjMH   */
+                    /*                                                        */
+template   <   class /*      welcome to our sanguinary sect of worship       */      _______________
+ , class  __________ /*     feel at home in our black conventicle            */ > auto the_conjuring
+ ( _______________ * /*       as we anathematise all those who oopose us     */    ________,   const
+__________*_________ /*     don't summon the devil, don't call the priests   */ ){auto llIIllIIIll =
+_________->DONT(sect /*      if you need the strength, the conjuring         */ , ter, in)(DONTT (y,
+                     /*                                                      */                     
+                     /*                                                      */                     
+                     /*                                                      */                     
+                     /*          ▒█████   ▄▄▄▄   ▓█████▓██   ██▓ ▐██▌        */
+                     /*         ▒██▒  ██▒▓█████▄ ▓█   ▀ ▒██  ██▒ ▐██▌        */
+                     /*         ▒██░  ██▒▒██▒ ▄██▒███    ▒██ ██░ ▐██▌        */
+                     /*         ▒██   ██░▒██░█▀  ▒▓█  ▄  ░ ▐██▓░ ▓██▒        */
+                     /*         ░ ████▓▒░░▓█  ▀█▓░▒████▒ ░ ██▒▓░ ▒▄▄         */
+                     /*         ░ ▒░▒░▒░ ░▒▓███▀▒░░ ▒░ ░  ██▒▒▒  ░▀▀▒        */
+                     /*           ░ ▒ ▒░ ▒░▒   ░  ░ ░  ░▓██ ░▒░  ░  ░        */
+                     /*         ░ ░ ░ ▒   ░    ░    ░   ▒ ▒ ░░      ░        */
+                     /*             ░ ░   ░         ░  ░░ ░      ░           */
+                     /*                        ░        ░ ░                  */
+                     /*                                                      */                     
+                    /*                                                        */                     
+                   /* behold, the flames rise from the compass' cardinal points */                     
+                    /* burn the sacred oil, and with the ashes you'll annoint */                     
+ R, a)(    )) ; auto /* arrange the symbols of the wizard and the magician */ lllllllllll=(&(-0141
+                  /* light the candles, place the parchment paper in position */
+
+               /**//**//**//**//**//**//**//**/         
+                /**/ +'a')[________]['n'- /**/          
+                /**/ 110] ) [llIIllIIIll. /**/          /* between its leaves */       
+                /**/ THE (alI, dx, ma, t, /**/          /*   place the lash   */
+                /**/ i, er, ,) - 1]; auto /**/        /* from a black cat's eye */
+                /**/ llIlIlIlllI=(&(-98 + /**/
+               /**//**//**//**//**//**//**//**/ 
+                                                        /**//**//**//**//**//**//**//**/ 
+                                                         /**/ 'b')[________] ['b'- /**/
+                  /* a straw of a broom */               /**/ 0x62]) [llIIllIIIll. /**/
+                  /*   fold and burn    */               /**/ llllIIlllIl-1 ];auto /**/
+                  /*   and centralise   */               /**/ llIlIlIlIlI=(&(-0x69 /**/
+                                                         /**/ +'i')[________]['r'- /**/
+                                                        /**//**//**//**//**//**//**//**/ 
+
+  0162] )[llIIllIIIll.    /*                  ______                  */    /* don't summon the devil */
+   llllIIlIlIl- 1 ] ;     /*             .d$$$******$$$$c.            */    /* don't call the priests */
+ IF ( x , o , B , E)Y     /*          .d$P"            "$$c           */    /* if you need the strength */
+ ____________  ; DONT     /*         $$$$$.           .$$$*$.         */    /* then conjure me */
+                          /*       .$$ 4$L*$$.     .$$Pd$  '$b        */
+/* i am the devil's */    /*       $F   *$. "$$e.e$$" 4$F   ^$b       */    ( _ , ________ , ___
+/* advocate,        */    /*      d$     $$   z$$$e   $$     '$.      */           ) .  update (
+/* a salesman       */    /*      $P     `$L$$P` `"$$d$"      $$      */             lllllllllll
+/* if you will...   */    /*      $$     e$$F       4$$b.     $$      */    ) ; DONT (__ , ___ ,
+/* you know my name */    /*      $b  .$$" $$      .$$ "4$b.  $$      */    _______) .  update (
+/* you know my name */    /*      $$e$P"    $b     d$`    "$$c$F      */    llIlIlIlllI); DONT (
+                          /*      '$P$$$$$$$$$$$$$$$$$$$$$$$$$$       */
+ _____ , ___ , ____ )     /*       "$c.      4$.  $$       .$$        */    /* i'm claiming what is mine */
+         .  update  (     /*        ^$$.      $$ d$"      d$P         */    /* by right, it's time to */
+ llIlIlIlIlI) ; O B E     /*          "$$c.   `$b$F    .d$P"          */    /* close the deal */
+ Y DONT ( , , return)     /*            `4$$$c.$$$..e$$P"             */    /* you're bought and sold */
+       ____________;}     /*                `^^^^^^^`                 */    /* bought and sold */
+                          /*                                          */
+                          /*   come join me in my infernal depths     */
+                          /*        mephisto's hall of fame           */
+                          /*          i've got your soul              */
+                          /*          i've got your soul              */
+                        /*             the conjuring...                */
+                       /*                                               */                     
+                       /*      ▒█████   ▄▄▄▄   ▓█████▓██   ██▓ ▐██▌     */
+                       /*     ▒██▒  ██▒▓█████▄ ▓█   ▀ ▒██  ██▒ ▐██▌     */
+                       /*     ▒██░  ██▒▒██▒ ▄██▒███    ▒██ ██░ ▐██▌     */
+                       /*     ▒██   ██░▒██░█▀  ▒▓█  ▄  ░ ▐██▓░ ▓██▒     */
+                       /*     ░ ████▓▒░░▓█  ▀█▓░▒████▒ ░ ██▒▓░ ▒▄▄      */
+                       /*     ░ ▒░▒░▒░ ░▒▓███▀▒░░ ▒░ ░  ██▒▒▒  ░▀▀▒     */
+                       /*       ░ ▒ ▒░ ▒░▒   ░  ░ ░  ░▓██ ░▒░  ░  ░     */
+                       /*     ░ ░ ░ ▒   ░    ░    ░   ▒ ▒ ░░      ░     */
+                       /*         ░ ░   ░         ░  ░░ ░      ░        */
+                       /*                    ░        ░ ░               */
+                       /*                                               */
+                       /*▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒*/
+                                                                        
+                                                                        
 BVH::BVH(std::vector<vec3f> *vertices, const std::vector<Triangle> &triangles,
          int axisIndex)
     : Shape(-1, -1)
@@ -194,12 +283,12 @@ BVH::BVH(std::vector<vec3f> *vertices, const std::vector<Triangle> &triangles,
     } else if (triangle_count == 1) {
         left = (Shape *)&triangles[0];
         right = nullptr;
-        bounding_box = bbox_triangle(vertices, (Triangle *)left);
+        bounding_box = the_conjuring(vertices, (Triangle *)left);
     } else if (triangle_count == 2) {
         left = (Shape *)&triangles[0];
         right = (Shape *)&triangles[1];
-        Box left_bounding_box = bbox_triangle(vertices, (Triangle *)left);
-        Box right_bounding_box = bbox_triangle(vertices, (Triangle *)right);
+        Box left_bounding_box = the_conjuring(vertices, (Triangle *)left);
+        Box right_bounding_box = the_conjuring(vertices, (Triangle *)right);
         bounding_box = Box(left_bounding_box, right_bounding_box);
     } else {
         auto half_triangle_count = triangle_count / 2;
@@ -208,8 +297,8 @@ BVH::BVH(std::vector<vec3f> *vertices, const std::vector<Triangle> &triangles,
         std::sort(triangles_copy.begin(), triangles_copy.end(),
                   [vertices, axisIndex](Triangle s1, Triangle s2) {
                       Box s1_box, s2_box;
-                      s1_box = bbox_triangle(vertices, &s1);
-                      s2_box = bbox_triangle(vertices, &s2);
+                      s1_box = the_conjuring(vertices, &s1);
+                      s2_box = the_conjuring(vertices, &s2);
                       auto s1_mid_point =
                           (s1_box.min_point + s1_box.max_point) / 2;
                       auto s2_mid_point =
@@ -268,19 +357,4 @@ HitRecord BVH::intersect(const Ray &ray) const
         return right_hr;
 
     return NO_HIT;
-}
-
-Box bbox_triangle(std::vector<vec3f> *vertices, const Triangle *triangle)
-{
-    HitRecord profanity = triangle->intersect(Ray());
-    vec3f a = 0 [vertices][profanity.materialIdx - 1];
-    vec3f b = 0 [vertices][profanity.blipIdx - 1];
-    vec3f c = 0 [vertices][profanity.blopIdx - 1];
-
-    Box bounding_box;
-    bounding_box.update(a);
-    bounding_box.update(b);
-    bounding_box.update(c);
-
-    return bounding_box;
 }

@@ -81,6 +81,4 @@ class Mesh : public Shape
     BVH bvh;
 };
 
-Box bbox_triangle(std::vector<vec3f> *vertices, const Triangle *triangle);
-
 #endif
