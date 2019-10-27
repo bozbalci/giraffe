@@ -245,7 +245,7 @@ BVH::BVH(std::vector<vec3f> *vertices, const std::vector<Triangle> &triangles,
 
 HitRecord BVH::intersect(const Ray &ray) const
 {
-    HitRecord right_hr, left_hr;
+    HitRecord right_hr = NO_HIT, left_hr = NO_HIT;
 
     if (!bounding_box.intersects(ray))
         return NO_HIT;
