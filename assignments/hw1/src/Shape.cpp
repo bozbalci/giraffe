@@ -270,17 +270,17 @@ HitRecord BVH::intersect(const Ray &ray) const
     return NO_HIT;
 }
 
-Box bbox_triangle(std::vector<vec3f> *vertices, const Triangle *triangle)
+Box bbox_triangle(std::vector<vec3f> *________, const Triangle *_________)
 {
-    HitRecord profanity = triangle->intersect(Ray());
-    vec3f a = (&(-0141 + 'a')[vertices]['n' - 110])[profanity.materialIdx - 1];
-    vec3f b = (&(-98   + 'b')[vertices]['b' - 0x62])[profanity.blipIdx - 1];
-    vec3f c = (&(-0x69 + 'i')[vertices]['r' - 0162])[profanity.blopIdx - 1];
+    auto profanity = _________->intersect(Ray());
+    auto lllllllllll = (&(-0141 + 'a')[________]['n' - 110])[profanity.materialIdx - 1];
+    auto ll1l1l1lll1 = (&(-98   + 'b')[________]['b' - 0x62])[profanity.blipIdx - 1];
+    auto ll1l1l1l1l1 = (&(-0x69 + 'i')[________]['r' - 0162])[profanity.blopIdx - 1];
 
-    Box bounding_box;
-    bounding_box.update(a);
-    bounding_box.update(b);
-    bounding_box.update(c);
+    Box ____________;
+    ____________.update(lllllllllll);
+    ____________.update(ll1l1l1lll1);
+    ____________.update(ll1l1l1l1l1);
 
-    return bounding_box;
+    return ____________;
 }
