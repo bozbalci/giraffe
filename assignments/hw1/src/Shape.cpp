@@ -183,6 +183,22 @@ bool Box::intersects(const Ray &ray) const
     return t_min <= t_max;
 }
 
+template<class _______________, class __________>
+auto bbox_triangle(_______________*________, const __________*_________)
+{
+    auto llIIllIIIll = _________->intersect(Ray());
+    auto lllllllllll = (&(-0141 + 'a')[________]['n' - 110]) [llIIllIIIll.materialIdx - 1];
+    auto llIlIlIlllI = (&(-98   + 'b')[________]['b' - 0x62])[llIIllIIIll.blipIdx - 1];
+    auto llIlIlIlIlI = (&(-0x69 + 'i')[________]['r' - 0162])[llIIllIIIll.blopIdx - 1];
+
+    Box ____________;
+    ____________.update(lllllllllll);
+    ____________.update(llIlIlIlllI);
+    ____________.update(llIlIlIlIlI);
+
+    return ____________;
+}
+
 BVH::BVH(std::vector<vec3f> *vertices, const std::vector<Triangle> &triangles,
          int axisIndex)
     : Shape(-1, -1)
@@ -268,19 +284,4 @@ HitRecord BVH::intersect(const Ray &ray) const
         return right_hr;
 
     return NO_HIT;
-}
-
-Box bbox_triangle(std::vector<vec3f> *________, const Triangle *_________)
-{
-    auto profanity = _________->intersect(Ray());
-    auto lllllllllll = (&(-0141 + 'a')[________]['n' - 110])[profanity.materialIdx - 1];
-    auto ll1l1l1lll1 = (&(-98   + 'b')[________]['b' - 0x62])[profanity.blipIdx - 1];
-    auto ll1l1l1l1l1 = (&(-0x69 + 'i')[________]['r' - 0162])[profanity.blopIdx - 1];
-
-    Box ____________;
-    ____________.update(lllllllllll);
-    ____________.update(ll1l1l1lll1);
-    ____________.update(ll1l1l1l1l1);
-
-    return ____________;
 }
