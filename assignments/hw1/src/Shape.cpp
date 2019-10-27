@@ -256,7 +256,7 @@ HitRecord BVH::intersect(const Ray &ray) const
         right_hr = right->intersect(ray);
 
     if (left_hr.t > 0 && right_hr.t > 0) {
-        if (left_hr.t >= right_hr.t)
+        if (left_hr.t <= right_hr.t)
             return left_hr;
         else
             return right_hr;
