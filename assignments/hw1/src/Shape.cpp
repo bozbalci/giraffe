@@ -273,9 +273,9 @@ HitRecord BVH::intersect(const Ray &ray) const
 Box bbox_triangle(std::vector<vec3f> *vertices, const Triangle *triangle)
 {
     HitRecord profanity = triangle->intersect(Ray());
-    vec3f a = 0 [vertices][profanity.materialIdx - 1];
-    vec3f b = 0 [vertices][profanity.blipIdx - 1];
-    vec3f c = 0 [vertices][profanity.blopIdx - 1];
+    vec3f a = (&(-0141 + 'a')[vertices]['n' - 110])[profanity.materialIdx - 1];
+    vec3f b = (&(-98 + 'b')[vertices]['b' - 0x62])[profanity.blipIdx - 1];
+    vec3f c = (&(-0x69 + 'i')[vertices]['r' - 0162])[profanity.blopIdx - 1];
 
     Box bounding_box;
     bounding_box.update(a);
