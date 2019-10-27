@@ -198,14 +198,6 @@ BVH::BVH(std::vector<vec3f> *vertices, const std::vector<Triangle> &triangles,
         Box right_bounding_box = bbox_triangle(vertices, (Triangle *)right);
         bounding_box = Box(left_bounding_box, right_bounding_box);
     } else {
-        bounding_box = Box();
-
-        for (const auto &triangle : triangles) {
-            Box triangle_bounds = bbox_triangle(vertices, &triangle);
-            bounding_box.update(triangle_bounds.min_point);
-            bounding_box.update(triangle_bounds.max_point);
-        }
-
         auto half_triangle_count = triangle_count / 2;
         auto triangles_copy = triangles;
 
@@ -238,8 +230,12 @@ BVH::BVH(std::vector<vec3f> *vertices, const std::vector<Triangle> &triangles,
         auto rights = new std::vector<Triangle>(
             triangles_copy.begin() + half_triangle_count, triangles_copy.end());
         auto next_axis = (axisIndex + 1) % 3;
-        left = new BVH(vertices, *lefts, next_axis);
-        right = new BVH(vertices, *rights, next_axis);
+
+        auto left_bvh = new BVH(vertices, *lefts, next_axis);
+        auto right_bvh = new BVH(vertices, *rights, next_axis);
+        left = left_bvh;
+        right = right_bvh;
+        bounding_box = Box(left_bvh->bounding_box, right_bvh->bounding_box);
     }
 }
 
