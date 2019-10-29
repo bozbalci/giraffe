@@ -10,6 +10,6 @@ class Obj2Xml:
     def run(self):
         reader = WavefrontObjReader(self.input_filename)
         reader.read()
-        vertex_data, faces = reader.get_vertex_data(), reader.get_faces()
-        writer = Ceng477XmlWriter(self.output_filename, vertex_data, faces)
+        vertex_data, objects = reader.get_vertex_data(), reader.get_objects()
+        writer = Ceng477XmlWriter(self.output_filename, vertex_data, objects)
         writer.write()

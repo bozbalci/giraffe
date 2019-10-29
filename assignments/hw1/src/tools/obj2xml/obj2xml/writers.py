@@ -4,7 +4,7 @@ from obj2xml.utils import generate_cameras
 
 
 class Ceng477XmlWriter:
-    def __init__(self, filename, vertex_data, faces):
+    def __init__(self, filename, vertex_data, objects):
         self.filename = filename
 
         self.max_recursion_depth = "6"
@@ -33,7 +33,7 @@ class Ceng477XmlWriter:
             near_distance='1.8',
             near_distance_end='0.9',
             image_resolution='400 400',
-            image_prefix='dragon_lowres'
+            image_prefix='three_glasses'
         )
 
         self.lights = [
@@ -61,14 +61,12 @@ class Ceng477XmlWriter:
 
         self.vertex_data = vertex_data
 
-        self.objects = [
-            {
-                'type': 'mesh',
-                'material': '1',
-                'id': '1',
-                'faces': faces,
-            },
-        ]
+        self.objects = [{
+            'type': 'mesh',
+            'material': '1',
+            'id': str(i),
+            'faces': obj
+        } for i, obj in objects.items()]
 
     def write(self):
         scene = ET.Element("Scene")
