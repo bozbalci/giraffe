@@ -1,63 +1,68 @@
-def generate_cameras(count=1,
-                     position_start='0 5 25',
-                     position_end=None,
-                     gaze_start='0 0 -1',
-                     gaze_end=None,
-                     up_start='0 1 0',
-                     up_end=None,
-                     near_plane='-1 1 -1 1',
-                     near_distance='1',
-                     near_distance_end=None,
-                     image_resolution='800 800',
-                     image_prefix='giraffe'):
+import json
+# import numpy as np
+from math import pi, sin, cos, sqrt
+
+
+def generate_cameras(count=300,
+                     position_start='0.0 15.5 20.0',
+                     gaze_start='0.0 -0.6 -0.8',
+                     up_start='0 0.8 -0.6',
+                     near_plane='-0.8 0.8 -0.45 0.45',
+                     near_distance='1.8',
+                     image_resolution='3840 2160',
+                     image_prefix='chess'):
     cameras = []
 
     pos_start = tuple(map(float, position_start.split(' ')))
-    if position_end is None:
-        position_end = position_start
-    pos_end = tuple(map(float, position_end.split(' ')))
-    pos_difference = ((pos_end[0] - pos_start[0])/count,
-                      (pos_end[1] - pos_start[1])/count,
-                      (pos_end[2] - pos_start[2])/count)
-
     gz_start = tuple(map(float, gaze_start.split(' ')))
-    if gaze_end is None:
-        gaze_end = gaze_start
-    gz_end = tuple(map(float, gaze_end.split(' ')))
-    gz_difference = ((gz_end[0] - gz_start[0])/count,
-                      (gz_end[1] - gz_start[1])/count,
-                      (gz_end[2] - gz_start[2])/count)
-
     U_start = tuple(map(float, up_start.split(' ')))
-    if up_end is None:
-        up_end = up_start
-    U_end = tuple(map(float, up_end.split(' ')))
-    U_difference = ((U_end[0] - U_start[0])/count,
-                     (U_end[1] - U_start[1])/count,
-                     (U_end[2] - U_start[2])/count)
 
-    if near_distance_end is None:
-        near_distance_end = near_distance
-    near_difference = (float(near_distance_end) - float(near_distance))/count
+    radius = pos_start[2]
+
+    pos_norm = sqrt(pos_start[0]**2+pos_start[1]**2+pos_start[2]**2)
+
+    angle = 0
+    angle_diff = 2*pi/count
 
     for i in range(count):
         id_ = i + 1
+        pos = [radius*sin(angle), pos_start[1], radius*cos(angle)]
+        gaze = list(map(lambda x: -x/pos_norm, pos))
+
+        up = (U_start[0] * cos(angle) + U_start[2] * sin(angle),
+              U_start[1],
+              U_start[0] * -sin(angle) + U_start[2] * cos(angle))
+
+        # NP_gaze = np.array([gaze[0], gaze[1], gaze[2]])
+        # NP_up = np.array([up[0], up[1], up[2]])
+        # NP_gaze_DOT_up = np.dot(NP_gaze, NP_up)
+        # NP_gaze_CROSS_up = np.linalg.norm(np.cross(NP_gaze, NP_up))
+        # print(f'GAZE dot UP = {NP_gaze_DOT_up}')
+        # print(f'GAZE cross UP = {NP_gaze_CROSS_up}')
+        # print('-------------------------------------')
+
 
         cameras.append({
             'id': str(id_),
-            'position': ' '.join((str(pos_start[0] + pos_difference[0]*i),
-                                  str(pos_start[1] + pos_difference[1]*i),
-                                  str(pos_start[2] + pos_difference[2]*i))),
-            'gaze': ' '.join((str(gz_start[0] + gz_difference[0]*i),
-                              str(gz_start[1] + gz_difference[1]*i),
-                              str(gz_start[2] + gz_difference[2]*i))),
-            'up': ' '.join((str(U_start[0] + U_difference[0]*i),
-                            str(U_start[1] + U_difference[1]*i),
-                            str(U_start[2] + U_difference[2]*i))),
+            'position': ' '.join((str(pos[0]),
+                                  str(pos[1]),
+                                  str(pos[2]))),
+            'gaze': ' '.join((str(gaze[0]),
+                              str(gaze[1]),
+                              str(gaze[2]))),
+            'up': ' '.join((str(up[0]),
+                            str(up[1]),
+                            str(up[2]))),
             'near_plane': near_plane,
-            'near_distance': str(float(near_distance) + near_difference*i),
+            'near_distance': str(float(near_distance)),
             'image_resolution': image_resolution,
             'image_name': f'{image_prefix}_{id_:04}.ppm',
         })
+        angle += angle_diff
 
     return cameras
+
+
+if __name__ == '__main__':
+    # generate_cameras()
+    print(json.dumps(generate_cameras()))

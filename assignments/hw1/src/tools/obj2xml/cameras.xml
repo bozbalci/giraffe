@@ -1,0 +1,2702 @@
+<Cameras>
+    <Camera id="1">
+        <Position>0.0 15.5 20.0</Position>
+        <Gaze>-0.0 -0.612571665435814 -0.7904150521752438</Gaze>
+        <Up>0.0 0.8 -0.6</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0001.ppm</ImageName>
+    </Camera>
+    <Camera id="2">
+        <Position>0.41884839766713916 15.5 19.99561366949691</Position>
+        <Gaze>-0.01655320390477945 -0.612571665435814 -0.790241701092571</Gaze>
+        <Up>-0.012565451930014173 0.8 -0.5998684100849073</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0002.ppm</ImageName>
+    </Camera>
+    <Camera id="3">
+        <Position>0.8375130745839925 15.5 19.98245660197717</Position>
+        <Gaze>-0.03309914702723776 -0.612571665435814 -0.7897217238820664</Gaze>
+        <Up>-0.025125392237519775 0.8 -0.599473698059315</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0003.ppm</ImageName>
+    </Camera>
+    <Camera id="4">
+        <Position>1.2558103905862672 15.5 19.960534568565432</Position>
+        <Gaze>-0.049630571769872886 -0.612571665435814 -0.7888553486229202</Gaze>
+        <Up>-0.03767431171758801 0.8 -0.598816037056963</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0004.ppm</ImageName>
+    </Camera>
+    <Camera id="5">
+        <Position>1.6735568666463096 15.5 19.929857184990087</Position>
+        <Gaze>-0.06614022690342401 -0.612571665435814 -0.7876429553359549</Gaze>
+        <Up>-0.05020670599938929 0.8 -0.5978957155497026</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0005.ppm</ImageName>
+    </Camera>
+    <Camera id="6">
+        <Position>2.090569265353069 15.5 19.890437907365467</Position>
+        <Gaze>-0.08262087074750037 -0.612571665435814 -0.7860850758169361</Gaze>
+        <Up>-0.06271707796059207 0.8 -0.596713137220964</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0006.ppm</ImageName>
+    </Camera>
+    <Camera id="7">
+        <Position>2.5066646712860847 15.5 19.842294026289558</Position>
+        <Gaze>-0.09906527434702155 -0.612571665435814 -0.7841823934033094</Gaze>
+        <Up>-0.07519994013858254 0.8 -0.5952688207886867</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0007.ppm</ImageName>
+    </Camera>
+    <Camera id="8">
+        <Position>2.921660571248232 15.5 19.785446659259765</Position>
+        <Gaze>-0.1154662246430762 -0.612571665435814 -0.7819357426744655</Gaze>
+        <Up>-0.08764981713744695 0.8 -0.5935633997777929</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0008.ppm</ImageName>
+    </Camera>
+    <Camera id="9">
+        <Position>3.3353749343220453 15.5 19.7199207414101</Position>
+        <Gaze>-0.13181652763680798 -0.612571665435814 -0.7793461090856668</Gaze>
+        <Up>-0.10006124802966135 0.8 -0.591597622242303</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0009.ppm</ImageName>
+    </Camera>
+    <Camera id="10">
+        <Position>3.747626291714492 15.5 19.645745014573773</Position>
+        <Gaze>-0.14810901154494127 -0.612571665435814 -0.7764146285357932</Gaze>
+        <Up>-0.11242878875143476 0.8 -0.5893723504372133</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0010.ppm</ImageName>
+    </Camera>
+    <Camera id="11">
+        <Position>4.158233816355186 15.5 19.562952014676114</Position>
+        <Gaze>-0.1643365299455624 -0.612571665435814 -0.7731425868691005</Gaze>
+        <Up>-0.12474701449065559 0.8 -0.5868885604402834</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0011.ppm</ImageName>
+    </Camera>
+    <Camera id="12">
+        <Position>4.567017402213114 15.5 19.471578057463205</Position>
+        <Gaze>-0.18049196491277625 -0.612571665435814 -0.7695314193112056</Gaze>
+        <Up>-0.13701052206639341 0.8 -0.5841473417238962</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0012.ppm</ImageName>
+    </Camera>
+    <Camera id="13">
+        <Position>4.973797743297094 15.5 19.37166322257262</Position>
+        <Gaze>-0.19656823013886413 -0.612571665435814 -0.7655827098395495</Gaze>
+        <Up>-0.14921393229891283 0.8 -0.5811498966771786</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0013.ppm</ImageName>
+    </Camera>
+    <Camera id="14">
+        <Position>5.378396412305313 15.5 19.263251335953164</Position>
+        <Gaze>-0.2125582740425724 -0.612571665435814 -0.7612981904886128</Gaze>
+        <Up>-0.1613518923691594 0.8 -0.577897540078595</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0014.ppm</ImageName>
+    </Camera>
+    <Camera id="15">
+        <Position>5.78063593888943 15.5 19.146389950641346</Position>
+        <Gaze>-0.22845508286216892 -0.612571665435814 -0.7566797405901872</Gaze>
+        <Up>-0.1734190781666829 0.8 -0.5743916985192403</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0015.ppm</ImageName>
+    </Camera>
+    <Camera id="16">
+        <Position>6.1803398874989455 15.5 19.021130325903073</Position>
+        <Gaze>-0.24425168373191097 -0.612571665435814 -0.7517293859490395</Gaze>
+        <Up>-0.18541019662496835 0.8 -0.5706339097770922</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0016.ppm</ImageName>
+    </Camera>
+    <Camera id="17">
+        <Position>6.577332934771663 15.5 18.887527404749623</Position>
+        <Gaze>-0.25994114774057464 -0.612571665435814 -0.746449297954326</Gaze>
+        <Up>-0.19731998804314987 0.8 -0.5666258221424887</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0017.ppm</ImageName>
+    </Camera>
+    <Camera id="18">
+        <Position>6.971440946436301 15.5 18.74563978983783</Position>
+        <Gaze>-0.275516592970704 -0.612571665435814 -0.7408417926271498</Gaze>
+        <Up>-0.20914322839308905 0.8 -0.5623691936951349</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0018.ppm</ImageName>
+    </Camera>
+    <Camera id="19">
+        <Position>7.362491053693555 15.5 18.59552971776503</Position>
+        <Gaze>-0.2909711875172478 -0.612571665435814 -0.734909329604677</Gaze>
+        <Up>-0.22087473161080665 0.8 -0.5578658915329509</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0019.ppm</ImageName>
+    </Camera>
+    <Camera id="20">
+        <Position>7.750311729042055 15.5 18.437263031770012</Position>
+        <Gaze>-0.306298152484259 -0.612571665435814 -0.7286545110612593</Gaze>
+        <Up>-0.23250935187126165 0.8 -0.5531178909531004</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0020.ppm</ImageName>
+    </Camera>
+    <Camera id="21">
+        <Position>8.134732861516 15.5 18.27090915285202</Position>
+        <Gaze>-0.32149076495834195 -0.612571665435814 -0.7220800805670334</Gaze>
+        <Up>-0.24404198584547998 0.8 -0.5481272745855605</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0021.ppm</ImageName>
+    </Camera>
+    <Camera id="22">
+        <Position>8.515585831301447 15.5 18.096541049320393</Position>
+        <Gaze>-0.336542360957545 -0.612571665435814 -0.715188921884501</Gaze>
+        <Up>-0.25546757493904343 0.8 -0.5428962314796117</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0022.ppm</ImageName>
+    </Camera>
+    <Camera id="23">
+        <Position>8.892703583698545 15.5 17.91423520478826</Position>
+        <Gaze>-0.35144633835440314 -0.612571665435814 -0.707984057703615</Gaze>
+        <Up>-0.26678110751095635 0.8 -0.5374270561436478</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0023.ppm</ImageName>
+    </Camera>
+    <Camera id="24">
+        <Position>9.26592070239723 15.5 17.724071584624298</Position>
+        <Gaze>-0.3661961597718489 -0.612571665435814 -0.7004686483159285</Gaze>
+        <Up>-0.27797762107191687 0.8 -0.5317221475387289</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0024.ppm</ImageName>
+    </Camera>
+    <Camera id="25">
+        <Position>9.6350734820343 15.5 17.526133600877273</Position>
+        <Gaze>-0.3807853554507225 -0.612571665435814 -0.6926459902283851</Gaze>
+        <Up>-0.28905220446102897 0.8 -0.5257840080263182</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0025.ppm</ImageName>
+    </Camera>
+    <Camera id="26">
+        <Position>9.999999999999996 15.5 17.320508075688778</Position>
+        <Gaze>-0.3952075260876218 -0.612571665435814 -0.6845195147173638</Gaze>
+        <Up>-0.2999999999999999 0.8 -0.5196152422706632</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0026.ppm</ImageName>
+    </Camera>
+    <Camera id="27">
+        <Position>10.360540187462599 15.5 17.107285203210132</Position>
+        <Gaze>-0.409456345641848 -0.612571665435814 -0.6760927863236056</Gaze>
+        <Up>-0.31081620562387796 0.8 -0.513218556096304</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0027.ppm</ImageName>
+    </Camera>
+    <Camera id="28">
+        <Position>10.71653589957993 15.5 16.886558510040302</Position>
+        <Gaze>-0.42352556411021713 -0.612571665435814 -0.6673695012886907</Gaze>
+        <Up>-0.32149607698739785 0.8 -0.5065967553012091</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0028.ppm</ImageName>
+    </Camera>
+    <Camera id="29">
+        <Position>11.067830984866877 15.5 16.65842481420199</Position>
+        <Gaze>-0.43740901026851664 -0.612571665435814 -0.6583534859337421</Gaze>
+        <Up>-0.33203492954600633 0.8 -0.4997527444260597</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0029.ppm</ImageName>
+    </Camera>
+    <Camera id="30">
+        <Position>11.414271353688632 15.5 16.42298418267408</Position>
+        <Gaze>-0.4511005943784095 -0.612571665435814 -0.6490486949810769</Gaze>
+        <Up>-0.34242814061065896 0.8 -0.4926895254802225</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0030.ppm</ImageName>
+    </Camera>
+    <Camera id="31">
+        <Position>11.75570504584946 15.5 16.18033988749895</Position>
+        <Gaze>-0.4645943108585939 -0.612571665435814 -0.639459209819533</Gaze>
+        <Up>-0.3526711513754838 0.8 -0.4854101966249684</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0031.ppm</ImageName>
+    </Camera>
+    <Camera id="32">
+        <Position>12.091982297247498 15.5 15.930598360483927</Position>
+        <Gaze>-0.47788424091905024 -0.612571665435814 -0.6295892367142378</Gaze>
+        <Up>-0.3627594689174249 0.8 -0.4779179508145178</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0032.ppm</ImageName>
+    </Camera>
+    <Camera id="33">
+        <Position>12.422955605566205 15.5 15.673869146516797</Position>
+        <Gaze>-0.4909645551572175 -0.612571665435814 -0.6194431049616009</Gaze>
+        <Up>-0.37268866816698615 0.8 -0.4702160743955039</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0033.ppm</ImageName>
+    </Camera>
+    <Camera id="34">
+        <Position>12.748479794973793 15.5 15.410264855515784</Position>
+        <Gaze>-0.5038295161149626 -0.612571665435814 -0.6090252649903417</Gaze>
+        <Up>-0.38245439384921376 0.8 -0.4623079456654735</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0034.ppm</ImageName>
+    </Camera>
+    <Camera id="35">
+        <Position>13.068412079802108 15.5 15.139901113035128</Position>
+        <Gaze>-0.5164734807952185 -0.612571665435814 -0.5983402864093846</Gaze>
+        <Up>-0.3920523623940632 0.8 -0.45419703339105383</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0035.ppm</ImageName>
+    </Camera>
+    <Camera id="36">
+        <Position>13.382612127177165 15.5 14.862896509547884</Position>
+        <Gaze>-0.5288909031371894 -0.612571665435814 -0.587392856003477</Gaze>
+        <Up>-0.40147836381531493 0.8 -0.44588689528643655</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0036.ppm</ImageName>
+    </Camera>
+    <Camera id="37">
+        <Position>13.690942118573775 15.5 14.579372548428232</Position>
+        <Gaze>-0.5410763364490366 -0.612571665435814 -0.5761877756774109</Gaze>
+        <Up>-0.4107282635572132 0.8 -0.4373811764528469</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0037.ppm</ImageName>
+    </Camera>
+    <Camera id="38">
+        <Position>13.993266810267308 15.5 14.289453592656066</Position>
+        <Gaze>-0.553024435796977 -0.612571665435814 -0.5647299603497484</Gaze>
+        <Up>-0.4197980043080192 0.8 -0.428683607779682</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0038.ppm</ImageName>
+    </Camera>
+    <Camera id="39">
+        <Position>14.289453592656066 15.5 13.993266810267308</Position>
+        <Gaze>-0.5647299603497484 -0.612571665435814 -0.553024435796977</Gaze>
+        <Up>-0.428683607779682 0.8 -0.4197980043080192</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0039.ppm</ImageName>
+    </Camera>
+    <Camera id="40">
+        <Position>14.579372548428232 15.5 13.690942118573773</Position>
+        <Gaze>-0.5761877756774109 -0.612571665435814 -0.5410763364490365</Gaze>
+        <Up>-0.4373811764528469 0.8 -0.41072826355721315</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0040.ppm</ImageName>
+    </Camera>
+    <Camera id="41">
+        <Position>14.862896509547884 15.5 13.382612127177163</Position>
+        <Gaze>-0.587392856003477 -0.612571665435814 -0.5288909031371893</Gaze>
+        <Up>-0.44588689528643655 0.8 -0.4014783638153149</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0041.ppm</ImageName>
+    </Camera>
+    <Camera id="42">
+        <Position>15.13990111303513 15.5 13.068412079802108</Position>
+        <Gaze>-0.5983402864093846 -0.612571665435814 -0.5164734807952185</Gaze>
+        <Up>-0.4541970333910539 0.8 -0.3920523623940632</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0042.ppm</ImageName>
+    </Camera>
+    <Camera id="43">
+        <Position>15.410264855515788 15.5 12.748479794973793</Position>
+        <Gaze>-0.6090252649903418 -0.612571665435814 -0.5038295161149626</Gaze>
+        <Up>-0.4623079456654736 0.8 -0.38245439384921376</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0043.ppm</ImageName>
+    </Camera>
+    <Camera id="44">
+        <Position>15.673869146516799 15.5 12.422955605566203</Position>
+        <Gaze>-0.6194431049616009 -0.612571665435814 -0.4909645551572174</Gaze>
+        <Up>-0.47021607439550395 0.8 -0.3726886681669861</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0044.ppm</ImageName>
+    </Camera>
+    <Camera id="45">
+        <Position>15.93059836048393 15.5 12.091982297247494</Position>
+        <Gaze>-0.6295892367142379 -0.612571665435814 -0.47788424091905013</Gaze>
+        <Up>-0.4779179508145179 0.8 -0.36275946891742483</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0045.ppm</ImageName>
+    </Camera>
+    <Camera id="46">
+        <Position>16.180339887498953 15.5 11.755705045849458</Position>
+        <Gaze>-0.6394592098195332 -0.612571665435814 -0.4645943108585938</Gaze>
+        <Up>-0.48541019662496854 0.8 -0.3526711513754837</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0046.ppm</ImageName>
+    </Camera>
+    <Camera id="47">
+        <Position>16.422984182674085 15.5 11.41427135368863</Position>
+        <Gaze>-0.649048694981077 -0.612571665435814 -0.45110059437840944</Gaze>
+        <Up>-0.49268952548022255 0.8 -0.3424281406106589</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0047.ppm</ImageName>
+    </Camera>
+    <Camera id="48">
+        <Position>16.658424814201993 15.5 11.067830984866877</Position>
+        <Gaze>-0.6583534859337422 -0.612571665435814 -0.43740901026851664</Gaze>
+        <Up>-0.49975274442605977 0.8 -0.33203492954600633</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0048.ppm</ImageName>
+    </Camera>
+    <Camera id="49">
+        <Position>16.886558510040302 15.5 10.71653589957993</Position>
+        <Gaze>-0.6673695012886907 -0.612571665435814 -0.42352556411021713</Gaze>
+        <Up>-0.5065967553012091 0.8 -0.32149607698739785</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0049.ppm</ImageName>
+    </Camera>
+    <Camera id="50">
+        <Position>17.107285203210132 15.5 10.360540187462599</Position>
+        <Gaze>-0.6760927863236056 -0.612571665435814 -0.409456345641848</Gaze>
+        <Up>-0.513218556096304 0.8 -0.31081620562387796</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0050.ppm</ImageName>
+    </Camera>
+    <Camera id="51">
+        <Position>17.320508075688778 15.5 9.999999999999996</Position>
+        <Gaze>-0.6845195147173638 -0.612571665435814 -0.3952075260876218</Gaze>
+        <Up>-0.5196152422706632 0.8 -0.2999999999999999</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0051.ppm</ImageName>
+    </Camera>
+    <Camera id="52">
+        <Position>17.526133600877273 15.5 9.6350734820343</Position>
+        <Gaze>-0.6926459902283851 -0.612571665435814 -0.3807853554507225</Gaze>
+        <Up>-0.5257840080263182 0.8 -0.28905220446102897</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0052.ppm</ImageName>
+    </Camera>
+    <Camera id="53">
+        <Position>17.724071584624298 15.5 9.265920702397228</Position>
+        <Gaze>-0.7004686483159285 -0.612571665435814 -0.36619615977184883</Gaze>
+        <Up>-0.5317221475387289 0.8 -0.2779776210719168</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0053.ppm</ImageName>
+    </Camera>
+    <Camera id="54">
+        <Position>17.91423520478826 15.5 8.892703583698543</Position>
+        <Gaze>-0.707984057703615 -0.612571665435814 -0.3514463383544031</Gaze>
+        <Up>-0.5374270561436478 0.8 -0.26678110751095624</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0054.ppm</ImageName>
+    </Camera>
+    <Camera id="55">
+        <Position>18.096541049320393 15.5 8.515585831301443</Position>
+        <Gaze>-0.715188921884501 -0.612571665435814 -0.33654236095754486</Gaze>
+        <Up>-0.5428962314796117 0.8 -0.2554675749390433</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0055.ppm</ImageName>
+    </Camera>
+    <Camera id="56">
+        <Position>18.27090915285202 15.5 8.134732861515996</Position>
+        <Gaze>-0.7220800805670334 -0.612571665435814 -0.32149076495834183</Gaze>
+        <Up>-0.5481272745855607 0.8 -0.24404198584547984</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0056.ppm</ImageName>
+    </Camera>
+    <Camera id="57">
+        <Position>18.437263031770016 15.5 7.75031172904205</Position>
+        <Gaze>-0.7286545110612596 -0.612571665435814 -0.3062981524842588</Gaze>
+        <Up>-0.5531178909531004 0.8 -0.23250935187126148</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0057.ppm</ImageName>
+    </Camera>
+    <Camera id="58">
+        <Position>18.595529717765032 15.5 7.3624910536935495</Position>
+        <Gaze>-0.7349093296046773 -0.612571665435814 -0.29097118751724765</Gaze>
+        <Up>-0.557865891532951 0.8 -0.22087473161080648</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0058.ppm</ImageName>
+    </Camera>
+    <Camera id="59">
+        <Position>18.745639789837835 15.5 6.971440946436294</Position>
+        <Gaze>-0.7408417926271499 -0.612571665435814 -0.27551659297070374</Gaze>
+        <Up>-0.5623691936951349 0.8 -0.2091432283930888</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0059.ppm</ImageName>
+    </Camera>
+    <Camera id="60">
+        <Position>18.887527404749626 15.5 6.577332934771654</Position>
+        <Gaze>-0.7464492979543261 -0.612571665435814 -0.2599411477405743</Gaze>
+        <Up>-0.5666258221424887 0.8 -0.1973199880431496</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0060.ppm</ImageName>
+    </Camera>
+    <Camera id="61">
+        <Position>19.021130325903076 15.5 6.180339887498937</Position>
+        <Gaze>-0.7517293859490396 -0.612571665435814 -0.2442516837319106</Gaze>
+        <Up>-0.5706339097770923 0.8 -0.1854101966249681</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0061.ppm</ImageName>
+    </Camera>
+    <Camera id="62">
+        <Position>19.14638995064135 15.5 5.780635938889419</Position>
+        <Gaze>-0.7566797405901873 -0.612571665435814 -0.22845508286216848</Gaze>
+        <Up>-0.5743916985192404 0.8 -0.17341907816668256</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0062.ppm</ImageName>
+    </Camera>
+    <Camera id="63">
+        <Position>19.263251335953168 15.5 5.3783964123053005</Position>
+        <Gaze>-0.7612981904886129 -0.612571665435814 -0.2125582740425719</Gaze>
+        <Up>-0.577897540078595 0.8 -0.161351892369159</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0063.ppm</ImageName>
+    </Camera>
+    <Camera id="64">
+        <Position>19.371663222572625 15.5 4.973797743297082</Position>
+        <Gaze>-0.7655827098395497 -0.612571665435814 -0.19656823013886365</Gaze>
+        <Up>-0.5811498966771788 0.8 -0.14921393229891244</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0064.ppm</ImageName>
+    </Camera>
+    <Camera id="65">
+        <Position>19.47157805746321 15.5 4.5670174022131</Position>
+        <Gaze>-0.7695314193112057 -0.612571665435814 -0.1804919649127757</Gaze>
+        <Up>-0.5841473417238963 0.8 -0.137010522066393</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0065.ppm</ImageName>
+    </Camera>
+    <Camera id="66">
+        <Position>19.562952014676117 15.5 4.158233816355172</Position>
+        <Gaze>-0.7731425868691006 -0.612571665435814 -0.1643365299455618</Gaze>
+        <Up>-0.5868885604402835 0.8 -0.12474701449065514</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0066.ppm</ImageName>
+    </Camera>
+    <Camera id="67">
+        <Position>19.645745014573777 15.5 3.747626291714477</Position>
+        <Gaze>-0.7764146285357933 -0.612571665435814 -0.1481090115449407</Gaze>
+        <Up>-0.5893723504372133 0.8 -0.1124287887514343</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0067.ppm</ImageName>
+    </Camera>
+    <Camera id="68">
+        <Position>19.719920741410103 15.5 3.335374934322029</Position>
+        <Gaze>-0.7793461090856669 -0.612571665435814 -0.13181652763680735</Gaze>
+        <Up>-0.5915976222423031 0.8 -0.10006124802966086</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0068.ppm</ImageName>
+    </Camera>
+    <Camera id="69">
+        <Position>19.78544665925977 15.5 2.921660571248215</Position>
+        <Gaze>-0.7819357426744656 -0.612571665435814 -0.11546622464307553</Gaze>
+        <Up>-0.593563399777793 0.8 -0.08764981713744645</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0069.ppm</ImageName>
+    </Camera>
+    <Camera id="70">
+        <Position>19.842294026289558 15.5 2.5066646712860674</Position>
+        <Gaze>-0.7841823934033094 -0.612571665435814 -0.09906527434702087</Gaze>
+        <Up>-0.5952688207886868 0.8 -0.07519994013858201</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0070.ppm</ImageName>
+    </Camera>
+    <Camera id="71">
+        <Position>19.890437907365467 15.5 2.0905692653530514</Position>
+        <Gaze>-0.7860850758169361 -0.612571665435814 -0.08262087074749966</Gaze>
+        <Up>-0.596713137220964 0.8 -0.06271707796059153</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0071.ppm</ImageName>
+    </Camera>
+    <Camera id="72">
+        <Position>19.929857184990087 15.5 1.673556866646291</Position>
+        <Gaze>-0.7876429553359549 -0.612571665435814 -0.06614022690342328</Gaze>
+        <Up>-0.5978957155497026 0.8 -0.05020670599938873</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0072.ppm</ImageName>
+    </Camera>
+    <Camera id="73">
+        <Position>19.960534568565432 15.5 1.2558103905862483</Position>
+        <Gaze>-0.7888553486229202 -0.612571665435814 -0.04963057176987214</Gaze>
+        <Up>-0.598816037056963 0.8 -0.03767431171758745</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0073.ppm</ImageName>
+    </Camera>
+    <Camera id="74">
+        <Position>19.98245660197717 15.5 0.8375130745839727</Position>
+        <Gaze>-0.7897217238820664 -0.612571665435814 -0.03309914702723698</Gaze>
+        <Up>-0.599473698059315 0.8 -0.02512539223751918</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0074.ppm</ImageName>
+    </Camera>
+    <Camera id="75">
+        <Position>19.99561366949691 15.5 0.4188483976671188</Position>
+        <Gaze>-0.790241701092571 -0.612571665435814 -0.016553203904778647</Gaze>
+        <Up>-0.5998684100849073 0.8 -0.012565451930013564</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0075.ppm</ImageName>
+    </Camera>
+    <Camera id="76">
+        <Position>20.0 15.5 -2.097981369335578e-14</Position>
+        <Gaze>-0.7904150521752438 -0.612571665435814 8.291380267530352e-16</Gaze>
+        <Up>-0.6 0.8 6.293944108006734e-16</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0076.ppm</ImageName>
+    </Camera>
+    <Camera id="77">
+        <Position>19.99561366949691 15.5 -0.41884839766716075</Position>
+        <Gaze>-0.790241701092571 -0.612571665435814 0.016553203904780305</Gaze>
+        <Up>-0.5998684100849073 0.8 0.012565451930014822</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0077.ppm</ImageName>
+    </Camera>
+    <Camera id="78">
+        <Position>19.982456601977166 15.5 -0.8375130745840147</Position>
+        <Gaze>-0.7897217238820663 -0.612571665435814 0.033099147027238644</Gaze>
+        <Up>-0.5994736980593149 0.8 0.02512539223752044</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0078.ppm</ImageName>
+    </Camera>
+    <Camera id="79">
+        <Position>19.96053456856543 15.5 -1.2558103905862903</Position>
+        <Gaze>-0.7888553486229201 -0.612571665435814 0.049630571769873795</Gaze>
+        <Up>-0.5988160370569628 0.8 0.037674311717588706</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0079.ppm</ImageName>
+    </Camera>
+    <Camera id="80">
+        <Position>19.929857184990084 15.5 -1.6735568666463332</Position>
+        <Gaze>-0.7876429553359547 -0.612571665435814 0.06614022690342494</Gaze>
+        <Up>-0.5978957155497026 0.8 0.05020670599939</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0080.ppm</ImageName>
+    </Camera>
+    <Camera id="81">
+        <Position>19.890437907365463 15.5 -2.090569265353093</Position>
+        <Gaze>-0.786085075816936 -0.612571665435814 0.08262087074750131</Gaze>
+        <Up>-0.5967131372209639 0.8 0.0627170779605928</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0081.ppm</ImageName>
+    </Camera>
+    <Camera id="82">
+        <Position>19.842294026289554 15.5 -2.506664671286109</Position>
+        <Gaze>-0.7841823934033093 -0.612571665435814 0.09906527434702252</Gaze>
+        <Up>-0.5952688207886866 0.8 0.07519994013858326</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0082.ppm</ImageName>
+    </Camera>
+    <Camera id="83">
+        <Position>19.78544665925976 15.5 -2.9216605712482573</Position>
+        <Gaze>-0.7819357426744654 -0.612571665435814 0.1154662246430772</Gaze>
+        <Up>-0.5935633997777928 0.8 0.08764981713744772</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0083.ppm</ImageName>
+    </Camera>
+    <Camera id="84">
+        <Position>19.719920741410096 15.5 -3.3353749343220707</Position>
+        <Gaze>-0.7793461090856667 -0.612571665435814 0.13181652763680898</Gaze>
+        <Up>-0.5915976222423028 0.8 0.10006124802966211</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0084.ppm</ImageName>
+    </Camera>
+    <Camera id="85">
+        <Position>19.64574501457377 15.5 -3.7476262917145187</Position>
+        <Gaze>-0.7764146285357931 -0.612571665435814 0.14810901154494233</Gaze>
+        <Up>-0.589372350437213 0.8 0.11242878875143555</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0085.ppm</ImageName>
+    </Camera>
+    <Camera id="86">
+        <Position>19.562952014676107 15.5 -4.158233816355213</Position>
+        <Gaze>-0.7731425868691003 -0.612571665435814 0.16433652994556344</Gaze>
+        <Up>-0.5868885604402831 0.8 0.12474701449065638</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0086.ppm</ImageName>
+    </Camera>
+    <Camera id="87">
+        <Position>19.471578057463198 15.5 -4.567017402213142</Position>
+        <Gaze>-0.7695314193112053 -0.612571665435814 0.18049196491277733</Gaze>
+        <Up>-0.5841473417238959 0.8 0.13701052206639425</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0087.ppm</ImageName>
+    </Camera>
+    <Camera id="88">
+        <Position>19.371663222572614 15.5 -4.973797743297123</Position>
+        <Gaze>-0.7655827098395492 -0.612571665435814 0.19656823013886526</Gaze>
+        <Up>-0.5811498966771784 0.8 0.1492139322989137</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0088.ppm</ImageName>
+    </Camera>
+    <Camera id="89">
+        <Position>19.263251335953157 15.5 -5.378396412305342</Position>
+        <Gaze>-0.7612981904886125 -0.612571665435814 0.21255827404257355</Gaze>
+        <Up>-0.5778975400785946 0.8 0.16135189236916025</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0089.ppm</ImageName>
+    </Camera>
+    <Camera id="90">
+        <Position>19.146389950641336 15.5 -5.780635938889461</Position>
+        <Gaze>-0.7566797405901867 -0.612571665435814 0.22845508286217012</Gaze>
+        <Up>-0.5743916985192401 0.8 0.1734190781666838</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0090.ppm</ImageName>
+    </Camera>
+    <Camera id="91">
+        <Position>19.021130325903062 15.5 -6.180339887498977</Position>
+        <Gaze>-0.751729385949039 -0.612571665435814 0.2442516837319122</Gaze>
+        <Up>-0.5706339097770918 0.8 0.1854101966249693</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0091.ppm</ImageName>
+    </Camera>
+    <Camera id="92">
+        <Position>18.887527404749612 15.5 -6.577332934771693</Position>
+        <Gaze>-0.7464492979543256 -0.612571665435814 0.25994114774057586</Gaze>
+        <Up>-0.5666258221424884 0.8 0.1973199880431508</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0092.ppm</ImageName>
+    </Camera>
+    <Camera id="93">
+        <Position>18.74563978983782 15.5 -6.971440946436333</Position>
+        <Gaze>-0.7408417926271493 -0.612571665435814 0.27551659297070524</Gaze>
+        <Up>-0.5623691936951346 0.8 0.20914322839309</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0093.ppm</ImageName>
+    </Camera>
+    <Camera id="94">
+        <Position>18.595529717765015 15.5 -7.362491053693589</Position>
+        <Gaze>-0.7349093296046765 -0.612571665435814 0.29097118751724915</Gaze>
+        <Up>-0.5578658915329504 0.8 0.22087473161080765</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0094.ppm</ImageName>
+    </Camera>
+    <Camera id="95">
+        <Position>18.437263031769998 15.5 -7.750311729042089</Position>
+        <Gaze>-0.7286545110612588 -0.612571665435814 0.30629815248426034</Gaze>
+        <Up>-0.5531178909530999 0.8 0.23250935187126265</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0095.ppm</ImageName>
+    </Camera>
+    <Camera id="96">
+        <Position>18.270909152852003 15.5 -8.134732861516035</Position>
+        <Gaze>-0.7220800805670328 -0.612571665435814 0.32149076495834333</Gaze>
+        <Up>-0.5481272745855601 0.8 0.244041985845481</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0096.ppm</ImageName>
+    </Camera>
+    <Camera id="97">
+        <Position>18.09654104932038 15.5 -8.515585831301479</Position>
+        <Gaze>-0.7151889218845005 -0.612571665435814 0.33654236095754625</Gaze>
+        <Up>-0.5428962314796113 0.8 0.2554675749390444</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0097.ppm</ImageName>
+    </Camera>
+    <Camera id="98">
+        <Position>17.914235204788245 15.5 -8.892703583698577</Position>
+        <Gaze>-0.7079840577036145 -0.612571665435814 0.3514463383544044</Gaze>
+        <Up>-0.5374270561436473 0.8 0.26678110751095724</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0098.ppm</ImageName>
+    </Camera>
+    <Camera id="99">
+        <Position>17.72407158462428 15.5 -9.265920702397262</Position>
+        <Gaze>-0.7004686483159278 -0.612571665435814 0.36619615977185016</Gaze>
+        <Up>-0.5317221475387284 0.8 0.2779776210719178</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0099.ppm</ImageName>
+    </Camera>
+    <Camera id="100">
+        <Position>17.52613360087726 15.5 -9.635073482034331</Position>
+        <Gaze>-0.6926459902283846 -0.612571665435814 0.3807853554507237</Gaze>
+        <Up>-0.5257840080263178 0.8 0.2890522044610299</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0100.ppm</ImageName>
+    </Camera>
+    <Camera id="101">
+        <Position>17.320508075688757 15.5 -10.000000000000027</Position>
+        <Gaze>-0.684519514717363 -0.612571665435814 0.39520752608762294</Gaze>
+        <Up>-0.5196152422706627 0.8 0.30000000000000077</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0101.ppm</ImageName>
+    </Camera>
+    <Camera id="102">
+        <Position>17.107285203210118 15.5 -10.36054018746263</Position>
+        <Gaze>-0.676092786323605 -0.612571665435814 0.40945634564184924</Gaze>
+        <Up>-0.5132185560963035 0.8 0.3108162056238789</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0102.ppm</ImageName>
+    </Camera>
+    <Camera id="103">
+        <Position>16.886558510040285 15.5 -10.716535899579958</Position>
+        <Gaze>-0.6673695012886899 -0.612571665435814 0.42352556411021824</Gaze>
+        <Up>-0.5065967553012085 0.8 0.32149607698739874</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0103.ppm</ImageName>
+    </Camera>
+    <Camera id="104">
+        <Position>16.65842481420197 15.5 -11.067830984866909</Position>
+        <Gaze>-0.6583534859337413 -0.612571665435814 0.43740901026851786</Gaze>
+        <Up>-0.4997527444260591 0.8 0.3320349295460073</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0104.ppm</ImageName>
+    </Camera>
+    <Camera id="105">
+        <Position>16.422984182674064 15.5 -11.414271353688662</Position>
+        <Gaze>-0.6490486949810762 -0.612571665435814 0.4511005943784107</Gaze>
+        <Up>-0.4926895254802219 0.8 0.3424281406106598</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0105.ppm</ImageName>
+    </Camera>
+    <Camera id="106">
+        <Position>16.180339887498928 15.5 -11.755705045849488</Position>
+        <Gaze>-0.6394592098195322 -0.612571665435814 0.464594310858595</Gaze>
+        <Up>-0.48541019662496787 0.8 0.35267115137548466</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0106.ppm</ImageName>
+    </Camera>
+    <Camera id="107">
+        <Position>15.930598360483906 15.5 -12.091982297247522</Position>
+        <Gaze>-0.6295892367142369 -0.612571665435814 0.47788424091905124</Gaze>
+        <Up>-0.47791795081451716 0.8 0.36275946891742566</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0107.ppm</ImageName>
+    </Camera>
+    <Camera id="108">
+        <Position>15.673869146516775 15.5 -12.422955605566235</Position>
+        <Gaze>-0.6194431049616 -0.612571665435814 0.49096455515721865</Gaze>
+        <Up>-0.4702160743955032 0.8 0.37268866816698704</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0108.ppm</ImageName>
+    </Camera>
+    <Camera id="109">
+        <Position>15.410264855515763 15.5 -12.748479794973822</Position>
+        <Gaze>-0.6090252649903408 -0.612571665435814 0.5038295161149637</Gaze>
+        <Up>-0.46230794566547284 0.8 0.38245439384921465</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0109.ppm</ImageName>
+    </Camera>
+    <Camera id="110">
+        <Position>15.139901113035105 15.5 -13.068412079802137</Position>
+        <Gaze>-0.5983402864093837 -0.612571665435814 0.5164734807952196</Gaze>
+        <Up>-0.45419703339105316 0.8 0.3920523623940641</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0110.ppm</ImageName>
+    </Camera>
+    <Camera id="111">
+        <Position>14.862896509547861 15.5 -13.382612127177191</Position>
+        <Gaze>-0.587392856003476 -0.612571665435814 0.5288909031371904</Gaze>
+        <Up>-0.4458868952864358 0.8 0.4014783638153157</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0111.ppm</ImageName>
+    </Camera>
+    <Camera id="112">
+        <Position>14.579372548428204 15.5 -13.6909421185738</Position>
+        <Gaze>-0.5761877756774098 -0.612571665435814 0.5410763364490376</Gaze>
+        <Up>-0.43738117645284613 0.8 0.410728263557214</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0112.ppm</ImageName>
+    </Camera>
+    <Camera id="113">
+        <Position>14.289453592656042 15.5 -13.993266810267336</Position>
+        <Gaze>-0.5647299603497475 -0.612571665435814 0.5530244357969781</Gaze>
+        <Up>-0.42868360777968123 0.8 0.41979800430802006</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0113.ppm</ImageName>
+    </Camera>
+    <Camera id="114">
+        <Position>13.993266810267283 15.5 -14.289453592656095</Position>
+        <Gaze>-0.5530244357969761 -0.612571665435814 0.5647299603497496</Gaze>
+        <Up>-0.41979800430801845 0.8 0.4286836077796828</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0114.ppm</ImageName>
+    </Camera>
+    <Camera id="115">
+        <Position>13.690942118573746 15.5 -14.579372548428257</Position>
+        <Gaze>-0.5410763364490355 -0.612571665435814 0.5761877756774119</Gaze>
+        <Up>-0.41072826355721237 0.8 0.43738117645284774</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0115.ppm</ImageName>
+    </Camera>
+    <Camera id="116">
+        <Position>13.382612127177133 15.5 -14.862896509547912</Position>
+        <Gaze>-0.5288909031371882 -0.612571665435814 0.5873928560034781</Gaze>
+        <Up>-0.401478363815314 0.8 0.4458868952864373</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0116.ppm</ImageName>
+    </Camera>
+    <Camera id="117">
+        <Position>13.068412079802078 15.5 -15.139901113035155</Position>
+        <Gaze>-0.5164734807952173 -0.612571665435814 0.5983402864093856</Gaze>
+        <Up>-0.3920523623940623 0.8 0.4541970333910546</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0117.ppm</ImageName>
+    </Camera>
+    <Camera id="118">
+        <Position>12.748479794973765 15.5 -15.410264855515813</Position>
+        <Gaze>-0.5038295161149615 -0.612571665435814 0.6090252649903428</Gaze>
+        <Up>-0.3824543938492129 0.8 0.46230794566547434</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0118.ppm</ImageName>
+    </Camera>
+    <Camera id="119">
+        <Position>12.422955605566175 15.5 -15.673869146516822</Position>
+        <Gaze>-0.49096455515721626 -0.612571665435814 0.6194431049616018</Gaze>
+        <Up>-0.37268866816698526 0.8 0.4702160743955046</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0119.ppm</ImageName>
+    </Camera>
+    <Camera id="120">
+        <Position>12.091982297247464 15.5 -15.930598360483952</Position>
+        <Gaze>-0.4778842409190489 -0.612571665435814 0.6295892367142388</Gaze>
+        <Up>-0.3627594689174239 0.8 0.47791795081451854</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0120.ppm</ImageName>
+    </Camera>
+    <Camera id="121">
+        <Position>11.755705045849428 15.5 -16.180339887498974</Position>
+        <Gaze>-0.4645943108585926 -0.612571665435814 0.639459209819534</Gaze>
+        <Up>-0.3526711513754828 0.8 0.4854101966249692</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0121.ppm</ImageName>
+    </Camera>
+    <Camera id="122">
+        <Position>11.414271353688598 15.5 -16.422984182674107</Position>
+        <Gaze>-0.45110059437840816 -0.612571665435814 0.6490486949810779</Gaze>
+        <Up>-0.34242814061065796 0.8 0.49268952548022316</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0122.ppm</ImageName>
+    </Camera>
+    <Camera id="123">
+        <Position>11.067830984866845 15.5 -16.658424814202014</Position>
+        <Gaze>-0.43740901026851536 -0.612571665435814 0.6583534859337431</Gaze>
+        <Up>-0.33203492954600533 0.8 0.49975274442606044</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0123.ppm</ImageName>
+    </Camera>
+    <Camera id="124">
+        <Position>10.716535899579895 15.5 -16.886558510040327</Position>
+        <Gaze>-0.4235255641102158 -0.612571665435814 0.6673695012886917</Gaze>
+        <Up>-0.32149607698739685 0.8 0.5065967553012097</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0124.ppm</ImageName>
+    </Camera>
+    <Camera id="125">
+        <Position>10.360540187462565 15.5 -17.107285203210157</Position>
+        <Gaze>-0.4094563456418467 -0.612571665435814 0.6760927863236066</Gaze>
+        <Up>-0.31081620562387696 0.8 0.5132185560963046</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0125.ppm</ImageName>
+    </Camera>
+    <Camera id="126">
+        <Position>9.999999999999961 15.5 -17.320508075688796</Position>
+        <Gaze>-0.39520752608762033 -0.612571665435814 0.6845195147173646</Gaze>
+        <Up>-0.2999999999999988 0.8 0.5196152422706639</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0126.ppm</ImageName>
+    </Camera>
+    <Camera id="127">
+        <Position>9.635073482034265 15.5 -17.526133600877294</Position>
+        <Gaze>-0.38078535545072106 -0.612571665435814 0.692645990228386</Gaze>
+        <Up>-0.289052204461028 0.8 0.5257840080263187</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0127.ppm</ImageName>
+    </Camera>
+    <Camera id="128">
+        <Position>9.265920702397194 15.5 -17.724071584624316</Position>
+        <Gaze>-0.3661961597718475 -0.612571665435814 0.7004686483159293</Gaze>
+        <Up>-0.2779776210719158 0.8 0.5317221475387294</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0128.ppm</ImageName>
+    </Camera>
+    <Camera id="129">
+        <Position>8.892703583698507 15.5 -17.914235204788277</Position>
+        <Gaze>-0.35144633835440164 -0.612571665435814 0.7079840577036157</Gaze>
+        <Up>-0.2667811075109552 0.8 0.5374270561436483</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0129.ppm</ImageName>
+    </Camera>
+    <Camera id="130">
+        <Position>8.51558583130141 15.5 -18.09654104932041</Position>
+        <Gaze>-0.33654236095754353 -0.612571665435814 0.7151889218845017</Gaze>
+        <Up>-0.25546757493904226 0.8 0.5428962314796123</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0130.ppm</ImageName>
+    </Camera>
+    <Camera id="131">
+        <Position>8.13473286151596 15.5 -18.270909152852038</Position>
+        <Gaze>-0.3214907649583404 -0.612571665435814 0.7220800805670342</Gaze>
+        <Up>-0.2440419858454788 0.8 0.5481272745855611</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0131.ppm</ImageName>
+    </Camera>
+    <Camera id="132">
+        <Position>7.750311729042014 15.5 -18.43726303177003</Position>
+        <Gaze>-0.3062981524842574 -0.612571665435814 0.7286545110612601</Gaze>
+        <Up>-0.23250935187126043 0.8 0.5531178909531009</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0132.ppm</ImageName>
+    </Camera>
+    <Camera id="133">
+        <Position>7.362491053693513 15.5 -18.595529717765046</Position>
+        <Gaze>-0.2909711875172462 -0.612571665435814 0.7349093296046778</Gaze>
+        <Up>-0.22087473161080537 0.8 0.5578658915329514</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0133.ppm</ImageName>
+    </Camera>
+    <Camera id="134">
+        <Position>6.971440946436257 15.5 -18.745639789837846</Position>
+        <Gaze>-0.27551659297070225 -0.612571665435814 0.7408417926271503</Gaze>
+        <Up>-0.20914322839308772 0.8 0.5623691936951354</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0134.ppm</ImageName>
+    </Camera>
+    <Camera id="135">
+        <Position>6.577332934771617 15.5 -18.887527404749637</Position>
+        <Gaze>-0.25994114774057286 -0.612571665435814 0.7464492979543266</Gaze>
+        <Up>-0.19731998804314851 0.8 0.5666258221424891</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0135.ppm</ImageName>
+    </Camera>
+    <Camera id="136">
+        <Position>6.1803398874989 15.5 -19.021130325903087</Position>
+        <Gaze>-0.24425168373190917 -0.612571665435814 0.75172938594904</Gaze>
+        <Up>-0.185410196624967 0.8 0.5706339097770926</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0136.ppm</ImageName>
+    </Camera>
+    <Camera id="137">
+        <Position>5.780635938889382 15.5 -19.14638995064136</Position>
+        <Gaze>-0.22845508286216704 -0.612571665435814 0.7566797405901877</Gaze>
+        <Up>-0.17341907816668148 0.8 0.5743916985192408</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0137.ppm</ImageName>
+    </Camera>
+    <Camera id="138">
+        <Position>5.378396412305264 15.5 -19.26325133595318</Position>
+        <Gaze>-0.21255827404257047 -0.612571665435814 0.7612981904886134</Gaze>
+        <Up>-0.16135189236915792 0.8 0.5778975400785953</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0138.ppm</ImageName>
+    </Camera>
+    <Camera id="139">
+        <Position>4.973797743297045 15.5 -19.371663222572636</Position>
+        <Gaze>-0.19656823013886215 -0.612571665435814 0.76558270983955</Gaze>
+        <Up>-0.14921393229891133 0.8 0.581149896677179</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0139.ppm</ImageName>
+    </Camera>
+    <Camera id="140">
+        <Position>4.567017402213063 15.5 -19.471578057463216</Position>
+        <Gaze>-0.18049196491277422 -0.612571665435814 0.7695314193112059</Gaze>
+        <Up>-0.1370105220663919 0.8 0.5841473417238965</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0140.ppm</ImageName>
+    </Camera>
+    <Camera id="141">
+        <Position>4.158233816355134 15.5 -19.562952014676124</Position>
+        <Gaze>-0.1643365299455603 -0.612571665435814 0.773142586869101</Gaze>
+        <Up>-0.124747014490654 0.8 0.5868885604402837</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0141.ppm</ImageName>
+    </Camera>
+    <Camera id="142">
+        <Position>3.7476262917144387 15.5 -19.645745014573784</Position>
+        <Gaze>-0.14810901154493916 -0.612571665435814 0.7764146285357937</Gaze>
+        <Up>-0.11242878875143315 0.8 0.5893723504372135</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0142.ppm</ImageName>
+    </Camera>
+    <Camera id="143">
+        <Position>3.3353749343219907 15.5 -19.719920741410107</Position>
+        <Gaze>-0.13181652763680582 -0.612571665435814 0.779346109085667</Gaze>
+        <Up>-0.10006124802965972 0.8 0.5915976222423033</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0143.ppm</ImageName>
+    </Camera>
+    <Camera id="144">
+        <Position>2.921660571248177 15.5 -19.785446659259776</Position>
+        <Gaze>-0.11546622464307402 -0.612571665435814 0.781935742674466</Gaze>
+        <Up>-0.08764981713744531 0.8 0.5935633997777933</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0144.ppm</ImageName>
+    </Camera>
+    <Camera id="145">
+        <Position>2.506664671286029 15.5 -19.842294026289565</Position>
+        <Gaze>-0.09906527434701935 -0.612571665435814 0.7841823934033098</Gaze>
+        <Up>-0.07519994013858088 0.8 0.5952688207886869</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0145.ppm</ImageName>
+    </Camera>
+    <Camera id="146">
+        <Position>2.0905692653530132 15.5 -19.890437907365474</Position>
+        <Gaze>-0.08262087074749815 -0.612571665435814 0.7860850758169364</Gaze>
+        <Up>-0.0627170779605904 0.8 0.5967131372209642</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0146.ppm</ImageName>
+    </Camera>
+    <Camera id="147">
+        <Position>1.6735568666462528 15.5 -19.92985718499009</Position>
+        <Gaze>-0.06614022690342178 -0.612571665435814 0.787642955335955</Gaze>
+        <Up>-0.050206705999387584 0.8 0.5978957155497028</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0147.ppm</ImageName>
+    </Camera>
+    <Camera id="148">
+        <Position>1.2558103905862097 15.5 -19.960534568565436</Position>
+        <Gaze>-0.04963057176987061 -0.612571665435814 0.7888553486229203</Gaze>
+        <Up>-0.03767431171758629 0.8 0.5988160370569631</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0148.ppm</ImageName>
+    </Camera>
+    <Camera id="149">
+        <Position>0.8375130745839342 15.5 -19.98245660197717</Position>
+        <Gaze>-0.03309914702723546 -0.612571665435814 0.7897217238820664</Gaze>
+        <Up>-0.025125392237518026 0.8 0.599473698059315</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0149.ppm</ImageName>
+    </Camera>
+    <Camera id="150">
+        <Position>0.41884839766708004 15.5 -19.99561366949691</Position>
+        <Gaze>-0.016553203904777117 -0.612571665435814 0.790241701092571</Gaze>
+        <Up>-0.0125654519300124 0.8 0.5998684100849073</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0150.ppm</ImageName>
+    </Camera>
+    <Camera id="151">
+        <Position>-5.972319578071406e-14 15.5 -20.0</Position>
+        <Gaze>2.36030564545427e-15 -0.612571665435814 0.7904150521752438</Gaze>
+        <Up>1.7916958734214217e-15 0.8 0.6</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0151.ppm</ImageName>
+    </Camera>
+    <Camera id="152">
+        <Position>-0.4188483976671995 15.5 -19.995613669496908</Position>
+        <Gaze>0.01655320390478184 -0.612571665435814 0.7902417010925709</Gaze>
+        <Up>0.012565451930015984 0.8 0.5998684100849072</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0152.ppm</ImageName>
+    </Camera>
+    <Camera id="153">
+        <Position>-0.8375130745840533 15.5 -19.982456601977166</Position>
+        <Gaze>0.03309914702724017 -0.612571665435814 0.7897217238820663</Gaze>
+        <Up>0.0251253922375216 0.8 0.5994736980593149</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0153.ppm</ImageName>
+    </Camera>
+    <Camera id="154">
+        <Position>-1.255810390586329 15.5 -19.96053456856543</Position>
+        <Gaze>0.04963057176987532 -0.612571665435814 0.7888553486229201</Gaze>
+        <Up>0.037674311717589865 0.8 0.5988160370569627</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0154.ppm</ImageName>
+    </Camera>
+    <Camera id="155">
+        <Position>-1.6735568666463716 15.5 -19.92985718499008</Position>
+        <Gaze>0.06614022690342647 -0.612571665435814 0.7876429553359546</Gaze>
+        <Up>0.050206705999391144 0.8 0.5978957155497024</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0155.ppm</ImageName>
+    </Camera>
+    <Camera id="156">
+        <Position>-2.090569265353132 15.5 -19.89043790736546</Position>
+        <Gaze>0.08262087074750284 -0.612571665435814 0.7860850758169359</Gaze>
+        <Up>0.06271707796059395 0.8 0.5967131372209638</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0156.ppm</ImageName>
+    </Camera>
+    <Camera id="157">
+        <Position>-2.506664671286148 15.5 -19.842294026289547</Position>
+        <Gaze>0.09906527434702404 -0.612571665435814 0.7841823934033091</Gaze>
+        <Up>0.07519994013858443 0.8 0.5952688207886865</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0157.ppm</ImageName>
+    </Camera>
+    <Camera id="158">
+        <Position>-2.921660571248296 15.5 -19.785446659259758</Position>
+        <Gaze>0.11546622464307872 -0.612571665435814 0.7819357426744652</Gaze>
+        <Up>0.08764981713744886 0.8 0.5935633997777927</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0158.ppm</ImageName>
+    </Camera>
+    <Camera id="159">
+        <Position>-3.335374934322109 15.5 -19.71992074141009</Position>
+        <Gaze>0.1318165276368105 -0.612571665435814 0.7793461090856664</Gaze>
+        <Up>0.10006124802966326 0.8 0.5915976222423026</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0159.ppm</ImageName>
+    </Camera>
+    <Camera id="160">
+        <Position>-3.7476262917145564 15.5 -19.645745014573762</Position>
+        <Gaze>0.14810901154494382 -0.612571665435814 0.7764146285357928</Gaze>
+        <Up>0.11242878875143669 0.8 0.5893723504372128</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0160.ppm</ImageName>
+    </Camera>
+    <Camera id="161">
+        <Position>-4.158233816355251 15.5 -19.5629520146761</Position>
+        <Gaze>0.16433652994556494 -0.612571665435814 0.7731425868691</Gaze>
+        <Up>0.12474701449065753 0.8 0.5868885604402829</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0161.ppm</ImageName>
+    </Camera>
+    <Camera id="162">
+        <Position>-4.567017402213179 15.5 -19.47157805746319</Position>
+        <Gaze>0.1804919649127788 -0.612571665435814 0.7695314193112051</Gaze>
+        <Up>0.13701052206639538 0.8 0.5841473417238957</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0162.ppm</ImageName>
+    </Camera>
+    <Camera id="163">
+        <Position>-4.97379774329716 15.5 -19.371663222572607</Position>
+        <Gaze>0.19656823013886673 -0.612571665435814 0.7655827098395489</Gaze>
+        <Up>0.1492139322989148 0.8 0.5811498966771782</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0163.ppm</ImageName>
+    </Camera>
+    <Camera id="164">
+        <Position>-5.37839641230538 15.5 -19.263251335953143</Position>
+        <Gaze>0.21255827404257502 -0.612571665435814 0.7612981904886119</Gaze>
+        <Up>0.1613518923691614 0.8 0.5778975400785943</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0164.ppm</ImageName>
+    </Camera>
+    <Camera id="165">
+        <Position>-5.780635938889497 15.5 -19.146389950641325</Position>
+        <Gaze>0.22845508286217156 -0.612571665435814 0.7566797405901863</Gaze>
+        <Up>0.1734190781666849 0.8 0.5743916985192398</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0165.ppm</ImageName>
+    </Camera>
+    <Camera id="166">
+        <Position>-6.180339887499013 15.5 -19.02113032590305</Position>
+        <Gaze>0.24425168373191364 -0.612571665435814 0.7517293859490386</Gaze>
+        <Up>0.1854101966249704 0.8 0.5706339097770915</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0166.ppm</ImageName>
+    </Camera>
+    <Camera id="167">
+        <Position>-6.57733293477173 15.5 -18.887527404749598</Position>
+        <Gaze>0.25994114774057736 -0.612571665435814 0.746449297954325</Gaze>
+        <Up>0.1973199880431519 0.8 0.5666258221424879</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0167.ppm</ImageName>
+    </Camera>
+    <Camera id="168">
+        <Position>-6.971440946436369 15.5 -18.745639789837803</Position>
+        <Gaze>0.2755165929707067 -0.612571665435814 0.7408417926271487</Gaze>
+        <Up>0.20914322839309107 0.8 0.5623691936951342</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0168.ppm</ImageName>
+    </Camera>
+    <Camera id="169">
+        <Position>-7.362491053693625 15.5 -18.595529717765004</Position>
+        <Gaze>0.2909711875172506 -0.612571665435814 0.7349093296046761</Gaze>
+        <Up>0.22087473161080876 0.8 0.5578658915329501</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0169.ppm</ImageName>
+    </Camera>
+    <Camera id="170">
+        <Position>-7.750311729042125 15.5 -18.437263031769984</Position>
+        <Gaze>0.3062981524842618 -0.612571665435814 0.7286545110612582</Gaze>
+        <Up>0.23250935187126376 0.8 0.5531178909530995</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0170.ppm</ImageName>
+    </Camera>
+    <Camera id="171">
+        <Position>-8.13473286151607 15.5 -18.27090915285199</Position>
+        <Gaze>0.3214907649583448 -0.612571665435814 0.7220800805670322</Gaze>
+        <Up>0.2440419858454821 0.8 0.5481272745855597</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0171.ppm</ImageName>
+    </Camera>
+    <Camera id="172">
+        <Position>-8.515585831301518 15.5 -18.09654104932036</Position>
+        <Gaze>0.3365423609575478 -0.612571665435814 0.7151889218844997</Gaze>
+        <Up>0.25546757493904554 0.8 0.5428962314796107</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0172.ppm</ImageName>
+    </Camera>
+    <Camera id="173">
+        <Position>-8.892703583698614 15.5 -17.914235204788223</Position>
+        <Gaze>0.35144633835440586 -0.612571665435814 0.7079840577036136</Gaze>
+        <Up>0.2667811075109584 0.8 0.5374270561436467</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0173.ppm</ImageName>
+    </Camera>
+    <Camera id="174">
+        <Position>-9.2659207023973 15.5 -17.724071584624262</Position>
+        <Gaze>0.3661961597718517 -0.612571665435814 0.7004686483159271</Gaze>
+        <Up>0.277977621071919 0.8 0.5317221475387278</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0174.ppm</ImageName>
+    </Camera>
+    <Camera id="175">
+        <Position>-9.63507348203437 15.5 -17.526133600877237</Position>
+        <Gaze>0.3807853554507252 -0.612571665435814 0.6926459902283838</Gaze>
+        <Up>0.2890522044610311 0.8 0.5257840080263171</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0175.ppm</ImageName>
+    </Camera>
+    <Camera id="176">
+        <Position>-10.000000000000064 15.5 -17.320508075688736</Position>
+        <Gaze>0.39520752608762444 -0.612571665435814 0.6845195147173622</Gaze>
+        <Up>0.30000000000000193 0.8 0.519615242270662</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0176.ppm</ImageName>
+    </Camera>
+    <Camera id="177">
+        <Position>-10.360540187462668 15.5 -17.107285203210093</Position>
+        <Gaze>0.40945634564185074 -0.612571665435814 0.6760927863236041</Gaze>
+        <Up>0.31081620562388 0.8 0.5132185560963028</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0177.ppm</ImageName>
+    </Camera>
+    <Camera id="178">
+        <Position>-10.716535899579995 15.5 -16.88655851004026</Position>
+        <Gaze>0.42352556411021974 -0.612571665435814 0.667369501288689</Gaze>
+        <Up>0.32149607698739985 0.8 0.5065967553012078</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0178.ppm</ImageName>
+    </Camera>
+    <Camera id="179">
+        <Position>-11.067830984866944 15.5 -16.65842481420195</Position>
+        <Gaze>0.4374090102685193 -0.612571665435814 0.6583534859337405</Gaze>
+        <Up>0.33203492954600833 0.8 0.49975274442605844</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0179.ppm</ImageName>
+    </Camera>
+    <Camera id="180">
+        <Position>-11.414271353688697 15.5 -16.422984182674035</Position>
+        <Gaze>0.4511005943784121 -0.612571665435814 0.6490486949810751</Gaze>
+        <Up>0.3424281406106609 0.8 0.49268952548022105</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0180.ppm</ImageName>
+    </Camera>
+    <Camera id="181">
+        <Position>-11.755705045849524 15.5 -16.180339887498903</Position>
+        <Gaze>0.4645943108585964 -0.612571665435814 0.6394592098195312</Gaze>
+        <Up>0.3526711513754857 0.8 0.48541019662496704</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0181.ppm</ImageName>
+    </Camera>
+    <Camera id="182">
+        <Position>-12.091982297247558 15.5 -15.930598360483879</Position>
+        <Gaze>0.4778842409190526 -0.612571665435814 0.629589236714236</Gaze>
+        <Up>0.3627594689174268 0.8 0.4779179508145163</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0182.ppm</ImageName>
+    </Camera>
+    <Camera id="183">
+        <Position>-12.422955605566269 15.5 -15.673869146516747</Position>
+        <Gaze>0.49096455515722 -0.612571665435814 0.6194431049615989</Gaze>
+        <Up>0.37268866816698804 0.8 0.4702160743955024</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0183.ppm</ImageName>
+    </Camera>
+    <Camera id="184">
+        <Position>-12.748479794973855 15.5 -15.410264855515734</Position>
+        <Gaze>0.5038295161149651 -0.612571665435814 0.6090252649903397</Gaze>
+        <Up>0.38245439384921565 0.8 0.462307945665472</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0184.ppm</ImageName>
+    </Camera>
+    <Camera id="185">
+        <Position>-13.068412079802169 15.5 -15.139901113035075</Position>
+        <Gaze>0.5164734807952208 -0.612571665435814 0.5983402864093825</Gaze>
+        <Up>0.3920523623940651 0.8 0.4541970333910522</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0185.ppm</ImageName>
+    </Camera>
+    <Camera id="186">
+        <Position>-13.382612127177225 15.5 -14.86289650954783</Position>
+        <Gaze>0.5288909031371918 -0.612571665435814 0.5873928560034749</Gaze>
+        <Up>0.4014783638153167 0.8 0.44588689528643494</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0186.ppm</ImageName>
+    </Camera>
+    <Camera id="187">
+        <Position>-13.690942118573833 15.5 -14.579372548428173</Position>
+        <Gaze>0.541076336449039 -0.612571665435814 0.5761877756774085</Gaze>
+        <Up>0.410728263557215 0.8 0.4373811764528452</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0187.ppm</ImageName>
+    </Camera>
+    <Camera id="188">
+        <Position>-13.993266810267366 15.5 -14.28945359265601</Position>
+        <Gaze>0.5530244357969794 -0.612571665435814 0.5647299603497462</Gaze>
+        <Up>0.419798004308021 0.8 0.4286836077796803</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0188.ppm</ImageName>
+    </Camera>
+    <Camera id="189">
+        <Position>-14.289453592656125 15.5 -13.99326681026725</Position>
+        <Gaze>0.5647299603497508 -0.612571665435814 0.5530244357969748</Gaze>
+        <Up>0.42868360777968373 0.8 0.4197980043080175</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0189.ppm</ImageName>
+    </Camera>
+    <Camera id="190">
+        <Position>-14.579372548428287 15.5 -13.690942118573714</Position>
+        <Gaze>0.5761877756774131 -0.612571665435814 0.5410763364490343</Gaze>
+        <Up>0.4373811764528486 0.8 0.4107282635572114</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0190.ppm</ImageName>
+    </Camera>
+    <Camera id="191">
+        <Position>-14.86289650954794 15.5 -13.382612127177103</Position>
+        <Gaze>0.5873928560034792 -0.612571665435814 0.528890903137187</Gaze>
+        <Up>0.4458868952864382 0.8 0.40147836381531304</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0191.ppm</ImageName>
+    </Camera>
+    <Camera id="192">
+        <Position>-15.139901113035181 15.5 -13.068412079802044</Position>
+        <Gaze>0.5983402864093867 -0.612571665435814 0.5164734807952159</Gaze>
+        <Up>0.45419703339105544 0.8 0.3920523623940613</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0192.ppm</ImageName>
+    </Camera>
+    <Camera id="193">
+        <Position>-15.410264855515832 15.5 -12.748479794973736</Position>
+        <Gaze>0.6090252649903436 -0.612571665435814 0.5038295161149603</Gaze>
+        <Up>0.46230794566547495 0.8 0.3824543938492121</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0193.ppm</ImageName>
+    </Camera>
+    <Camera id="194">
+        <Position>-15.673869146516836 15.5 -12.422955605566155</Position>
+        <Gaze>0.6194431049616025 -0.612571665435814 0.4909645551572155</Gaze>
+        <Up>0.47021607439550506 0.8 0.37268866816698465</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0194.ppm</ImageName>
+    </Camera>
+    <Camera id="195">
+        <Position>-15.93059836048396 15.5 -12.091982297247451</Position>
+        <Gaze>0.6295892367142392 -0.612571665435814 0.4778842409190484</Gaze>
+        <Up>0.4779179508145188 0.8 0.36275946891742356</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0195.ppm</ImageName>
+    </Camera>
+    <Camera id="196">
+        <Position>-16.180339887498977 15.5 -11.755705045849423</Position>
+        <Gaze>0.6394592098195341 -0.612571665435814 0.46459431085859243</Gaze>
+        <Up>0.4854101966249693 0.8 0.35267115137548266</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0196.ppm</ImageName>
+    </Camera>
+    <Camera id="197">
+        <Position>-16.422984182674103 15.5 -11.414271353688601</Position>
+        <Gaze>0.6490486949810778 -0.612571665435814 0.4511005943784083</Gaze>
+        <Up>0.49268952548022305 0.8 0.342428140610658</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0197.ppm</ImageName>
+    </Camera>
+    <Camera id="198">
+        <Position>-16.658424814202007 15.5 -11.067830984866855</Position>
+        <Gaze>0.6583534859337428 -0.612571665435814 0.43740901026851575</Gaze>
+        <Up>0.4997527444260602 0.8 0.33203492954600566</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0198.ppm</ImageName>
+    </Camera>
+    <Camera id="199">
+        <Position>-16.886558510040317 15.5 -10.716535899579911</Position>
+        <Gaze>0.6673695012886912 -0.612571665435814 0.4235255641102164</Gaze>
+        <Up>0.5065967553012094 0.8 0.3214960769873973</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0199.ppm</ImageName>
+    </Camera>
+    <Camera id="200">
+        <Position>-17.10728520321014 15.5 -10.36054018746259</Position>
+        <Gaze>0.6760927863236059 -0.612571665435814 0.40945634564184763</Gaze>
+        <Up>0.5132185560963042 0.8 0.3108162056238777</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0200.ppm</ImageName>
+    </Camera>
+    <Camera id="201">
+        <Position>-17.320508075688778 15.5 -9.999999999999993</Position>
+        <Gaze>0.6845195147173638 -0.612571665435814 0.3952075260876216</Gaze>
+        <Up>0.5196152422706632 0.8 0.29999999999999977</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0201.ppm</ImageName>
+    </Camera>
+    <Camera id="202">
+        <Position>-17.526133600877273 15.5 -9.635073482034306</Position>
+        <Gaze>0.6926459902283851 -0.612571665435814 0.3807853554507227</Gaze>
+        <Up>0.5257840080263181 0.8 0.2890522044610292</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0202.ppm</ImageName>
+    </Camera>
+    <Camera id="203">
+        <Position>-17.72407158462429 15.5 -9.265920702397242</Position>
+        <Gaze>0.7004686483159283 -0.612571665435814 0.3661961597718494</Gaze>
+        <Up>0.5317221475387287 0.8 0.2779776210719172</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0203.ppm</ImageName>
+    </Camera>
+    <Camera id="204">
+        <Position>-17.91423520478825 15.5 -8.892703583698564</Position>
+        <Gaze>0.7079840577036146 -0.612571665435814 0.3514463383544039</Gaze>
+        <Up>0.5374270561436475 0.8 0.2667811075109569</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0204.ppm</ImageName>
+    </Camera>
+    <Camera id="205">
+        <Position>-18.09654104932038 15.5 -8.515585831301475</Position>
+        <Gaze>0.7151889218845005 -0.612571665435814 0.33654236095754614</Gaze>
+        <Up>0.5428962314796114 0.8 0.25546757493904426</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0205.ppm</ImageName>
+    </Camera>
+    <Camera id="206">
+        <Position>-18.270909152852003 15.5 -8.134732861516035</Position>
+        <Gaze>0.7220800805670328 -0.612571665435814 0.32149076495834333</Gaze>
+        <Up>0.5481272745855601 0.8 0.244041985845481</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0206.ppm</ImageName>
+    </Camera>
+    <Camera id="207">
+        <Position>-18.437263031769994 15.5 -7.750311729042098</Position>
+        <Gaze>0.7286545110612587 -0.612571665435814 0.3062981524842607</Gaze>
+        <Up>0.5531178909530998 0.8 0.23250935187126293</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0207.ppm</ImageName>
+    </Camera>
+    <Camera id="208">
+        <Position>-18.59552971776501 15.5 -7.362491053693605</Position>
+        <Gaze>0.7349093296046764 -0.612571665435814 0.2909711875172498</Gaze>
+        <Up>0.5578658915329503 0.8 0.22087473161080814</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0208.ppm</ImageName>
+    </Camera>
+    <Camera id="209">
+        <Position>-18.74563978983781 15.5 -6.971440946436358</Position>
+        <Gaze>0.7408417926271489 -0.612571665435814 0.27551659297070624</Gaze>
+        <Up>0.5623691936951343 0.8 0.20914322839309074</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0209.ppm</ImageName>
+    </Camera>
+    <Camera id="210">
+        <Position>-18.8875274047496 15.5 -6.577332934771727</Position>
+        <Gaze>0.7464492979543251 -0.612571665435814 0.2599411477405772</Gaze>
+        <Up>0.566625822142488 0.8 0.1973199880431518</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0210.ppm</ImageName>
+    </Camera>
+    <Camera id="211">
+        <Position>-19.021130325903048 15.5 -6.180339887499019</Position>
+        <Gaze>0.7517293859490385 -0.612571665435814 0.2442516837319139</Gaze>
+        <Up>0.5706339097770914 0.8 0.18541019662497057</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0211.ppm</ImageName>
+    </Camera>
+    <Camera id="212">
+        <Position>-19.14638995064132 15.5 -5.780635938889511</Position>
+        <Gaze>0.7566797405901862 -0.612571665435814 0.22845508286217212</Gaze>
+        <Up>0.5743916985192395 0.8 0.17341907816668534</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0212.ppm</ImageName>
+    </Camera>
+    <Camera id="213">
+        <Position>-19.263251335953136 15.5 -5.378396412305402</Position>
+        <Gaze>0.7612981904886116 -0.612571665435814 0.2125582740425759</Gaze>
+        <Up>0.5778975400785941 0.8 0.16135189236916206</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0213.ppm</ImageName>
+    </Camera>
+    <Camera id="214">
+        <Position>-19.371663222572597 15.5 -4.973797743297192</Position>
+        <Gaze>0.7655827098395485 -0.612571665435814 0.19656823013886798</Gaze>
+        <Up>0.5811498966771779 0.8 0.14921393229891575</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0214.ppm</ImageName>
+    </Camera>
+    <Camera id="215">
+        <Position>-19.47157805746318 15.5 -4.56701740221322</Position>
+        <Gaze>0.7695314193112046 -0.612571665435814 0.18049196491278044</Gaze>
+        <Up>0.5841473417238954 0.8 0.13701052206639658</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0215.ppm</ImageName>
+    </Camera>
+    <Camera id="216">
+        <Position>-19.56295201467609 15.5 -4.158233816355301</Position>
+        <Gaze>0.7731425868690995 -0.612571665435814 0.1643365299455669</Gaze>
+        <Up>0.5868885604402827 0.8 0.12474701449065902</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0216.ppm</ImageName>
+    </Camera>
+    <Camera id="217">
+        <Position>-19.645745014573748 15.5 -3.7476262917146146</Position>
+        <Gaze>0.7764146285357922 -0.612571665435814 0.14810901154494613</Gaze>
+        <Up>0.5893723504372125 0.8 0.11242878875143844</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0217.ppm</ImageName>
+    </Camera>
+    <Camera id="218">
+        <Position>-19.71992074141008 15.5 -3.335374934322177</Position>
+        <Gaze>0.7793461090856659 -0.612571665435814 0.13181652763681317</Gaze>
+        <Up>0.5915976222423023 0.8 0.1000612480296653</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0218.ppm</ImageName>
+    </Camera>
+    <Camera id="219">
+        <Position>-19.785446659259748 15.5 -2.921660571248372</Position>
+        <Gaze>0.7819357426744649 -0.612571665435814 0.11546622464308172</Gaze>
+        <Up>0.5935633997777924 0.8 0.08764981713745115</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0219.ppm</ImageName>
+    </Camera>
+    <Camera id="220">
+        <Position>-19.842294026289537 15.5 -2.5066646712862335</Position>
+        <Gaze>0.7841823934033086 -0.612571665435814 0.09906527434702743</Gaze>
+        <Up>0.5952688207886861 0.8 0.075199940138587</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0220.ppm</ImageName>
+    </Camera>
+    <Camera id="221">
+        <Position>-19.89043790736545 15.5 -2.090569265353226</Position>
+        <Gaze>0.7860850758169354 -0.612571665435814 0.08262087074750656</Gaze>
+        <Up>0.5967131372209635 0.8 0.06271707796059678</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0221.ppm</ImageName>
+    </Camera>
+    <Camera id="222">
+        <Position>-19.929857184990073 15.5 -1.673556866646475</Position>
+        <Gaze>0.7876429553359543 -0.612571665435814 0.06614022690343055</Gaze>
+        <Up>0.5978957155497021 0.8 0.05020670599939425</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0222.ppm</ImageName>
+    </Camera>
+    <Camera id="223">
+        <Position>-19.96053456856542 15.5 -1.2558103905864413</Position>
+        <Gaze>0.7888553486229197 -0.612571665435814 0.04963057176987976</Gaze>
+        <Up>0.5988160370569626 0.8 0.03767431171759324</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0223.ppm</ImageName>
+    </Camera>
+    <Camera id="224">
+        <Position>-19.98245660197716 15.5 -0.8375130745841748</Position>
+        <Gaze>0.7897217238820661 -0.612571665435814 0.033099147027244966</Gaze>
+        <Up>0.5994736980593147 0.8 0.025125392237525242</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0224.ppm</ImageName>
+    </Camera>
+    <Camera id="225">
+        <Position>-19.995613669496905 15.5 -0.4188483976673299</Position>
+        <Gaze>0.7902417010925707 -0.612571665435814 0.01655320390478699</Gaze>
+        <Up>0.5998684100849071 0.8 0.012565451930019896</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0225.ppm</ImageName>
+    </Camera>
+    <Camera id="226">
+        <Position>-20.0 15.5 -1.990731927314696e-13</Position>
+        <Gaze>0.7904150521752438 -0.612571665435814 7.867522400976845e-15</Gaze>
+        <Up>0.6 0.8 5.972195781944088e-15</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0226.ppm</ImageName>
+    </Camera>
+    <Camera id="227">
+        <Position>-19.995613669496915 15.5 0.4188483976669319</Position>
+        <Gaze>0.7902417010925711 -0.612571665435814 -0.01655320390477126</Gaze>
+        <Up>0.5998684100849074 0.8 -0.012565451930007956</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0227.ppm</ImageName>
+    </Camera>
+    <Camera id="228">
+        <Position>-19.982456601977177 15.5 0.8375130745837772</Position>
+        <Gaze>0.7897217238820667 -0.612571665435814 -0.033099147027229256</Gaze>
+        <Up>0.5994736980593153 0.8 -0.025125392237513314</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0228.ppm</ImageName>
+    </Camera>
+    <Camera id="229">
+        <Position>-19.960534568565443 15.5 1.255810390586044</Position>
+        <Gaze>0.7888553486229206 -0.612571665435814 -0.04963057176986407</Gaze>
+        <Up>0.5988160370569633 0.8 -0.03767431171758132</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0229.ppm</ImageName>
+    </Camera>
+    <Camera id="230">
+        <Position>-19.929857184990105 15.5 1.6735568666460785</Position>
+        <Gaze>0.7876429553359555 -0.612571665435814 -0.06614022690341488</Gaze>
+        <Up>0.5978957155497031 0.8 -0.05020670599938235</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0230.ppm</ImageName>
+    </Camera>
+    <Camera id="231">
+        <Position>-19.89043790736549 15.5 2.0905692653528303</Position>
+        <Gaze>0.7860850758169371 -0.612571665435814 -0.08262087074749092</Gaze>
+        <Up>0.5967131372209648 0.8 -0.0627170779605849</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0231.ppm</ImageName>
+    </Camera>
+    <Camera id="232">
+        <Position>-19.84229402628959 15.5 2.5066646712858374</Position>
+        <Gaze>0.7841823934033108 -0.612571665435814 -0.09906527434701178</Gaze>
+        <Up>0.5952688207886876 0.8 -0.07519994013857513</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0232.ppm</ImageName>
+    </Camera>
+    <Camera id="233">
+        <Position>-19.785446659259804 15.5 2.9216605712479775</Position>
+        <Gaze>0.7819357426744671 -0.612571665435814 -0.11546622464306613</Gaze>
+        <Up>0.5935633997777942 0.8 -0.08764981713743933</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0233.ppm</ImageName>
+    </Camera>
+    <Camera id="234">
+        <Position>-19.719920741410142 15.5 3.335374934321784</Position>
+        <Gaze>0.7793461090856685 -0.612571665435814 -0.13181652763679766</Gaze>
+        <Up>0.5915976222423043 0.8 -0.10006124802965351</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0234.ppm</ImageName>
+    </Camera>
+    <Camera id="235">
+        <Position>-19.645745014573826 15.5 3.7476262917142233</Position>
+        <Gaze>0.7764146285357953 -0.612571665435814 -0.14810901154493067</Gaze>
+        <Up>0.5893723504372147 0.8 -0.1124287887514267</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0235.ppm</ImageName>
+    </Camera>
+    <Camera id="236">
+        <Position>-19.56295201467617 15.5 4.15823381635491</Position>
+        <Gaze>0.7731425868691028 -0.612571665435814 -0.16433652994555145</Gaze>
+        <Up>0.5868885604402851 0.8 -0.1247470144906473</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0236.ppm</ImageName>
+    </Camera>
+    <Camera id="237">
+        <Position>-19.471578057463272 15.5 4.567017402212832</Position>
+        <Gaze>0.7695314193112083 -0.612571665435814 -0.1804919649127651</Gaze>
+        <Up>0.5841473417238982 0.8 -0.13701052206638495</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0237.ppm</ImageName>
+    </Camera>
+    <Camera id="238">
+        <Position>-19.371663222572696 15.5 4.973797743296807</Position>
+        <Gaze>0.7655827098395525 -0.612571665435814 -0.19656823013885277</Gaze>
+        <Up>0.5811498966771809 0.8 -0.1492139322989042</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0238.ppm</ImageName>
+    </Camera>
+    <Camera id="239">
+        <Position>-19.263251335953246 15.5 5.378396412305019</Position>
+        <Gaze>0.761298190488616 -0.612571665435814 -0.21255827404256078</Gaze>
+        <Up>0.5778975400785974 0.8 -0.16135189236915057</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0239.ppm</ImageName>
+    </Camera>
+    <Camera id="240">
+        <Position>-19.146389950641435 15.5 5.78063593888913</Position>
+        <Gaze>0.7566797405901906 -0.612571665435814 -0.22845508286215707</Gaze>
+        <Up>0.5743916985192431 0.8 -0.1734190781666739</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0240.ppm</ImageName>
+    </Camera>
+    <Camera id="241">
+        <Position>-19.021130325903172 15.5 6.180339887498642</Position>
+        <Gaze>0.7517293859490434 -0.612571665435814 -0.24425168373189896</Gaze>
+        <Up>0.570633909777095 0.8 -0.18541019662495925</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0241.ppm</ImageName>
+    </Camera>
+    <Camera id="242">
+        <Position>-18.887527404749733 15.5 6.577332934771352</Position>
+        <Gaze>0.7464492979543303 -0.612571665435814 -0.2599411477405624</Gaze>
+        <Up>0.5666258221424919 0.8 -0.19731998804314055</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0242.ppm</ImageName>
+    </Camera>
+    <Camera id="243">
+        <Position>-18.74563978983795 15.5 6.971440946435986</Position>
+        <Gaze>0.7408417926271544 -0.612571665435814 -0.27551659297069153</Gaze>
+        <Up>0.5623691936951385 0.8 -0.20914322839307958</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0243.ppm</ImageName>
+    </Camera>
+    <Camera id="244">
+        <Position>-18.595529717765157 15.5 7.362491053693235</Position>
+        <Gaze>0.7349093296046821 -0.612571665435814 -0.2909711875172352</Gaze>
+        <Up>0.5578658915329546 0.8 -0.22087473161079704</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0244.ppm</ImageName>
+    </Camera>
+    <Camera id="245">
+        <Position>-18.437263031770147 15.5 7.750311729041731</Position>
+        <Gaze>0.7286545110612647 -0.612571665435814 -0.3062981524842462</Gaze>
+        <Up>0.5531178909531044 0.8 -0.23250935187125193</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0245.ppm</ImageName>
+    </Camera>
+    <Camera id="246">
+        <Position>-18.270909152852166 15.5 8.13473286151567</Position>
+        <Gaze>0.7220800805670392 -0.612571665435814 -0.32149076495832896</Gaze>
+        <Up>0.548127274585565 0.8 -0.24404198584547013</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0246.ppm</ImageName>
+    </Camera>
+    <Camera id="247">
+        <Position>-18.09654104932055 15.5 8.515585831301117</Position>
+        <Gaze>0.7151889218845071 -0.612571665435814 -0.3365423609575319</Gaze>
+        <Up>0.5428962314796164 0.8 -0.25546757493903344</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0247.ppm</ImageName>
+    </Camera>
+    <Camera id="248">
+        <Position>-17.914235204788426 15.5 8.892703583698209</Position>
+        <Gaze>0.7079840577036216 -0.612571665435814 -0.3514463383543899</Gaze>
+        <Up>0.5374270561436528 0.8 -0.26678110751094625</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0248.ppm</ImageName>
+    </Camera>
+    <Camera id="249">
+        <Position>-17.724071584624475 15.5 9.265920702396889</Position>
+        <Gaze>0.7004686483159356 -0.612571665435814 -0.3661961597718354</Gaze>
+        <Up>0.5317221475387343 0.8 -0.27797762107190666</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0249.ppm</ImageName>
+    </Camera>
+    <Camera id="250">
+        <Position>-17.526133600877465 15.5 9.635073482033956</Position>
+        <Gaze>0.6926459902283927 -0.612571665435814 -0.38078535545070885</Gaze>
+        <Up>0.525784008026324 0.8 -0.28905220446101865</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0250.ppm</ImageName>
+    </Camera>
+    <Camera id="251">
+        <Position>-17.320508075688977 15.5 9.999999999999647</Position>
+        <Gaze>0.6845195147173717 -0.612571665435814 -0.39520752608760795</Gaze>
+        <Up>0.5196152422706692 0.8 -0.2999999999999894</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0251.ppm</ImageName>
+    </Camera>
+    <Camera id="252">
+        <Position>-17.107285203210346 15.5 10.360540187462249</Position>
+        <Gaze>0.676092786323614 -0.612571665435814 -0.4094563456418342</Gaze>
+        <Up>0.5132185560963104 0.8 -0.3108162056238674</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0252.ppm</ImageName>
+    </Camera>
+    <Camera id="253">
+        <Position>-16.88655851004053 15.5 10.716535899579574</Position>
+        <Gaze>0.6673695012886997 -0.612571665435814 -0.4235255641102031</Gaze>
+        <Up>0.5065967553012158 0.8 -0.3214960769873872</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0253.ppm</ImageName>
+    </Camera>
+    <Camera id="254">
+        <Position>-16.658424814202228 15.5 11.067830984866522</Position>
+        <Gaze>0.6583534859337514 -0.612571665435814 -0.4374090102685026</Gaze>
+        <Up>0.4997527444260668 0.8 -0.33203492954599567</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0254.ppm</ImageName>
+    </Camera>
+    <Camera id="255">
+        <Position>-16.42298418267433 15.5 11.414271353688273</Position>
+        <Gaze>0.6490486949810867 -0.612571665435814 -0.45110059437839534</Gaze>
+        <Up>0.49268952548022993 0.8 -0.34242814061064814</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0255.ppm</ImageName>
+    </Camera>
+    <Camera id="256">
+        <Position>-16.180339887499212 15.5 11.755705045849098</Position>
+        <Gaze>0.6394592098195434 -0.612571665435814 -0.46459431085857955</Gaze>
+        <Up>0.4854101966249763 0.8 -0.35267115137547295</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0256.ppm</ImageName>
+    </Camera>
+    <Camera id="257">
+        <Position>-15.930598360484202 15.5 12.091982297247132</Position>
+        <Gaze>0.6295892367142487 -0.612571665435814 -0.4778842409190358</Gaze>
+        <Up>0.47791795081452604 0.8 -0.36275946891741395</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0257.ppm</ImageName>
+    </Camera>
+    <Camera id="258">
+        <Position>-15.673869146517085 15.5 12.422955605565843</Position>
+        <Gaze>0.6194431049616123 -0.612571665435814 -0.49096455515720316</Gaze>
+        <Up>0.47021607439551255 0.8 -0.37268866816697527</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0258.ppm</ImageName>
+    </Camera>
+    <Camera id="259">
+        <Position>-15.410264855516086 15.5 12.748479794973429</Position>
+        <Gaze>0.6090252649903537 -0.612571665435814 -0.5038295161149482</Gaze>
+        <Up>0.4623079456654826 0.8 -0.3824543938492028</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0259.ppm</ImageName>
+    </Camera>
+    <Camera id="260">
+        <Position>-15.139901113035442 15.5 13.068412079801742</Position>
+        <Gaze>0.5983402864093971 -0.612571665435814 -0.516473480795204</Gaze>
+        <Up>0.45419703339106327 0.8 -0.3920523623940523</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0260.ppm</ImageName>
+    </Camera>
+    <Camera id="261">
+        <Position>-14.862896509548214 15.5 13.3826121271768</Position>
+        <Gaze>0.58739285600349 -0.612571665435814 -0.528890903137175</Gaze>
+        <Up>0.44588689528644637 0.8 -0.401478363815304</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0261.ppm</ImageName>
+    </Camera>
+    <Camera id="262">
+        <Position>-14.579372548428573 15.5 13.69094211857341</Position>
+        <Gaze>0.5761877756774244 -0.612571665435814 -0.5410763364490222</Gaze>
+        <Up>0.4373811764528572 0.8 -0.4107282635572023</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0262.ppm</ImageName>
+    </Camera>
+    <Camera id="263">
+        <Position>-14.289453592656422 15.5 13.993266810266947</Position>
+        <Gaze>0.5647299603497625 -0.612571665435814 -0.5530244357969628</Gaze>
+        <Up>0.42868360777969267 0.8 -0.4197980043080084</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0263.ppm</ImageName>
+    </Camera>
+    <Camera id="264">
+        <Position>-13.993266810267675 15.5 14.289453592655708</Position>
+        <Gaze>0.5530244357969916 -0.612571665435814 -0.5647299603497343</Gaze>
+        <Up>0.4197980043080302 0.8 -0.42868360777967124</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0264.ppm</ImageName>
+    </Camera>
+    <Camera id="265">
+        <Position>-13.690942118574155 15.5 14.579372548427871</Position>
+        <Gaze>0.5410763364490516 -0.612571665435814 -0.5761877756773967</Gaze>
+        <Up>0.41072826355722464 0.8 -0.43738117645283614</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0265.ppm</ImageName>
+    </Camera>
+    <Camera id="266">
+        <Position>-13.382612127177559 15.5 14.862896509547529</Position>
+        <Gaze>0.528890903137205 -0.612571665435814 -0.5873928560034629</Gaze>
+        <Up>0.4014783638153268 0.8 -0.4458868952864259</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0266.ppm</ImageName>
+    </Camera>
+    <Camera id="267">
+        <Position>-13.068412079802517 15.5 15.139901113034778</Position>
+        <Gaze>0.5164734807952346 -0.612571665435814 -0.5983402864093708</Gaze>
+        <Up>0.3920523623940755 0.8 -0.4541970333910433</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0267.ppm</ImageName>
+    </Camera>
+    <Camera id="268">
+        <Position>-12.748479794974216 15.5 15.410264855515434</Position>
+        <Gaze>0.5038295161149793 -0.612571665435814 -0.6090252649903278</Gaze>
+        <Up>0.38245439384922647 0.8 -0.462307945665463</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0268.ppm</ImageName>
+    </Camera>
+    <Camera id="269">
+        <Position>-12.422955605566644 15.5 15.67386914651645</Position>
+        <Gaze>0.4909645551572348 -0.612571665435814 -0.6194431049615872</Gaze>
+        <Up>0.3726886681669993 0.8 -0.4702160743954935</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0269.ppm</ImageName>
+    </Camera>
+    <Camera id="270">
+        <Position>-12.091982297247947 15.5 15.930598360483582</Position>
+        <Gaze>0.477884240919068 -0.612571665435814 -0.6295892367142242</Gaze>
+        <Up>0.36275946891743843 0.8 -0.4779179508145075</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0270.ppm</ImageName>
+    </Camera>
+    <Camera id="271">
+        <Position>-11.755705045849925 15.5 16.18033988749861</Position>
+        <Gaze>0.4645943108586123 -0.612571665435814 -0.6394592098195196</Gaze>
+        <Up>0.3526711513754977 0.8 -0.4854101966249583</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0271.ppm</ImageName>
+    </Camera>
+    <Camera id="272">
+        <Position>-11.414271353689111 15.5 16.42298418267375</Position>
+        <Gaze>0.4511005943784285 -0.612571665435814 -0.6490486949810639</Gaze>
+        <Up>0.34242814061067334 0.8 -0.4926895254802125</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0272.ppm</ImageName>
+    </Camera>
+    <Camera id="273">
+        <Position>-11.067830984867372 15.5 16.658424814201666</Position>
+        <Gaze>0.4374090102685362 -0.612571665435814 -0.6583534859337293</Gaze>
+        <Up>0.33203492954602115 0.8 -0.4997527444260499</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0273.ppm</ImageName>
+    </Camera>
+    <Camera id="274">
+        <Position>-10.716535899580437 15.5 16.886558510039983</Position>
+        <Gaze>0.42352556411023723 -0.612571665435814 -0.667369501288678</Gaze>
+        <Up>0.3214960769874131 0.8 -0.5065967553011994</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0274.ppm</ImageName>
+    </Camera>
+    <Camera id="275">
+        <Position>-10.360540187463123 15.5 17.10728520320982</Position>
+        <Gaze>0.4094563456418687 -0.612571665435814 -0.6760927863235933</Gaze>
+        <Up>0.31081620562389367 0.8 -0.5132185560962945</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0275.ppm</ImageName>
+    </Camera>
+    <Camera id="276">
+        <Position>-10.000000000000533 15.5 17.320508075688466</Position>
+        <Gaze>0.395207526087643 -0.612571665435814 -0.6845195147173515</Gaze>
+        <Up>0.300000000000016 0.8 -0.5196152422706539</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0276.ppm</ImageName>
+    </Camera>
+    <Camera id="277">
+        <Position>-9.635073482034851 15.5 17.52613360087697</Position>
+        <Gaze>0.38078535545074427 -0.612571665435814 -0.6926459902283733</Gaze>
+        <Up>0.2890522044610455 0.8 -0.5257840080263091</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0277.ppm</ImageName>
+    </Camera>
+    <Camera id="278">
+        <Position>-9.265920702397793 15.5 17.724071584624003</Position>
+        <Gaze>0.36619615977187114 -0.612571665435814 -0.7004686483159168</Gaze>
+        <Up>0.2779776210719338 0.8 -0.53172214753872</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0278.ppm</ImageName>
+    </Camera>
+    <Camera id="279">
+        <Position>-8.892703583699122 15.5 17.914235204787975</Position>
+        <Gaze>0.35144633835442596 -0.612571665435814 -0.7079840577036038</Gaze>
+        <Up>0.26678110751097367 0.8 -0.5374270561436392</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0279.ppm</ImageName>
+    </Camera>
+    <Camera id="280">
+        <Position>-8.515585831302038 15.5 18.096541049320113</Position>
+        <Gaze>0.3365423609575684 -0.612571665435814 -0.7151889218844899</Gaze>
+        <Up>0.25546757493906114 0.8 -0.5428962314796034</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0280.ppm</ImageName>
+    </Camera>
+    <Camera id="281">
+        <Position>-8.134732861516603 15.5 18.27090915285175</Position>
+        <Gaze>0.3214907649583658 -0.612571665435814 -0.7220800805670228</Gaze>
+        <Up>0.24404198584549808 0.8 -0.5481272745855525</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0281.ppm</ImageName>
+    </Camera>
+    <Camera id="282">
+        <Position>-7.7503117290426715 15.5 18.437263031769753</Position>
+        <Gaze>0.3062981524842834 -0.612571665435814 -0.7286545110612491</Gaze>
+        <Up>0.23250935187128013 0.8 -0.5531178909530926</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0282.ppm</ImageName>
+    </Camera>
+    <Camera id="283">
+        <Position>-7.3624910536941846 15.5 18.59552971776478</Position>
+        <Gaze>0.29097118751727274 -0.612571665435814 -0.7349093296046673</Gaze>
+        <Up>0.22087473161082552 0.8 -0.5578658915329434</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0283.ppm</ImageName>
+    </Camera>
+    <Camera id="284">
+        <Position>-6.9714409464369425 15.5 18.745639789837593</Position>
+        <Gaze>0.27551659297072933 -0.612571665435814 -0.7408417926271403</Gaze>
+        <Up>0.20914322839310825 0.8 -0.5623691936951278</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0284.ppm</ImageName>
+    </Camera>
+    <Camera id="285">
+        <Position>-6.577332934772315 15.5 18.88752740474939</Position>
+        <Gaze>0.25994114774060045 -0.612571665435814 -0.7464492979543169</Gaze>
+        <Up>0.19731998804316944 0.8 -0.5666258221424818</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0285.ppm</ImageName>
+    </Camera>
+    <Camera id="286">
+        <Position>-6.180339887499612 15.5 19.021130325902856</Position>
+        <Gaze>0.24425168373193729 -0.612571665435814 -0.7517293859490309</Gaze>
+        <Up>0.18541019662498834 0.8 -0.5706339097770856</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0286.ppm</ImageName>
+    </Camera>
+    <Camera id="287">
+        <Position>-5.780635938890107 15.5 19.14638995064114</Position>
+        <Gaze>0.22845508286219568 -0.612571665435814 -0.7566797405901791</Gaze>
+        <Up>0.1734190781667032 0.8 -0.5743916985192342</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0287.ppm</ImageName>
+    </Camera>
+    <Camera id="288">
+        <Position>-5.378396412306001 15.5 19.263251335952972</Position>
+        <Gaze>0.2125582740425996 -0.612571665435814 -0.7612981904886051</Gaze>
+        <Up>0.16135189236918004 0.8 -0.5778975400785891</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0288.ppm</ImageName>
+    </Camera>
+    <Camera id="289">
+        <Position>-4.973797743297795 15.5 19.371663222572444</Position>
+        <Gaze>0.19656823013889183 -0.612571665435814 -0.7655827098395425</Gaze>
+        <Up>0.14921393229893384 0.8 -0.5811498966771733</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0289.ppm</ImageName>
+    </Camera>
+    <Camera id="290">
+        <Position>-4.567017402213826 15.5 19.471578057463038</Position>
+        <Gaze>0.18049196491280436 -0.612571665435814 -0.769531419311199</Gaze>
+        <Up>0.13701052206641479 0.8 -0.5841473417238912</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0290.ppm</ImageName>
+    </Camera>
+    <Camera id="291">
+        <Position>-4.15823381635591 15.5 19.562952014675957</Position>
+        <Gaze>0.16433652994559098 -0.612571665435814 -0.7731425868690944</Gaze>
+        <Up>0.12474701449067728 0.8 -0.5868885604402787</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0291.ppm</ImageName>
+    </Camera>
+    <Camera id="292">
+        <Position>-3.747626291715227 15.5 19.645745014573635</Position>
+        <Gaze>0.14810901154497033 -0.612571665435814 -0.7764146285357878</Gaze>
+        <Up>0.1124287887514568 0.8 -0.589372350437209</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0292.ppm</ImageName>
+    </Camera>
+    <Camera id="293">
+        <Position>-3.3353749343227905 15.5 19.71992074140997</Position>
+        <Gaze>0.13181652763683743 -0.612571665435814 -0.7793461090856617</Gaze>
+        <Up>0.10006124802968372 0.8 -0.5915976222422992</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0293.ppm</ImageName>
+    </Camera>
+    <Camera id="294">
+        <Position>-2.921660571248988 15.5 19.785446659259655</Position>
+        <Gaze>0.11546622464310606 -0.612571665435814 -0.7819357426744612</Gaze>
+        <Up>0.08764981713746964 0.8 -0.5935633997777896</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0294.ppm</ImageName>
+    </Camera>
+    <Camera id="295">
+        <Position>-2.506664671286851 15.5 19.84229402628946</Position>
+        <Gaze>0.09906527434705184 -0.612571665435814 -0.7841823934033055</Gaze>
+        <Up>0.07519994013860554 0.8 -0.5952688207886838</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0295.ppm</ImageName>
+    </Camera>
+    <Camera id="296">
+        <Position>-2.090569265353846 15.5 19.890437907365385</Position>
+        <Gaze>0.08262087074753106 -0.612571665435814 -0.7860850758169329</Gaze>
+        <Up>0.06271707796061537 0.8 -0.5967131372209615</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0296.ppm</ImageName>
+    </Camera>
+    <Camera id="297">
+        <Position>-1.673556866647096 15.5 19.92985718499002</Position>
+        <Gaze>0.06614022690345508 -0.612571665435814 -0.7876429553359522</Gaze>
+        <Up>0.050206705999412876 0.8 -0.5978957155497006</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0297.ppm</ImageName>
+    </Camera>
+    <Camera id="298">
+        <Position>-1.2558103905870632 15.5 19.96053456856538</Position>
+        <Gaze>0.04963057176990434 -0.612571665435814 -0.7888553486229181</Gaze>
+        <Up>0.037674311717611896 0.8 -0.5988160370569614</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0298.ppm</ImageName>
+    </Camera>
+    <Camera id="299">
+        <Position>-0.8375130745847972 15.5 19.982456601977134</Position>
+        <Gaze>0.033099147027269564 -0.612571665435814 -0.7897217238820651</Gaze>
+        <Up>0.025125392237543915 0.8 -0.599473698059314</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0299.ppm</ImageName>
+    </Camera>
+    <Camera id="300">
+        <Position>-0.41884839766795273 15.5 19.99561366949689</Position>
+        <Gaze>0.016553203904811607 -0.612571665435814 -0.7902417010925701</Gaze>
+        <Up>0.012565451930038581 0.8 -0.5998684100849068</Up>
+        <NearPlane>-0.8 0.8 -0.45 0.45</NearPlane>
+        <NearDistance>1.8</NearDistance>
+        <ImageResolution>3840 2160</ImageResolution>
+        <ImageName>chess_0300.ppm</ImageName>
+    </Camera>
+</Cameras>

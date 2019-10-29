@@ -1,30 +1,19 @@
+import json
 import xml.etree.cElementTree as ET
 
 from obj2xml.utils import generate_cameras
 
 
 class Ceng477XmlWriter:
-    def __init__(self, filename, vertex_data, objects):
+    def __init__(self, filename, vertex_data, objects, image_prefix='untitled'):
         self.filename = filename
 
         self.max_recursion_depth = "6"
         self.intersection_test_epsilon = "1e-6"
         self.background_color = "0 0 0"
 
-        # self.cameras = [
-        #     {
-        #         "id": '1',
-        #         "position": "0 5 25",
-        #         "gaze": "0 0 -1",
-        #         "up": "0 1 0",
-        #         "near_plane": "-1 1 -1 1",
-        #         "near_distance": "1",
-        #         "image_resolution": "800 800",
-        #         "image_name": "giraffe_1.ppm",
-        #     },
-        # ]
         self.cameras = generate_cameras(
-            count=2,
+            count=1,
             position_start='0 0.10 2',
             position_end='0 0.10 1.5',
             gaze_start='0 0 -1',
@@ -32,8 +21,8 @@ class Ceng477XmlWriter:
             near_plane='-0.12 0.12 -0.12 0.12',
             near_distance='1.8',
             near_distance_end='0.9',
-            image_resolution='400 400',
-            image_prefix='three_glasses'
+            image_resolution='800 800',
+            image_prefix=image_prefix
         )
 
         self.lights = [
@@ -49,21 +38,19 @@ class Ceng477XmlWriter:
             },
         ]
 
-        self.materials = [
-            {
-                'id': '1',
+        self.materials = [{
+                'id': str(i),
                 'ambient_reflectance': '1 1 1',
                 'diffuse_reflectance': '1 1 1',
                 'specular_reflectance': '1 1 1',
                 'phong_exponent': '1',
-            },
-        ]
+            } for i, _ in objects.items()]
 
         self.vertex_data = vertex_data
 
         self.objects = [{
             'type': 'mesh',
-            'material': '1',
+            'material': str(i),
             'id': str(i),
             'faces': obj
         } for i, obj in objects.items()]
@@ -136,3 +123,31 @@ class Ceng477XmlWriter:
 
         tree = ET.ElementTree(scene)
         tree.write(self.filename)
+
+
+class Ceng477CameraXmlWriter:
+    def __init__(self, json_infile_name):
+        with open(json_infile_name, 'r') as infile:
+            self.camera_data = json.load(infile)
+
+    def write(self):
+        cameras = ET.Element("Cameras")
+        for camera in self.camera_data:
+            el = ET.SubElement(cameras, "Camera", id=camera['id'])
+            position = ET.SubElement(el, "Position")
+            position.text = camera["position"]
+            gaze = ET.SubElement(el, "Gaze")
+            gaze.text = camera["gaze"]
+            up = ET.SubElement(el, "Up")
+            up.text = camera["up"]
+            near_plane = ET.SubElement(el, "NearPlane")
+            near_plane.text = camera["near_plane"]
+            near_distance = ET.SubElement(el, "NearDistance")
+            near_distance.text = camera["near_distance"]
+            image_resolution = ET.SubElement(el, "ImageResolution")
+            image_resolution.text = camera["image_resolution"]
+            image_name = ET.SubElement(el, "ImageName")
+            image_name.text = camera["image_name"]
+
+        tree = ET.ElementTree(cameras)
+        tree.write('cameras.xml')
