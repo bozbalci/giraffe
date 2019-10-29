@@ -24,7 +24,7 @@ class Ceng477XmlWriter:
         #     },
         # ]
         self.cameras = generate_cameras(
-            count=60,
+            count=2,
             position_start='0 0.10 2',
             position_end='0 0.10 1.5',
             gaze_start='0 0 -1',
