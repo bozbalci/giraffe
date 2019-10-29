@@ -8,7 +8,7 @@
 # Object files
 *.o
 *.ko
-*.obj
+# *.obj -- Wavefront obj files are not harmful ok
 *.elf
 
 # Linker output
