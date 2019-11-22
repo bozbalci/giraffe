@@ -5,7 +5,7 @@ Coursework for *CENG447 - Introduction to Computer Graphics (Fall 2019),* by [Ya
 ## Assignment 1
 
 |Specification|Source|
-|--|--|
+|---|---|
 |[hw1 spec](https://github.com/bozbalci/giraffe/tree/master/assignments/hw1/hw1.pdf)|[hw1](https://github.com/bozbalci/giraffe/tree/master/assignments/hw1/src)|
 
 ## Example render
@@ -32,3 +32,11 @@ Run
 on the project root directory in order to install the `pre-commit` hook that runs `clang-format` on every source file in the repository. Requires `clang-format` and `bash >= 4.0`.
 
 Edit the `.clang-format` to suit your taste.
+
+<hr />
+
+## Assignment 2
+
+|Specification|Source|
+|---|---|
+|[hw2 spec](https://github.com/bozbalci/giraffe/tree/master/assignments/hw2/hw2.pdf)|[hw2](https://github.com/bozbalci/giraffe/tree/master/assignments/hw2/src)|
