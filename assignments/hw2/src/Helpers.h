@@ -61,16 +61,18 @@ void printVec3(Vec3 v);
 int areEqualVec3(Vec3 a, Vec3 b);
 /*
  * Returns an identity matrix (values on the diagonal are 1, others are 0).
-*/
+ */
 Matrix4 getIdentityMatrix();
 
 /*
- * Multiply matrices m1 (Matrix4) and m2 (Matrix4) and return the result matrix r (Matrix4).
+ * Multiply matrices m1 (Matrix4) and m2 (Matrix4) and return the result matrix
+ * r (Matrix4).
  */
 Matrix4 multiplyMatrixWithMatrix(Matrix4 m1, Matrix4 m2);
 
 /*
- * Multiply matrix m (Matrix4) with vector v (vec4) and store the result in vector r (vec4).
+ * Multiply matrix m (Matrix4) with vector v (vec4) and store the result in
+ * vector r (vec4).
  */
 Vec4 multiplyMatrixWithVec4(Matrix4 m, Vec4 v);
 

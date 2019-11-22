@@ -1,10 +1,9 @@
 #ifndef __TRIANGLE_H__
 #define __TRIANGLE_H__
 
-
 class Triangle
 {
-public:
+  public:
     int vertexIds[3];
 
     Triangle();
@@ -19,6 +18,5 @@ public:
     void setSecondVertexId(int vid);
     void setThirdVertexId(int vid);
 };
-
 
 #endif

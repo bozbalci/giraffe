@@ -32,8 +32,7 @@ Vec4::Vec4(const Vec4 &other)
 
 double Vec4::getElementAt(int index)
 {
-    switch (index)
-    {
+    switch (index) {
     case 0:
         return this->x;
 
@@ -51,9 +50,11 @@ double Vec4::getElementAt(int index)
     }
 }
 
-ostream& operator<<(ostream& os, const Vec4& v) {
-    
-    os << fixed << setprecision(6) << "[" << v.x << ", " << v.y << ", " << v.z << ", " << v.t << "]";
+ostream &operator<<(ostream &os, const Vec4 &v)
+{
+
+    os << fixed << setprecision(6) << "[" << v.x << ", " << v.y << ", " << v.z
+       << ", " << v.t << "]";
 
     return os;
 }

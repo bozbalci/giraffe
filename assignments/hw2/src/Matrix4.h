@@ -7,7 +7,7 @@ using namespace std;
 
 class Matrix4
 {
-public:
+  public:
     double val[4][4];
 
     Matrix4();

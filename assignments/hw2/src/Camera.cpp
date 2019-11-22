@@ -1,19 +1,16 @@
 #include "Camera.h"
-#include <string>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
 Camera::Camera() {}
 
-Camera::Camera(int cameraId,
-           Vec3 pos, Vec3 gaze,
-           Vec3 u, Vec3 v, Vec3 w,
-           double left, double right, double bottom, double top,
-           double near, double far,
-           int horRes, int verRes,
-           string outputFileName)
+Camera::Camera(int cameraId, Vec3 pos, Vec3 gaze, Vec3 u, Vec3 v, Vec3 w,
+               double left, double right, double bottom, double top,
+               double near, double far, int horRes, int verRes,
+               string outputFileName)
 {
 
     this->cameraId = cameraId;
@@ -52,13 +49,18 @@ Camera::Camera(const Camera &other)
     this->outputFileName = other.outputFileName;
 }
 
+ostream &operator<<(ostream &os, const Camera &c)
+{
 
-ostream& operator<<(ostream& os, const Camera& c) {
-    
-    os << fixed << setprecision(6) << "Camera " << c.cameraId << " => pos: " << c.pos << " gaze: " << c.gaze << endl
-        << "\tu: " << c.u << " v: " << c.v << " w: " << c.w << endl
-        << fixed << setprecision(3) << "\tleft: " << c.left << " right: " << c.right << " bottom: " << c.bottom << " top: " << c.top << endl
-        << "\tnear: " << c.near << " far: " << c.far << " resolutions: " << c.horRes << "x" << c.verRes << " fileName: " << c.outputFileName;
+    os << fixed << setprecision(6) << "Camera " << c.cameraId
+       << " => pos: " << c.pos << " gaze: " << c.gaze << endl
+       << "\tu: " << c.u << " v: " << c.v << " w: " << c.w << endl
+       << fixed << setprecision(3) << "\tleft: " << c.left
+       << " right: " << c.right << " bottom: " << c.bottom << " top: " << c.top
+       << endl
+       << "\tnear: " << c.near << " far: " << c.far
+       << " resolutions: " << c.horRes << "x" << c.verRes
+       << " fileName: " << c.outputFileName;
 
     return os;
 }

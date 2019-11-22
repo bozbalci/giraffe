@@ -29,8 +29,7 @@ Vec3::Vec3(const Vec3 &other)
 
 double Vec3::getElementAt(int index)
 {
-    switch (index)
-    {
+    switch (index) {
     case 0:
         return this->x;
 
@@ -45,9 +44,11 @@ double Vec3::getElementAt(int index)
     }
 }
 
-ostream& operator<<(ostream& os, const Vec3& v) {
-    
-    os << fixed << setprecision(6) << "[" << v.x << ", " << v.y << ", " << v.z << "]";
+ostream &operator<<(ostream &os, const Vec3 &v)
+{
+
+    os << fixed << setprecision(6) << "[" << v.x << ", " << v.y << ", " << v.z
+       << "]";
 
     return os;
 }

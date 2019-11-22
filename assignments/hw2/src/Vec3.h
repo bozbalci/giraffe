@@ -6,7 +6,7 @@ using namespace std;
 
 class Vec3
 {
-public:
+  public:
     double x, y, z;
     int colorId;
 
@@ -15,8 +15,8 @@ public:
     Vec3(const Vec3 &other);
 
     double getElementAt(int index);
-    
-    friend std::ostream& operator<<(std::ostream& os, const Vec3& v);
+
+    friend std::ostream &operator<<(std::ostream &os, const Vec3 &v);
 };
 
 #endif

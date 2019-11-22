@@ -260,12 +260,12 @@ auto the_conjuring(
                                                                     the devil */
              llllIIlIlIl -
              1];
-        /*             .d$$$******$$$$c.            */ /* don't call the priests
-                                                        */
+    /*             .d$$$******$$$$c.            */ /* don't call the priests
+                                                    */
     IF(x, o, B, E)
     Y /*          .d$P"            "$$c           */ /* if you need the strength
                                                       */
-                                                         ____________;
+        ____________;
     DONT /*         $$$$$.           .$$$*$.         */ /* then conjure me */
         /*       .$$ 4$L*$$.     .$$Pd$  '$b        */
         /* i am the devil's */ /*       $F   *$. "$$e.e$$" 4$F   ^$b       */ (

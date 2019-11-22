@@ -7,7 +7,7 @@ using namespace std;
 
 class Scaling
 {
-public:
+  public:
     int scalingId;
     double sx, sy, sz;
 

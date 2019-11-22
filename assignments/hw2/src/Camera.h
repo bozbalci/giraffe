@@ -9,7 +9,7 @@ using namespace std;
 class Camera
 {
 
-public:
+  public:
     int cameraId;
     Vec3 pos;
     Vec3 gaze;
@@ -25,18 +25,13 @@ public:
 
     Camera();
 
-    Camera(int cameraId,
-           Vec3 pos, Vec3 gaze,
-           Vec3 u, Vec3 v, Vec3 w,
-           double left, double right, double bottom, double top,
-           double near, double far,
-           int horRes, int verRes,
-           string outputFileName);
-    
+    Camera(int cameraId, Vec3 pos, Vec3 gaze, Vec3 u, Vec3 v, Vec3 w,
+           double left, double right, double bottom, double top, double near,
+           double far, int horRes, int verRes, string outputFileName);
 
     Camera(const Camera &other);
 
-    friend std::ostream& operator<<(std::ostream& os, const Camera& c);
+    friend std::ostream &operator<<(std::ostream &os, const Camera &c);
 };
 
 #endif

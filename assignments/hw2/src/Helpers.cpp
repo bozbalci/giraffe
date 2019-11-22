@@ -1,9 +1,9 @@
-#include <iostream>
-#include <cmath>
 #include "Helpers.h"
 #include "Matrix4.h"
 #include "Vec3.h"
 #include "Vec4.h"
+#include <cmath>
+#include <iostream>
 
 using namespace std;
 
@@ -121,34 +121,28 @@ void printVec3(Vec3 v)
 int areEqualVec3(Vec3 a, Vec3 b)
 {
 
-    /* if x difference, y difference and z difference is smaller than threshold, then they are equal */
-    if ((ABS((a.x - b.x)) < EPSILON) && (ABS((a.y - b.y)) < EPSILON) && (ABS((a.z - b.z)) < EPSILON))
-    {
+    /* if x difference, y difference and z difference is smaller than threshold,
+     * then they are equal */
+    if ((ABS((a.x - b.x)) < EPSILON) && (ABS((a.y - b.y)) < EPSILON) &&
+        (ABS((a.z - b.z)) < EPSILON)) {
         return 1;
-    }
-    else
-    {
+    } else {
         return 0;
     }
 }
 
 /*
  * Returns an identity matrix (values on the diagonal are 1, others are 0).
-*/
+ */
 Matrix4 getIdentityMatrix()
 {
     Matrix4 result;
 
-    for (int i = 0; i < 4; i++)
-    {
-        for (int j = 0; j < 4; j++)
-        {
-            if (i == j)
-            {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (i == j) {
                 result.val[i][j] = 1.0;
-            }
-            else
-            {
+            } else {
                 result.val[i][j] = 0.0;
             }
         }
@@ -158,20 +152,18 @@ Matrix4 getIdentityMatrix()
 }
 
 /*
- * Multiply matrices m1 (Matrix4) and m2 (Matrix4) and return the result matrix r (Matrix4).
+ * Multiply matrices m1 (Matrix4) and m2 (Matrix4) and return the result matrix
+ * r (Matrix4).
  */
 Matrix4 multiplyMatrixWithMatrix(Matrix4 m1, Matrix4 m2)
 {
     Matrix4 result;
     double total;
 
-    for (int i = 0; i < 4; i++)
-    {
-        for (int j = 0; j < 4; j++)
-        {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
             total = 0;
-            for (int k = 0; k < 4; k++)
-            {
+            for (int k = 0; k < 4; k++) {
                 total += m1.val[i][k] * m2.val[k][j];
             }
 
@@ -183,18 +175,17 @@ Matrix4 multiplyMatrixWithMatrix(Matrix4 m1, Matrix4 m2)
 }
 
 /*
- * Multiply matrix m (Matrix4) with vector v (vec4) and store the result in vector r (vec4).
+ * Multiply matrix m (Matrix4) with vector v (vec4) and store the result in
+ * vector r (vec4).
  */
 Vec4 multiplyMatrixWithVec4(Matrix4 m, Vec4 v)
 {
     double values[4];
     double total;
 
-    for (int i = 0; i < 4; i++)
-    {
+    for (int i = 0; i < 4; i++) {
         total = 0;
-        for (int j = 0; j < 4; j++)
-        {
+        for (int j = 0; j < 4; j++) {
             total += m.val[i][j] * v.getElementAt(j);
         }
         values[i] = total;

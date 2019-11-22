@@ -1,6 +1,7 @@
 #include "Triangle.h"
 
-Triangle::Triangle() {
+Triangle::Triangle()
+{
     this->vertexIds[0] = -1;
     this->vertexIds[1] = -1;
     this->vertexIds[2] = -1;
@@ -21,33 +22,15 @@ Triangle::Triangle(const Triangle &other)
 }
 
 // getters
-int Triangle::getFirstVertexId()
-{
-    return this->vertexIds[0];
-}
+int Triangle::getFirstVertexId() { return this->vertexIds[0]; }
 
-int Triangle::getSecondVertexId()
-{
-    return this->vertexIds[1];
-}
+int Triangle::getSecondVertexId() { return this->vertexIds[1]; }
 
-int Triangle::getThirdVertexId()
-{
-    return this->vertexIds[2];
-}
+int Triangle::getThirdVertexId() { return this->vertexIds[2]; }
 
 // setters
-void Triangle::setFirstVertexId(int vid)
-{
-    this->vertexIds[0] = vid;
-}
+void Triangle::setFirstVertexId(int vid) { this->vertexIds[0] = vid; }
 
-void Triangle::setSecondVertexId(int vid)
-{
-    this->vertexIds[1] = vid;
-}
+void Triangle::setSecondVertexId(int vid) { this->vertexIds[1] = vid; }
 
-void Triangle::setThirdVertexId(int vid)
-{
-    this->vertexIds[2] = vid;
-}
+void Triangle::setThirdVertexId(int vid) { this->vertexIds[2] = vid; }

@@ -22,27 +22,27 @@ using namespace std;
 
 class Scene
 {
-public:
-	Color backgroundColor;
-	bool cullingEnabled;
-	int projectionType;
+  public:
+    Color backgroundColor;
+    bool cullingEnabled;
+    int projectionType;
 
-	vector< vector<Color> > image;
-	vector< Camera* > cameras;
-	vector< Vec3* > vertices;
-	vector< Color* > colorsOfVertices;
-	vector< Scaling* > scalings;
-	vector< Rotation* > rotations;
-	vector< Translation* > translations;
-	vector< Model* > models;
+    vector<vector<Color>> image;
+    vector<Camera *> cameras;
+    vector<Vec3 *> vertices;
+    vector<Color *> colorsOfVertices;
+    vector<Scaling *> scalings;
+    vector<Rotation *> rotations;
+    vector<Translation *> translations;
+    vector<Model *> models;
 
-	Scene(const char *xmlPath);
+    Scene(const char *xmlPath);
 
-	void initializeImage(Camera* camera);
-	void forwardRenderingPipeline(Camera* camera);
-	int makeBetweenZeroAnd255(double value);
-	void writeImageToPPMFile(Camera* camera);
-	void convertPPMToPNG(string ppmFileName, int osType);
+    void initializeImage(Camera *camera);
+    void forwardRenderingPipeline(Camera *camera);
+    int makeBetweenZeroAnd255(double value);
+    void writeImageToPPMFile(Camera *camera);
+    void convertPPMToPNG(string ppmFileName, int osType);
 };
 
 #endif

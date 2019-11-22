@@ -7,7 +7,7 @@ using namespace std;
 
 class Rotation
 {
-public:
+  public:
     int rotationId;
     double angle, ux, uy, uz;
 

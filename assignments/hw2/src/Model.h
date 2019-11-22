@@ -1,16 +1,16 @@
 #ifndef __MODEL_H__
 #define __MODEL_H__
 
-#include <vector>
 #include "Triangle.h"
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 class Model
 {
 
-public:
+  public:
     int modelId;
     int type;
     int numberOfTransformations;
@@ -21,10 +21,8 @@ public:
 
     Model();
     Model(int modelId, int type, int numberOfTransformations,
-          vector<int> transformationIds,
-          vector<char> transformationTypes,
-          int numberOfTriangles,
-          vector<Triangle> triangles);
+          vector<int> transformationIds, vector<char> transformationTypes,
+          int numberOfTriangles, vector<Triangle> triangles);
 
     friend ostream &operator<<(ostream &os, const Model &m);
 };
