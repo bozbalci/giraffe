@@ -8,7 +8,7 @@ OBJ=$(patsubst %.cpp,%.o,$(SRC))
 rasterizer: $(OBJ)
 	$(CXX) $(OBJ) $(CXXFLAGS) -o rasterizer
 
-%.o: %.cpp %.h
+%.o: %.cpp $(HDR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
