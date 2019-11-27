@@ -18,13 +18,48 @@
 
 using namespace tinyxml2;
 
+extern Scene *scene;
+
+void computeModelingTransform(Model &model)
+{
+    if (model.compositeTransform) {
+        return;
+    }
+
+    auto composite_matrix = getIdentityMatrix();
+    for (size_t i = 0; i < model.numberOfTransformations; ++i) {
+        auto transform_index = model.transformationIds[i] - 1;
+        switch (model.transformationTypes[i]) {
+            case 'r':
+                composite_matrix = multiplyMatrixWithMatrix(
+                        scene->rotations[transform_index]->getMatrix(),
+                        composite_matrix);
+                break;
+            case 't':
+                composite_matrix = multiplyMatrixWithMatrix(
+                        scene->translations[transform_index]->getMatrix(),
+                        composite_matrix);
+                break;
+            case 's':
+                composite_matrix = multiplyMatrixWithMatrix(
+                        scene->scalings[transform_index]->getMatrix(),
+                        composite_matrix);
+                break;
+        }
+    }
+
+    *model.compositeTransform = composite_matrix;
+}
+
 /*
         Transformations, clipping, culling, rasterization are done here.
         You can define helper functions inside Scene class implementation.
 */
 void Scene::forwardRenderingPipeline(Camera *camera)
 {
-    // TODO: Implement this function.
+    for (auto &model : scene->models) {
+        computeModelingTransform(*model);
+    }
 }
 
 /*
