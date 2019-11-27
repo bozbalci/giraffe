@@ -163,10 +163,14 @@ Scene::Scene(const char *xmlPath)
     while (pRotation != NULL) {
         Rotation *rotation = new Rotation();
 
+        // GIRAFFE BEGIN
+        double angle, ux, uy, uz;
         pRotation->QueryIntAttribute("id", &rotation->rotationId);
         str = pRotation->Attribute("value");
-        sscanf(str, "%lf %lf %lf %lf", &rotation->angle, &rotation->ux,
-               &rotation->uy, &rotation->uz);
+        sscanf(str, "%lf %lf %lf %lf", &angle, &ux, &uy, &uz);
+        rotation->angle = angle;
+        rotation->u = Vec3(ux, uy, uz, /* colorId = */ 0);
+        // GIRAFFE END
 
         rotations.push_back(rotation);
 

@@ -7,6 +7,8 @@ class Vec3
 {
   public:
     double x, y, z;
+
+    // Some idiot forgot that this is not Vec4. Blame them, not us.
     int colorId;
 
     Vec3();
