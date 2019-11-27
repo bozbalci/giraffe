@@ -14,6 +14,7 @@
 #include "Translation.h"
 #include "Triangle.h"
 #include "Vec3.h"
+#include "Vec4.h"
 #include "tinyxml2.h"
 
 using namespace tinyxml2;
@@ -51,20 +52,53 @@ void computeModelingTransform(Model &model)
     *model.compositeTransform = composite_matrix;
 }
 
-/*
-        Transformations, clipping, culling, rasterization are done here.
-        You can define helper functions inside Scene class implementation.
-*/
 void Scene::forwardRenderingPipeline(Camera *camera)
 {
+    initializeImage(this);
+
+    Matrix4 viewingMatrix = camera->getViewingMatrix();
+
     for (auto &model : scene->models) {
+        model->transformedVertices.clear();
         computeModelingTransform(*model);
+
+        Matrix4 transform = multiplyMatrixWithMatrix(
+            viewingMatrix,
+            model.compositeTransform
+        );
+
+        for (auto &triangle : model->triangles) {
+            Vec3 vertex1_v3 = scene->vertices[triangle.vertexIds[0] - 1];
+            Vec3 vertex2_v3 = scene->vertices[triangle.vertexIds[1] - 1];
+            Vec3 vertex3_v3 = scene->vertices[triangle.vertexIds[2] - 1];
+
+            Vec4 vertex1 = Vec4(vertex1_v3->x,
+                                vertex1_v3->y,
+                                vertex1_v3->z,
+                                0.);
+            Vec4 vertex2 = Vec4(vertex2_v3->x,
+                                vertex2_v3->y,
+                                vertex2_v3->z,
+                                0.);
+            Vec4 vertex3 = Vec4(vertex3_v3->x,
+                                vertex3_v3->y,
+                                vertex3_v3->z,
+                                0.);
+
+            Vec4 vertex1_transformed = multiplyMatrixWithVec4(transform, vertex1);
+            Vec4 vertex2_transformed = multiplyMatrixWithVec4(transform, vertex2);
+            Vec4 vertex3_transformed = multiplyMatrixWithVec4(transform, vertex3);
+
+            model->transformedVertices.push_back(vertex1_transformed);
+            model->transformedVertices.push_back(vertex2_transformed);
+            model->transformedVertices.push_back(vertex3_transformed);
+        }
     }
+
+    writeImageToPPMFile(this);
+    convertPPMToPNG(camera->outputFileName, /* osType = */ 1);
 }
 
-/*
-        Parses XML file
-*/
 Scene::Scene(const char *xmlPath)
 {
     const char *str;
@@ -269,9 +303,6 @@ Scene::Scene(const char *xmlPath)
     }
 }
 
-/*
-        Initializes image with background color
-*/
 void Scene::initializeImage(Camera *camera)
 {
     if (this->image.empty()) {
@@ -298,11 +329,6 @@ void Scene::initializeImage(Camera *camera)
     }
 }
 
-/*
-        If given value is less than 0, converts value to 0.
-        If given value is more than 255, converts value to 255.
-        Otherwise returns value itself.
-*/
 int Scene::makeBetweenZeroAnd255(double value)
 {
     if (value >= 255.0)
@@ -312,9 +338,6 @@ int Scene::makeBetweenZeroAnd255(double value)
     return (int)(value);
 }
 
-/*
-        Writes contents of image (Color**) into a PPM file.
-*/
 void Scene::writeImageToPPMFile(Camera *camera)
 {
     std::ofstream fout;
@@ -337,16 +360,11 @@ void Scene::writeImageToPPMFile(Camera *camera)
     fout.close();
 }
 
-/*
-        Converts PPM image in given path to PNG file, by calling ImageMagick's
-   'convert' command. os_type == 1 		-> Ubuntu os_type == 2 ->
-   Windows os_type == other	-> No conversion
-*/
 void Scene::convertPPMToPNG(std::string ppmFileName, int osType)
 {
     std::string command;
 
-    // call command on Ubuntu
+    // call command on Ubuntu. OK boss
     if (osType == 1) {
         command = "convert " + ppmFileName + " " + ppmFileName + ".png";
         system(command.c_str());
@@ -359,6 +377,5 @@ void Scene::convertPPMToPNG(std::string ppmFileName, int osType)
     }
 
     // default action - don't do conversion
-    else {
-    }
+    else {}
 }
