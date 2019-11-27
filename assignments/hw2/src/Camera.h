@@ -4,11 +4,8 @@
 #include "Vec3.h"
 #include <string>
 
-using namespace std;
-
 class Camera
 {
-
   public:
     int cameraId;
     Vec3 pos;
@@ -21,13 +18,13 @@ class Camera
     double far;
     int horRes;
     int verRes;
-    string outputFileName;
+    std::string outputFileName;
 
     Camera();
 
     Camera(int cameraId, Vec3 pos, Vec3 gaze, Vec3 u, Vec3 v, Vec3 w,
            double left, double right, double bottom, double top, double near,
-           double far, int horRes, int verRes, string outputFileName);
+           double far, int horRes, int verRes, std::string outputFileName);
 
     Camera(const Camera &other);
 

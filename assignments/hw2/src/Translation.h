@@ -3,8 +3,6 @@
 
 #include <iostream>
 
-using namespace std;
-
 class Translation
 {
   public:
@@ -13,7 +11,7 @@ class Translation
 
     Translation();
     Translation(int translationId, double tx, double ty, double tz);
-    friend ostream &operator<<(ostream &os, const Translation &t);
+    friend std::ostream &operator<<(std::ostream &os, const Translation &t);
 };
 
 #endif

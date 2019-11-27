@@ -2,8 +2,6 @@
 #include <iomanip>
 #include <iostream>
 
-using namespace std;
-
 Color::Color() {}
 
 Color::Color(double r, double g, double b)
@@ -20,9 +18,9 @@ Color::Color(const Color &other)
     this->b = other.b;
 }
 
-ostream &operator<<(ostream &os, const Color &c)
+std::ostream &operator<<(std::ostream &os, const Color &c)
 {
-    os << fixed << setprecision(0) << "rgb(" << c.r << ", " << c.g << ", "
-       << c.b << ")";
+    os << std::fixed << std::setprecision(0) << "rgb(" << c.r << ", " << c.g
+       << ", " << c.b << ")";
     return os;
 }

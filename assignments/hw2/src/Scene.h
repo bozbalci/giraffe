@@ -18,8 +18,6 @@
 #include "Vec3.h"
 #include "Vec4.h"
 
-using namespace std;
-
 class Scene
 {
   public:
@@ -27,14 +25,14 @@ class Scene
     bool cullingEnabled;
     int projectionType;
 
-    vector<vector<Color>> image;
-    vector<Camera *> cameras;
-    vector<Vec3 *> vertices;
-    vector<Color *> colorsOfVertices;
-    vector<Scaling *> scalings;
-    vector<Rotation *> rotations;
-    vector<Translation *> translations;
-    vector<Model *> models;
+    std::vector<std::vector<Color>> image;
+    std::vector<Camera *> cameras;
+    std::vector<Vec3 *> vertices;
+    std::vector<Color *> colorsOfVertices;
+    std::vector<Scaling *> scalings;
+    std::vector<Rotation *> rotations;
+    std::vector<Translation *> translations;
+    std::vector<Model *> models;
 
     Scene(const char *xmlPath);
 
@@ -42,7 +40,7 @@ class Scene
     void forwardRenderingPipeline(Camera *camera);
     int makeBetweenZeroAnd255(double value);
     void writeImageToPPMFile(Camera *camera);
-    void convertPPMToPNG(string ppmFileName, int osType);
+    void convertPPMToPNG(std::string ppmFileName, int osType);
 };
 
 #endif

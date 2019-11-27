@@ -5,26 +5,24 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
 class Model
 {
-
   public:
     int modelId;
     int type;
     int numberOfTransformations;
-    vector<int> transformationIds;
-    vector<char> transformationTypes;
+    std::vector<int> transformationIds;
+    std::vector<char> transformationTypes;
     int numberOfTriangles;
-    vector<Triangle> triangles;
+    std::vector<Triangle> triangles;
 
     Model();
     Model(int modelId, int type, int numberOfTransformations,
-          vector<int> transformationIds, vector<char> transformationTypes,
-          int numberOfTriangles, vector<Triangle> triangles);
+          std::vector<int> transformationIds,
+          std::vector<char> transformationTypes, int numberOfTriangles,
+          std::vector<Triangle> triangles);
 
-    friend ostream &operator<<(ostream &os, const Model &m);
+    friend std::ostream &operator<<(std::ostream &os, const Model &m);
 };
 
 #endif

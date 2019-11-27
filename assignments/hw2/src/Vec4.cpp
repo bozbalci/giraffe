@@ -2,8 +2,6 @@
 #include "Vec4.h"
 #include <iomanip>
 
-using namespace std;
-
 Vec4::Vec4()
 {
     this->x = 0.0;
@@ -50,11 +48,11 @@ double Vec4::getElementAt(int index)
     }
 }
 
-ostream &operator<<(ostream &os, const Vec4 &v)
+std::ostream &operator<<(std::ostream &os, const Vec4 &v)
 {
 
-    os << fixed << setprecision(6) << "[" << v.x << ", " << v.y << ", " << v.z
-       << ", " << v.t << "]";
+    os << std::fixed << std::setprecision(6) << "[" << v.x << ", " << v.y
+       << ", " << v.z << ", " << v.t << "]";
 
     return os;
 }

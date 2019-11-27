@@ -5,8 +5,6 @@
 #include <cmath>
 #include <iostream>
 
-using namespace std;
-
 /*
  * Calculate cross product of vec3 a, vec3 b and return resulting vec3.
  */
@@ -34,7 +32,7 @@ double dotProductVec3(Vec3 a, Vec3 b)
  */
 double magnitudeOfVec3(Vec3 v)
 {
-    return sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+    return std::sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
 }
 
 /*
@@ -110,7 +108,7 @@ Vec3 multiplyVec3WithScalar(Vec3 v, double c)
  */
 void printVec3(Vec3 v)
 {
-    cout << "(" << v.x << "," << v.y << "," << v.z << ")" << endl;
+    std::cout << "(" << v.x << "," << v.y << "," << v.z << ")" << std::endl;
 }
 
 /*

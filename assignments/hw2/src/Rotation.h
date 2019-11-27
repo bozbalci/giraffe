@@ -3,8 +3,6 @@
 
 #include <iostream>
 
-using namespace std;
-
 class Rotation
 {
   public:
@@ -13,7 +11,7 @@ class Rotation
 
     Rotation();
     Rotation(int rotationId, double angle, double x, double y, double z);
-    friend ostream &operator<<(ostream &os, const Rotation &r);
+    friend std::ostream &operator<<(std::ostream &os, const Rotation &r);
 };
 
 #endif

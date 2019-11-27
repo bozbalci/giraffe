@@ -1,8 +1,6 @@
 #include "Vec3.h"
 #include <iomanip>
 
-using namespace std;
-
 Vec3::Vec3()
 {
     this->x = 0.0;
@@ -44,11 +42,11 @@ double Vec3::getElementAt(int index)
     }
 }
 
-ostream &operator<<(ostream &os, const Vec3 &v)
+std::ostream &operator<<(std::ostream &os, const Vec3 &v)
 {
 
-    os << fixed << setprecision(6) << "[" << v.x << ", " << v.y << ", " << v.z
-       << "]";
+    os << std::fixed << std::setprecision(6) << "[" << v.x << ", " << v.y
+       << ", " << v.z << "]";
 
     return os;
 }

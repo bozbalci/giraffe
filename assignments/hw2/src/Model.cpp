@@ -4,13 +4,12 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
 Model::Model() {}
 
 Model::Model(int modelId, int type, int numberOfTransformations,
-             vector<int> transformationIds, vector<char> transformationTypes,
-             int numberOfTriangles, vector<Triangle> triangles)
+             std::vector<int> transformationIds,
+             std::vector<char> transformationTypes, int numberOfTriangles,
+             std::vector<Triangle> triangles)
 {
     this->modelId = modelId;
     this->type = type;
@@ -22,7 +21,7 @@ Model::Model(int modelId, int type, int numberOfTransformations,
     this->triangles = triangles;
 }
 
-ostream &operator<<(ostream &os, const Model &m)
+std::ostream &operator<<(std::ostream &os, const Model &m)
 {
     os << "Model " << m.modelId;
 
@@ -32,15 +31,16 @@ ostream &operator<<(ostream &os, const Model &m)
         os << " solid(1) with ";
     }
 
-    os << fixed << setprecision(3) << m.numberOfTransformations
-       << " transformations and " << m.numberOfTriangles << " triangles" << endl
-       << "\tTriangles are:" << endl
-       << fixed << setprecision(0);
+    os << std::fixed << std::setprecision(3) << m.numberOfTransformations
+       << " transformations and " << m.numberOfTriangles << " triangles"
+       << std::endl
+       << "\tTriangles are:" << std::endl
+       << std::fixed << std::setprecision(0);
 
     for (int i = 0; i < m.triangles.size(); i++) {
         os << "\t\t" << m.triangles[i].vertexIds[0] << " "
            << m.triangles[i].vertexIds[1] << " " << m.triangles[i].vertexIds[2]
-           << endl;
+           << std::endl;
     }
 
     return os;

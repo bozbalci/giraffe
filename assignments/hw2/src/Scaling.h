@@ -3,8 +3,6 @@
 
 #include <iostream>
 
-using namespace std;
-
 class Scaling
 {
   public:
@@ -13,7 +11,7 @@ class Scaling
 
     Scaling();
     Scaling(int scalingId, double sx, double sy, double sz);
-    friend ostream &operator<<(ostream &os, const Scaling &s);
+    friend std::ostream &operator<<(std::ostream &os, const Scaling &s);
 };
 
 #endif
