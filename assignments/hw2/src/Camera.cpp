@@ -1,5 +1,6 @@
 #include "Camera.h"
 #include "Helpers.h"
+#include "Scene.h"
 
 #include <cstdlib>
 #include <iomanip>
@@ -68,34 +69,34 @@ std::ostream &operator<<(std::ostream &os, const Camera &c)
 }
 
 Matrix4 Camera::getTransformationMatrix() const {
-    Matrix4 mat = {
+    double mat[4][4] = {
         {u.x, u.y, u.z, -(u.x * pos.x + u.y * pos.y + u.z * pos.z)},
         {v.x, v.y, v.z, -(v.x * pos.x + v.y * pos.y + v.z * pos.z)},
         {w.x, w.y, w.z, -(w.x * pos.x + w.y * pos.y + w.z * pos.z)},
-        {0f, 0f, 0f, 1f}
-    }
+        {0., 0., 0., 1.}
+    };
 
     return mat;
 }
 
 Matrix4 Camera::getOrtographicMatrix() const {
-    Matrix4 mat = {
-        {2f/(right - left), 0f, 0f, -(right + left)/(right - left)},
-        {0f, 2f/(top -bottom), 0f, -(top + bottom)/(top - bottom)},
-        {0f, 0f, -2f/(far - near), -(far + near)/(far - near)},
-        {0f, 0f, 0f, 1f}
-    }
+    double mat[4][4] = {
+        {2./(right - left), 0., 0., -(right + left)/(right - left)},
+        {0., 2./(top -bottom), 0., -(top + bottom)/(top - bottom)},
+        {0., 0., -2./(far - near), -(far + near)/(far - near)},
+        {0., 0., 0., 1.}
+    };
 
     return mat;
 }
 
 Matrix4 Camera::getPerspective2OrtographicMatrix() const {
-    Matrix4 mat = {
-        {near, 0f, 0f, 0f},
-        {0f, near, 0f, 0f},
-        {0f, 0f, far + near, far * near},
-        {0f, 0f, -1f, 0f}
-    }
+    double mat[4][4] = {
+        {near, 0., 0., 0.},
+        {0., near, 0., 0.},
+        {0., 0., far + near, far * near},
+        {0., 0., -1., 0.}
+    };
 
     return mat;
 }
@@ -108,10 +109,11 @@ Matrix4 Camera::getPerspectiveProjectionMatrix() const {
 }
 
 Matrix4 Camera::getViewportMatrix() const {
-    Matrix4 mat = {
-        {horRes/2f, 0f, 0f, (horRes - 1f)/2f},
-        {0f, verRes/2f, 0f, (verRes - 1f)/2f},
-        {0f, 0f, .5f, .5f}
+    double mat[4][4] = {
+        {horRes/2., 0., 0., (horRes - 1.)/2.},
+        {0., verRes/2., 0., (verRes - 1.)/2.},
+        {0., 0., .5, .5},
+        {0., 0., 0., 1.}
     };
 
     return mat;
@@ -119,12 +121,12 @@ Matrix4 Camera::getViewportMatrix() const {
 
 Matrix4 Camera::getViewingMatrix() const {
     if (scene->projectionType == 0) {
-        return multiplyMatrixwithMatrix(
+        return multiplyMatrixWithMatrix(
             getOrtographicMatrix(),
             getTransformationMatrix()
         );
     } else if (scene->projectionType == 1) {
-        return multiplyMatrixwithMatrix(
+        return multiplyMatrixWithMatrix(
             getPerspectiveProjectionMatrix(),
             getTransformationMatrix()
         );
