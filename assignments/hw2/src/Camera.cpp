@@ -1,7 +1,12 @@
 #include "Camera.h"
+#include "Helpers.h"
+
+#include <cstdlib>
 #include <iomanip>
 #include <iostream>
 #include <string>
+
+extern Scene *scene;
 
 Camera::Camera() {}
 
@@ -60,4 +65,71 @@ std::ostream &operator<<(std::ostream &os, const Camera &c)
        << " fileName: " << c.outputFileName;
 
     return os;
+}
+
+Matrix4 Camera::getTransformationMatrix() const {
+    Matrix4 mat = {
+        {u.x, u.y, u.z, -(u.x * pos.x + u.y * pos.y + u.z * pos.z)},
+        {v.x, v.y, v.z, -(v.x * pos.x + v.y * pos.y + v.z * pos.z)},
+        {w.x, w.y, w.z, -(w.x * pos.x + w.y * pos.y + w.z * pos.z)},
+        {0f, 0f, 0f, 1f}
+    }
+
+    return mat;
+}
+
+Matrix4 Camera::getOrtographicMatrix() const {
+    Matrix4 mat = {
+        {2f/(right - left), 0f, 0f, -(right + left)/(right - left)},
+        {0f, 2f/(top -bottom), 0f, -(top + bottom)/(top - bottom)},
+        {0f, 0f, -2f/(far - near), -(far + near)/(far - near)},
+        {0f, 0f, 0f, 1f}
+    }
+
+    return mat;
+}
+
+Matrix4 Camera::getPerspective2OrtographicMatrix() const {
+    Matrix4 mat = {
+        {near, 0f, 0f, 0f},
+        {0f, near, 0f, 0f},
+        {0f, 0f, far + near, far * near},
+        {0f, 0f, -1f, 0f}
+    }
+
+    return mat;
+}
+
+Matrix4 Camera::getPerspectiveProjectionMatrix() const {
+    return multiplyMatrixWithMatrix(
+        getOrtographicMatrix(),
+        getPerspective2OrtographicMatrix()
+    );
+}
+
+Matrix4 Camera::getViewportMatrix() const {
+    Matrix4 mat = {
+        {horRes/2f, 0f, 0f, (horRes - 1f)/2f},
+        {0f, verRes/2f, 0f, (verRes - 1f)/2f},
+        {0f, 0f, .5f, .5f}
+    };
+
+    return mat;
+}
+
+Matrix4 Camera::getViewingMatrix() const {
+    if (scene->projectionType == 0) {
+        return multiplyMatrixwithMatrix(
+            getOrtographicMatrix(),
+            getTransformationMatrix()
+        );
+    } else if (scene->projectionType == 1) {
+        return multiplyMatrixwithMatrix(
+            getPerspectiveProjectionMatrix(),
+            getTransformationMatrix()
+        );
+    } else {
+        std::cerr << "Invalid projection type supplied.\n";
+        std::exit(1);
+    }
 }
