@@ -9,7 +9,8 @@ class Rotation
 {
   public:
     int rotationId;
-    double angle, ux, uy, uz;
+    double angle;
+    Vec3f u;
 
     Matrix4 getMatrix() const;
 
