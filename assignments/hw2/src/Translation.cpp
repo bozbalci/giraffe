@@ -1,4 +1,6 @@
 #include "Translation.h"
+#include "Matrix4.h"
+
 #include <iomanip>
 #include <iostream>
 
@@ -16,6 +18,12 @@ Translation::Translation(int translationId, double tx, double ty, double tz)
     this->tx = tx;
     this->ty = ty;
     this->tz = tz;
+}
+
+Matrix4 Translation::getMatrix() const
+{
+    double mat[4][4] = {{1, 0, 0, tx}, {0, 1, 0, ty}, {0, 0, 1, tz}, {0, 0, 0, 1}};
+    return mat;
 }
 
 std::ostream &operator<<(std::ostream &os, const Translation &t)
