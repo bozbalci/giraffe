@@ -54,7 +54,7 @@ void computeModelingTransform(Model &model)
 
 void Scene::forwardRenderingPipeline(Camera *camera)
 {
-    initializeImage(this);
+    initializeImage(camera);
 
     Matrix4 viewingMatrix = camera->getViewingMatrix();
 
@@ -64,26 +64,26 @@ void Scene::forwardRenderingPipeline(Camera *camera)
 
         Matrix4 transform = multiplyMatrixWithMatrix(
             viewingMatrix,
-            model.compositeTransform
+            *model->compositeTransform
         );
 
         for (auto &triangle : model->triangles) {
-            Vec3 vertex1_v3 = scene->vertices[triangle.vertexIds[0] - 1];
-            Vec3 vertex2_v3 = scene->vertices[triangle.vertexIds[1] - 1];
-            Vec3 vertex3_v3 = scene->vertices[triangle.vertexIds[2] - 1];
+            Vec3 vertex1_v3 = *scene->vertices[triangle.vertexIds[0] - 1];
+            Vec3 vertex2_v3 = *scene->vertices[triangle.vertexIds[1] - 1];
+            Vec3 vertex3_v3 = *scene->vertices[triangle.vertexIds[2] - 1];
 
-            Vec4 vertex1 = Vec4(vertex1_v3->x,
-                                vertex1_v3->y,
-                                vertex1_v3->z,
-                                0.);
-            Vec4 vertex2 = Vec4(vertex2_v3->x,
-                                vertex2_v3->y,
-                                vertex2_v3->z,
-                                0.);
-            Vec4 vertex3 = Vec4(vertex3_v3->x,
-                                vertex3_v3->y,
-                                vertex3_v3->z,
-                                0.);
+            Vec4 vertex1 = Vec4(vertex1_v3.x,
+                                vertex1_v3.y,
+                                vertex1_v3.z,
+                                1., 0.);
+            Vec4 vertex2 = Vec4(vertex2_v3.x,
+                                vertex2_v3.y,
+                                vertex2_v3.z,
+                                1., 0.);
+            Vec4 vertex3 = Vec4(vertex3_v3.x,
+                                vertex3_v3.y,
+                                vertex3_v3.z,
+                                1., 0.);
 
             Vec4 vertex1_transformed = multiplyMatrixWithVec4(transform, vertex1);
             Vec4 vertex2_transformed = multiplyMatrixWithVec4(transform, vertex2);
@@ -95,7 +95,7 @@ void Scene::forwardRenderingPipeline(Camera *camera)
         }
     }
 
-    writeImageToPPMFile(this);
+    writeImageToPPMFile(camera);
     convertPPMToPNG(camera->outputFileName, /* osType = */ 1);
 }
 
