@@ -85,13 +85,36 @@ void Scene::forwardRenderingPipeline(Camera *camera)
                                 vertex3_v3.z,
                                 1., 0.);
 
-            Vec4 vertex1_transformed = multiplyMatrixWithVec4(transform, vertex1);
-            Vec4 vertex2_transformed = multiplyMatrixWithVec4(transform, vertex2);
-            Vec4 vertex3_transformed = multiplyMatrixWithVec4(transform, vertex3);
+            vertex1 = multiplyMatrixWithVec4(transform, vertex1);
+            vertex2 = multiplyMatrixWithVec4(transform, vertex2);
+            vertex3 = multiplyMatrixWithVec4(transform, vertex3);
 
-            model->transformedVertices.push_back(vertex1_transformed);
-            model->transformedVertices.push_back(vertex2_transformed);
-            model->transformedVertices.push_back(vertex3_transformed);
+            model->transformedVertices.push_back(vertex1);
+            model->transformedVertices.push_back(vertex2);
+            model->transformedVertices.push_back(vertex3);
+
+            auto y = vertex1.y;
+            auto y0 = vertex1.y;
+            auto y1 = vertex2.y;
+            auto x0 = vertex1.x;
+            auto x1 = vertex2.x;
+            auto a = y0 - y1;
+            auto b = x1 - x0;
+            auto d = a + 0.5*b;
+            // TODO: Handle slope > 1 case
+            if ((y1 - y0) / (x1 - x0) > 1) {
+                continue;
+            }
+
+            for (auto x = x0; x < x1 && x < image.size(); ++x) {
+                image[x][y] = Color(0, 255, 0);
+                if (d < 0) {
+                    ++y;
+                    d += a + b;
+                } else {
+                    d += a;
+                }
+            }
         }
     }
 
