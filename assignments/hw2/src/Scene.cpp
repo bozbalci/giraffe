@@ -101,12 +101,28 @@ void Scene::forwardRenderingPipeline(Camera *camera)
             auto a = y0 - y1;
             auto b = x1 - x0;
             auto d = a + 0.5*b;
+
             // TODO: Handle slope > 1 case
             if ((y1 - y0) / (x1 - x0) > 1) {
                 continue;
             }
-
-            for (auto x = x0; x < x1 && x < image.size(); ++x) {
+            // TODO: Implement proper clipping
+            if (x0 < 0) {
+                if (x1 < 0) {
+                    continue;
+                }
+                y0 += (y1 - y0)/(x1 - x0)*(-x0);
+                x0 = 0;
+            }
+            if (y0 < 0) {
+                if (y1 < 0) {
+                    continue;
+                }
+                x0 += (x1 - x0)/(y1 - y0)*(-y0);
+                y0 = 0;
+            }
+            // TODO: Unfuck this mess
+            for (auto x = x0; x < x1 && x < image.size() && y < image[0].size(); ++x) {
                 image[x][y] = Color(0, 255, 0);
                 if (d < 0) {
                     ++y;
