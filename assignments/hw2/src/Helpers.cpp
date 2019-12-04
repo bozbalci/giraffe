@@ -193,3 +193,27 @@ Vec4 multiplyMatrixWithVec4(Matrix4 m, Vec4 v)
 
     return Vec4(values[0], values[1], values[2], values[3], v.colorId);
 }
+
+bool line_visible(double den, double num, double &t_e, double &t_l)
+{
+    if (den > EPSILON) {
+        auto t = num / den;
+        if (t > t_l) {
+            return false;
+        }
+        if (t > t_e) {
+            t_e = t;
+        }
+    } else if (den < -EPSILON) {
+        auto t = num / den;
+        if (t < t_e) {
+            return false;
+        }
+        if (t < t_l) {
+            t_l = t;
+        }
+    } else if (num > EPSILON) {
+        return false;
+    }
+    return true;
+}

@@ -95,6 +95,42 @@ void Scene::forwardRenderingPipeline(Camera *camera)
         }
     }
 
+    for (auto &model : scene->models) {
+        auto &vertices = model->transformedVertices;
+        for (size_t i = 0; i < vertices.size() - 3; i += 3) {
+            auto &a = vertices[i];
+            auto &b = vertices[i + 1];
+            auto &c = vertices[i + 2];
+
+            {
+                auto t_e = 0.0, t_l = 1.0;
+                auto visible = false;
+                auto d_x = b.x - a.x;
+                auto d_y = b.y - a.y;
+                auto d_z = b.z - a.z;
+
+                if (line_visible(d_x, -1 - a.x, t_e, t_l)) {
+                if (line_visible(-d_x, a.x - 1, t_e, t_l)) {
+                if (line_visible(d_y, -1 - a.y, t_e, t_l)) {
+                if (line_visible(-d_y, a.y - 1, t_e, t_l)) {
+                if (line_visible(d_z, -1 - a.z, t_e, t_l)) {
+                if (line_visible(-d_z, a.z - 1, t_e, t_l)) {
+                    visible = true;
+                    if (t_l < 1) {
+                        b.x = a.x + d_x*t_l;
+                        b.y = a.y + d_y*t_l;
+                        b.z = a.z + d_z*t_l;
+                    }
+                    if (t_e) {
+                        a.x = b.x + d_x*t_e;
+                        a.y = b.y + d_y*t_e;
+                        a.z = b.z + d_z*t_e;
+                    }
+                }}}}}}
+            }
+        }
+    }
+
     writeImageToPPMFile(camera);
     convertPPMToPNG(camera->outputFileName, /* osType = */ 1);
 }

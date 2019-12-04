@@ -76,4 +76,6 @@ Matrix4 multiplyMatrixWithMatrix(Matrix4 m1, Matrix4 m2);
  */
 Vec4 multiplyMatrixWithVec4(Matrix4 m, Vec4 v);
 
+bool line_visible(double den, double num, double &t_e, double &t_l);
+
 #endif
