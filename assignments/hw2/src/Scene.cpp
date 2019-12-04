@@ -117,20 +117,20 @@ Scene::Scene(const char *xmlPath)
 
     // read culling
     pElement = pRoot->FirstChildElement("Culling");
-    if (pElement != NULL)
+    if (pElement != nullptr)
         pElement->QueryBoolText(&cullingEnabled);
 
     // read projection type
     pElement = pRoot->FirstChildElement("ProjectionType");
-    if (pElement != NULL)
+    if (pElement != nullptr)
         pElement->QueryIntText(&projectionType);
 
     // read cameras
     pElement = pRoot->FirstChildElement("Cameras");
     XMLElement *pCamera = pElement->FirstChildElement("Camera");
     XMLElement *camElement;
-    while (pCamera != NULL) {
-        Camera *cam = new Camera();
+    while (pCamera != nullptr) {
+        auto *cam = new Camera();
 
         pCamera->QueryIntAttribute("id", &cam->cameraId);
 
@@ -174,9 +174,9 @@ Scene::Scene(const char *xmlPath)
     XMLElement *pVertex = pElement->FirstChildElement("Vertex");
     int vertexId = 1;
 
-    while (pVertex != NULL) {
+    while (pVertex != nullptr) {
         Vec3 *vertex = new Vec3();
-        Color *color = new Color();
+        auto *color = new Color();
 
         vertex->colorId = vertexId;
 
@@ -197,8 +197,8 @@ Scene::Scene(const char *xmlPath)
     // read translations
     pElement = pRoot->FirstChildElement("Translations");
     XMLElement *pTranslation = pElement->FirstChildElement("Translation");
-    while (pTranslation != NULL) {
-        Translation *translation = new Translation();
+    while (pTranslation != nullptr) {
+        auto *translation = new Translation();
 
         pTranslation->QueryIntAttribute("id", &translation->translationId);
 
@@ -214,8 +214,8 @@ Scene::Scene(const char *xmlPath)
     // read scalings
     pElement = pRoot->FirstChildElement("Scalings");
     XMLElement *pScaling = pElement->FirstChildElement("Scaling");
-    while (pScaling != NULL) {
-        Scaling *scaling = new Scaling();
+    while (pScaling != nullptr) {
+        auto *scaling = new Scaling();
 
         pScaling->QueryIntAttribute("id", &scaling->scalingId);
         str = pScaling->Attribute("value");
@@ -230,7 +230,7 @@ Scene::Scene(const char *xmlPath)
     pElement = pRoot->FirstChildElement("Rotations");
     XMLElement *pRotation = pElement->FirstChildElement("Rotation");
     while (pRotation != NULL) {
-        Rotation *rotation = new Rotation();
+        auto *rotation = new Rotation();
 
         // GIRAFFE BEGIN
         double angle, ux, uy, uz;
@@ -251,8 +251,8 @@ Scene::Scene(const char *xmlPath)
 
     XMLElement *pModel = pElement->FirstChildElement("Model");
     XMLElement *modelElement;
-    while (pModel != NULL) {
-        Model *model = new Model();
+    while (pModel != nullptr) {
+        auto *model = new Model();
 
         pModel->QueryIntAttribute("id", &model->modelId);
         pModel->QueryIntAttribute("type", &model->type);
@@ -266,7 +266,7 @@ Scene::Scene(const char *xmlPath)
         pTransformations->QueryIntAttribute("count",
                                             &model->numberOfTransformations);
 
-        while (pTransformation != NULL) {
+        while (pTransformation != nullptr) {
             char transformationType;
             int transformationId;
 
@@ -286,13 +286,13 @@ Scene::Scene(const char *xmlPath)
 
         pTriangles->QueryIntAttribute("count", &model->numberOfTriangles);
 
-        while (pTriangle != NULL) {
+        while (pTriangle != nullptr) {
             int v1, v2, v3;
 
             str = pTriangle->GetText();
             sscanf(str, "%d %d %d", &v1, &v2, &v3);
 
-            model->triangles.push_back(Triangle(v1, v2, v3));
+            model->triangles.emplace_back(v1, v2, v3);
 
             pTriangle = pTriangle->NextSiblingElement("Triangle");
         }
@@ -309,6 +309,7 @@ void Scene::initializeImage(Camera *camera)
         for (int i = 0; i < camera->horRes; i++) {
             std::vector<Color> rowOfColors;
 
+            rowOfColors.reserve(camera->verRes);
             for (int j = 0; j < camera->verRes; j++) {
                 rowOfColors.push_back(this->backgroundColor);
             }
@@ -360,11 +361,11 @@ void Scene::writeImageToPPMFile(Camera *camera)
     fout.close();
 }
 
-void Scene::convertPPMToPNG(std::string ppmFileName, int osType)
+void Scene::convertPPMToPNG(const std::string& ppmFileName, int osType)
 {
     std::string command;
 
-    // call command on Ubuntu. OK boss
+    // call command on Ubuntu
     if (osType == 1) {
         command = "convert " + ppmFileName + " " + ppmFileName + ".png";
         system(command.c_str());
