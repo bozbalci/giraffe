@@ -121,5 +121,8 @@ Temporary Items
 # IntelliJ IDEA
 /.idea
 
+### Cmake ###
+cmake-build-debug
+
 raytracer
 rasterizer
