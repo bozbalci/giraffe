@@ -1,6 +1,7 @@
 #ifndef __MODEL_H__
 #define __MODEL_H__
 
+#include "Color.h"
 #include "Vec4.h"
 #include "Matrix4.h"
 #include "Triangle.h"
@@ -22,6 +23,7 @@ class Model
 
     std::optional<Matrix4> compositeTransform;
     std::vector<Vec4> transformedVertices;
+    std::vector<Color> transformedColors;
 
     void computeModelingTransform();
 

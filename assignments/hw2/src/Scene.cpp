@@ -96,18 +96,31 @@ void Scene::forwardRenderingPipeline(Camera *camera)
     }
 
     for (auto &model : scene->models) {
+        auto &colors = model->transformedColors;
         auto &vertices = model->transformedVertices;
+        colors.resize(vertices.size());
         for (size_t i = 0; i < vertices.size() - 3; i += 3) {
-            auto &a = vertices[i];
-            auto &b = vertices[i + 1];
-            auto &c = vertices[i + 2];
+            auto &triangle = model->triangles[i / 3];
+            auto color_a = *colorsOfVertices[triangle.getFirstVertexId() - 1];
+            auto color_b = *colorsOfVertices[triangle.getSecondVertexId() - 1];
+            auto color_c = *colorsOfVertices[triangle.getThirdVertexId() - 1];
 
+            colors[i] = color_a;
+            colors[i + 1] = color_b;
+            colors[i + 2] = color_c;
+            
             {
+                auto &a = vertices[i];
+                auto &b = vertices[i + 1];
+
                 auto t_e = 0.0, t_l = 1.0;
                 auto visible = false;
                 auto d_x = b.x - a.x;
                 auto d_y = b.y - a.y;
                 auto d_z = b.z - a.z;
+                auto d_c_r = color_b.r - color_a.r;
+                auto d_c_g = color_b.g - color_a.g;
+                auto d_c_b = color_b.b - color_a.b;
 
                 if (line_visible(d_x, -1 - a.x, t_e, t_l)) {
                 if (line_visible(-d_x, a.x - 1, t_e, t_l)) {
@@ -120,11 +133,101 @@ void Scene::forwardRenderingPipeline(Camera *camera)
                         b.x = a.x + d_x*t_l;
                         b.y = a.y + d_y*t_l;
                         b.z = a.z + d_z*t_l;
+
+                        colors[i + 1].r = color_b.r + d_c_r*t_l;
+                        colors[i + 1].g = color_b.g + d_c_g*t_l;
+                        colors[i + 1].b = color_b.b + d_c_b*t_l;
                     }
-                    if (t_e) {
+                    if (t_e > 0) {
                         a.x = b.x + d_x*t_e;
                         a.y = b.y + d_y*t_e;
                         a.z = b.z + d_z*t_e;
+
+                        colors[i].r = color_a.r + d_c_r*t_e;
+                        colors[i].g = color_a.g + d_c_g*t_e;
+                        colors[i].b = color_a.b + d_c_b*t_e;
+                    }
+                }}}}}}
+            }
+
+            {
+                auto &a = vertices[i + 1];
+                auto &b = vertices[i + 2];
+
+                auto t_e = 0.0, t_l = 1.0;
+                auto visible = false;
+                auto d_x = b.x - a.x;
+                auto d_y = b.y - a.y;
+                auto d_z = b.z - a.z;
+                auto d_c_r = color_b.r - color_a.r;
+                auto d_c_g = color_b.g - color_a.g;
+                auto d_c_b = color_b.b - color_a.b;
+
+                if (line_visible(d_x, -1 - a.x, t_e, t_l)) {
+                if (line_visible(-d_x, a.x - 1, t_e, t_l)) {
+                if (line_visible(d_y, -1 - a.y, t_e, t_l)) {
+                if (line_visible(-d_y, a.y - 1, t_e, t_l)) {
+                if (line_visible(d_z, -1 - a.z, t_e, t_l)) {
+                if (line_visible(-d_z, a.z - 1, t_e, t_l)) {
+                    visible = true;
+                    if (t_l < 1) {
+                        b.x = a.x + d_x*t_l;
+                        b.y = a.y + d_y*t_l;
+                        b.z = a.z + d_z*t_l;
+
+                        colors[i + 2].r = color_b.r + d_c_r*t_l;
+                        colors[i + 2].g = color_b.g + d_c_g*t_l;
+                        colors[i + 2].b = color_b.b + d_c_b*t_l;
+                    }
+                    if (t_e > 0) {
+                        a.x = b.x + d_x*t_e;
+                        a.y = b.y + d_y*t_e;
+                        a.z = b.z + d_z*t_e;
+
+                        colors[i + 1].r = color_a.r + d_c_r*t_e;
+                        colors[i + 1].g = color_a.g + d_c_g*t_e;
+                        colors[i + 1].b = color_a.b + d_c_b*t_e;
+                    }
+                }}}}}}
+            }
+
+            {
+                auto &a = vertices[i + 2];
+                auto &b = vertices[i + 3];
+
+                auto t_e = 0.0, t_l = 1.0;
+                auto visible = false;
+                auto d_x = b.x - a.x;
+                auto d_y = b.y - a.y;
+                auto d_z = b.z - a.z;
+                auto d_c_r = color_b.r - color_a.r;
+                auto d_c_g = color_b.g - color_a.g;
+                auto d_c_b = color_b.b - color_a.b;
+
+                if (line_visible(d_x, -1 - a.x, t_e, t_l)) {
+                if (line_visible(-d_x, a.x - 1, t_e, t_l)) {
+                if (line_visible(d_y, -1 - a.y, t_e, t_l)) {
+                if (line_visible(-d_y, a.y - 1, t_e, t_l)) {
+                if (line_visible(d_z, -1 - a.z, t_e, t_l)) {
+                if (line_visible(-d_z, a.z - 1, t_e, t_l)) {
+                    visible = true;
+                    if (t_l < 1) {
+                        b.x = a.x + d_x*t_l;
+                        b.y = a.y + d_y*t_l;
+                        b.z = a.z + d_z*t_l;
+
+                        colors[i + 3].r = color_b.r + d_c_r*t_l;
+                        colors[i + 3].g = color_b.g + d_c_g*t_l;
+                        colors[i + 3].b = color_b.b + d_c_b*t_l;
+                    }
+                    if (t_e > 0) {
+                        a.x = b.x + d_x*t_e;
+                        a.y = b.y + d_y*t_e;
+                        a.z = b.z + d_z*t_e;
+
+                        colors[i + 2].r = color_a.r + d_c_r*t_e;
+                        colors[i + 2].g = color_a.g + d_c_g*t_e;
+                        colors[i + 2].b = color_a.b + d_c_b*t_e;
                     }
                 }}}}}}
             }
