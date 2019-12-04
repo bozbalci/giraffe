@@ -41,6 +41,17 @@ class Scene
     static int makeBetweenZeroAnd255(double value);
     void writeImageToPPMFile(Camera *camera);
     static void convertPPMToPNG(const std::string& ppmFileName, int osType);
+
+  private:
+    void drawPixel(int i, int j, const Color& c);
+    void drawTriangle(const Vec3& a, const Vec3& b, const Vec3& c);
+    void drawLine(const Vec3& from, const Vec3& to);
+    void drawLineVertical(const Vec3& from, const Vec3& to);
+    void drawLineHorizontal(const Vec3& from, const Vec3& to);
+    void drawLineQuad1(const Vec3& from, const Vec3& to);
+    void drawLineQuad2(const Vec3& from, const Vec3& to);
+    void drawLineQuad7(const Vec3& from, const Vec3& to);
+    void drawLineQuad8(const Vec3& from, const Vec3& to);
 };
 
 #endif

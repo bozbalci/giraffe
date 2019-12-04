@@ -155,7 +155,7 @@ Matrix4 getIdentityMatrix()
  * Multiply matrices m1 (Matrix4) and m2 (Matrix4) and return the result matrix
  * r (Matrix4).
  */
-Matrix4 multiplyMatrixWithMatrix(Matrix4 m1, Matrix4 m2)
+Matrix4 multiplyMatrixWithMatrix(const Matrix4& m1, const Matrix4& m2)
 {
     Matrix4 result;
     double total;
@@ -178,7 +178,7 @@ Matrix4 multiplyMatrixWithMatrix(Matrix4 m1, Matrix4 m2)
  * Multiply matrix m (Matrix4) with vector v (vec4) and store the result in
  * vector r (vec4).
  */
-Vec4 multiplyMatrixWithVec4(Matrix4 m, Vec4 v)
+Vec4 multiplyMatrixWithVec4(const Matrix4& m, Vec4 v)
 {
     double values[4];
     double total;

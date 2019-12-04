@@ -75,15 +75,18 @@ void Scene::forwardRenderingPipeline(Camera *camera)
             Vec4 vertex1 = Vec4(vertex1_v3.x,
                                 vertex1_v3.y,
                                 vertex1_v3.z,
-                                1., 0.);
+                                1.,
+                                vertex1_v3.colorId);
             Vec4 vertex2 = Vec4(vertex2_v3.x,
                                 vertex2_v3.y,
                                 vertex2_v3.z,
-                                1., 0.);
+                                1.,
+                                vertex2_v3.colorId);
             Vec4 vertex3 = Vec4(vertex3_v3.x,
                                 vertex3_v3.y,
                                 vertex3_v3.z,
-                                1., 0.);
+                                1.,
+                                vertex3_v3.colorId);
 
             Vec4 vertex1_transformed = multiplyMatrixWithVec4(transform, vertex1);
             Vec4 vertex2_transformed = multiplyMatrixWithVec4(transform, vertex2);
@@ -92,6 +95,42 @@ void Scene::forwardRenderingPipeline(Camera *camera)
             model->transformedVertices.push_back(vertex1_transformed);
             model->transformedVertices.push_back(vertex2_transformed);
             model->transformedVertices.push_back(vertex3_transformed);
+        }
+
+        // TODO CLIP
+
+        auto viewport = camera->getViewportMatrix();
+
+        for (size_t i = 0; i <= model->transformedVertices.size() - 3; i += 3) {
+            auto v1_v4 = multiplyMatrixWithVec4(viewport, model->transformedVertices[i+0]);
+            auto v2_v4 = multiplyMatrixWithVec4(viewport, model->transformedVertices[i+1]);
+            auto v3_v4 = multiplyMatrixWithVec4(viewport, model->transformedVertices[i+2]);
+
+            if (model->type == 1) { // Solid
+                drawTriangle(
+                    {v1_v4.x / v1_v4.t, v1_v4.y / v1_v4.t, v1_v4.z / v1_v4.t, v1_v4.colorId},
+                    {v2_v4.x / v2_v4.t, v2_v4.y / v2_v4.t, v2_v4.z / v2_v4.t, v2_v4.colorId},
+                    {v3_v4.x / v2_v4.t, v3_v4.y / v2_v4.t, v3_v4.z / v2_v4.t, v3_v4.colorId}
+                );
+            } else if (model->type == 0) { // Wireframe
+                drawLine(
+                        {v1_v4.x / v1_v4.t, v1_v4.y / v1_v4.t, v1_v4.z / v1_v4.t, v1_v4.colorId},
+                        {v2_v4.x / v2_v4.t, v2_v4.y / v2_v4.t, v2_v4.z / v2_v4.t, v2_v4.colorId}
+                );
+
+                drawLine(
+                        {v2_v4.x / v2_v4.t, v2_v4.y / v2_v4.t, v2_v4.z / v2_v4.t, v2_v4.colorId},
+                        {v3_v4.x / v2_v4.t, v3_v4.y / v2_v4.t, v3_v4.z / v2_v4.t, v3_v4.colorId}
+                );
+
+                drawLine(
+                        {v3_v4.x / v2_v4.t, v3_v4.y / v2_v4.t, v3_v4.z / v2_v4.t, v3_v4.colorId},
+                        {v1_v4.x / v1_v4.t, v1_v4.y / v1_v4.t, v1_v4.z / v1_v4.t, v1_v4.colorId}
+                );
+            } else {
+                std::cerr << "Invalid model type specified\n";
+                std::exit(1);
+            }
         }
     }
 
@@ -229,7 +268,7 @@ Scene::Scene(const char *xmlPath)
     // read rotations
     pElement = pRoot->FirstChildElement("Rotations");
     XMLElement *pRotation = pElement->FirstChildElement("Rotation");
-    while (pRotation != NULL) {
+    while (pRotation != nullptr) {
         auto *rotation = new Rotation();
 
         // GIRAFFE BEGIN
@@ -379,4 +418,302 @@ void Scene::convertPPMToPNG(const std::string& ppmFileName, int osType)
 
     // default action - don't do conversion
     else {}
+}
+
+
+double fab(int x_a, int y_a, int x_b, int y_b, int x, int y)
+{
+   return (y_a - y_b) * x + (x_b - x_a) * y + (x_a * y_b) - (x_b * y_a);
+}
+
+void Scene::drawPixel(int i, int j, const Color& c) {
+    if (i < 0 || j < 0 || i >= image.size() || j >= image[0].size())
+        return;
+
+    image[i][j] = c;
+}
+
+void Scene::drawTriangle(const Vec3 &a, const Vec3 &b, const Vec3 &c) {
+    int
+        x_a = static_cast<int>(a.x),
+        x_b = static_cast<int>(b.x),
+        x_c = static_cast<int>(c.x),
+        x_min = std::min(std::min(x_a, x_b), x_c),
+        x_max = std::max(std::max(x_a, x_b), x_c),
+        y_a = static_cast<int>(a.y),
+        y_b = static_cast<int>(b.y),
+        y_c = static_cast<int>(c.y),
+        y_min = std::min(std::min(y_a, y_b), y_c),
+        y_max = std::max(std::max(y_a, y_b), y_c)
+    ;
+
+    double
+        alpha,
+        beta,
+        gamma,
+        f_alpha = fab(x_a, y_a, x_b, y_b, x_c, y_c),
+        f_beta = fab(x_c, y_c, x_a, y_a, x_b, y_b),
+        f_gamma = fab(x_a, y_a, x_b, y_b, x_c, y_c)
+    ;
+
+    Color color = {0, 0, 0};
+
+    for (int y = y_min; y < y_max; ++y) {
+        for (int x = x_min; x < x_max; ++x) {
+            double
+                f_bc_xy = fab(x_b, y_b, x_c, y_c, x, y),
+                f_ca_xy = fab(x_c, y_c, x_a, y_a, x, y),
+                f_ab_xy = fab(x_a, y_a, x_b, y_b, x, y)
+            ;
+
+            alpha = f_bc_xy / f_alpha;
+            beta = f_ca_xy / f_beta;
+            gamma = f_ab_xy / f_gamma;
+
+            if (alpha >= 0 && beta >= 0 && gamma >= 0) {
+                Color color_a = *colorsOfVertices[a.colorId - 1],
+                      color_b = *colorsOfVertices[b.colorId - 1],
+                      color_c = *colorsOfVertices[c.colorId - 1];
+
+                color = {
+                    (alpha * color_a.r + beta * color_b.r + gamma * color_c.r),
+                    (alpha * color_a.g + beta * color_b.g + gamma * color_c.g),
+                    (alpha * color_a.b + beta * color_b.b + gamma * color_c.b)
+                };
+
+                drawPixel(x, y, color);
+            }
+        }
+    }
+}
+
+void Scene::drawLine(const Vec3& from, const Vec3& to) {
+    int x_from = static_cast<int>(from.x),
+        y_from = static_cast<int>(from.y),
+        x_to = static_cast<int>(to.x),
+        y_to = static_cast<int>(to.y);
+
+    if (x_from == x_to) {
+        return drawLineVertical(from, to);
+    } else if (y_from == y_to) {
+        return drawLineHorizontal(from, to);
+    } else {
+        auto slope = static_cast<double>(y_to - y_from) / (x_to - x_from);
+
+        if (slope < -1) {
+            return drawLineQuad7(from, to);
+        } else if (slope < 0) {
+            return drawLineQuad8(from, to);
+        } else if (slope < 1) {
+            return drawLineQuad1(from, to);
+        } else {
+            return drawLineQuad2(from, to);
+        }
+    }
+}
+
+void Scene::drawLineVertical(const Vec3& from, const Vec3& to) {
+    int y_from = static_cast<int>(from.y),
+        y_to = static_cast<int>(to.y),
+        x = static_cast<int>(from.x);
+
+    if (y_from > y_to)
+        return drawLineVertical(to, from);
+
+    Color color_from, color_to, color_current, color_diff;
+    color_from = *colorsOfVertices[from.colorId - 1];
+    color_current = color_from;
+    color_to = *colorsOfVertices[to.colorId - 1];
+    color_diff = {
+            (color_to.r - color_from.r) / (y_to - y_from),
+            (color_to.g - color_from.g) / (y_to - y_from),
+            (color_to.b - color_from.b) / (y_to - y_from)
+    };
+
+    for (int y_current = y_from; y_current < y_to; ++y_current) {
+        drawPixel(x, y_current, color_current);
+
+        color_current.r += color_diff.r;
+        color_current.g += color_diff.g;
+        color_current.b += color_diff.b;
+    }
+}
+
+void Scene::drawLineHorizontal(const Vec3& from, const Vec3& to) {
+    int x_from = static_cast<int>(from.x),
+        x_to = static_cast<int>(to.x),
+        y = static_cast<int>(from.y);
+
+    if (x_from > x_to)
+        return drawLineHorizontal(to, from);
+
+    Color color_from, color_to, color_current, color_diff;
+    color_from = *colorsOfVertices[from.colorId - 1];
+    color_current = color_from;
+    color_to = *colorsOfVertices[to.colorId - 1];
+    color_diff = {
+            (color_to.r - color_from.r) / (x_to - x_from),
+            (color_to.g - color_from.g) / (x_to - x_from),
+            (color_to.b - color_from.b) / (x_to - x_from)
+    };
+
+    for (int x_current = x_from; x_current < x_to; ++x_current) {
+        drawPixel(x_current, y, color_current);
+
+        color_current.r += color_diff.r;
+        color_current.g += color_diff.g;
+        color_current.b += color_diff.b;
+    }
+}
+
+void Scene::drawLineQuad1(const Vec3& from, const Vec3& to) {
+    int x_from = static_cast<int>(from.x),
+        y_from = static_cast<int>(from.y),
+        x_to = static_cast<int>(to.x),
+        y_to = static_cast<int>(to.y);
+
+    if (x_from > x_to)
+        return drawLineQuad1(to, from);
+
+    Color color_from, color_to, color_current, color_diff;
+    color_from = *colorsOfVertices[from.colorId - 1];
+    color_current = color_from;
+    color_to = *colorsOfVertices[to.colorId - 1];
+    color_diff = {
+        (color_to.r - color_from.r) / (x_to - x_from),
+        (color_to.g - color_from.g) / (x_to - x_from),
+        (color_to.b - color_from.b) / (x_to - x_from)
+    };
+
+    int y_current = y_from;
+    double test = (y_from - y_to) + 0.5 * (x_to - x_from);
+
+    for (int x_current = x_from; x_current < x_to; ++x_current) {
+        drawPixel(x_current, y_current, color_current);
+
+        if (test < 0) {
+            y_current += 1;
+            test += (y_from - y_to) + (x_to - x_from);
+        } else {
+            test += (y_from - y_to);
+        }
+
+        color_current.r += color_diff.r;
+        color_current.g += color_diff.g;
+        color_current.b += color_diff.b;
+    }
+}
+
+void Scene::drawLineQuad2(const Vec3& from, const Vec3& to) {
+    int x_from = static_cast<int>(from.x),
+            y_from = static_cast<int>(from.y),
+            x_to = static_cast<int>(to.x),
+            y_to = static_cast<int>(to.y);
+
+    if (x_from > x_to)
+        return drawLineQuad2(to, from);
+
+    Color color_from, color_to, color_current, color_diff;
+    color_from = *colorsOfVertices[from.colorId - 1];
+    color_current = color_from;
+    color_to = *colorsOfVertices[to.colorId - 1];
+    color_diff = {
+            (color_to.r - color_from.r) / (x_to - x_from),
+            (color_to.g - color_from.g) / (x_to - x_from),
+            (color_to.b - color_from.b) / (x_to - x_from)
+    };
+
+    int x_current = x_from;
+    double test = (x_from - x_to) + 0.5 * (y_to - y_from);
+
+    for (int y_current = y_from; y_current < y_to; ++y_current) {
+        drawPixel(x_current, y_current, color_current);
+
+        if (test < 0) {
+            x_current += 1;
+            test += (x_from - x_to) + (y_to - y_from);
+        } else {
+            test += (x_from - x_to);
+        }
+
+        color_current.r += color_diff.r;
+        color_current.g += color_diff.g;
+        color_current.b += color_diff.b;
+    }
+}
+
+void Scene::drawLineQuad7(const Vec3& from, const Vec3& to) {
+    int x_from = static_cast<int>(from.x),
+        y_from = static_cast<int>(from.y),
+        x_to = static_cast<int>(to.x),
+        y_to = static_cast<int>(to.y);
+
+    if (x_from > x_to)
+        return drawLineQuad7(to, from);
+
+    Color color_from, color_to, color_current, color_diff;
+    color_from = *colorsOfVertices[from.colorId - 1];
+    color_current = color_from;
+    color_to = *colorsOfVertices[to.colorId - 1];
+    color_diff = {
+            -(color_to.r - color_from.r) / (y_to - y_from),
+            -(color_to.g - color_from.g) / (y_to - y_from),
+            -(color_to.b - color_from.b) / (y_to - y_from)
+    };
+
+    int x_current = x_from;
+    double test = (x_from - x_to) + 0.5 * (y_to - y_from);
+
+    for (int y_current = y_from; y_current > y_to; --y_current) {
+        drawPixel(x_current, y_current, color_current);
+
+        if (test < 0) {
+            x_current += 1;
+            test += (x_from - x_to) + (y_to - y_from);
+        } else {
+            test += (x_from - x_to);
+        }
+
+        color_current.r += color_diff.r;
+        color_current.g += color_diff.g;
+        color_current.b += color_diff.b;
+    }
+}
+
+void Scene::drawLineQuad8(const Vec3& from, const Vec3& to) {
+    int x_from = static_cast<int>(from.x),
+        y_from = static_cast<int>(from.y),
+        x_to = static_cast<int>(to.x),
+        y_to = static_cast<int>(to.y);
+
+    if (x_from > x_to)
+        return drawLineQuad8(to, from);
+
+    Color color_from, color_to, color_current, color_diff;
+    color_from = *colorsOfVertices[from.colorId - 1];
+    color_current = color_from;
+    color_to = *colorsOfVertices[to.colorId - 1];
+    color_diff = {
+            (color_to.r - color_from.r) / (x_to - x_from),
+            (color_to.g - color_from.g) / (x_to - x_from),
+            (color_to.b - color_from.b) / (x_to - x_from)
+    };
+
+    int y_current = y_from;
+    double test = (y_from - y_to) + 0.5 * (x_to - x_from);
+
+    for (int x_current = x_from; x_current < x_to; ++x_current) {
+        drawPixel(x_current, y_current, color_current);
+
+        if (test < 0) {
+            y_current -= 1;
+            test += (y_from - y_to) + (x_to - x_from);
+        } else {
+            test += (y_from - y_to);
+        }
+
+        color_current.r += color_diff.r;
+        color_current.g += color_diff.g;
+        color_current.b += color_diff.b;
+    }
 }

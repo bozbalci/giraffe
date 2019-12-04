@@ -9,8 +9,6 @@
 
 extern Scene *scene;
 
-Camera::Camera() {}
-
 Camera::Camera(int cameraId, Vec3 pos, Vec3 gaze, Vec3 u, Vec3 v, Vec3 w,
                double left, double right, double bottom, double top,
                double near, double far, int horRes, int verRes,
