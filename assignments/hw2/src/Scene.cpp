@@ -619,9 +619,9 @@ void Scene::drawLineQuad2(const Vec3& from, const Vec3& to) {
     color_current = color_from;
     color_to = *colorsOfVertices[to.colorId - 1];
     color_diff = {
-            (color_to.r - color_from.r) / (x_to - x_from),
-            (color_to.g - color_from.g) / (x_to - x_from),
-            (color_to.b - color_from.b) / (x_to - x_from)
+            (color_to.r - color_from.r) / (y_to - y_from),
+            (color_to.g - color_from.g) / (y_to - y_from),
+            (color_to.b - color_from.b) / (y_to - y_from)
     };
 
     int x_current = x_from;
