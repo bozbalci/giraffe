@@ -143,7 +143,16 @@ void Scene::forwardRenderingPipeline(Camera *camera)
             }
         }
 
-        // TODO CLIP
+        // Clipping
+        for (size_t i = 0; i <= model->transformedVertices.size() - 3; i += 3) {
+            auto &v1 = model->transformedVertices[i+0];
+            auto &v2 = model->transformedVertices[i+1];
+            auto &v3 = model->transformedVertices[i+2];
+
+            clip(v1, v2);
+            clip(v2, v3);
+            clip(v3, v1);
+        }
 
         auto viewport = camera->getViewportMatrix();
 
@@ -760,4 +769,53 @@ void Scene::drawLineQuad8(const Vec3& from, const Vec3& to) {
         color_current.g += color_diff.g;
         color_current.b += color_diff.b;
     }
+}
+
+void Scene::clip(Vec4 &a, Vec4 &b) {
+    // Clips the line segment from a to b using the Liang-Barsky algorithm.
+    auto dx = b.x - a.x;
+    auto dy = b.y - a.y;
+    auto dz = b.z - a.z;
+
+    constexpr double
+            x_min = -1.0,
+            x_max = 1.0,
+            y_min = -1.0,
+            y_max = 1.0,
+            z_min = -1.0,
+            z_max = 1.0;
+
+    double t_e = 0, t_l = 1;
+
+    if (line_visible(dx, x_min - a.x, &t_e, &t_l)) {
+    if (line_visible(-dx, a.x - x_max, &t_e, &t_l)) {
+    if (line_visible(dy, y_min - a.y, &t_e, &t_l)) {
+    if (line_visible(-dy, a.y - y_max, &t_e, &t_l)) {
+    if (line_visible(dz, z_min - a.z, &t_e, &t_l)) {
+    if (line_visible(-dz, a.z - z_max, &t_e, &t_l)) {
+        if (t_l < 1) {
+            std::cerr << "Clipping...\n";
+            b.x = a.x + dx * t_l;
+            b.y = a.y + dy * t_l;
+            b.z = a.z + dy * t_l;
+        }
+        if (t_e > 0) {
+            std::cerr << "Clipping...\n";
+            a.x = a.x + dx * t_e;
+            a.y = a.y + dy * t_e;
+            a.z = a.z + dy * t_e;
+    }}}}}}}
+}
+
+bool Scene::line_visible(double den, double num, double *t_e, double *t_l) {
+    if (den > 0) {
+        auto t = num / den;
+        if (t > *t_l) return false;
+        if (t > *t_e) *t_e = t;
+    } else if (den < 0) {
+        auto t = num / den;
+        if (t < *t_e) return false;
+        if (t < *t_l) *t_l = t;
+    } else if (num > 0) return false;
+    return true;
 }

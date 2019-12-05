@@ -53,6 +53,9 @@ class Scene
     void drawLineQuad7(const Vec3& from, const Vec3& to);
     void drawLineQuad8(const Vec3& from, const Vec3& to);
 
+    static void clip(Vec4& a, Vec4& b);
+    static bool line_visible(double den, double num, double *t_e, double *t_l);
+
     int requestsOutsideDrawingArea;
 };
 
