@@ -663,14 +663,14 @@ void Scene::drawLineQuad7(const Vec3& from, const Vec3& to) {
     };
 
     int x_current = x_from;
-    double test = (x_from - x_to) + 0.5 * (y_to - y_from);
+    double test = (x_from - x_to) + 0.5 * (y_from - y_to);
 
     for (int y_current = y_from; y_current > y_to; --y_current) {
         drawPixel(x_current, y_current, color_current);
 
         if (test < 0) {
             x_current += 1;
-            test += (x_from - x_to) + (y_to - y_from);
+            test += (x_from - x_to) + (y_from - y_to);
         } else {
             test += (x_from - x_to);
         }
@@ -701,16 +701,16 @@ void Scene::drawLineQuad8(const Vec3& from, const Vec3& to) {
     };
 
     int y_current = y_from;
-    double test = (y_from - y_to) + 0.5 * (x_to - x_from);
+    double test = (y_to - y_from) + 0.5 * (x_to - x_from);
 
     for (int x_current = x_from; x_current < x_to; ++x_current) {
         drawPixel(x_current, y_current, color_current);
 
         if (test < 0) {
             y_current -= 1;
-            test += (y_from - y_to) + (x_to - x_from);
+            test += (y_to - y_from) + (x_to - x_from);
         } else {
-            test += (y_from - y_to);
+            test += (y_to - y_from);
         }
 
         color_current.r += color_diff.r;
