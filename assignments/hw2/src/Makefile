@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-std=c++17 -O3
+CXXFLAGS=-std=c++17 -O3 -flto
 
 SRC=$(wildcard *.cpp)
 HDR=$(wildcard *.h)
@@ -11,5 +11,11 @@ rasterizer: $(OBJ)
 %.o: %.cpp $(HDR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+test:
+	python3 tools/test_suite.py
+
 clean:
 	rm -f rasterizer *.o
+
+testclean:
+	rm -f *.ppm *.png NULL tests.json
