@@ -195,7 +195,7 @@ TS_ORTHOGRAPHIC = [
 ]
 
 # TEST_SUITE = TS_CLIPPING + TS_NO_CULLING + TS_CULLING + TS_ORTHOGRAPHIC
-TEST_SUITE = TS_NO_CULLING
+TEST_SUITE = TS_ORTHOGRAPHIC
 
 TEST_FAILURES = []
 TEST_PASSES = []
@@ -254,6 +254,9 @@ if __name__ == '__main__':
         thread.join()
     finished = True
     printer_thread.join()
+
+    TEST_PASSES.sort(key=lambda o: o['score'], reverse=True)
+    TEST_FAILURES.sort(key=lambda o: o['score'], reverse=True)
 
     with open(OUTPUT_FILENAME, 'w') as outfile:
         json.dump({'passes': TEST_PASSES, 'failures': TEST_FAILURES}, outfile, indent=4, sort_keys=True)
