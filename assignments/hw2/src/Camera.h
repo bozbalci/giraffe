@@ -3,6 +3,7 @@
 
 #include "Vec3.h"
 #include "Matrix4.h"
+#include "Color.h"
 
 #include <string>
 
@@ -22,7 +23,7 @@ class Camera
     int verRes;
     std::string outputFileName;
 
-    Camera();
+    explicit Camera() = default;
 
     Camera(int cameraId, Vec3 pos, Vec3 gaze, Vec3 u, Vec3 v, Vec3 w,
            double left, double right, double bottom, double top, double near,
@@ -32,12 +33,11 @@ class Camera
 
     friend std::ostream &operator<<(std::ostream &os, const Camera &c);
 
-    Matrix4 getTransformationMatrix() const;
-    Matrix4 getOrtographicMatrix() const;
-    Matrix4 getPerspective2OrtographicMatrix() const;
-    Matrix4 getPerspectiveProjectionMatrix() const;
-    Matrix4 getViewportMatrix() const;
-    Matrix4 getViewingMatrix() const;
+    [[nodiscard]] Matrix4 getTransformationMatrix() const;
+    [[nodiscard]] Matrix4 getOrtographicMatrix() const;
+    [[nodiscard]] Matrix4 getPerspectiveProjectionMatrix() const;
+    [[nodiscard]] Matrix4 getViewportMatrix() const;
+    [[nodiscard]] Matrix4 getViewingMatrix() const;
 };
 
 #endif

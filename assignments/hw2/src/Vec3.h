@@ -8,10 +8,9 @@ class Vec3
   public:
     double x, y, z;
 
-    // Some idiot forgot that this is not Vec4. Blame them, not us.
     int colorId;
 
-    Vec3();
+    explicit Vec3();
     Vec3(double x, double y, double z, int colorId);
     Vec3(const Vec3 &other);
 

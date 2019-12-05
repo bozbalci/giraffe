@@ -9,8 +9,6 @@
 
 extern Scene *scene;
 
-Camera::Camera() {}
-
 Camera::Camera(int cameraId, Vec3 pos, Vec3 gaze, Vec3 u, Vec3 v, Vec3 w,
                double left, double right, double bottom, double top,
                double near, double far, int horRes, int verRes,
@@ -69,50 +67,53 @@ std::ostream &operator<<(std::ostream &os, const Camera &c)
 }
 
 Matrix4 Camera::getTransformationMatrix() const {
-    double mat[4][4] = {
-        {u.x, u.y, u.z, -(u.x * pos.x + u.y * pos.y + u.z * pos.z)},
-        {v.x, v.y, v.z, -(v.x * pos.x + v.y * pos.y + v.z * pos.z)},
-        {w.x, w.y, w.z, -(w.x * pos.x + w.y * pos.y + w.z * pos.z)},
+    double axisRotMat[4][4] = {
+        {u.x, u.y, u.z, 0.},
+        {v.x, v.y, v.z, 0.},
+        {w.x, w.y, w.z, 0.},
         {0., 0., 0., 1.}
     };
 
-    return mat;
+    double translateMat[4][4] = {
+        {1., 0., 0., -pos.x},
+        {0., 1., 0., -pos.y},
+        {0., 0., 1., -pos.z},
+        {0., 0., 0., 1.}
+    };
+
+    Matrix4 axisRot(axisRotMat);
+    Matrix4 translate(translateMat);
+
+    return multiplyMatrixWithMatrix(axisRot, translate);
 }
 
 Matrix4 Camera::getOrtographicMatrix() const {
     double mat[4][4] = {
         {2./(right - left), 0., 0., -(right + left)/(right - left)},
-        {0., 2./(top -bottom), 0., -(top + bottom)/(top - bottom)},
-        {0., 0., -2./(far - near), -(far + near)/(far - near)},
+        {0., 2./(top - bottom), 0., -(top + bottom)/(top - bottom)},
+        {0., 0., 2./(near - far), -(near + far)/(near - far)},
         {0., 0., 0., 1.}
-    };
-
-    return mat;
-}
-
-Matrix4 Camera::getPerspective2OrtographicMatrix() const {
-    double mat[4][4] = {
-        {near, 0., 0., 0.},
-        {0., near, 0., 0.},
-        {0., 0., far + near, far * near},
-        {0., 0., -1., 0.}
     };
 
     return mat;
 }
 
 Matrix4 Camera::getPerspectiveProjectionMatrix() const {
-    return multiplyMatrixWithMatrix(
-        getOrtographicMatrix(),
-        getPerspective2OrtographicMatrix()
-    );
+    double mat[4][4] = {
+        {(2*near)/(right-left), 0., -(left+right)/(left-right), 0.},
+        {0., (2*near)/(top-bottom), -(bottom+top)/(bottom-top), 0.},
+        {0., 0., (far+near)/(near-far), -(2*far*near)/(far-near)},
+        {0., 0., -1., 0.}
+    };
+
+    return mat;
 }
 
 Matrix4 Camera::getViewportMatrix() const {
     double mat[4][4] = {
         {horRes/2., 0., 0., (horRes - 1.)/2.},
         {0., verRes/2., 0., (verRes - 1.)/2.},
-        {0., 0., .5, .5},
+        {0., 0., .5, 0.},
         {0., 0., 0., 1.}
     };
 

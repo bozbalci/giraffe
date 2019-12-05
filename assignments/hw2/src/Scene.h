@@ -22,8 +22,8 @@ class Scene
 {
   public:
     Color backgroundColor;
-    bool cullingEnabled;
-    int projectionType;
+    bool cullingEnabled = false;
+    int projectionType = 1;  // Perspective projection
 
     std::vector<std::vector<Color>> image;
     std::vector<Camera *> cameras;
@@ -34,13 +34,24 @@ class Scene
     std::vector<Translation *> translations;
     std::vector<Model *> models;
 
-    Scene(const char *xmlPath);
+    explicit Scene(const char *xmlPath);
 
     void initializeImage(Camera *camera);
     void forwardRenderingPipeline(Camera *camera);
-    int makeBetweenZeroAnd255(double value);
+    static int makeBetweenZeroAnd255(double value);
     void writeImageToPPMFile(Camera *camera);
-    void convertPPMToPNG(std::string ppmFileName, int osType);
+    static void convertPPMToPNG(const std::string& ppmFileName, int osType);
+
+  private:
+    void drawPixel(int i, int j, const Color& c);
+    void drawTriangle(const Vec3& a, const Vec3& b, const Vec3& c);
+    void drawLine(const Vec3& from, const Vec3& to);
+    void drawLineVertical(const Vec3& from, const Vec3& to);
+    void drawLineHorizontal(const Vec3& from, const Vec3& to);
+    void drawLineQuad1(const Vec3& from, const Vec3& to);
+    void drawLineQuad2(const Vec3& from, const Vec3& to);
+    void drawLineQuad7(const Vec3& from, const Vec3& to);
+    void drawLineQuad8(const Vec3& from, const Vec3& to);
 };
 
 #endif

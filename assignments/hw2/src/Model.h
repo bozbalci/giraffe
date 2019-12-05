@@ -25,8 +25,6 @@ class Model
     std::vector<Vec4> transformedVertices;
     std::vector<Color> transformedColors;
 
-    void computeModelingTransform();
-
     Model();
     Model(int modelId, int type, int numberOfTransformations,
           std::vector<int> transformationIds,
