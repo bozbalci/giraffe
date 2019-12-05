@@ -152,9 +152,9 @@ void Scene::forwardRenderingPipeline(Camera *camera)
             auto v2_v4 = multiplyMatrixWithVec4(viewport, model->transformedVertices[i+1]);
             auto v3_v4 = multiplyMatrixWithVec4(viewport, model->transformedVertices[i+2]);
 
-            Vec3 a = {v1_v4.x / v1_v4.t, v1_v4.y / v1_v4.t, v1_v4.z / v1_v4.t, v1_v4.colorId},
-                 b = {v2_v4.x / v2_v4.t, v2_v4.y / v2_v4.t, v2_v4.z / v2_v4.t, v2_v4.colorId},
-                 c = {v3_v4.x / v2_v4.t, v3_v4.y / v2_v4.t, v3_v4.z / v2_v4.t, v3_v4.colorId};
+            Vec3 a = {v1_v4.x, v1_v4.y, v1_v4.z, v1_v4.colorId},
+                 b = {v2_v4.x, v2_v4.y, v2_v4.z, v2_v4.colorId},
+                 c = {v3_v4.x, v3_v4.y, v3_v4.z, v3_v4.colorId};
 
             if (model->type == 1) { // Solid
                 drawTriangle(a, b, c);
