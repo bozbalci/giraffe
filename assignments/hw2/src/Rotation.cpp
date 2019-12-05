@@ -19,8 +19,9 @@ Rotation::Rotation(int rotationId, double angle, double x, double y, double z)
 
 Matrix4 Rotation::getMatrix() const
 {
-    auto cos = std::cos(angle);
-    auto sin = std::sin(angle);
+    const double pi = std::acos(-1);
+    auto cos = std::cos(angle * (pi/180));
+    auto sin = std::sin(angle * (pi/180));
     auto mcos = 1 - cos;
 
     double mat[4][4] = {
