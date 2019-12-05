@@ -52,6 +52,8 @@ class Scene
     void drawLineQuad2(const Vec3& from, const Vec3& to);
     void drawLineQuad7(const Vec3& from, const Vec3& to);
     void drawLineQuad8(const Vec3& from, const Vec3& to);
+
+    int requestsOutsideDrawingArea;
 };
 
 #endif

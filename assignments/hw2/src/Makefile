@@ -17,5 +17,5 @@ test:
 clean:
 	rm -f rasterizer *.o
 
-cleantests:
+testclean:
 	rm -f *.ppm *.png NULL tests.json

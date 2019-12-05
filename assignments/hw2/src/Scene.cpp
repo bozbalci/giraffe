@@ -16,6 +16,9 @@
 #include "Vec4.h"
 #include "tinyxml2.h"
 
+// Enable this to show ClipTest outputs.
+#define CLIPTEST_OUTPUT
+
 using namespace tinyxml2;
 
 extern Scene *scene;
@@ -53,6 +56,7 @@ void computeModelingTransform(Model &model)
 
 void Scene::forwardRenderingPipeline(Camera *camera)
 {
+    requestsOutsideDrawingArea = 0;  // Clipping test metric
     initializeImage(camera);
 
     Matrix4 viewingMatrix = camera->getViewingMatrix();
@@ -167,6 +171,12 @@ void Scene::forwardRenderingPipeline(Camera *camera)
 
     writeImageToPPMFile(camera);
     convertPPMToPNG(camera->outputFileName, /* osType = */ 1);
+
+#ifdef CLIPTEST_OUTPUT
+    std::cerr << "[ClipTest] Requests outside drawing area for " << camera->outputFileName
+              << ": " << requestsOutsideDrawingArea << "\n";
+#endif
+    requestsOutsideDrawingArea = 0;
 }
 
 Scene::Scene(const char *xmlPath)
@@ -459,7 +469,10 @@ double fab(int x_a, int y_a, int x_b, int y_b, int x, int y)
 
 void Scene::drawPixel(int i, int j, const Color& c) {
     if (i < 0 || j < 0 || i >= image.size() || j >= image[0].size())
+    {
+        requestsOutsideDrawingArea++;
         return;
+    }
 
     image[i][j] = c;
 }
