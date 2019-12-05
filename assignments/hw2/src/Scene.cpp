@@ -104,9 +104,39 @@ void Scene::forwardRenderingPipeline(Camera *camera)
             vertex3_transformed.z /= vertex3_transformed.t;
             vertex3_transformed.t = 1.0;
 
-            model->transformedVertices.push_back(vertex1_transformed);
-            model->transformedVertices.push_back(vertex2_transformed);
-            model->transformedVertices.push_back(vertex3_transformed);
+            if (!cullingEnabled) {
+                model->transformedVertices.push_back(vertex1_transformed);
+                model->transformedVertices.push_back(vertex2_transformed);
+                model->transformedVertices.push_back(vertex3_transformed);
+            } else {
+                Vec3 centerOfMass =
+                    {
+                        (vertex1_transformed.x + vertex2_transformed.x + vertex3_transformed.x)/3.0,
+                        (vertex2_transformed.y + vertex2_transformed.y + vertex3_transformed.y)/3.0,
+                        (vertex2_transformed.z + vertex2_transformed.z + vertex3_transformed.z)/3.0,
+                        0
+                     };
+                Vec3 normal = crossProductVec3(
+                        {vertex3_transformed.x - vertex1_transformed.x,
+                         vertex3_transformed.y - vertex1_transformed.y,
+                         vertex3_transformed.z - vertex1_transformed.z,
+                         0},
+                        {vertex2_transformed.x - vertex1_transformed.x,
+                         vertex2_transformed.y - vertex1_transformed.y,
+                         vertex2_transformed.z - vertex1_transformed.z,
+                         0}
+                );
+
+                // Here camera coordinates are 0, 0, 0 --> so centerOfMass is the camera-to-object vector.
+                auto test = dotProductVec3(centerOfMass, normal);
+
+                if (test < 0) {
+                    // Front-facing, so we should add vertices.
+                    model->transformedVertices.push_back(vertex1_transformed);
+                    model->transformedVertices.push_back(vertex2_transformed);
+                    model->transformedVertices.push_back(vertex3_transformed);
+                } // else: back-facing, so cull them
+            }
         }
 
         // TODO CLIP
