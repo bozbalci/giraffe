@@ -23,8 +23,6 @@ class Model
     std::optional<Matrix4> compositeTransform;
     std::vector<Vec4> transformedVertices;
 
-    void computeModelingTransform();
-
     Model();
     Model(int modelId, int type, int numberOfTransformations,
           std::vector<int> transformationIds,

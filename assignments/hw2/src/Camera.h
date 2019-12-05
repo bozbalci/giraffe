@@ -35,7 +35,6 @@ class Camera
 
     [[nodiscard]] Matrix4 getTransformationMatrix() const;
     [[nodiscard]] Matrix4 getOrtographicMatrix() const;
-    [[nodiscard]] Matrix4 getPerspective2OrtographicMatrix() const;
     [[nodiscard]] Matrix4 getPerspectiveProjectionMatrix() const;
     [[nodiscard]] Matrix4 getViewportMatrix() const;
     [[nodiscard]] Matrix4 getViewingMatrix() const;

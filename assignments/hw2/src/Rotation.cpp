@@ -19,64 +19,18 @@ Rotation::Rotation(int rotationId, double angle, double x, double y, double z)
 
 Matrix4 Rotation::getMatrix() const
 {
-    using std::abs;
-    using std::sin;
-    using std::cos;
+    auto cos = std::cos(angle);
+    auto sin = std::sin(angle);
+    auto mcos = 1 - cos;
 
-    Vec3 v;
-
-    if (abs(u.x) <= abs(u.y) && abs(u.x) <= abs(u.z)) {
-        // ux is the smallest
-        v.x = 0;
-        v.y = -u.z;
-        v.z = u.y;
-    } else if (abs(u.y) <= abs(u.x) && abs(u.y) <= abs(u.z)) {
-        // uy is the smallest
-        v.x = -u.z;
-        v.y = 0;
-        v.z = u.y;
-    } else {
-        // uz is the smallest
-        v.x = -u.y;
-        v.y = u.x;
-        v.z = 0;
-    }
-
-    v = normalizeVec3(v);
-    Vec3 w = crossProductVec3(u, v);
-
-    double mat_[4][4] = {
-        {u.x, u.y, u.z, 0.},
-        {v.x, v.y, v.z, 0.},
-        {w.x, w.y, w.z, 0.},
-        {0., 0., 0., 1.}
+    double mat[4][4] = {
+            {cos + u.x * u.x * mcos,       u.x * u.y * mcos - u.z * sin, u.x * u.z * mcos + u.y * sin, 0.},
+            {u.y * u.x * mcos + u.z * sin, cos + u.y * u.y * mcos,       u.y * u.z * mcos - u.x * sin, 0.},
+            {u.z * u.x * mcos - u.y * sin, u.z * u.y * mcos + u.x * sin, cos + u.z * u.z * mcos,       0.},
+            {0.,                           0.,                           0.,                           1.}
     };
 
-    double matInverse_[4][4] = {
-        {u.x, v.x, w.x, 0.},
-        {u.y, v.y, w.y, 0.},
-        {u.z, v.z, w.z, 0.},
-        {0., 0., 0., 1.}
-    };
-
-    double rx_[4][4] = {
-        {1., 0., 0., 0.},
-        {0., cos(angle), -sin(angle), 0.},
-        {0., sin(angle), cos(angle), 0.},
-        {0., 0., 0., 1.}
-    };
-
-    Matrix4 mat(mat_);
-    Matrix4 matInverse(matInverse_);
-    Matrix4 rx(rx_);
-
-    return multiplyMatrixWithMatrix(
-        multiplyMatrixWithMatrix(
-            matInverse,
-            rx
-        ),
-        mat
-    );
+    return mat;
 }
 
 std::ostream &operator<<(std::ostream &os, const Rotation &r)

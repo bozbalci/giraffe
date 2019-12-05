@@ -12,7 +12,6 @@
 #include "Scaling.h"
 #include "Scene.h"
 #include "Translation.h"
-#include "Triangle.h"
 #include "Vec3.h"
 #include "Vec4.h"
 #include "tinyxml2.h"
@@ -92,6 +91,19 @@ void Scene::forwardRenderingPipeline(Camera *camera)
             Vec4 vertex2_transformed = multiplyMatrixWithVec4(transform, vertex2);
             Vec4 vertex3_transformed = multiplyMatrixWithVec4(transform, vertex3);
 
+            vertex1_transformed.x /= vertex1_transformed.t;
+            vertex1_transformed.y /= vertex1_transformed.t;
+            vertex1_transformed.z /= vertex1_transformed.t;
+            vertex1_transformed.t = 1.0;
+            vertex2_transformed.x /= vertex2_transformed.t;
+            vertex2_transformed.y /= vertex2_transformed.t;
+            vertex2_transformed.z /= vertex2_transformed.t;
+            vertex2_transformed.t = 1.0;
+            vertex3_transformed.x /= vertex3_transformed.t;
+            vertex3_transformed.y /= vertex3_transformed.t;
+            vertex3_transformed.z /= vertex3_transformed.t;
+            vertex3_transformed.t = 1.0;
+
             model->transformedVertices.push_back(vertex1_transformed);
             model->transformedVertices.push_back(vertex2_transformed);
             model->transformedVertices.push_back(vertex3_transformed);
@@ -106,27 +118,16 @@ void Scene::forwardRenderingPipeline(Camera *camera)
             auto v2_v4 = multiplyMatrixWithVec4(viewport, model->transformedVertices[i+1]);
             auto v3_v4 = multiplyMatrixWithVec4(viewport, model->transformedVertices[i+2]);
 
+            Vec3 a = {v1_v4.x / v1_v4.t, v1_v4.y / v1_v4.t, v1_v4.z / v1_v4.t, v1_v4.colorId},
+                 b = {v2_v4.x / v2_v4.t, v2_v4.y / v2_v4.t, v2_v4.z / v2_v4.t, v2_v4.colorId},
+                 c = {v3_v4.x / v2_v4.t, v3_v4.y / v2_v4.t, v3_v4.z / v2_v4.t, v3_v4.colorId};
+
             if (model->type == 1) { // Solid
-                drawTriangle(
-                    {v1_v4.x / v1_v4.t, v1_v4.y / v1_v4.t, v1_v4.z / v1_v4.t, v1_v4.colorId},
-                    {v2_v4.x / v2_v4.t, v2_v4.y / v2_v4.t, v2_v4.z / v2_v4.t, v2_v4.colorId},
-                    {v3_v4.x / v2_v4.t, v3_v4.y / v2_v4.t, v3_v4.z / v2_v4.t, v3_v4.colorId}
-                );
+                drawTriangle(a, b, c);
             } else if (model->type == 0) { // Wireframe
-                drawLine(
-                        {v1_v4.x / v1_v4.t, v1_v4.y / v1_v4.t, v1_v4.z / v1_v4.t, v1_v4.colorId},
-                        {v2_v4.x / v2_v4.t, v2_v4.y / v2_v4.t, v2_v4.z / v2_v4.t, v2_v4.colorId}
-                );
-
-                drawLine(
-                        {v2_v4.x / v2_v4.t, v2_v4.y / v2_v4.t, v2_v4.z / v2_v4.t, v2_v4.colorId},
-                        {v3_v4.x / v2_v4.t, v3_v4.y / v2_v4.t, v3_v4.z / v2_v4.t, v3_v4.colorId}
-                );
-
-                drawLine(
-                        {v3_v4.x / v2_v4.t, v3_v4.y / v2_v4.t, v3_v4.z / v2_v4.t, v3_v4.colorId},
-                        {v1_v4.x / v1_v4.t, v1_v4.y / v1_v4.t, v1_v4.z / v1_v4.t, v1_v4.colorId}
-                );
+                drawLine(a, b);
+                drawLine(b, c);
+                drawLine(c, a);
             } else {
                 std::cerr << "Invalid model type specified\n";
                 std::exit(1);
