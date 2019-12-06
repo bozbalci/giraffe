@@ -15,6 +15,7 @@
 #include "Vec3.h"
 #include "Vec4.h"
 #include "tinyxml2.h"
+#include "LineSegment.h"
 
 // Enable this to show ClipTest outputs.
 #define CLIPTEST_OUTPUT
@@ -62,118 +63,119 @@ void Scene::forwardRenderingPipeline(Camera *camera)
     Matrix4 viewingMatrix = camera->getViewingMatrix();
 
     for (auto &model : scene->models) {
+        auto isWireframeMode = model->type == 0;
+        model->clippedLineSegments.clear();
+
+        // Compute the composite modeling & viewing transform.
         model->transformedVertices.clear();
         computeModelingTransform(*model);
-
-        Matrix4 transform = multiplyMatrixWithMatrix(
-            viewingMatrix,
-            *model->compositeTransform
-        );
+        Matrix4 transform = multiplyMatrixWithMatrix(viewingMatrix, *model->compositeTransform);
 
         for (auto &triangle : model->triangles) {
-            Vec3 vertex1_v3 = *scene->vertices[triangle.vertexIds[0] - 1];
-            Vec3 vertex2_v3 = *scene->vertices[triangle.vertexIds[1] - 1];
-            Vec3 vertex3_v3 = *scene->vertices[triangle.vertexIds[2] - 1];
+            Vec3 v1_3d = *scene->vertices[triangle.vertexIds[0] - 1];
+            Vec3 v2_3d = *scene->vertices[triangle.vertexIds[1] - 1];
+            Vec3 v3_3d = *scene->vertices[triangle.vertexIds[2] - 1];
+            Vec4 v1 = Vec4(v1_3d.x, v1_3d.y, v1_3d.z, 1., v1_3d.colorId);
+            Vec4 v2 = Vec4(v2_3d.x, v2_3d.y, v2_3d.z, 1., v2_3d.colorId);
+            Vec4 v3 = Vec4(v3_3d.x, v3_3d.y, v3_3d.z, 1., v3_3d.colorId);
+            Vec4 v1_trans = multiplyMatrixWithVec4(transform, v1);
+            Vec4 v2_trans = multiplyMatrixWithVec4(transform, v2);
+            Vec4 v3_trans = multiplyMatrixWithVec4(transform, v3);
 
-            Vec4 vertex1 = Vec4(vertex1_v3.x,
-                                vertex1_v3.y,
-                                vertex1_v3.z,
-                                1.,
-                                vertex1_v3.colorId);
-            Vec4 vertex2 = Vec4(vertex2_v3.x,
-                                vertex2_v3.y,
-                                vertex2_v3.z,
-                                1.,
-                                vertex2_v3.colorId);
-            Vec4 vertex3 = Vec4(vertex3_v3.x,
-                                vertex3_v3.y,
-                                vertex3_v3.z,
-                                1.,
-                                vertex3_v3.colorId);
-
-            Vec4 vertex1_transformed = multiplyMatrixWithVec4(transform, vertex1);
-            Vec4 vertex2_transformed = multiplyMatrixWithVec4(transform, vertex2);
-            Vec4 vertex3_transformed = multiplyMatrixWithVec4(transform, vertex3);
-
-            vertex1_transformed.x /= vertex1_transformed.t;
-            vertex1_transformed.y /= vertex1_transformed.t;
-            vertex1_transformed.z /= vertex1_transformed.t;
-            vertex1_transformed.t = 1.0;
-            vertex2_transformed.x /= vertex2_transformed.t;
-            vertex2_transformed.y /= vertex2_transformed.t;
-            vertex2_transformed.z /= vertex2_transformed.t;
-            vertex2_transformed.t = 1.0;
-            vertex3_transformed.x /= vertex3_transformed.t;
-            vertex3_transformed.y /= vertex3_transformed.t;
-            vertex3_transformed.z /= vertex3_transformed.t;
-            vertex3_transformed.t = 1.0;
+            // Perspective divide
+            v1_trans.x /= v1_trans.t;
+            v1_trans.y /= v1_trans.t;
+            v1_trans.z /= v1_trans.t;
+            v1_trans.t = 1.0;
+            v2_trans.x /= v2_trans.t;
+            v2_trans.y /= v2_trans.t;
+            v2_trans.z /= v2_trans.t;
+            v2_trans.t = 1.0;
+            v3_trans.x /= v3_trans.t;
+            v3_trans.y /= v3_trans.t;
+            v3_trans.z /= v3_trans.t;
+            v3_trans.t = 1.0;
 
             if (!cullingEnabled) {
-                model->transformedVertices.push_back(vertex1_transformed);
-                model->transformedVertices.push_back(vertex2_transformed);
-                model->transformedVertices.push_back(vertex3_transformed);
+                model->transformedVertices.push_back(v1_trans);
+                model->transformedVertices.push_back(v2_trans);
+                model->transformedVertices.push_back(v3_trans);
             } else {
-                Vec3 centerOfMass =
-                    {
-                        (vertex1_transformed.x + vertex2_transformed.x + vertex3_transformed.x)/3.0,
-                        (vertex2_transformed.y + vertex2_transformed.y + vertex3_transformed.y)/3.0,
-                        (vertex2_transformed.z + vertex2_transformed.z + vertex3_transformed.z)/3.0,
-                        0
-                     };
+                Vec3 centerOfMass = {
+                    (v1_trans.x + v2_trans.x + v3_trans.x) / 3.0,
+                    (v2_trans.y + v2_trans.y + v3_trans.y) / 3.0,
+                    (v2_trans.z + v2_trans.z + v3_trans.z) / 3.0,
+                    0
+                };
                 Vec3 normal = crossProductVec3(
-                        {vertex3_transformed.x - vertex1_transformed.x,
-                         vertex3_transformed.y - vertex1_transformed.y,
-                         vertex3_transformed.z - vertex1_transformed.z,
-                         0},
-                        {vertex2_transformed.x - vertex1_transformed.x,
-                         vertex2_transformed.y - vertex1_transformed.y,
-                         vertex2_transformed.z - vertex1_transformed.z,
-                         0}
+                    {v3_trans.x - v1_trans.x,
+                     v3_trans.y - v1_trans.y,
+                     v3_trans.z - v1_trans.z,
+                     0},
+                    {v2_trans.x - v1_trans.x,
+                     v2_trans.y - v1_trans.y,
+                     v2_trans.z - v1_trans.z,
+                     0}
                 );
 
                 // Here camera coordinates are 0, 0, 0 --> so centerOfMass is the camera-to-object vector.
                 auto test = dotProductVec3(centerOfMass, normal);
 
                 if (test < 0) {
-                    // Front-facing, so we should add vertices.
-                    model->transformedVertices.push_back(vertex1_transformed);
-                    model->transformedVertices.push_back(vertex2_transformed);
-                    model->transformedVertices.push_back(vertex3_transformed);
-                } // else: back-facing, so cull them
+                    // Front-facing face
+                    model->transformedVertices.push_back(v1_trans);
+                    model->transformedVertices.push_back(v2_trans);
+                    model->transformedVertices.push_back(v3_trans);
+                } // else: Back-facing face, must be culled.
             }
         }
 
-        // Clipping
-        for (size_t i = 0; i <= model->transformedVertices.size() - 3; i += 3) {
-            auto &v1 = model->transformedVertices[i+0];
-            auto &v2 = model->transformedVertices[i+1];
-            auto &v3 = model->transformedVertices[i+2];
+        if (isWireframeMode && model->clippedLineSegments.empty()) {
+            // Prepare line segments for culling.
+            for (size_t i = 0; i <= model->transformedVertices.size() - 3; i += 3) {
+                auto v1 = model->transformedVertices[i+0];
+                auto v2 = model->transformedVertices[i+1];
+                auto v3 = model->transformedVertices[i+2];
 
-            clip(v1, v2);
-            clip(v2, v3);
-            clip(v3, v1);
+                LineSegment ls_v1_v2(v1, v2);
+                LineSegment ls_v2_v3(v2, v3);
+                LineSegment ls_v3_v1(v3, v1);
+
+                ls_v1_v2.clip();
+                ls_v2_v3.clip();
+                ls_v3_v1.clip();
+
+                model->clippedLineSegments.push_back(ls_v1_v2);
+                model->clippedLineSegments.push_back(ls_v2_v3);
+                model->clippedLineSegments.push_back(ls_v3_v1);
+            }
         }
 
         auto viewport = camera->getViewportMatrix();
 
-        for (size_t i = 0; i <= model->transformedVertices.size() - 3; i += 3) {
-            auto v1_v4 = multiplyMatrixWithVec4(viewport, model->transformedVertices[i+0]);
-            auto v2_v4 = multiplyMatrixWithVec4(viewport, model->transformedVertices[i+1]);
-            auto v3_v4 = multiplyMatrixWithVec4(viewport, model->transformedVertices[i+2]);
+        if (isWireframeMode) {
+            for (const auto& ls : model->clippedLineSegments) {
+                if (!ls.visible) continue;
 
-            Vec3 a = {v1_v4.x, v1_v4.y, v1_v4.z, v1_v4.colorId},
-                 b = {v2_v4.x, v2_v4.y, v2_v4.z, v2_v4.colorId},
-                 c = {v3_v4.x, v3_v4.y, v3_v4.z, v3_v4.colorId};
+                auto ls_from_view = multiplyMatrixWithVec4(viewport, ls.a);
+                auto ls_to_view = multiplyMatrixWithVec4(viewport, ls.b);
 
-            if (model->type == 1) { // Solid
+                Vec3 ls_from_view_3d{ls_from_view.x, ls_from_view.y, ls_from_view.z, ls_from_view.colorId};
+                Vec3 ls_to_view_3d{ls_to_view.x, ls_to_view.y, ls_to_view.z, ls_to_view.colorId};
+
+                drawLine(ls_from_view_3d, ls_to_view_3d);
+            }
+        } else { // Solid mode
+            for (size_t i = 0; i <= model->transformedVertices.size() - 3; i += 3) {
+                auto v1_view = multiplyMatrixWithVec4(viewport, model->transformedVertices[i + 0]);
+                auto v2_view = multiplyMatrixWithVec4(viewport, model->transformedVertices[i + 1]);
+                auto v3_view = multiplyMatrixWithVec4(viewport, model->transformedVertices[i + 2]);
+
+                Vec3 a = {v1_view.x, v1_view.y, v1_view.z, v1_view.colorId},
+                     b = {v2_view.x, v2_view.y, v2_view.z, v2_view.colorId},
+                     c = {v3_view.x, v3_view.y, v3_view.z, v3_view.colorId};
+
                 drawTriangle(a, b, c);
-            } else if (model->type == 0) { // Wireframe
-                drawLine(a, b);
-                drawLine(b, c);
-                drawLine(c, a);
-            } else {
-                std::cerr << "Invalid model type specified\n";
-                std::exit(1);
             }
         }
     }
@@ -470,7 +472,6 @@ void Scene::convertPPMToPNG(const std::string& ppmFileName, int osType)
     else {}
 }
 
-
 double fab(int x_a, int y_a, int x_b, int y_b, int x, int y)
 {
    return (y_a - y_b) * x + (x_b - x_a) * y + (x_a * y_b) - (x_b * y_a);
@@ -524,9 +525,9 @@ void Scene::drawTriangle(const Vec3 &a, const Vec3 &b, const Vec3 &c) {
             gamma = f_ab_xy / f_gamma;
 
             if (alpha >= 0 && beta >= 0 && gamma >= 0) {
-                Color color_a = *colorsOfVertices[a.colorId - 1],
-                      color_b = *colorsOfVertices[b.colorId - 1],
-                      color_c = *colorsOfVertices[c.colorId - 1];
+                Color color_a = getColorById(a.colorId),
+                      color_b = getColorById(b.colorId),
+                      color_c = getColorById(c.colorId);
 
                 color = {
                     (alpha * color_a.r + beta * color_b.r + gamma * color_c.r),
@@ -574,9 +575,9 @@ void Scene::drawLineVertical(const Vec3& from, const Vec3& to) {
         return drawLineVertical(to, from);
 
     Color color_from, color_to, color_current, color_diff;
-    color_from = *colorsOfVertices[from.colorId - 1];
+    color_from = getColorById(from.colorId);
     color_current = color_from;
-    color_to = *colorsOfVertices[to.colorId - 1];
+    color_to = getColorById(to.colorId);
     color_diff = {
             (color_to.r - color_from.r) / (y_to - y_from),
             (color_to.g - color_from.g) / (y_to - y_from),
@@ -601,9 +602,9 @@ void Scene::drawLineHorizontal(const Vec3& from, const Vec3& to) {
         return drawLineHorizontal(to, from);
 
     Color color_from, color_to, color_current, color_diff;
-    color_from = *colorsOfVertices[from.colorId - 1];
+    color_from = getColorById(from.colorId);
     color_current = color_from;
-    color_to = *colorsOfVertices[to.colorId - 1];
+    color_to = getColorById(to.colorId);
     color_diff = {
             (color_to.r - color_from.r) / (x_to - x_from),
             (color_to.g - color_from.g) / (x_to - x_from),
@@ -629,9 +630,9 @@ void Scene::drawLineQuad1(const Vec3& from, const Vec3& to) {
         return drawLineQuad1(to, from);
 
     Color color_from, color_to, color_current, color_diff;
-    color_from = *colorsOfVertices[from.colorId - 1];
+    color_from = getColorById(from.colorId);
     color_current = color_from;
-    color_to = *colorsOfVertices[to.colorId - 1];
+    color_to = getColorById(to.colorId);
     color_diff = {
         (color_to.r - color_from.r) / (x_to - x_from),
         (color_to.g - color_from.g) / (x_to - x_from),
@@ -667,9 +668,9 @@ void Scene::drawLineQuad2(const Vec3& from, const Vec3& to) {
         return drawLineQuad2(to, from);
 
     Color color_from, color_to, color_current, color_diff;
-    color_from = *colorsOfVertices[from.colorId - 1];
+    color_from = getColorById(from.colorId);
     color_current = color_from;
-    color_to = *colorsOfVertices[to.colorId - 1];
+    color_to = getColorById(to.colorId);
     color_diff = {
             (color_to.r - color_from.r) / (y_to - y_from),
             (color_to.g - color_from.g) / (y_to - y_from),
@@ -705,9 +706,9 @@ void Scene::drawLineQuad7(const Vec3& from, const Vec3& to) {
         return drawLineQuad7(to, from);
 
     Color color_from, color_to, color_current, color_diff;
-    color_from = *colorsOfVertices[from.colorId - 1];
+    color_from = getColorById(from.colorId);
     color_current = color_from;
-    color_to = *colorsOfVertices[to.colorId - 1];
+    color_to = getColorById(to.colorId);
     color_diff = {
             -(color_to.r - color_from.r) / (y_to - y_from),
             -(color_to.g - color_from.g) / (y_to - y_from),
@@ -743,9 +744,9 @@ void Scene::drawLineQuad8(const Vec3& from, const Vec3& to) {
         return drawLineQuad8(to, from);
 
     Color color_from, color_to, color_current, color_diff;
-    color_from = *colorsOfVertices[from.colorId - 1];
+    color_from = getColorById(from.colorId);
     color_current = color_from;
-    color_to = *colorsOfVertices[to.colorId - 1];
+    color_to = getColorById(to.colorId);
     color_diff = {
             (color_to.r - color_from.r) / (x_to - x_from),
             (color_to.g - color_from.g) / (x_to - x_from),
@@ -771,51 +772,12 @@ void Scene::drawLineQuad8(const Vec3& from, const Vec3& to) {
     }
 }
 
-void Scene::clip(Vec4 &a, Vec4 &b) {
-    // Clips the line segment from a to b using the Liang-Barsky algorithm.
-    auto dx = b.x - a.x;
-    auto dy = b.y - a.y;
-    auto dz = b.z - a.z;
+Color Scene::getColorById(int colorId) {
+    if (colorId > 0) {
+        return *colorsOfVertices[colorId - 1];
+    } else if (colorId < 0) {
+        return customColors[-colorId - 1];
+    }
 
-    constexpr double
-            x_min = -1.0,
-            x_max = 1.0,
-            y_min = -1.0,
-            y_max = 1.0,
-            z_min = -1.0,
-            z_max = 1.0;
-
-    double t_e = 0, t_l = 1;
-
-    if (line_visible(dx, x_min - a.x, &t_e, &t_l)) {
-    if (line_visible(-dx, a.x - x_max, &t_e, &t_l)) {
-    if (line_visible(dy, y_min - a.y, &t_e, &t_l)) {
-    if (line_visible(-dy, a.y - y_max, &t_e, &t_l)) {
-    if (line_visible(dz, z_min - a.z, &t_e, &t_l)) {
-    if (line_visible(-dz, a.z - z_max, &t_e, &t_l)) {
-        if (t_l < 1) {
-            std::cerr << "Clipping...\n";
-            b.x = a.x + dx * t_l;
-            b.y = a.y + dy * t_l;
-            b.z = a.z + dy * t_l;
-        }
-        if (t_e > 0) {
-            std::cerr << "Clipping...\n";
-            a.x = a.x + dx * t_e;
-            a.y = a.y + dy * t_e;
-            a.z = a.z + dy * t_e;
-    }}}}}}}
-}
-
-bool Scene::line_visible(double den, double num, double *t_e, double *t_l) {
-    if (den > 0) {
-        auto t = num / den;
-        if (t > *t_l) return false;
-        if (t > *t_e) *t_e = t;
-    } else if (den < 0) {
-        auto t = num / den;
-        if (t < *t_e) return false;
-        if (t < *t_l) *t_l = t;
-    } else if (num > 0) return false;
-    return true;
+    assert(false);
 }

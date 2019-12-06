@@ -4,6 +4,7 @@
 #include "Vec4.h"
 #include "Matrix4.h"
 #include "Triangle.h"
+#include "LineSegment.h"
 
 #include <iostream>
 #include <vector>
@@ -22,6 +23,7 @@ class Model
 
     std::optional<Matrix4> compositeTransform;
     std::vector<Vec4> transformedVertices;
+    std::vector<LineSegment> clippedLineSegments;
 
     Model();
     Model(int modelId, int type, int numberOfTransformations,

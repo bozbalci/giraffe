@@ -34,6 +34,8 @@ class Scene
     std::vector<Translation *> translations;
     std::vector<Model *> models;
 
+    std::vector<Color> customColors;
+
     explicit Scene(const char *xmlPath);
 
     void initializeImage(Camera *camera);
@@ -41,6 +43,8 @@ class Scene
     static int makeBetweenZeroAnd255(double value);
     void writeImageToPPMFile(Camera *camera);
     static void convertPPMToPNG(const std::string& ppmFileName, int osType);
+
+    Color getColorById(int colorId);
 
   private:
     void drawPixel(int i, int j, const Color& c);
@@ -52,9 +56,6 @@ class Scene
     void drawLineQuad2(const Vec3& from, const Vec3& to);
     void drawLineQuad7(const Vec3& from, const Vec3& to);
     void drawLineQuad8(const Vec3& from, const Vec3& to);
-
-    static void clip(Vec4& a, Vec4& b);
-    static bool line_visible(double den, double num, double *t_e, double *t_l);
 
     int requestsOutsideDrawingArea;
 };

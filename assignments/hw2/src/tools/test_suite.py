@@ -1,8 +1,7 @@
 import json
+import os
 import subprocess
-import sys
-import threading
-import time
+
 
 class ComparisonMetric:
     AE = 'AE'           # absolute error count
@@ -22,6 +21,8 @@ class ComparisonMetric:
 RASTERIZER = './rasterizer'
 COMPARE = 'compare'
 OUTPUT_FILENAME = 'tests.json'
+OUTPUTS_ROOT = 'test_outputs'
+COMPARISON_METRIC = ComparisonMetric.SSIM
 
 
 TS_CLIPPING = [
@@ -32,9 +33,9 @@ TS_CLIPPING = [
                 'examples/clipping_example/empty_box_clipped_{}.ppm.png'.format(i)
             for i in [1, 2]
         },
+        'dir': 'clipping',
     },
 ]
-
 TS_NO_CULLING = [
     {
         'input': 'examples/culling_disabled_inputs/empty_box.xml',
@@ -43,6 +44,7 @@ TS_NO_CULLING = [
                 'examples/culling_disabled_outputs/empty_box/empty_box_{}.ppm.png'.format(i)
             for i in [1, 2, 3, 4, 5, 6, 7, 8, 'example']
         },
+        'dir': 'culling_disabled',
     },
     {
         'input': 'examples/culling_disabled_inputs/filled_box.xml',
@@ -51,6 +53,7 @@ TS_NO_CULLING = [
                 'examples/culling_disabled_outputs/filled_box/filled_box_{}.ppm.png'.format(i)
             for i in [1, 2, 3, 4, 5, 6, 7, 8, 'example']
         },
+        'dir': 'culling_disabled',
     },
     {
         'input': 'examples/culling_disabled_inputs/flag_brazil.xml',
@@ -59,6 +62,7 @@ TS_NO_CULLING = [
                 'examples/culling_disabled_outputs/flag_brazil/flag_brazil_{}.ppm.png'.format(i)
             for i in [1, 2, 'final']
         },
+        'dir': 'culling_disabled',
     },
     {
         'input': 'examples/culling_disabled_inputs/flag_turkey.xml',
@@ -67,6 +71,7 @@ TS_NO_CULLING = [
                 'examples/culling_disabled_outputs/flag_turkey/flag_turkey_{}.ppm.png'.format(i)
             for i in [1, 2]
         },
+        'dir': 'culling_disabled',
     },
     {
         'input': 'examples/culling_disabled_inputs/flag_turkey_alternative.xml',
@@ -75,6 +80,7 @@ TS_NO_CULLING = [
                 'examples/culling_disabled_outputs/flag_turkey_alternative/flag_turkey_alt_{}.ppm.png'.format(i)
             for i in [1, 2]
         },
+        'dir': 'culling_disabled',
     },
     {
         'input': 'examples/culling_disabled_inputs/horse_and_mug.xml',
@@ -83,15 +89,16 @@ TS_NO_CULLING = [
                 'examples/culling_disabled_outputs/horse_and_mug/horse_and_mug_{}.ppm.png'.format(i)
             for i in [1, 2, 3, 4]
         },
+        'dir': 'culling_disabled',
     },
     {
         'input': 'examples/culling_disabled_inputs/sample.xml',
         'outputs': {
             'sample.ppm.png': 'examples/culling_disabled_outputs/sample/sample.ppm.png',
         },
+        'dir': 'culling_disabled',
     },
 ]
-
 TS_CULLING = [
     {
         'input': 'examples/culling_enabled_inputs/empty_box.xml',
@@ -100,6 +107,7 @@ TS_CULLING = [
                 'examples/culling_enabled_outputs/empty_box/empty_box_{}.ppm.png'.format(i)
             for i in [1, 2, 3, 4, 5, 6, 7, 8, 'example']
         },
+        'dir': 'culling_enabled',
     },
     {
         'input': 'examples/culling_enabled_inputs/filled_box.xml',
@@ -108,6 +116,7 @@ TS_CULLING = [
                 'examples/culling_enabled_outputs/filled_box/filled_box_{}.ppm.png'.format(i)
             for i in [1, 2, 3, 4, 5, 6, 7, 8, 'example']
         },
+        'dir': 'culling_enabled',
     },
     {
         'input': 'examples/culling_enabled_inputs/flag_brazil.xml',
@@ -116,6 +125,7 @@ TS_CULLING = [
                 'examples/culling_enabled_outputs/flag_brazil/flag_brazil_{}.ppm.png'.format(i)
             for i in [1, 2, 'final']
         },
+        'dir': 'culling_enabled',
     },
     {
         'input': 'examples/culling_enabled_inputs/flag_iceland.xml',
@@ -124,6 +134,7 @@ TS_CULLING = [
                 'examples/culling_enabled_outputs/flag_iceland/flag_iceland_{}.ppm.png'.format(i)
             for i in [1, 2, 'final']
         },
+        'dir': 'culling_enabled',
     },
     {
         'input': 'examples/culling_enabled_inputs/flag_turkey.xml',
@@ -132,6 +143,7 @@ TS_CULLING = [
                 'examples/culling_enabled_outputs/flag_turkey/flag_turkey_{}.ppm.png'.format(i)
             for i in [1, 2]
         },
+        'dir': 'culling_enabled',
     },
     {
         'input': 'examples/culling_enabled_inputs/flag_turkey_alternative.xml',
@@ -140,6 +152,7 @@ TS_CULLING = [
                 'examples/culling_enabled_outputs/flag_turkey_alternative/flag_turkey_alt_{}.ppm.png'.format(i)
             for i in [1, 2]
         },
+        'dir': 'culling_enabled',
     },
     {
         'input': 'examples/culling_enabled_inputs/horse_and_mug.xml',
@@ -148,15 +161,16 @@ TS_CULLING = [
                 'examples/culling_enabled_outputs/horse_and_mug/horse_and_mug_{}.ppm.png'.format(i)
             for i in [1, 2, 3, 4]
         },
+        'dir': 'culling_enabled',
     },
     {
         'input': 'examples/culling_enabled_inputs/sample.xml',
         'outputs': {
             'sample.ppm.png': 'examples/culling_enabled_outputs/sample/sample.ppm.png',
         },
+        'dir': 'culling_enabled',
     },
 ]
-
 TS_ORTHOGRAPHIC = [
     {
         'input': 'examples/different_projection_type_example/flag_turkey/flag_turkey_orthographic.xml',
@@ -164,6 +178,7 @@ TS_ORTHOGRAPHIC = [
             'flag_turkey_orthographic.ppm.png':
                 'examples/different_projection_type_example/flag_turkey/flag_turkey_orthographic.ppm.png',
         },
+        'dir': 'different_projection_types',
     },
     {
         'input': 'examples/different_projection_type_example/flag_turkey/flag_turkey_perspective.xml',
@@ -171,6 +186,7 @@ TS_ORTHOGRAPHIC = [
             'flag_turkey_perspective.ppm.png':
                 'examples/different_projection_type_example/flag_turkey/flag_turkey_perspective.ppm.png',
         },
+        'dir': 'different_projection_types',
     },
     {
         'input': 'examples/different_projection_type_example/horse_and_mug'
@@ -181,6 +197,7 @@ TS_ORTHOGRAPHIC = [
                 '/horse_and_mug_orthographic_{}.ppm.png'.format(i)
             for i in [1, 2, 3, 4]
         },
+        'dir': 'different_projection_types',
     },
     {
         'input': 'examples/different_projection_type_example/horse_and_mug'
@@ -191,72 +208,57 @@ TS_ORTHOGRAPHIC = [
                 '/horse_and_mug_perspective_{}.ppm.png'.format(i)
             for i in [1, 2, 3, 4]
         },
+        'dir': 'different_projection_types',
     },
 ]
 
-# TEST_SUITE = TS_CLIPPING + TS_NO_CULLING + TS_CULLING + TS_ORTHOGRAPHIC
-TEST_SUITE = TS_CLIPPING
+TEST_SUITE = TS_CLIPPING + TS_CULLING + TS_NO_CULLING + TS_ORTHOGRAPHIC
 
-TEST_FAILURES = []
-TEST_PASSES = []
+TEST_RESULTS = []
 PROGRESS = 0
-MAX_PROGRESS = 95  # this value obtained experimentally
 
 
-def test_single(obj, metric=ComparisonMetric.SSIM):
+def increment_and_report_progress():
     global PROGRESS
 
-    input_path, outputs = obj['input'], obj['outputs']
-    subprocess.run([RASTERIZER, input_path])
     PROGRESS += 1
+    print('Progress: {}/{}'.format(PROGRESS, MAX_PROGRESS))
+
+
+def test_single(obj, metric=COMPARISON_METRIC):
+    global PROGRESS
+
+    input_path, outputs, directory = obj['input'], obj['outputs'], obj['dir']
+    target_dir = '{}/{}'.format(OUTPUTS_ROOT, directory)
+    os.makedirs(target_dir, exist_ok=True)
+    subprocess.run([RASTERIZER, input_path])
+    increment_and_report_progress()
+
     for actual_file, expected_file in outputs.items():
-        convert = subprocess.run([COMPARE,
-                                  '-metric',
-                                  metric,
-                                  expected_file,
-                                  actual_file,
-                                  'NULL'],
+        target_file = '{}/{}'.format(target_dir, actual_file)
+        os.remove(actual_file.replace('.ppm.png', '.ppm'))
+        os.rename(actual_file, target_file)
+        convert = subprocess.run([COMPARE, '-metric', metric, expected_file, target_file, 'NULL'],
                                  stderr=subprocess.PIPE)
-        PROGRESS += 1
-        if convert.returncode == 0:  # dissimilar
-            lst = TEST_PASSES
-        else:
-            lst = TEST_FAILURES
-        lst.append({
+        increment_and_report_progress()
+        TEST_RESULTS.append({
             'input': input_path,
-            'output': actual_file,
+            'output': target_file,
             'score': float(convert.stderr.decode()),
             'metric': metric
         })
 
 
 if __name__ == '__main__':
-    threads = []
-    finished = False
-
-    def print_progress():
-        global PROGRESS, MAX_PROGRESS
-
-        while not finished:
-            sys.stdout.write('\rtests: {:.2f}%'.format(100*PROGRESS/MAX_PROGRESS))
-            time.sleep(0.5)
-
-    printer_thread = threading.Thread(target=print_progress, args=())
+    MAX_PROGRESS = sum(len(obj['outputs']) for obj in TEST_SUITE) + len(TEST_SUITE)
 
     for test_item in TEST_SUITE:
-        threads.append(threading.Thread(target=test_single, args=(test_item,)))
+        test_single(test_item)
 
-    printer_thread.start()
-    for thread in threads:
-        thread.start()
-
-    for thread in threads:
-        thread.join()
-    finished = True
-    printer_thread.join()
-
-    TEST_PASSES.sort(key=lambda o: o['score'], reverse=True)
-    TEST_FAILURES.sort(key=lambda o: o['score'], reverse=True)
+    TEST_RESULTS.sort(key=lambda o: o['score'], reverse=True)
 
     with open(OUTPUT_FILENAME, 'w') as outfile:
-        json.dump({'passes': TEST_PASSES, 'failures': TEST_FAILURES}, outfile, indent=4, sort_keys=True)
+        json.dump({'results': TEST_RESULTS}, outfile, indent=4, sort_keys=True)
+
+    # This script has the side effect of creating a file named "NULL". Remove it.
+    os.remove('NULL')
