@@ -26,7 +26,6 @@ clean:
 testclean:
 	rm -rf test_outputs *.ppm *.png NULL tests.json
 
-
 dist:
 	zip $(DISTNAME) *.cpp *.h Makefile
 
