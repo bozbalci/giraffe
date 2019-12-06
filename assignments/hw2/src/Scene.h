@@ -34,6 +34,8 @@ class Scene
     std::vector<Translation *> translations;
     std::vector<Model *> models;
 
+    std::vector<Color> customColors;
+
     explicit Scene(const char *xmlPath);
 
     void initializeImage(Camera *camera);
@@ -41,6 +43,8 @@ class Scene
     static int makeBetweenZeroAnd255(double value);
     void writeImageToPPMFile(Camera *camera);
     static void convertPPMToPNG(const std::string& ppmFileName, int osType);
+
+    Color getColorById(int colorId);
 
   private:
     void drawPixel(int i, int j, const Color& c);
