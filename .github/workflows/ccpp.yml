@@ -1,0 +1,16 @@
+name: C/C++ CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: install dependencies
+      run: sudo apt update && sudo apt install libglew-dev libglfw3-dev
+    - name: make
+      run: make
+      working-directory: ./assignments/hw3/src
