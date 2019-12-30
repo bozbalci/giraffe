@@ -135,3 +135,5 @@ compile_commands.json
 
 raytracer
 rasterizer
+hw3_flat
+hw3_sphere
