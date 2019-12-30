@@ -8,7 +8,7 @@ Coursework for *CENG447 - Introduction to Computer Graphics (Fall 2019),* by [Ya
 |---|---|
 |[hw1 spec](https://github.com/bozbalci/giraffe/tree/master/assignments/hw1/hw1.pdf)|[hw1](https://github.com/bozbalci/giraffe/tree/master/assignments/hw1/src)|
 
-## Example render
+### Example render
 
 ![Dragon](pictures/dragon_hires.png)
 
@@ -24,6 +24,28 @@ Coursework for *CENG447 - Introduction to Computer Graphics (Fall 2019),* by [Ya
 |Bounding boxes|`past_examples/dragon_lowres.xml`|45.72|10.8x|
 |BVH|`past_examples_dragon_lowres.xml`|1.15|430.9x|
 
+<hr />
+
+## Assignment 2
+
+|Specification|Source|
+|---|---|
+|[hw2 spec](https://github.com/bozbalci/giraffe/tree/master/assignments/hw2/hw2.pdf)|[hw2](https://github.com/bozbalci/giraffe/tree/master/assignments/hw2/src)|
+
+### Example render
+
+![Empty box](pictures/empty_box.png)
+
+<hr />
+
+## Assignment 3
+
+|Specification|Source|
+|---|---|
+|[hw3 spec](https://github.com/bozbalci/giraffe/tree/master/assignments/hw3/hw3.pdf)|[hw3](https://github.com/bozbalci/giraffe/tree/master/assignments/hw3/)|
+
+<hr />
+
 ## clang-format
 Run
 
@@ -32,11 +54,3 @@ Run
 on the project root directory in order to install the `pre-commit` hook that runs `clang-format` on every source file in the repository. Requires `clang-format` and `bash >= 4.0`.
 
 Edit the `.clang-format` to suit your taste.
-
-<hr />
-
-## Assignment 2
-
-|Specification|Source|
-|---|---|
-|[hw2 spec](https://github.com/bozbalci/giraffe/tree/master/assignments/hw2/hw2.pdf)|[hw2](https://github.com/bozbalci/giraffe/tree/master/assignments/hw2/src)|
