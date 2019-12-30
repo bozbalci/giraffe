@@ -1,7 +1,9 @@
 language: cpp
+
 compiler:
     - gcc
     - clang
+
 dist: bionic
 addons:
     apt:
