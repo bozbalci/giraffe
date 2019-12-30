@@ -10,6 +10,7 @@ addons:
         packages:
             libglfw3-dev
             libglew-dev
+            libglm-dev
 
 script:
     - cd assignments/hw3

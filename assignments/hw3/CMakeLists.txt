@@ -9,10 +9,8 @@ target_compile_options(hw3_flat PRIVATE -Wall -Wextra)
 target_compile_options(hw3_sphere PRIVATE -Wall -Wextra)
 
 find_package(glfw3 REQUIRED)
+find_package(glm REQUIRED)
 find_package(GLEW REQUIRED)
-
-add_subdirectory(lib/glm EXCLUDE_FROM_ALL)
-include_directories(lib)
 
 target_link_libraries(hw3_flat glfw GLEW ${CMAKE_DL_LIBS})
 target_link_libraries(hw3_sphere glfw GLEW ${CMAKE_DL_LIBS})
