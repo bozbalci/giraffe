@@ -10,7 +10,7 @@ addons:
             libglew-dev
 
 script:
-    cd assignments/hw3
-    mkdir build && cd build
-    cmake ..
-    make
+    - cd assignments/hw3
+    - mkdir build && cd build
+    - cmake ..
+    - make
