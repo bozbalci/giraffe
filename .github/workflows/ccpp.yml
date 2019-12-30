@@ -12,4 +12,5 @@ jobs:
     - name: install dependencies
       run: sudo apt update && sudo apt install libglew-dev libglfw3-dev
     - name: make
-      run: cd assignments/hw3/src && make
+      run: make
+      working-directory: ./assignments/hw3/src
