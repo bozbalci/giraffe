@@ -122,8 +122,18 @@ Temporary Items
 # IntelliJ IDEA
 /.idea
 
+.clangd/
+
 ### Cmake ###
-cmake-build-debug
+cmake-build-debug/
+cmake-build-release/
+debug/
+release/
+build/
+
+compile_commands.json
 
 raytracer
 rasterizer
+hw3_flat
+hw3_sphere
