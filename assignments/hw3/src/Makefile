@@ -7,7 +7,7 @@ ifeq ($(UNAME_S),Linux)
 endif
 ifeq ($(UNAME_S),Darwin)
 	LDFLAGS=-framework OpenGL
-	CXXFLAGS += -DNO_GLEW
+	CXXFLAGS += -DAPPLE
 endif
 
 SRC=$(wildcard *.cpp)

@@ -1,10 +1,12 @@
-#include "glm/glm.hpp"
-#include "globals.h"
+#ifndef APPLE
+#include <GL/glew.h>
+#endif
+
+#include "util.h"
 
 #include <iostream>
 
-int main()
+int main(int argc, char **argv)
 {
-    float x = -1.3;
-    std::cout << glm::abs(x) << '\n';
+    return 0;
 }
