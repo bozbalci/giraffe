@@ -1,6 +1,14 @@
 CXX=g++
 CXXFLAGS=-std=c++17 -Wall -Wextra
-LDFLAGS=-lGL
+
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+	LDFLAGS=-lGL -lglfw -lGLEW
+endif
+ifeq ($(UNAME_S),Darwin)
+	LDFLAGS=-framework OpenGL
+	CXXFLAGS += -DNO_GLEW
+endif
 
 SRC=$(wildcard *.cpp)
 HDR=$(wildcard *.h)

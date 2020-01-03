@@ -1,4 +1,5 @@
 #include "glm/glm.hpp"
+#include "globals.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #define STBI_ASSERT(x)
