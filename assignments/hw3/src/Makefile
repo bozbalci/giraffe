@@ -1,6 +1,6 @@
 CXX=g++
 CXXFLAGS=-std=c++17 -Wall -Wextra
-LDFLAGS=-lGL
+LDFLAGS=-lGL -ljpeg
 
 SRC=$(wildcard *.cpp)
 HDR=$(wildcard *.h)
