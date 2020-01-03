@@ -3,8 +3,8 @@ project(hw3)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(hw3_flat src/flat.cpp)
-add_executable(hw3_sphere src/sphere.cpp)
+add_executable(hw3_flat src/flat.cpp src/util.cpp src/util.h src/globals.h)
+add_executable(hw3_sphere src/sphere.cpp src/globals.h)
 target_compile_options(hw3_flat PRIVATE -Wall -Wextra)
 target_compile_options(hw3_sphere PRIVATE -Wall -Wextra)
 
@@ -12,5 +12,12 @@ find_package(glfw3 REQUIRED)
 find_package(glm REQUIRED)
 find_package(GLEW REQUIRED)
 
-target_link_libraries(hw3_flat glfw GLEW ${CMAKE_DL_LIBS})
-target_link_libraries(hw3_sphere glfw GLEW ${CMAKE_DL_LIBS})
+
+if (APPLE)
+    # No need for GLEW on Mac OS X
+    target_link_libraries(hw3_flat glfw ${CMAKE_DL_LIBS})
+    target_link_libraries(hw3_sphere glfw ${CMAKE_DL_LIBS})
+else ()
+    target_link_libraries(hw3_flat glfw GLEW ${CMAKE_DL_LIBS})
+    target_link_libraries(hw3_sphere glfw GLEW ${CMAKE_DL_LIBS})
+endif ()
