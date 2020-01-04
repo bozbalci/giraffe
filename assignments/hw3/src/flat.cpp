@@ -175,6 +175,24 @@ int main(int argc, char **argv)
         TextureWidth / 10.0f,
         -TextureWidth / 4.0f
     );
+    auto CameraPositionLocation = glGetUniformLocation(ProgramShaderId, "CameraPosition");
+    glUniform3fv(
+            CameraPositionLocation,
+            /* count = */ 1,
+            glm::value_ptr(CameraPosition)
+    );
+
+    auto LightPosition = glm::vec3(
+            TextureWidth / 2,
+            100,
+            TextureHeight / 2
+    );
+    auto LightPositionLocation = glGetUniformLocation(ProgramShaderId, "LightPosition");
+    glUniform3fv(
+            LightPositionLocation,
+            /* count = */ 1,
+            glm::value_ptr(LightPosition)
+    );
 
     auto CameraGaze = glm::vec3(0.0f, 0.0f, 1.0f);
     auto CameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
