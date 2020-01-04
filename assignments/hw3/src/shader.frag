@@ -20,9 +20,6 @@ void main()
     // Inputs
     vec4 TextureColor = texture(Texture, VertexTextureCoordinate);
 
-    FragmentColor = vec4(length(TextureColor.xyz), 0, 0, 1);
-    return;
-
     vec4 AmbientReflectance = vec4(0.25, 0.25, 0.25, 1.00);
     vec4 AmbientColor = vec4(0.3, 0.3, 0.3, 1.0);
 
