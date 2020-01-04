@@ -53,6 +53,7 @@ void initVerticesV(std::vector<vertex> & vertices) {
 int main(int argc, char **argv)
 {
     glfwSetErrorCallback(errorCallback);
+
         
     if (!glfwInit()) {
         die("Could not initialize OpenGL");
@@ -74,6 +75,17 @@ int main(int argc, char **argv)
     }
     
     glfwMakeContextCurrent(Window);
+
+#ifndef __APPLE__
+    glewExperimental = GL_TRUE;
+    GLenum err = glewInit();
+    if (err != GLEW_OK) {
+        fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
+        glfwTerminate();
+        exit(-1);
+    }
+#endif
+
     glfwSetFramebufferSizeCallback(Window, framebufferSizeCallback);
 
     InitializeShaders();
@@ -120,14 +132,4 @@ int main(int argc, char **argv)
     /// ---------------------------------------------------------------------------------------
 
     return 0;
-
-#ifndef __APPLE__
-    glewExperimental = GL_TRUE;
-    GLenum err = glewInit();
-    if (err != GLEW_OK) {
-        fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
-        glfwTerminate();
-        exit(-1);
-    }
-#endif
 }
