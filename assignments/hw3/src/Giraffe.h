@@ -22,7 +22,8 @@
 extern GLuint ProgramShaderId;
 extern GLuint FragmentShaderId;
 extern GLuint VertexShaderId;
-extern GLuint JpegTextureId;
+extern GLuint DiffuseTextureId;
+extern GLuint HeightMapTextureId;
 
 
 #endif //HW3_GIRAFFE_H

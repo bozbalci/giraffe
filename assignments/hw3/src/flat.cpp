@@ -9,7 +9,8 @@
 GLuint ProgramShaderId;
 GLuint FragmentShaderId;
 GLuint VertexShaderId;
-GLuint JpegTextureId;
+GLuint DiffuseTextureId;
+GLuint HeightMapTextureId;
 
 static void errorCallback(int error, const char * description) {
     fprintf(stderr, "Error: %s\n", description);
