@@ -10,6 +10,10 @@ in vec3 ToCamera;
 uniform sampler2D HeightMap;
 uniform sampler2D Texture;
 uniform mat4 MVPMatrix;
+uniform int TextureWidth;
+uniform int TextureHeight;
+uniform vec3 CameraPosition;
+uniform vec3 LightPosition;
 
 void main()
 {

@@ -31,13 +31,15 @@ void InitializeShaders()
     char InfoLog[INFOLOG_SIZE];
     glGetProgramiv(ProgramShaderId, GL_LINK_STATUS, &LinkSuccess);
     if (!LinkSuccess) {
-        glGetShaderInfoLog(ProgramShaderId, INFOLOG_SIZE, nullptr, InfoLog);
+        glGetProgramInfoLog(ProgramShaderId, INFOLOG_SIZE, nullptr, InfoLog);
         std::cerr << InfoLog << std::endl;
         die("Linking shaders failed, see above for linker output");
     }
 
     glDeleteShader(VertexShaderId);
     glDeleteShader(FragmentShaderId);
+
+    glUseProgram(ProgramShaderId);
 }
 
 void CompileAndLoadVertexShader(const std::string& Path)
