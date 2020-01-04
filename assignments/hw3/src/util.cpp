@@ -106,8 +106,8 @@ GLuint LoadTextureImage(const std::string& Path, int& Width, int& Height, GLenum
 
     GLuint TextureId;
     glGenTextures(1, &TextureId);
-    glActiveTexture(TexUnit);
     glBindTexture(GL_TEXTURE_2D, TextureId);
+    glActiveTexture(TexUnit);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Width, Height, 0, GL_RGB, GL_UNSIGNED_BYTE, Data);
 
     return TextureId;

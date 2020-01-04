@@ -123,8 +123,8 @@ int main(int argc, char **argv)
 
     InitializeShaders();
 
-    auto HeightMapId = LoadTextureImage(HeightMapPath, TextureWidth, TextureHeight, GL_TEXTURE0);
-    auto TextureId = LoadTextureImage(TexturePath, TextureWidth, TextureHeight, GL_TEXTURE0 + 1);
+    HeightMapTextureId = LoadTextureImage(HeightMapPath, TextureWidth, TextureHeight, GL_TEXTURE0);
+    DiffuseTextureId = LoadTextureImage(TexturePath, TextureWidth, TextureHeight, GL_TEXTURE0 + 1);
 
     auto HeightMapLocation = glGetUniformLocation(ProgramShaderId, "HeightMap");
     auto TextureLocation = glGetUniformLocation(ProgramShaderId, "Texture");
@@ -234,7 +234,7 @@ int main(int argc, char **argv)
     glEnable(GL_DEPTH_TEST);
 
     while (!glfwWindowShouldClose(Window)) {
-        glClearColor(0.0f, 0.0f, 0.2f, 1.0f);
+        glClearColor(1.0f, 1.0f, 0.7f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         glDrawElements(
