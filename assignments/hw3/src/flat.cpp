@@ -83,6 +83,9 @@ int main(int argc, char **argv)
         die("usage: ./hw3_flat [path_to_height_map] [path_to_texture_map]");
     }
 
+    auto HeightMapPath = argv[1];
+    auto TexturePath = argv[2];
+
     glfwSetErrorCallback(errorCallback);
 
     if (!glfwInit()) {
@@ -120,7 +123,15 @@ int main(int argc, char **argv)
 
     InitializeShaders();
 
-    LoadTextureImage(argv[1], TextureWidth, TextureHeight, GL_TEXTURE0);
+    auto HeightMapId = LoadTextureImage(HeightMapPath, TextureWidth, TextureHeight, GL_TEXTURE0);
+    auto TextureId = LoadTextureImage(TexturePath, TextureWidth, TextureHeight, GL_TEXTURE0 + 1);
+
+    auto HeightMapLocation = glGetUniformLocation(ProgramShaderId, "HeightMap");
+    auto TextureLocation = glGetUniformLocation(ProgramShaderId, "Texture");
+
+    glUniform1i(HeightMapLocation, /* v0 = */ 0);
+    glUniform1i(TextureLocation, /* v0 = */ 1);
+
     auto Vertices = GenerateTerrainVertices();
     auto Indices = GenerateTerrainIndices();
 

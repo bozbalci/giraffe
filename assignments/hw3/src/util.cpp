@@ -95,17 +95,17 @@ GLuint LoadTextureImage(const std::string& Path, int& Width, int& Height, GLenum
     int Comp; // number of channels in the file
 
     unsigned char *Data = stbi_load(
-            Path.c_str(),
-            &Width,
-            &Height,
-            &Comp,
-            /* desired_channels = */ 0
+        Path.c_str(),
+        &Width,
+        &Height,
+        &Comp,
+        /* desired_channels = */ 0
     );
 
     GLuint TextureId;
     glGenTextures(1, &TextureId);
-    glBindTexture(GL_TEXTURE_2D, TextureId);
     glActiveTexture(TexUnit);
+    glBindTexture(GL_TEXTURE_2D, TextureId);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Width, Height, 0, GL_RGB, GL_UNSIGNED_BYTE, Data);
 
     return TextureId;
