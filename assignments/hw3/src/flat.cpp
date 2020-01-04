@@ -11,6 +11,14 @@ GLuint VertexShaderId;
 GLuint DiffuseTextureId;
 GLuint HeightMapTextureId;
 
+int TextureWidth;
+int TextureHeight;
+
+struct Vertex {
+    glm::vec3 Position;
+    glm::vec2 TextureCoordinates;
+};
+
 static void errorCallback(int error, const char * description) {
     fprintf(stderr, "Error: %s\n", description);
 }
@@ -27,34 +35,56 @@ void processInput(GLFWwindow *Window)
     }
 }
 
-struct vertex {
-    float xPos;
-    float yPos;
-    float zPos;
-    float xTexPos;
-    float yTexPos;
-};
+std::vector<Vertex>
+GenerateTerrainVertices() {
+    std::vector<Vertex> TerrainVertices;
 
-int TextureWidth;
-int TextureHeight;
+    const auto dx = 1.0f / (float)TextureWidth,
+               dz = 1.0f / (float)TextureHeight;
 
-void initVerticesV(std::vector<vertex> & vertices) {
-    for (int i = 0; i <= TextureHeight; i++) {
-        for (int  j = 0; j <= TextureWidth; j++) {
-            vertices[i * TextureWidth + j].xPos = (float) j;
-            vertices[i * TextureWidth + j].yPos = 0.0f;
-            vertices[i * TextureWidth + j].zPos = (float) i;
-            vertices[i * TextureWidth + j].xTexPos = (float) -j / TextureWidth;
-            vertices[i * TextureWidth + j].yTexPos = (float) -i / TextureHeight;
+    for (auto z = 0; z <= TextureHeight; ++z) {
+        for (auto x = 0; x <= TextureWidth; ++x) {
+            TerrainVertices.push_back({
+                .Position = glm::vec3(x, 0.0f, z),
+                .TextureCoordinates = glm::vec2(1.0f - x * dx, 1.0f - z * dz)
+            });
         }
     }
+
+    return TerrainVertices;
+}
+
+std::vector<int>
+GenerateTerrainIndices() {
+    std::vector<int> TerrainIndices;
+
+    for (auto i = 0; i < TextureHeight - 1; ++i) {
+        for (auto j = 0; j < TextureWidth - 1; ++j) {
+            auto Current = i * TextureWidth + j;
+            auto Right = Current + 1;
+            auto Bottom = Current + TextureWidth;
+            auto BottomRight = Bottom + 1;
+
+            TerrainIndices.push_back(Current);
+            TerrainIndices.push_back(Right);
+            TerrainIndices.push_back(Bottom);
+            TerrainIndices.push_back(Right);
+            TerrainIndices.push_back(BottomRight);
+            TerrainIndices.push_back(Bottom);
+        }
+    }
+
+    return TerrainIndices;
 }
 
 int main(int argc, char **argv)
 {
+    if (argc < 3) {
+        die("usage: ./hw3_flat [path_to_height_map] [path_to_texture_map]");
+    }
+
     glfwSetErrorCallback(errorCallback);
 
-        
     if (!glfwInit()) {
         die("Could not initialize OpenGL");
     }
@@ -89,6 +119,56 @@ int main(int argc, char **argv)
     glfwSetFramebufferSizeCallback(Window, framebufferSizeCallback);
 
     InitializeShaders();
+
+    LoadTextureImage(argv[1], TextureWidth, TextureHeight, GL_TEXTURE0);
+    auto Vertices = GenerateTerrainVertices();
+    auto Indices = GenerateTerrainIndices();
+
+    GLuint VAO;
+    glGenVertexArrays(/* n = */ 1, &VAO);
+    glBindVertexArray(VAO);
+
+    GLuint VBO;
+    glGenBuffers(/* n = */ 1, &VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+    GLuint EBO;
+    glGenBuffers(/* n = */ 1, &EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
+    glBufferData(
+        GL_ARRAY_BUFFER,
+        Vertices.size() * sizeof(Vertex),
+        Vertices.data(),
+        GL_STATIC_DRAW
+    );
+
+    glBufferData(
+        GL_ELEMENT_ARRAY_BUFFER,
+        Indices.size() * sizeof(int),
+        Indices.data(),
+        GL_STATIC_DRAW
+    );
+
+    glVertexAttribPointer(
+        /* index = */ 0,
+        /* size = */ 3,
+        GL_FLOAT,
+        GL_FALSE,
+        sizeof(Vertex),
+        reinterpret_cast<void *>(0)
+    );
+    glVertexAttribPointer(
+        /* index = */ 1,
+        /* size = */ 2,
+        GL_FLOAT,
+        GL_FALSE,
+        sizeof(Vertex),
+        reinterpret_cast<void *>(offsetof(Vertex, TextureCoordinates))
+    );
+
+    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
 
     glfwDestroyWindow(Window);
     glfwTerminate();
