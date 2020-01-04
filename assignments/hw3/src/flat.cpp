@@ -19,6 +19,97 @@ struct Vertex {
     glm::vec2 TextureCoordinates;
 };
 
+struct UIState {
+    double HeightFactor = 10.0f;
+    double TextureHorizontalShift = 0.0f;
+    glm::vec3 LightSourceCoordinate = {1.0f, 1.0f, 1.0f};
+    float Pitch = 0.0f;
+    float Yaw = 0.0f;
+    float Speed = 0.0f;
+
+    void IncrementHeightFactor() {
+        HeightFactor += 0.5f;
+    }
+
+    void DecrementHeightFactor() {
+        HeightFactor -= 0.5f;
+    }
+
+    void ShiftTextureLeft() {
+        TextureHorizontalShift -= 1.0f;
+    }
+
+    void ShiftTextureRight() {
+        TextureHorizontalShift += 1.0f;
+    }
+
+    void LightSourceUp() {
+        LightSourceCoordinate.x += 5.0f;
+    }
+
+    void LightSourceDown() {
+        LightSourceCoordinate.x -= 5.0f;
+    }
+
+    void LightSourceLeft() {
+        LightSourceCoordinate.z -= 5.0f;
+    }
+
+    void LightSourceRight() {
+        LightSourceCoordinate.z += 5.0f;
+    }
+
+    void LightSourceIncrementHeight() {
+        LightSourceCoordinate.y += 5.0f;
+    }
+
+    void LightSourceDecrementHeight() {
+        LightSourceCoordinate.y -= 5.0f;
+    }
+
+    void IncrementPitch() {
+        Pitch += 0.5f;
+    }
+
+    void DecrementPitch() {
+        Pitch -= 0.5f;
+    }
+
+    void IncrementYaw() {
+        Yaw += 0.5f;
+    }
+
+    void DecrementYaw() {
+        Yaw -= 0.5f;
+    }
+
+    void IncrementSpeed() {
+        Speed += 0.25f;
+    }
+
+    void DecrementSpeed() {
+        Speed -= 0.25f;
+    }
+
+    void ResetSpeed() {
+        Speed = 0.0f;
+    }
+
+    void Print() {
+        system("clear");
+        std::cout << "HeightFactor = " << HeightFactor << '\n';
+        std::cout << "TextureHorizontalShift = " << TextureHorizontalShift << '\n';
+        std::cout << "LightSourceCoordinate = {"
+                  << LightSourceCoordinate.x << ", "
+                  << LightSourceCoordinate.y << ", "
+                  << LightSourceCoordinate.z << "}" << '\n';
+        std::cout << "Pitch = " << Pitch << '\n';
+        std::cout << "Yaw = " << Yaw << '\n';
+        std::cout << "Speed = " << Speed << '\n';
+    }
+} TheState;
+
+
 static void errorCallback(int error, const char * description) {
     fprintf(stderr, "Error: %s\n", description);
 }
@@ -28,15 +119,35 @@ static void framebufferSizeCallback(GLFWwindow *Window, int Width, int Height)
     glViewport(0, 0, Width, Height);
 }
 
-void processInput(GLFWwindow *Window)
+void ProcessInput(GLFWwindow *Window, int Key, int ScanCode, int Action, int Mods)
 {
+#define ON_KEY(KeyName) if (Key == GLFW_KEY_##KeyName && (Action == GLFW_PRESS || Action == GLFW_REPEAT))
+
+    ON_KEY(R) TheState.IncrementHeightFactor();
+    ON_KEY(F) TheState.DecrementHeightFactor();
+    ON_KEY(Q) TheState.ShiftTextureLeft();
+    ON_KEY(E) TheState.ShiftTextureRight();
+    // TODO Light left-right up-down (arrow keys)
+    ON_KEY(T) TheState.LightSourceIncrementHeight();
+    ON_KEY(G) TheState.LightSourceDecrementHeight();
+    ON_KEY(W) TheState.IncrementPitch();
+    ON_KEY(S) TheState.DecrementPitch();
+    ON_KEY(A) TheState.IncrementYaw();
+    ON_KEY(D) TheState.DecrementYaw();
+    ON_KEY(Y) TheState.IncrementSpeed();
+    ON_KEY(H) TheState.DecrementSpeed();
+    ON_KEY(X) TheState.ResetSpeed();
+    // TODO I for Initial Configuration
+    // TODO P for Fullscreen
+
     if (glfwGetKey(Window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwSetWindowShouldClose(Window, true);
     }
+#undef ON_KEY
 }
 
-std::vector<Vertex>
-GenerateTerrainVertices() {
+std::vector<Vertex> GenerateTerrainVertices()
+{
     std::vector<Vertex> TerrainVertices;
 
     const auto dx = 1.0f / (float)TextureWidth,
@@ -54,8 +165,8 @@ GenerateTerrainVertices() {
     return TerrainVertices;
 }
 
-std::vector<int>
-GenerateTerrainIndices() {
+std::vector<int> GenerateTerrainIndices()
+{
     std::vector<int> TerrainIndices;
 
     for (auto i = 0; i < TextureHeight - 1; ++i) {
@@ -91,7 +202,7 @@ int main(int argc, char **argv)
     if (!glfwInit()) {
         die("Could not initialize OpenGL");
     }
-    
+
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -101,12 +212,12 @@ int main(int argc, char **argv)
 #endif
 
     auto Window = glfwCreateWindow(800, 800, "CENG477 - HW3", nullptr, nullptr);
-    
+
     if (!Window) {
         glfwTerminate();
         die("Could not create an OpenGL window");
     }
-    
+
     glfwMakeContextCurrent(Window);
 
 #ifndef __APPLE__
@@ -119,7 +230,6 @@ int main(int argc, char **argv)
     }
 #endif
 
-    glfwSetFramebufferSizeCallback(Window, framebufferSizeCallback);
 
     InitializeShaders();
 
@@ -188,21 +298,21 @@ int main(int argc, char **argv)
     );
     auto CameraPositionLocation = glGetUniformLocation(ProgramShaderId, "CameraPosition");
     glUniform3fv(
-            CameraPositionLocation,
-            /* count = */ 1,
-            glm::value_ptr(CameraPosition)
+        CameraPositionLocation,
+        /* count = */ 1,
+        glm::value_ptr(CameraPosition)
     );
 
     auto LightPosition = glm::vec3(
-            TextureWidth / 2,
-            100,
-            TextureHeight / 2
+        TextureWidth / 2,
+        100,
+        TextureHeight / 2
     );
     auto LightPositionLocation = glGetUniformLocation(ProgramShaderId, "LightPosition");
     glUniform3fv(
-            LightPositionLocation,
-            /* count = */ 1,
-            glm::value_ptr(LightPosition)
+        LightPositionLocation,
+        /* count = */ 1,
+        glm::value_ptr(LightPosition)
     );
 
     auto CameraGaze = glm::vec3(0.0f, 0.0f, 1.0f);
@@ -233,6 +343,9 @@ int main(int argc, char **argv)
     // TODO
     glEnable(GL_DEPTH_TEST);
 
+    glfwSetKeyCallback(Window, ProcessInput);
+    glfwSetFramebufferSizeCallback(Window, framebufferSizeCallback);
+
     while (!glfwWindowShouldClose(Window)) {
         glClearColor(1.0f, 1.0f, 0.7f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -244,9 +357,10 @@ int main(int argc, char **argv)
             /* indices = */ 0
         );
 
-        processInput(Window);
         glfwSwapBuffers(Window);
         glfwPollEvents();
+
+        TheState.Print();
     }
 
     glfwDestroyWindow(Window);
