@@ -16,8 +16,8 @@ OBJ=$(patsubst %.cpp,%.o,$(SRC))
 
 all: hw3_flat
 
-hw3_flat: flat.cpp
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) flat.cpp -o hw3_flat
+hw3_flat: flat.cpp util.cpp
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) flat.cpp util.cpp -o hw3_flat
 
 clean:
 	rm -f *.o hw3_flat
