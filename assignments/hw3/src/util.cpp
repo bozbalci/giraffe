@@ -9,12 +9,12 @@ void die(const std::string& msg)
     std::exit(1);
 }
 
-void InitShaders()
+void InitializeShaders()
 {
     ProgramShaderId = glCreateProgram();
 
-    CompileAndLoadVertexShader("shader.frag");
     CompileAndLoadVertexShader("shader.vert");
+    CompileAndLoadFragmentShader("shader.frag");
 
     glAttachShader(ProgramShaderId, VertexShaderId);
     glAttachShader(ProgramShaderId, FragmentShaderId);

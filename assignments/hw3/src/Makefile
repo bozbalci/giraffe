@@ -7,7 +7,7 @@ ifeq ($(UNAME_S),Linux)
 endif
 ifeq ($(UNAME_S),Darwin)
 	LDFLAGS=-framework OpenGL -lglfw
-	CXXFLAGS += -DAPPLE
+	CXXFLAGS += -DAPPLE -DGL_SILENCE_DEPRECATION
 endif
 
 SRC=$(wildcard *.cpp)
@@ -17,7 +17,7 @@ OBJ=$(patsubst %.cpp,%.o,$(SRC))
 all: hw3_flat hw3_sphere
 
 hw3_flat: flat.cpp
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) flat.cpp -o hw3_flat
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) flat.cpp util.cpp -o hw3_flat
 
 hw3_sphere: sphere.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) sphere.cpp -o hw3_sphere

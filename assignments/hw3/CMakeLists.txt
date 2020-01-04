@@ -12,10 +12,10 @@ find_package(glfw3 REQUIRED)
 find_package(glm REQUIRED)
 find_package(GLEW REQUIRED)
 
-
 if (APPLE)
     # No need for GLEW on Mac OS X
-    target_link_libraries(hw3_flat glfw ${CMAKE_DL_LIBS})
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DGL_SILENCE_DEPRECATION")
+    target_link_libraries(hw3_flat glfw ${GLFW_LIBRARIES} ${CMAKE_DL_LIBS})
     target_link_libraries(hw3_sphere glfw ${CMAKE_DL_LIBS})
 else ()
     target_link_libraries(hw3_flat glfw GLEW ${CMAKE_DL_LIBS})

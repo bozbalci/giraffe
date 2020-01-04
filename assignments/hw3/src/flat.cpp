@@ -1,20 +1,47 @@
+#ifndef __APPLE__
+    #include <GL/glew.h>
+#else
+    #define GLFW_INCLUDE_GLCOREARB
+    #define GLFW_INCLUDE_GLEXT
+    #ifdef GLFW_INCLUDE_GLCOREARB
+        #include <OpenGL/gl3.h>
+        #ifdef GLFW_INCLUDE_GLEXT
+            #include <OpenGL/gl3ext.h>
+        #endif // GLFW_INCLUDE_GLEXT
+    #endif // GLFW_INCLUDE_GLCOREARB
+#endif // __APPLE__
+
+#include <GLFW/glfw3.h>
+
 #define STB_IMAGE_IMPLEMENTATION
 #define STBI_ASSERT(x)
 
 #include <iostream>
 #include <vector>
 
-#ifndef APPLE
-#include <GL/glew.h>
-#endif
-#include <GLFW/glfw3.h>
-
 #include "util.h"
 #include "glm/glm.hpp"
 #include "globals.h"
 
+GLuint ProgramShaderId;
+GLuint FragmentShaderId;
+GLuint VertexShaderId;
+GLuint JpegTextureId;
+
 static void errorCallback(int error, const char * description) {
     fprintf(stderr, "Error: %s\n", description);
+}
+
+static void framebufferSizeCallback(GLFWwindow *Window, int Width, int Height)
+{
+    glViewport(0, 0, Width, Height);
+}
+
+void processInput(GLFWwindow *Window)
+{
+    if (glfwGetKey(Window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+        glfwSetWindowShouldClose(Window, true);
+    }
 }
 
 struct vertex {
@@ -45,24 +72,73 @@ int main(int argc, char **argv)
     glfwSetErrorCallback(errorCallback);
         
     if (!glfwInit()) {
-        exit(-1);
+        die("Could not initialize OpenGL");
     }
     
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+#ifdef __APPLE__
+    // Required on macOS.
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
 
-    auto win = glfwCreateWindow(800, 800, "CENG477 - HW3", nullptr, nullptr);
+    auto Window = glfwCreateWindow(800, 800, "CENG477 - HW3", nullptr, nullptr);
     
-    if (!win) {
+    if (!Window) {
         glfwTerminate();
-        exit(-1);
+        die("Could not create an OpenGL window");
     }
     
-    glfwMakeContextCurrent(win);
+    glfwMakeContextCurrent(Window);
+    glfwSetFramebufferSizeCallback(Window, framebufferSizeCallback);
 
-#ifndef APPLE
+    InitializeShaders();
+
+    /// ---------------------------------------------------------------------------------------
+    float vertices[] = {
+            -0.5f, -0.5f, 0.0f,
+            0.5f, -0.5f, 0.0f,
+            0.0f, 0.5f, 0.0f,
+    };
+
+    unsigned int VAO, VBO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+
+    glBindVertexArray(VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3,GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *) nullptr);
+    glEnableVertexAttribArray(0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+
+    while (!glfwWindowShouldClose(Window)) {
+        processInput(Window);
+
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        glUseProgram(ProgramShaderId);
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        glfwSwapBuffers(Window);
+        glfwPollEvents();
+    }
+
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glfwTerminate();
+
+    /// ---------------------------------------------------------------------------------------
+
+    return 0;
+
+#ifndef __APPLE__
     glewExperimental = GL_TRUE;
     GLenum err = glewInit();
     if (err != GLEW_OK) {

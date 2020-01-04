@@ -137,3 +137,6 @@ raytracer
 rasterizer
 hw3_flat
 hw3_sphere
+
+# Ignore other repos in friends
+friends/

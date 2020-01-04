@@ -13,7 +13,7 @@ constexpr auto INFOLOG_SIZE = 512;
 
 void die(const std::string& msg);
 
-void InitShaders();
+void InitializeShaders();
 
 void CompileAndLoadVertexShader(const std::string& Path);
 
