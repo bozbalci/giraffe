@@ -90,7 +90,7 @@ void CompileAndLoadFragmentShader(const std::string& Path)
     }
 }
 
-void LoadTextureImage(const std::string& Path, int& Width, int& Height)
+GLuint LoadTextureImage(const std::string& Path, int& Width, int& Height, GLenum TexUnit)
 {
     int Comp; // number of channels in the file
 
@@ -102,12 +102,13 @@ void LoadTextureImage(const std::string& Path, int& Width, int& Height)
             /* desired_channels = */ 0
     );
 
-    glGenTextures(1, &JpegTextureId);
-    glBindTexture(GL_TEXTURE_2D, JpegTextureId);
-    glActiveTexture(GL_TEXTURE0);
+    GLuint TextureId;
+    glGenTextures(1, &TextureId);
+    glBindTexture(GL_TEXTURE_2D, TextureId);
+    glActiveTexture(TexUnit);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Width, Height, 0, GL_RGB, GL_UNSIGNED_BYTE, Data);
 
-    // TODO Generate mipmap here?
+    return TextureId;
 }
 
 bool ReadFileIntoBuffer(const std::string& Path, std::stringstream& Buffer)
