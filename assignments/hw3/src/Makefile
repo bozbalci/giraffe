@@ -6,7 +6,7 @@ ifeq ($(UNAME_S),Linux)
 	LDFLAGS=-lGL -lglfw -lGLEW
 endif
 ifeq ($(UNAME_S),Darwin)
-	LDFLAGS=-framework OpenGL
+	LDFLAGS=-framework OpenGL -lglfw
 	CXXFLAGS += -DAPPLE
 endif
 
