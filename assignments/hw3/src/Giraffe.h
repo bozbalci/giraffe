@@ -18,11 +18,9 @@
 
 #include "glm/glm.hpp"
 
-
 extern GLuint ProgramShaderId;
 extern GLuint FragmentShaderId;
 extern GLuint VertexShaderId;
 extern GLuint JpegTextureId;
-
 
 #endif //HW3_GIRAFFE_H
