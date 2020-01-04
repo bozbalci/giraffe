@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-std=c++17 -Wall -Wextra
+CXXFLAGS=-std=c++17 -Wall -Wextra -g
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
@@ -16,7 +16,7 @@ OBJ=$(patsubst %.cpp,%.o,$(SRC))
 
 all: hw3_flat
 
-hw3_flat: flat.cpp util.cpp
+hw3_flat: flat.cpp util.cpp Giraffe.h
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) flat.cpp util.cpp -o hw3_flat
 
 clean:

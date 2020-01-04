@@ -1,7 +1,14 @@
 #include <fstream>
 #include <sstream>
 
+#include "Giraffe.h"
+
 #include "util.h"
+
+#define STB_IMAGE_IMPLEMENTATION
+#define STBI_ASSERT(x)
+#include "stb_image.h"
+
 
 void die(const std::string& msg)
 {

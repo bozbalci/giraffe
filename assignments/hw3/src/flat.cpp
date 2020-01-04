@@ -1,27 +1,10 @@
-#ifndef __APPLE__
-    #include <GL/glew.h>
-#else
-    #define GLFW_INCLUDE_GLCOREARB
-    #define GLFW_INCLUDE_GLEXT
-    #ifdef GLFW_INCLUDE_GLCOREARB
-        #include <OpenGL/gl3.h>
-        #ifdef GLFW_INCLUDE_GLEXT
-            #include <OpenGL/gl3ext.h>
-        #endif // GLFW_INCLUDE_GLEXT
-    #endif // GLFW_INCLUDE_GLCOREARB
-#endif // __APPLE__
-
-#include <GLFW/glfw3.h>
-
-#define STB_IMAGE_IMPLEMENTATION
-#define STBI_ASSERT(x)
-
 #include <iostream>
 #include <vector>
 
+#include "Giraffe.h"
+
 #include "util.h"
-#include "glm/glm.hpp"
-#include "globals.h"
+
 
 GLuint ProgramShaderId;
 GLuint FragmentShaderId;
