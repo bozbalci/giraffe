@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: install dependencies
-      run: sudo apt update && sudo apt install libglew-dev libglfw3 libglfw3-dev libx11 libx11-dev
+      run: sudo apt update && sudo apt install libglew-dev libglfw3 libglfw3-dev libx11-dev
     - name: make
       run: make
       working-directory: ./assignments/hw3/src
