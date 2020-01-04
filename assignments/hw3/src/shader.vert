@@ -26,11 +26,11 @@ void main()
 
     float Height = texture(HeightMap, TextureCoordinate).x;
 
-    VertexNormal = vec3(1, 1, 1);
+    VertexNormal = vec3(1, 1, 1); // TODO
 
     ToLight = normalize(LightPosition - vec3(Position.x, Height, Position.z));
-
     ToCamera = normalize(CameraPosition.xyz - vec3(Position.x, Height, Position.z));
 
+    VertexTextureCoordinate = TextureCoordinate;
     gl_Position = MVPMatrix * vec4(Position.x, Height, Position.z, 1.0f);
 }
