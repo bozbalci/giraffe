@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-std=c++17 -Wall
+CXXFLAGS=-std=c++17 -Wall -O3
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
@@ -7,7 +7,7 @@ ifeq ($(UNAME_S),Linux)
 endif
 ifeq ($(UNAME_S),Darwin)
 	LDFLAGS=-framework OpenGL -lglfw
-	CXXFLAGS += -DAPPLE -DGL_SILENCE_DEPRECATION
+	CXXFLAGS += -DGL_SILENCE_DEPRECATION
 endif
 UBUNTU_S := $(shell $(CXX) --version | grep -i ubuntu >/dev/null; echo $$?)
 ifeq ($(UBUNTU_S),0)
@@ -16,8 +16,8 @@ endif
 
 all: hw3_flat
 
-hw3_flat: flat.cpp util.cpp Giraffe.h
-	$(CXX) flat.cpp util.cpp -o hw3_flat $(CXXFLAGS) $(LDFLAGS)
+hw3_flat: flat.cpp
+	$(CXX) flat.cpp -o hw3_flat $(CXXFLAGS) $(LDFLAGS)
 
 clean:
 	rm -f *.o hw3_flat
