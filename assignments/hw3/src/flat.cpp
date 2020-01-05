@@ -65,8 +65,8 @@ std::vector<Vertex> GenerateTerrainVertices()
 {
     std::vector<Vertex> TerrainVertices;
 
-    for (auto z = 0; z <= TextureHeight; ++z) {
-        for (auto x = 0; x <= TextureWidth; ++x) {
+    for (auto z = 0; z < TextureHeight; ++z) {
+        for (auto x = 0; x < TextureWidth; ++x) {
             TerrainVertices.push_back({
                 .Position = glm::vec3((float) x, 0.0f, (float) z),
                 .TextureCoordinates = glm::vec2((float) -x / TextureWidth,
