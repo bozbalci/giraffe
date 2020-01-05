@@ -572,17 +572,23 @@ struct HW3Utility {
     void GenerateTerrainVertices() {
         using std::sin;
         using std::cos;
-        for (auto step_horizontal = 0; step_horizontal < pieces_horizontal; ++step_horizontal) {
-            for (auto step_vertical = 0; step_vertical < pieces_vertical; ++step_vertical) {
-                auto beta = pi() * (step_horizontal / pieces_horizontal);
-                auto alpha = 2*pi() * (step_vertical / pieces_vertical);
-                auto x = sphere_radius * sin(beta) * cos(alpha);
-                auto y = sphere_radius * sin(beta) * sin(alpha);
-                auto z = sphere_radius * cos(beta);
+
+        auto step_horizontal = 2 * pi()/pieces_horizontal;
+        auto step_vertical = pi()/pieces_vertical;
+        for (auto i = 0; i <= pieces_vertical; ++i) {
+            auto beta = pi()/2 - i*step_vertical;
+            auto xy = sphere_radius * cos(beta);
+            auto z = sphere_radius * sin(beta);
+
+            for (auto j = 0; j <= pieces_horizontal; ++j) {
+                auto alpha = j * step_horizontal;
+                auto x = xy * cos(alpha);
+                auto y = xy * sin(alpha);
+
                 Vertices.push_back({
                    .Position = glm::vec3((float) x, (float) y, (float) z),
-                   .TextureCoordinates = glm::vec2((float) step_horizontal / pieces_horizontal,
-                                                   (float) step_vertical / pieces_vertical)
+                   .TextureCoordinates = glm::vec2((float) j / pieces_horizontal,
+                                                   (float) i / pieces_vertical)
                });
             }
         }
