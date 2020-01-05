@@ -16,7 +16,7 @@ endif
 
 all: hw3_flat
 
-hw3_flat: flat.cpp util.cpp Giraffe.h
+hw3_flat: flat.cpp util.cpp Giraffe.h state.h
 	$(CXX) flat.cpp util.cpp -o hw3_flat $(CXXFLAGS) $(LDFLAGS)
 
 clean:
