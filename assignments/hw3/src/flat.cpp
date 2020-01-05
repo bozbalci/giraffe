@@ -37,7 +37,10 @@ void KeyCallback(GLFWwindow *Window, int Key, int ScanCode, int Action, int Mods
     ON_KEY(F) TheState.DecrementHeightFactor();
     ON_KEY(Q) TheState.ShiftTextureLeft();
     ON_KEY(E) TheState.ShiftTextureRight();
-    // TODO Light left-right up-down (arrow keys)
+    ON_KEY(LEFT) TheState.LightSourceLeft();
+    ON_KEY(RIGHT) TheState.LightSourceRight();
+    ON_KEY(UP) TheState.LightSourceUp();
+    ON_KEY(DOWN) TheState.LightSourceDown();
     ON_KEY(T) TheState.LightSourceIncrementHeight();
     ON_KEY(G) TheState.LightSourceDecrementHeight();
     ON_KEY(W) TheState.IncrementPitch();
@@ -47,7 +50,8 @@ void KeyCallback(GLFWwindow *Window, int Key, int ScanCode, int Action, int Mods
     ON_KEY(Y) TheState.IncrementSpeed();
     ON_KEY(H) TheState.DecrementSpeed();
     ON_KEY(X) TheState.ResetSpeed();
-    // TODO I for Initial Configuration
+    ON_KEY(I) TheState.ResetPositionAndCamera();
+
     // TODO P for Fullscreen
 
     if (glfwGetKey(Window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
@@ -188,107 +192,29 @@ int main(int argc, char **argv)
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
 
-    auto CameraPosition = glm::vec3(
-        TextureWidth / 2.0f,
-        TextureWidth / 10.0f,
-        -TextureWidth / 4.0f
-    );
-    auto CameraPositionLocation = glGetUniformLocation(ProgramShaderId, "CameraPosition");
-    glUniform3fv(
-        CameraPositionLocation,
-        /* count = */ 1,
-        glm::value_ptr(CameraPosition)
-    );
-
-    auto LightPosition = glm::vec3(
-        TextureWidth / 2.0f,
-        100.0f,
-        TextureHeight / 2.0f
-    );
-    auto LightPositionLocation = glGetUniformLocation(ProgramShaderId, "LightPosition");
-    glUniform3fv(
-        LightPositionLocation,
-        /* count = */ 1,
-        glm::value_ptr(LightPosition)
-    );
-
-    auto CameraGaze = glm::vec3(0.0f, 0.0f, 1.0f);
-    auto CameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-
-    auto ModelMatrix = glm::mat4(1.0f);
-    auto ViewMatrix = glm::lookAt(
-        CameraPosition,
-        CameraPosition + CameraGaze,
-        CameraUp
-    );
-    auto ProjectionMatrix = glm::perspective(
-        glm::radians(45.0f),
-        1.0f,
-        0.1f,
-        1000.0f
-    );
-    auto MVPMatrix = ProjectionMatrix * ViewMatrix * ModelMatrix;
-
-    auto MVPMatrixLocation = glGetUniformLocation(ProgramShaderId, "MVPMatrix");
-    glUniformMatrix4fv(
-        MVPMatrixLocation,
-        /* count = */ 1,
-        GL_FALSE,
-        glm::value_ptr(MVPMatrix)
-    );
-
-    auto HeightFactorLocation = glGetUniformLocation(ProgramShaderId, "HeightFactor");
-
-    glEnable(GL_DEPTH_TEST);
-
+    // Set callbacks
     glfwSetKeyCallback(Window, KeyCallback);
     glfwSetErrorCallback(ErrorCallback);
     glfwSetFramebufferSizeCallback(Window, FramebufferSizeCallback);
+
+    glEnable(GL_DEPTH_TEST);
+
+    TheState.Initialize(TextureWidth, TextureHeight);
 
     while (!glfwWindowShouldClose(Window)) {
         auto BGColor = glm::min(1.0f, glm::abs(TheState.Speed) / 5.0f);
         glClearColor(BGColor, BGColor, BGColor, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // Update CameraPosition
-        auto Yaw = glm::radians(TheState.Yaw);
-        auto Pitch = glm::radians(TheState.Pitch);
-        CameraGaze = glm::normalize(glm::vec3(
-            cos(Yaw) * cos(Pitch),
-            sin(Pitch),
-            sin(Yaw) * cos(Pitch)
-        ));
-        CameraPosition += TheState.Speed * CameraGaze;
-        glUniform3fv(
-            CameraPositionLocation,
-            /* count = */ 1,
-            glm::value_ptr(CameraPosition)
-        );
+        TheState.UpdateCamera();
+        TheState.UpdateMVPMatrix();
+        TheState.UpdateHeightFactor();
+        TheState.UpdateLightPosition();
+        TheState.Print();
 
-        // Update MVPMatrix
-        ViewMatrix = glm::lookAt(CameraPosition, CameraPosition + CameraGaze, CameraUp);
-        MVPMatrix = ProjectionMatrix * ViewMatrix * ModelMatrix;
-        glUniformMatrix4fv(
-            MVPMatrixLocation,
-            /* count = */ 1,
-            GL_FALSE,
-            glm::value_ptr(MVPMatrix)
-        );
-
-        // Update HeightFactor
-        glUniform1f(HeightFactorLocation, TheState.HeightFactor);
-
-        glDrawElements(
-            GL_TRIANGLES,
-            Indices.size(),
-            GL_UNSIGNED_INT,
-            /* indices = */ 0
-        );
-
+        glDrawElements(GL_TRIANGLES, Indices.size(), GL_UNSIGNED_INT, 0);
         glfwSwapBuffers(Window);
         glfwPollEvents();
-
-        // TheState.Print();
     }
 
     glfwDestroyWindow(Window);
