@@ -92,26 +92,48 @@ void CompileAndLoadFragmentShader(const std::string& Path)
     }
 }
 
-GLuint LoadTextureImage(const std::string& Path, int& Width, int& Height, GLenum TexUnit)
-{
-    int Comp; // number of channels in the file
+void LoadTextures(
+    const std::string& HeightMapPath,
+    const std::string& TexturePath,
+    int& Width,
+    int& Height
+) {
+    int Comp; // number of channels in the file being read
+    GLuint Textures[2];
+    glGenTextures(/* n = */ 2, Textures);
+
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, Textures[0]);
 
     unsigned char *Data = stbi_load(
-        Path.c_str(),
+        HeightMapPath.c_str(),
         &Width,
         &Height,
         &Comp,
         /* desired_channels = */ 0
     );
 
-    GLuint TextureId;
-    glGenTextures(1, &TextureId);
-    glBindTexture(GL_TEXTURE_2D, TextureId);
-    glActiveTexture(TexUnit);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Width, Height, 0, GL_RGB, GL_UNSIGNED_BYTE, Data);
     glGenerateMipmap(GL_TEXTURE_2D);
 
-    return TextureId;
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, Textures[1]);
+
+    Data = stbi_load(
+        TexturePath.c_str(),
+        &Width,
+        &Height,
+        &Comp,
+        /* desired_channels = */ 0
+    );
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, Width, Height, 0, GL_RGB, GL_UNSIGNED_BYTE, Data);
+    glGenerateMipmap(GL_TEXTURE_2D);
+
+    auto HeightMapLocation = glGetUniformLocation(ProgramShaderId, "HeightMap");
+    auto TextureLocation = glGetUniformLocation(ProgramShaderId, "Texture");
+
+    glUniform1i(HeightMapLocation, /* v0 = */ 0);
+    glUniform1i(TextureLocation, /* v0 = */ 1);
 }
 
 bool ReadFileIntoBuffer(const std::string& Path, std::stringstream& Buffer)

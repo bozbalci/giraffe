@@ -3,6 +3,7 @@
 
 #include "Giraffe.h"
 
+#include "state.h"
 #include "util.h"
 
 GLuint ProgramShaderId;
@@ -19,107 +20,16 @@ struct Vertex {
     glm::vec2 TextureCoordinates;
 };
 
-struct UIState {
-    double HeightFactor = 10.0f;
-    double TextureHorizontalShift = 0.0f;
-    glm::vec3 LightSourceCoordinate = {1.0f, 1.0f, 1.0f};
-    float Pitch = 0.0f;
-    float Yaw = 0.0f;
-    float Speed = 0.0f;
-
-    void IncrementHeightFactor() {
-        HeightFactor += 0.5f;
-    }
-
-    void DecrementHeightFactor() {
-        HeightFactor -= 0.5f;
-    }
-
-    void ShiftTextureLeft() {
-        TextureHorizontalShift -= 1.0f;
-    }
-
-    void ShiftTextureRight() {
-        TextureHorizontalShift += 1.0f;
-    }
-
-    void LightSourceUp() {
-        LightSourceCoordinate.x += 5.0f;
-    }
-
-    void LightSourceDown() {
-        LightSourceCoordinate.x -= 5.0f;
-    }
-
-    void LightSourceLeft() {
-        LightSourceCoordinate.z -= 5.0f;
-    }
-
-    void LightSourceRight() {
-        LightSourceCoordinate.z += 5.0f;
-    }
-
-    void LightSourceIncrementHeight() {
-        LightSourceCoordinate.y += 5.0f;
-    }
-
-    void LightSourceDecrementHeight() {
-        LightSourceCoordinate.y -= 5.0f;
-    }
-
-    void IncrementPitch() {
-        Pitch += 0.5f;
-    }
-
-    void DecrementPitch() {
-        Pitch -= 0.5f;
-    }
-
-    void IncrementYaw() {
-        Yaw += 0.5f;
-    }
-
-    void DecrementYaw() {
-        Yaw -= 0.5f;
-    }
-
-    void IncrementSpeed() {
-        Speed += 0.25f;
-    }
-
-    void DecrementSpeed() {
-        Speed -= 0.25f;
-    }
-
-    void ResetSpeed() {
-        Speed = 0.0f;
-    }
-
-    void Print() {
-        system("clear");
-        std::cout << "HeightFactor = " << HeightFactor << '\n';
-        std::cout << "TextureHorizontalShift = " << TextureHorizontalShift << '\n';
-        std::cout << "LightSourceCoordinate = {"
-                  << LightSourceCoordinate.x << ", "
-                  << LightSourceCoordinate.y << ", "
-                  << LightSourceCoordinate.z << "}" << '\n';
-        std::cout << "Pitch = " << Pitch << '\n';
-        std::cout << "Yaw = " << Yaw << '\n';
-        std::cout << "Speed = " << Speed << '\n';
-    }
-} TheState;
-
-
-static void errorCallback(int error, const char * description) {
-    fprintf(stderr, "Error: %s\n", description);
+static void ErrorCallback(int Error, const char *Description) {
+    fprintf(stderr, "Error: %s\n", Description);
 }
 
-static void framebufferSizeCallback(GLFWwindow *Window, int Width, int Height)
+static void FramebufferSizeCallback(GLFWwindow *Window, int Width, int Height)
 {
     glViewport(0, 0, Width, Height);
 }
 
-void ProcessInput(GLFWwindow *Window, int Key, int ScanCode, int Action, int Mods)
+void KeyCallback(GLFWwindow *Window, int Key, int ScanCode, int Action, int Mods)
 {
 #define ON_KEY(KeyName) if (Key == GLFW_KEY_##KeyName && (Action == GLFW_PRESS || Action == GLFW_REPEAT))
 
@@ -132,8 +42,8 @@ void ProcessInput(GLFWwindow *Window, int Key, int ScanCode, int Action, int Mod
     ON_KEY(G) TheState.LightSourceDecrementHeight();
     ON_KEY(W) TheState.IncrementPitch();
     ON_KEY(S) TheState.DecrementPitch();
-    ON_KEY(A) TheState.IncrementYaw();
-    ON_KEY(D) TheState.DecrementYaw();
+    ON_KEY(A) TheState.DecrementYaw();
+    ON_KEY(D) TheState.IncrementYaw();
     ON_KEY(Y) TheState.IncrementSpeed();
     ON_KEY(H) TheState.DecrementSpeed();
     ON_KEY(X) TheState.ResetSpeed();
@@ -143,6 +53,7 @@ void ProcessInput(GLFWwindow *Window, int Key, int ScanCode, int Action, int Mod
     if (glfwGetKey(Window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwSetWindowShouldClose(Window, true);
     }
+
 #undef ON_KEY
 }
 
@@ -197,8 +108,6 @@ int main(int argc, char **argv)
     auto HeightMapPath = argv[1];
     auto TexturePath = argv[2];
 
-    glfwSetErrorCallback(errorCallback);
-
     if (!glfwInit()) {
         die("Could not initialize OpenGL");
     }
@@ -230,18 +139,8 @@ int main(int argc, char **argv)
     }
 #endif
 
-
     InitializeShaders();
-
-    HeightMapTextureId = LoadTextureImage(HeightMapPath, TextureWidth, TextureHeight, GL_TEXTURE0);
-    DiffuseTextureId = LoadTextureImage(TexturePath, TextureWidth, TextureHeight, GL_TEXTURE0 + 1);
-
-    auto HeightMapLocation = glGetUniformLocation(ProgramShaderId, "HeightMap");
-    auto TextureLocation = glGetUniformLocation(ProgramShaderId, "Texture");
-
-    glUniform1i(HeightMapLocation, /* v0 = */ 0);
-    glUniform1i(TextureLocation, /* v0 = */ 1);
-
+    LoadTextures(HeightMapPath, TexturePath, TextureWidth, TextureHeight);
     auto Vertices = GenerateTerrainVertices();
     auto Indices = GenerateTerrainIndices();
 
@@ -304,9 +203,9 @@ int main(int argc, char **argv)
     );
 
     auto LightPosition = glm::vec3(
-        TextureWidth / 2,
-        100,
-        TextureHeight / 2
+        TextureWidth / 2.0f,
+        100.0f,
+        TextureHeight / 2.0f
     );
     auto LightPositionLocation = glGetUniformLocation(ProgramShaderId, "LightPosition");
     glUniform3fv(
@@ -340,15 +239,46 @@ int main(int argc, char **argv)
         glm::value_ptr(MVPMatrix)
     );
 
-    // TODO
+    auto HeightFactorLocation = glGetUniformLocation(ProgramShaderId, "HeightFactor");
+
     glEnable(GL_DEPTH_TEST);
 
-    glfwSetKeyCallback(Window, ProcessInput);
-    glfwSetFramebufferSizeCallback(Window, framebufferSizeCallback);
+    glfwSetKeyCallback(Window, KeyCallback);
+    glfwSetErrorCallback(ErrorCallback);
+    glfwSetFramebufferSizeCallback(Window, FramebufferSizeCallback);
 
     while (!glfwWindowShouldClose(Window)) {
-        glClearColor(1.0f, 1.0f, 0.7f, 1.0f);
+        auto BGColor = glm::min(1.0f, glm::abs(TheState.Speed) / 5.0f);
+        glClearColor(BGColor, BGColor, BGColor, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        // Update CameraPosition
+        auto Yaw = glm::radians(TheState.Yaw);
+        auto Pitch = glm::radians(TheState.Pitch);
+        CameraGaze = glm::normalize(glm::vec3(
+            cos(Yaw) * cos(Pitch),
+            sin(Pitch),
+            sin(Yaw) * cos(Pitch)
+        ));
+        CameraPosition += TheState.Speed * CameraGaze;
+        glUniform3fv(
+            CameraPositionLocation,
+            /* count = */ 1,
+            glm::value_ptr(CameraPosition)
+        );
+
+        // Update MVPMatrix
+        ViewMatrix = glm::lookAt(CameraPosition, CameraPosition + CameraGaze, CameraUp);
+        MVPMatrix = ProjectionMatrix * ViewMatrix * ModelMatrix;
+        glUniformMatrix4fv(
+            MVPMatrixLocation,
+            /* count = */ 1,
+            GL_FALSE,
+            glm::value_ptr(MVPMatrix)
+        );
+
+        // Update HeightFactor
+        glUniform1f(HeightFactorLocation, TheState.HeightFactor);
 
         glDrawElements(
             GL_TRIANGLES,
@@ -360,7 +290,7 @@ int main(int argc, char **argv)
         glfwSwapBuffers(Window);
         glfwPollEvents();
 
-        TheState.Print();
+        // TheState.Print();
     }
 
     glfwDestroyWindow(Window);

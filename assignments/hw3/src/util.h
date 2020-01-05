@@ -15,7 +15,7 @@ void CompileAndLoadVertexShader(const std::string& Path);
 
 void CompileAndLoadFragmentShader(const std::string& Path);
 
-GLuint LoadTextureImage(const std::string& Path, int& Width, int& Height, GLenum TexUnit);
+void LoadTextures(const std::string& HeightMapPath, const std::string& TexturePath, int& Width, int& Height);
 
 bool ReadFileIntoBuffer(const std::string& Path, std::stringstream& Buffer);
 

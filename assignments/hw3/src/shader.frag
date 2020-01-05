@@ -3,15 +3,16 @@
 out vec4 FragmentColor;
 
 in vec2 VertexTextureCoordinate;
-in vec3 VertexNormal;
-in vec3 ToLight;
 in vec3 ToCamera;
+in vec3 ToLight;
+in vec3 VertexNormal;
 
+uniform float HeightFactor;
+uniform int TextureHeight;
+uniform int TextureWidth;
+uniform mat4 MVPMatrix;
 uniform sampler2D HeightMap;
 uniform sampler2D Texture;
-uniform mat4 MVPMatrix;
-uniform int TextureWidth;
-uniform int TextureHeight;
 uniform vec3 CameraPosition;
 uniform vec3 LightPosition;
 
@@ -33,11 +34,14 @@ void main()
     // Computed values
     vec3 AmbientComponent = (AmbientReflectance * AmbientColor).xyz;
 
-    float DiffuseCoeff = max(dot(VertexNormal, ToLight), 0.0);
+    float DiffuseCoeff = max(dot(VertexNormal, ToLight),
+                             0.0);
     vec3 DiffuseComponent = DiffuseCoeff * (DiffuseReflectance * DiffuseColor).xyz;
 
     vec3 ReflectedLight = reflect(-ToLight, VertexNormal);
-    float SpecularCoeff = pow(max(dot(ReflectedLight, ToCamera), 0.0), SpecularExponent);
+    float SpecularCoeff = pow(max(dot(ReflectedLight, ToCamera),
+                                  0.0),
+                              SpecularExponent);
     vec3 SpecularComponent = SpecularCoeff * (SpecularReflectance * SpecularColor).xyz;
 
     vec3 TotalComponent = AmbientComponent + DiffuseComponent + SpecularComponent;

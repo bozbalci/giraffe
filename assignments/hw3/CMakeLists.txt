@@ -3,7 +3,7 @@ project(hw3)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(hw3_flat src/flat.cpp src/util.cpp src/util.h src/globals.h)
+add_executable(hw3_flat src/flat.cpp src/util.cpp src/util.h src/globals.h src/state.h)
 add_executable(hw3_sphere src/sphere.cpp src/globals.h)
 target_compile_options(hw3_flat PRIVATE -Wall -Wextra)
 target_compile_options(hw3_sphere PRIVATE -Wall -Wextra)
