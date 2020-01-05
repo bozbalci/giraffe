@@ -14,10 +14,13 @@ ifeq ($(UBUNTU_S),0)
     LDFLAGS=-lGLEW -lglfw3 -lGL -lX11 -lXi -lXrandr -lXxf86vm -lXinerama -lXcursor -lrt -lm -pthread -ldl
 endif
 
-all: hw3_flat
+all: hw3_flat hw3_sphere
 
 hw3_flat: flat.cpp
 	$(CXX) flat.cpp -o hw3_flat $(CXXFLAGS) $(LDFLAGS)
 
+hw3_sphere: sphere.cpp
+	$(CXX) sphere.cpp -o hw3_sphere $(CXXFLAGS) $(LDFLAGS)
+
 clean:
-	rm -f *.o hw3_flat
+	rm -f *.o hw3_flat hw3_sphere
