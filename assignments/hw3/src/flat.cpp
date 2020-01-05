@@ -206,11 +206,7 @@ int main(int argc, char **argv)
         glClearColor(BGColor, BGColor, BGColor, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        TheState.UpdateCamera();
-        TheState.UpdateMVPMatrix();
-        TheState.UpdateHeightFactor();
-        TheState.UpdateLightPosition();
-        // TODO Update texture horizontal offset (Q/E)
+        TheState.Update();
 #ifdef DEBUG
         TheState.Print();
 #endif

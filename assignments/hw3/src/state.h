@@ -196,6 +196,14 @@ struct UIState {
         glUniform3fv(LightPositionLocation, 1, glm::value_ptr(LightPosition));
     }
 
+    void Update() {
+        UpdateCamera();
+        UpdateMVPMatrix();
+        UpdateHeightFactor();
+        UpdateLightPosition();
+        // TODO Update texture horizontal offset (Q/E)
+    }
+
     void Print() {
         system("clear");
         std::cout << "HeightFactor = " << HeightFactor << '\n';
