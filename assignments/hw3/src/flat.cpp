@@ -29,7 +29,7 @@ static void FramebufferSizeCallback(GLFWwindow *Window, int Width, int Height)
     glViewport(0, 0, Width, Height);
 }
 
-void KeyCallback(GLFWwindow *Window, int Key, int ScanCode, int Action, int Mods)
+static void KeyCallback(GLFWwindow *Window, int Key, int ScanCode, int Action, int Mods)
 {
 #define ON_KEY(KeyName) if (Key == GLFW_KEY_##KeyName && (Action == GLFW_PRESS || Action == GLFW_REPEAT))
 
