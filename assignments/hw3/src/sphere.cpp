@@ -57,15 +57,15 @@ struct UIState {
     static constexpr auto TEXTURE_HORIZONTAL_SHIFT_INITIAL = 0.0f;
     static constexpr auto TEXTURE_HORIZONTAL_SHIFT_UNIT = 1.0f;
     static constexpr auto PITCH_INITIAL = 0.0f;
-    static constexpr auto PITCH_UNIT = 0.5f;
+    static constexpr auto PITCH_UNIT = 0.05f;
     static constexpr auto PITCH_MAX = 89.9f;
     static constexpr auto PITCH_MIN = -PITCH_MAX;
     static constexpr auto YAW_INITIAL = 90.0f;
-    static constexpr auto YAW_UNIT = 0.5f;
+    static constexpr auto YAW_UNIT = 0.05f;
     static constexpr auto YAW_MAX = 360.0f;
     static constexpr auto YAW_MIN = 0.0f;
     static constexpr auto SPEED_INITIAL = 0.0f;
-    static constexpr auto SPEED_UNIT = 0.25f;
+    static constexpr auto SPEED_UNIT = 0.01f;
     static constexpr auto LIGHT_UNIT = 5.0f;
 
     // OPENGL-RELATED DATA
@@ -75,6 +75,7 @@ struct UIState {
     GLint LightPositionLocation;
     GLint MVPMatrixLocation;
     GLint HeightFactorLocation;
+    GLint TextureHorizontalShiftLocation;
 
     /// UI PARAMETERS
     double HeightFactor = HEIGHT_FACTOR_INITIAL;
@@ -194,6 +195,7 @@ struct UIState {
         LightPositionLocation = glGetUniformLocation(ProgramShaderId, "LightPosition");
         MVPMatrixLocation = glGetUniformLocation(ProgramShaderId, "MVPMatrix");
         HeightFactorLocation = glGetUniformLocation(ProgramShaderId, "HeightFactor");
+        TextureHorizontalShiftLocation = glGetUniformLocation(ProgramShaderId, "TextureHorizontalShift");
 
         // Initialize world data
         Camera.Position = {
@@ -246,12 +248,16 @@ struct UIState {
         glUniform3fv(LightPositionLocation, 1, glm::value_ptr(LightPosition));
     }
 
+    void UpdateTextureHorizontalShift() {
+        glUniform1f(TextureHorizontalShiftLocation, TextureHorizontalShift);
+    }
+
     void Update() {
         UpdateCamera();
         UpdateMVPMatrix();
         UpdateHeightFactor();
         UpdateLightPosition();
-        // TODO Update texture horizontal offset (Q/E)
+        UpdateTextureHorizontalShift();
     }
 
 #ifdef DEBUG
@@ -263,6 +269,10 @@ struct UIState {
                   << Camera.Position.x << ", "
                   << Camera.Position.y << ", "
                   << Camera.Position.z << "}" << '\n';
+        std::cout << "CameraGaze = {"
+                  << Camera.Gaze.x << ", "
+                  << Camera.Gaze.y << ", "
+                  << Camera.Gaze.z << "}" << '\n';
         std::cout << "LightPosition = {"
                   << LightPosition.x << ", "
                   << LightPosition.y << ", "
@@ -368,8 +378,7 @@ private:
     }
 };
 
-class HW3Utility {
-public:
+struct HW3Utility {
     // INPUT PATHS
     std::string VertexShaderPath = "shader.vert";
     std::string FragmentShaderPath = "shader.frag";
@@ -468,6 +477,8 @@ public:
                               /* desired_channels = */ 0);
         glTexImage2D(GL_TEXTURE_2D, /* level = */ 0, GL_RGB, TextureWidth, TextureHeight,
                      /* border = */ 0, GL_RGB, GL_UNSIGNED_BYTE, ImageData);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glGenerateMipmap(GL_TEXTURE_2D);
 
         // Load diffuse map
@@ -477,11 +488,17 @@ public:
                               /* desired_channels = */ 0);
         glTexImage2D(GL_TEXTURE_2D, /* level = */ 0, GL_RGB, TextureWidth, TextureHeight,
                      /* border = */ 0, GL_RGB, GL_UNSIGNED_BYTE, ImageData);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glGenerateMipmap(GL_TEXTURE_2D);
 
+        auto TextureWidthLocation = glGetUniformLocation(ProgramShaderId, "TextureWidth");
+        auto TextureHeightLocation = glGetUniformLocation(ProgramShaderId, "TextureHeight");
         auto HeightMapLocation = glGetUniformLocation(ProgramShaderId, "HeightMap");
         auto TextureLocation = glGetUniformLocation(ProgramShaderId, "Texture");
 
+        glUniform1i(TextureWidthLocation, TextureWidth);
+        glUniform1i(TextureHeightLocation, TextureHeight);
         glUniform1i(HeightMapLocation, /* v0 = */ 0);
         glUniform1i(TextureLocation, /* v0 = */ 1);
     }
