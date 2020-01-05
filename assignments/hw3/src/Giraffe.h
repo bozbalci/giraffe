@@ -26,4 +26,6 @@ extern GLuint VertexShaderId;
 extern GLuint DiffuseTextureId;
 extern GLuint HeightMapTextureId;
 
+constexpr auto WINDOW_SIZE = 1000;
+
 #endif //HW3_GIRAFFE_H

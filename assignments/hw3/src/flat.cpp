@@ -122,7 +122,7 @@ int main(int argc, char **argv)
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
-    auto Window = glfwCreateWindow(800, 800, "CENG477 - HW3", nullptr, nullptr);
+    auto Window = glfwCreateWindow(WINDOW_SIZE, WINDOW_SIZE, "CENG477", nullptr, nullptr);
 
     if (!Window) {
         glfwTerminate();
@@ -210,7 +210,10 @@ int main(int argc, char **argv)
         TheState.UpdateMVPMatrix();
         TheState.UpdateHeightFactor();
         TheState.UpdateLightPosition();
+        // TODO Update texture horizontal offset (Q/E)
+#ifdef DEBUG
         TheState.Print();
+#endif
 
         glDrawElements(GL_TRIANGLES, Indices.size(), GL_UNSIGNED_INT, 0);
         glfwSwapBuffers(Window);

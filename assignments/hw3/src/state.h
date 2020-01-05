@@ -157,7 +157,7 @@ struct UIState {
             (float) TextureHeight / 2.0f
         };
 
-        // Save the initial camera configuration so that it can be restored later.
+        // Save this incarnation of the camera so that it can be restored later
         CAMERA_INITIAL = Camera;
     }
 
@@ -200,6 +200,10 @@ struct UIState {
         system("clear");
         std::cout << "HeightFactor = " << HeightFactor << '\n';
         std::cout << "TextureHorizontalShift = " << TextureHorizontalShift << '\n';
+        std::cout << "CameraPosition = {"
+                  << Camera.Position.x << ", "
+                  << Camera.Position.y << ", "
+                  << Camera.Position.z << "}" << '\n';
         std::cout << "LightPosition = {"
                   << LightPosition.x << ", "
                   << LightPosition.y << ", "
