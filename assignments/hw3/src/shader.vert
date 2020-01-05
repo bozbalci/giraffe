@@ -21,8 +21,8 @@ out vec3 VertexNormal;
 vec3 ComputeNeighbor(in vec3 Offset)
 {
     vec3 NeighborPosition = Position + Offset;
-    vec2 NeighborTextureCoordinate = vec2((-NeighborPosition.x + TextureHorizontalShift) / TextureWidth,
-                                          -NeighborPosition.z / TextureHeight);
+    vec2 NeighborTextureCoordinate = vec2(-NeighborPosition.x + TextureHorizontalShift / TextureWidth,
+                                          -NeighborPosition.z);
     vec4 NeighborHeightMapColor = texture(HeightMap, NeighborTextureCoordinate);
     float Height = HeightFactor * NeighborHeightMapColor.r;
     NeighborPosition.y = Height;
