@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <cmath>
 
 #ifndef __APPLE__
     #include <GL/glew.h>
@@ -34,6 +35,11 @@ GLuint ProgramShaderId;
 constexpr auto WINDOW_SIZE = 1000;
 constexpr auto INFO_LOG_SIZE = 512;
 
+constexpr auto pi() { return std::atan(1)*4; }
+constexpr auto pieces_horizontal = 250;
+constexpr auto pieces_vertical = 125;
+constexpr auto sphere_radius = 350;
+
 void die(const std::string& msg)
 {
     std::cerr << "Fatal error: " << msg << std::endl;
@@ -52,7 +58,7 @@ bool ReadFileIntoBuffer(const std::string& Path, std::stringstream& Buffer)
 }
 
 struct UIState {
-    static constexpr auto HEIGHT_FACTOR_INITIAL = 10.0f;
+    static constexpr auto HEIGHT_FACTOR_INITIAL = 0.0f;
     static constexpr auto HEIGHT_FACTOR_UNIT = 0.5f;
     static constexpr auto TEXTURE_HORIZONTAL_SHIFT_INITIAL = 0.0f;
     static constexpr auto TEXTURE_HORIZONTAL_SHIFT_UNIT = 1.0f;
@@ -87,8 +93,8 @@ struct UIState {
     /// UNIFORMS
     struct CameraType {
         glm::vec3 Position;
-        glm::vec3 Gaze{0.0f, 0.0f, 0.1f};
-        glm::vec3 Up{0.0f, 1.0f, 0.0f};
+        glm::vec3 Gaze{0.0f, -1.0f, 0.0f};
+        glm::vec3 Up{0.0f, 0.0f, 1.0f};
     } Camera;
 
     CameraType CAMERA_INITIAL;
@@ -199,14 +205,14 @@ struct UIState {
 
         // Initialize world data
         Camera.Position = {
-            (float) TextureWidth / 2.0f,
-            (float) TextureWidth / 10.0f,
-            (float) -TextureWidth / 4.0f
+            0,
+            600,
+            0
         };
         LightPosition = {
-            (float) TextureWidth / 2.0f,
-            100.0f,
-            (float) TextureHeight / 2.0f
+            0,
+            1600,
+            0
         };
 
         // Save this incarnation of the camera so that it can be restored later
@@ -564,12 +570,19 @@ struct HW3Utility {
 
     // MESH GENERATION
     void GenerateTerrainVertices() {
-        for (auto z = 0; z < TextureHeight; ++z) {
-            for (auto x = 0; x < TextureWidth; ++x) {
+        using std::sin;
+        using std::cos;
+        for (auto step_horizontal = 0; step_horizontal < pieces_horizontal; ++step_horizontal) {
+            for (auto step_vertical = 0; step_vertical < pieces_vertical; ++step_vertical) {
+                auto beta = pi() * (step_horizontal / pieces_horizontal);
+                auto alpha = 2*pi() * (step_vertical / pieces_vertical);
+                auto x = sphere_radius * sin(beta) * cos(alpha);
+                auto y = sphere_radius * sin(beta) * sin(alpha);
+                auto z = sphere_radius * cos(beta);
                 Vertices.push_back({
-                   .Position = glm::vec3((float) x, 0.0f, (float) z),
-                   .TextureCoordinates = glm::vec2((float) -x / TextureWidth,
-                                                   (float) -z / TextureHeight)
+                   .Position = glm::vec3((float) x, (float) y, (float) z),
+                   .TextureCoordinates = glm::vec2((float) step_horizontal / pieces_horizontal,
+                                                   (float) step_vertical / pieces_vertical)
                });
             }
         }
@@ -577,19 +590,22 @@ struct HW3Utility {
 
     void GenerateTerrainIndices()
     {
-        for (auto i = 0; i < TextureHeight - 1; ++i) {
-            for (auto j = 0; j < TextureWidth - 1; ++j) {
-                auto Current = i * TextureWidth + j;
-                auto Right = Current + 1;
-                auto Bottom = Current + TextureWidth;
-                auto BottomRight = Bottom + 1;
-
-                Indices.push_back(Current);
-                Indices.push_back(Right);
-                Indices.push_back(Bottom);
-                Indices.push_back(Right);
-                Indices.push_back(BottomRight);
-                Indices.push_back(Bottom);
+        // TODO: This probably needs to be adapted
+        // https://www.songho.ca/opengl/gl_sphere.html
+        for (auto i = 0; i < pieces_vertical; ++i) {
+            auto k1 = i * (pieces_horizontal + 1);
+            auto k2 = k1 + pieces_horizontal + 1;
+            for (auto j = 0; j < pieces_horizontal; ++j, ++k1, ++k2) {
+                if (i != 0) {
+                    Indices.push_back(k1);
+                    Indices.push_back(k2);
+                    Indices.push_back(k1 + 1);
+                }
+                if (i != pieces_vertical - 1) {
+                    Indices.push_back(k1 + 1);
+                    Indices.push_back(k2);
+                    Indices.push_back(k2 + 1);
+                }
             }
         }
     }
