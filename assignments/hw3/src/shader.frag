@@ -8,6 +8,7 @@ in vec3 ToLight;
 in vec3 VertexNormal;
 
 uniform float HeightFactor;
+uniform float TextureHorizontalShift;
 uniform int TextureHeight;
 uniform int TextureWidth;
 uniform mat4 MVPMatrix;

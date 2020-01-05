@@ -4,6 +4,7 @@ layout(location = 0) in vec3 Position;
 layout(location = 1) in vec2 TextureCoordinate;
 
 uniform float HeightFactor;
+uniform float TextureHorizontalShift;
 uniform int TextureHeight;
 uniform int TextureWidth;
 uniform mat4 MVPMatrix;
@@ -20,8 +21,8 @@ out vec3 VertexNormal;
 vec3 ComputeNeighbor(in vec3 Offset)
 {
     vec3 NeighborPosition = Position + Offset;
-    vec2 NeighborTextureCoordinate = vec2(-NeighborPosition.x / TextureWidth,
-                                          -NeighborPosition.z / TextureHeight);
+    vec2 NeighborTextureCoordinate = vec2(-NeighborPosition.x + TextureHorizontalShift / TextureWidth,
+                                          -NeighborPosition.z);
     vec4 NeighborHeightMapColor = texture(HeightMap, NeighborTextureCoordinate);
     float Height = HeightFactor * NeighborHeightMapColor.r;
     NeighborPosition.y = Height;
@@ -58,8 +59,11 @@ vec3 ComputeNormal(in float Height)
 
 void main()
 {
-    vec4 TextureColor = texture(Texture, TextureCoordinate);
-    vec4 HeightMapColor = texture(HeightMap, TextureCoordinate);
+    VertexTextureCoordinate = vec2(TextureCoordinate.x + (TextureHorizontalShift / TextureWidth),
+                                   TextureCoordinate.y);
+
+    vec4 TextureColor = texture(Texture, VertexTextureCoordinate);
+    vec4 HeightMapColor = texture(HeightMap, VertexTextureCoordinate);
     float Height = HeightFactor * HeightMapColor.r;
     vec4 CalculatedPosition = vec4(Position.x, Height, Position.z, 1.0f);
 
@@ -67,6 +71,5 @@ void main()
     ToLight = normalize(LightPosition - CalculatedPosition.xyz);
     ToCamera = normalize(CameraPosition - CalculatedPosition.xyz);
 
-    VertexTextureCoordinate = TextureCoordinate;
     gl_Position = MVPMatrix * CalculatedPosition;
 }
