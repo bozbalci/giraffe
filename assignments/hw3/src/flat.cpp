@@ -77,19 +77,33 @@ struct UIState {
     GLint HeightFactorLocation;
     GLint TextureHorizontalShiftLocation;
 
-    /// UI PARAMETERS
+    // UI PARAMETERS
     double HeightFactor = HEIGHT_FACTOR_INITIAL;
     double TextureHorizontalShift = TEXTURE_HORIZONTAL_SHIFT_INITIAL;
     float Pitch = PITCH_INITIAL;
     float Yaw = YAW_INITIAL;
     float Speed = SPEED_INITIAL;
 
-    /// UNIFORMS
+    // UNIFORMS
     struct CameraType {
         glm::vec3 Position;
         glm::vec3 Gaze{0.0f, 0.0f, 0.1f};
         glm::vec3 Up{0.0f, 1.0f, 0.0f};
     } Camera;
+
+    // WINDOW STATE
+    struct {
+        struct {
+            int X, Y;
+        } Position;
+
+        struct {
+            int Width, Height;
+        } Size;
+
+        bool IsFullScreen = false;
+        bool FullScreenKeyDown = false;
+    } Window;
 
     CameraType CAMERA_INITIAL;
 
@@ -319,7 +333,38 @@ void KeyCallback(GLFWwindow *Window, int Key, int ScanCode, int Action, int Mods
     ON_KEY(X) TheState.ResetSpeed();
     ON_KEY(I) TheState.ResetPositionAndCamera();
 
-    // TODO P for Fullscreen
+    if (glfwGetKey(Window, GLFW_KEY_P) == GLFW_PRESS && !TheState.Window.FullScreenKeyDown) {
+        TheState.Window.FullScreenKeyDown = true;
+
+        if (!TheState.Window.IsFullScreen) {
+            // Save window position and size so that they can be restored.
+            glfwGetWindowPos(Window, &TheState.Window.Position.X, &TheState.Window.Position.Y);
+            glfwGetWindowSize(Window, &TheState.Window.Size.Width, &TheState.Window.Size.Height);
+
+            auto Monitor = glfwGetPrimaryMonitor();
+            auto VideoMode = glfwGetVideoMode(Monitor);
+            auto Width = VideoMode->width;
+            auto Height = VideoMode->height;
+
+            glfwSetWindowMonitor(Window, Monitor, /* xpos = */ 0, /* ypos = */ 0,
+                                 Width, Height, GLFW_DONT_CARE);
+            glViewport(/* x = */ 0, /* y = */ 0, Width, Height);
+
+            TheState.Window.IsFullScreen = true;
+        } else {
+            auto Width = TheState.Window.Size.Width;
+            auto Height = TheState.Window.Size.Height;
+            auto XOffset = TheState.Window.Position.X;
+            auto YOffset = TheState.Window.Position.Y;
+            glfwSetWindowMonitor(Window, nullptr, XOffset, YOffset, Width, Height, GLFW_DONT_CARE);
+            glViewport(/* x = */ 0, /* y = */ 0, Width, Height);
+
+            TheState.Window.IsFullScreen = false;
+        }
+
+    } else if (Key == GLFW_RELEASE && TheState.Window.FullScreenKeyDown) {
+        TheState.Window.FullScreenKeyDown = false;
+    }
 
     if (glfwGetKey(Window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
         glfwSetWindowShouldClose(Window, true);
