@@ -379,7 +379,8 @@ void KeyCallback(GLFWwindow *Window, int Key, int ScanCode, int Action, int Mods
     ON_KEY(X) TheState.ResetSpeed();
     ON_KEY(I) TheState.ResetPositionAndCamera();
 
-    if (glfwGetKey(Window, GLFW_KEY_P) == GLFW_PRESS && !TheState.Window.FullScreenKeyDown) {
+    auto KeyState = glfwGetKey(Window, GLFW_KEY_P);
+    if (KeyState == GLFW_PRESS && !TheState.Window.FullScreenKeyDown) {
         TheState.Window.FullScreenKeyDown = true;
 
         if (!TheState.Window.IsFullScreen) {
@@ -408,7 +409,7 @@ void KeyCallback(GLFWwindow *Window, int Key, int ScanCode, int Action, int Mods
             TheState.Window.IsFullScreen = false;
         }
 
-    } else if (Key == GLFW_RELEASE && TheState.Window.FullScreenKeyDown) {
+    } else if (KeyState == GLFW_RELEASE && TheState.Window.FullScreenKeyDown) {
         TheState.Window.FullScreenKeyDown = false;
     }
 
