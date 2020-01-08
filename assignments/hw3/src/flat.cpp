@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -17,14 +18,11 @@
 #endif // __APPLE__
 
 #include <GLFW/glfw3.h>
+#include <jpeglib.h>
 
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
-
-#define STB_IMAGE_IMPLEMENTATION
-#define STBI_ASSERT(x)
-#include "stb_image.h"
 
 // Uncomment the following line to enable debug messages.
 // #define DEBUG
@@ -38,6 +36,54 @@ void die(const std::string& msg)
 {
     std::cerr << "Fatal error: " << msg << std::endl;
     std::exit(1);
+}
+
+unsigned char *LoadImage(const char *Path, int *Width, int *Height)
+{
+    // 1.) Load the file
+    struct jpeg_decompress_struct JpegDecompressInfo;
+    struct jpeg_error_mgr JpegErrorManager;
+    FILE *Infile = std::fopen(Path, "rb");
+    if (!Infile)
+        die("Could not open jpeg file for reading");
+
+    // 2.) Read the JPEG header
+    JpegDecompressInfo.err = jpeg_std_error(&JpegErrorManager);
+    jpeg_create_decompress(&JpegDecompressInfo);
+    jpeg_stdio_src(&JpegDecompressInfo, Infile);
+    jpeg_read_header(&JpegDecompressInfo, static_cast<boolean>(true));
+    jpeg_start_decompress(&JpegDecompressInfo);
+
+    // 3.) Compute image dimensions
+    auto Width_ = JpegDecompressInfo.image_width;
+    auto Height_ = JpegDecompressInfo.image_height;
+    auto NumberOfComponents = JpegDecompressInfo.num_components;
+    auto RowSize = Width_ * NumberOfComponents;
+    auto ImageSize = RowSize * Height_;
+
+    // 4.) Read the image into buffer
+    auto ImageData = static_cast<unsigned char *>(std::malloc(ImageSize));
+    JSAMPROW ImageRow[1] = {static_cast<JSAMPROW>(std::malloc(RowSize))};
+    auto NumberOfScanlines = static_cast<JDIMENSION>(Height_);
+    auto Location = 0;
+    while (JpegDecompressInfo.output_scanline < NumberOfScanlines) {
+        jpeg_read_scanlines(&JpegDecompressInfo, ImageRow, /* max_lines = */ 1);
+
+        for (auto i = 0; i < RowSize; ++i) {
+            ImageData[Location] = ImageRow[0][i];
+            ++Location;
+        }
+    }
+
+    // 5.) Clean-up resources
+    jpeg_finish_decompress(&JpegDecompressInfo);
+    jpeg_destroy_decompress(&JpegDecompressInfo);
+    std::fclose(Infile);
+
+    // 6.) Return values
+    *Width = Width_;
+    *Height = Height_;
+    return ImageData;
 }
 
 bool ReadFileIntoBuffer(const std::string& Path, std::stringstream& Buffer)
@@ -509,7 +555,6 @@ struct HW3Utility {
     }
 
     void InitializeTextures() {
-        int Comp; // Number of channels in the file being read
         unsigned char *ImageData;
         GLuint Textures[2];
 
@@ -518,10 +563,10 @@ struct HW3Utility {
         // Load height map
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, Textures[0]);
-        ImageData = stbi_load(HeightMapPath.c_str(), &TextureWidth, &TextureHeight, &Comp,
-                              /* desired_channels = */ 0);
+        ImageData = LoadImage(HeightMapPath.c_str(), &TextureWidth, &TextureHeight);
         glTexImage2D(GL_TEXTURE_2D, /* level = */ 0, GL_RGB, TextureWidth, TextureHeight,
                      /* border = */ 0, GL_RGB, GL_UNSIGNED_BYTE, ImageData);
+        std::free(ImageData);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glGenerateMipmap(GL_TEXTURE_2D);
@@ -529,10 +574,10 @@ struct HW3Utility {
         // Load diffuse map
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, Textures[0]);
-        ImageData = stbi_load(TexturePath.c_str(), &TextureWidth, &TextureHeight, &Comp,
-                              /* desired_channels = */ 0);
+        ImageData = LoadImage(TexturePath.c_str(), &TextureWidth, &TextureHeight);
         glTexImage2D(GL_TEXTURE_2D, /* level = */ 0, GL_RGB, TextureWidth, TextureHeight,
                      /* border = */ 0, GL_RGB, GL_UNSIGNED_BYTE, ImageData);
+        std::free(ImageData);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glGenerateMipmap(GL_TEXTURE_2D);
