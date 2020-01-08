@@ -3,15 +3,15 @@ CXXFLAGS=-std=c++17 -Wall -O3
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-	LDFLAGS=-lGL -lglfw -lGLEW
+	LDFLAGS=-lGL -lglfw -lGLEW -ljpeg
 endif
 ifeq ($(UNAME_S),Darwin)
-	LDFLAGS=-framework OpenGL -lglfw
+	LDFLAGS=-framework OpenGL -lglfw -ljpeg
 	CXXFLAGS += -DGL_SILENCE_DEPRECATION
 endif
 UBUNTU_S := $(shell $(CXX) --version | grep -i ubuntu >/dev/null; echo $$?)
 ifeq ($(UBUNTU_S),0)
-    LDFLAGS=-lGLEW -lglfw3 -lGL -lX11 -lXi -lXrandr -lXxf86vm -lXinerama -lXcursor -lrt -lm -pthread -ldl
+    LDFLAGS=-lGLEW -lglfw3 -lGL -lX11 -lXi -lXrandr -lXxf86vm -lXinerama -lXcursor -lrt -lm -pthread -ldl -ljpeg
 endif
 
 all: hw3_flat
