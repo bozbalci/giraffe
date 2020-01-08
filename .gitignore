@@ -140,3 +140,8 @@ hw3_sphere
 
 # Ignore other repos in friends
 friends/
+
+# Python
+virtualenv/
+__pycache__/
+*.pyc

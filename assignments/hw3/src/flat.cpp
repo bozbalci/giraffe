@@ -5,16 +5,20 @@
 #include <vector>
 
 #ifndef __APPLE__
-    #include <GL/glew.h>
+#include <GL/glew.h>
 #else
-    #define GLFW_INCLUDE_GLCOREARB
-    #define GLFW_INCLUDE_GLEXT
-    #ifdef GLFW_INCLUDE_GLCOREARB
-        #include <OpenGL/gl3.h>
-        #ifdef GLFW_INCLUDE_GLEXT
-            #include <OpenGL/gl3ext.h>
-        #endif // GLFW_INCLUDE_GLEXT
-    #endif // GLFW_INCLUDE_GLCOREARB
+#define GLFW_INCLUDE_GLCOREARB
+#define GLFW_INCLUDE_GLEXT
+#ifdef GLFW_INCLUDE_GLCOREARB
+
+#include <OpenGL/gl3.h>
+
+#ifdef GLFW_INCLUDE_GLEXT
+
+#include <OpenGL/gl3ext.h>
+
+#endif // GLFW_INCLUDE_GLEXT
+#endif // GLFW_INCLUDE_GLCOREARB
 #endif // __APPLE__
 
 #include <GLFW/glfw3.h>
@@ -32,7 +36,7 @@ GLuint ProgramShaderId;
 constexpr auto WINDOW_SIZE = 1000;
 constexpr auto INFO_LOG_SIZE = 512;
 
-void die(const std::string& msg)
+void die(const std::string &msg)
 {
     std::cerr << "Fatal error: " << msg << std::endl;
     std::exit(1);
@@ -86,7 +90,7 @@ unsigned char *LoadImage(const char *Path, int *Width, int *Height)
     return ImageData;
 }
 
-bool ReadFileIntoBuffer(const std::string& Path, std::stringstream& Buffer)
+bool ReadFileIntoBuffer(const std::string &Path, std::stringstream &Buffer)
 {
     try {
         std::fstream InFile(Path);
@@ -156,163 +160,153 @@ struct UIState {
     struct {
         glm::mat4 Model{1.0f};
         glm::mat4 View;
-        glm::mat4 Projection = glm::perspective(
-            glm::radians(45.0f),
-            1.0f,
-            0.1f,
-            1000.0f
-        );
+        glm::mat4 Projection =
+            glm::perspective(glm::radians(45.0f), 1.0f, 0.1f, 1000.0f);
         glm::mat4 Composite;
     } Matrices;
 
     glm::vec3 LightPosition;
 
     // METHODS
-    void IncrementHeightFactor() {
-        HeightFactor += HEIGHT_FACTOR_UNIT;
-    }
+    void IncrementHeightFactor() { HeightFactor += HEIGHT_FACTOR_UNIT; }
 
-    void DecrementHeightFactor() {
-        HeightFactor -= HEIGHT_FACTOR_UNIT;
-    }
+    void DecrementHeightFactor() { HeightFactor -= HEIGHT_FACTOR_UNIT; }
 
-    void ShiftTextureLeft() {
+    void ShiftTextureLeft()
+    {
         TextureHorizontalShift -= TEXTURE_HORIZONTAL_SHIFT_UNIT;
     }
 
-    void ShiftTextureRight() {
+    void ShiftTextureRight()
+    {
         TextureHorizontalShift += TEXTURE_HORIZONTAL_SHIFT_UNIT;
     }
 
-    void LightSourceUp() {
-        LightPosition.z += LIGHT_UNIT;
-    }
+    void LightSourceUp() { LightPosition.z += LIGHT_UNIT; }
 
-    void LightSourceDown() {
-        LightPosition.z -= LIGHT_UNIT;
-    }
+    void LightSourceDown() { LightPosition.z -= LIGHT_UNIT; }
 
-    void LightSourceLeft() {
-        LightPosition.x += LIGHT_UNIT;
-    }
+    void LightSourceLeft() { LightPosition.x += LIGHT_UNIT; }
 
-    void LightSourceRight() {
-        LightPosition.x -= LIGHT_UNIT;
-    }
+    void LightSourceRight() { LightPosition.x -= LIGHT_UNIT; }
 
-    void LightSourceIncrementHeight() {
-        LightPosition.y += LIGHT_UNIT;
-    }
+    void LightSourceIncrementHeight() { LightPosition.y += LIGHT_UNIT; }
 
-    void LightSourceDecrementHeight() {
-        LightPosition.y -= LIGHT_UNIT;
-    }
+    void LightSourceDecrementHeight() { LightPosition.y -= LIGHT_UNIT; }
 
-    void IncrementPitch() {
+    void IncrementPitch()
+    {
         Pitch += PITCH_UNIT;
-        if (Pitch > PITCH_MAX) Pitch = PITCH_MAX;
+        if (Pitch > PITCH_MAX)
+            Pitch = PITCH_MAX;
     }
 
-    void DecrementPitch() {
+    void DecrementPitch()
+    {
         Pitch -= PITCH_UNIT;
-        if (Pitch < PITCH_MIN) Pitch = PITCH_MIN;
+        if (Pitch < PITCH_MIN)
+            Pitch = PITCH_MIN;
     }
 
-    void IncrementYaw() {
+    void IncrementYaw()
+    {
         Yaw += YAW_UNIT;
-        if (Yaw > YAW_MAX) Yaw -= YAW_MAX;
+        if (Yaw > YAW_MAX)
+            Yaw -= YAW_MAX;
     }
 
-    void DecrementYaw() {
+    void DecrementYaw()
+    {
         Yaw -= YAW_UNIT;
-        if (Yaw < YAW_MIN) Yaw += YAW_MAX;
+        if (Yaw < YAW_MIN)
+            Yaw += YAW_MAX;
     }
 
-    void IncrementSpeed() {
-        Speed += SPEED_UNIT;
-    }
+    void IncrementSpeed() { Speed += SPEED_UNIT; }
 
-    void DecrementSpeed() {
-        Speed -= SPEED_UNIT;
-    }
+    void DecrementSpeed() { Speed -= SPEED_UNIT; }
 
-    void ResetSpeed() {
-        Speed = SPEED_INITIAL;
-    }
+    void ResetSpeed() { Speed = SPEED_INITIAL; }
 
-    void ResetPositionAndCamera() {
+    void ResetPositionAndCamera()
+    {
         ResetSpeed();
         Pitch = PITCH_INITIAL;
         Yaw = YAW_INITIAL;
         Camera = CAMERA_INITIAL;
     }
 
-    void Initialize(const int& TextureWidth_, const int& TextureHeight_) {
+    void Initialize(const int &TextureWidth_, const int &TextureHeight_)
+    {
         // Initialize OpenGL variables
         TextureWidth = TextureWidth_;
         TextureHeight = TextureHeight_;
-        CameraPositionLocation = glGetUniformLocation(ProgramShaderId, "CameraPosition");
-        LightPositionLocation = glGetUniformLocation(ProgramShaderId, "LightPosition");
+        CameraPositionLocation =
+            glGetUniformLocation(ProgramShaderId, "CameraPosition");
+        LightPositionLocation =
+            glGetUniformLocation(ProgramShaderId, "LightPosition");
         MVPMatrixLocation = glGetUniformLocation(ProgramShaderId, "MVPMatrix");
-        HeightFactorLocation = glGetUniformLocation(ProgramShaderId, "HeightFactor");
-        TextureHorizontalShiftLocation = glGetUniformLocation(ProgramShaderId, "TextureHorizontalShift");
+        HeightFactorLocation =
+            glGetUniformLocation(ProgramShaderId, "HeightFactor");
+        TextureHorizontalShiftLocation =
+            glGetUniformLocation(ProgramShaderId, "TextureHorizontalShift");
 
         // Initialize world data
-        Camera.Position = {
-            (float) TextureWidth / 2.0f,
-            (float) TextureWidth / 10.0f,
-            (float) -TextureWidth / 4.0f
-        };
-        LightPosition = {
-            (float) TextureWidth / 2.0f,
-            100.0f,
-            (float) TextureHeight / 2.0f
-        };
+        Camera.Position = {(float)TextureWidth / 2.0f,
+                           (float)TextureWidth / 10.0f,
+                           (float)-TextureWidth / 4.0f};
+        LightPosition = {(float)TextureWidth / 2.0f, 100.0f,
+                         (float)TextureHeight / 2.0f};
 
         // Save this incarnation of the camera so that it can be restored later
         CAMERA_INITIAL = Camera;
     }
 
-    void UpdateCamera() {
+    void UpdateCamera()
+    {
         auto YawInRadians = glm::radians(Yaw);
         auto PitchInRadians = glm::radians(Pitch);
 
-        Camera.Gaze = glm::normalize(glm::vec3(
-            std::cos(YawInRadians) * std::cos(PitchInRadians),
-            std::sin(PitchInRadians),
-            std::sin(YawInRadians) * std::cos(PitchInRadians)
-        ));
+        Camera.Gaze = glm::normalize(
+            glm::vec3(std::cos(YawInRadians) * std::cos(PitchInRadians),
+                      std::sin(PitchInRadians),
+                      std::sin(YawInRadians) * std::cos(PitchInRadians)));
 
         Camera.Position += Speed * Camera.Gaze;
 
-        glUniform3fv(CameraPositionLocation, 1, glm::value_ptr(Camera.Position));
+        glUniform3fv(CameraPositionLocation, 1,
+                     glm::value_ptr(Camera.Position));
     }
 
-    void UpdateMVPMatrix() {
-        Matrices.View = glm::lookAt(
-            Camera.Position,
-            Camera.Position + Camera.Gaze,
-            Camera.Up
-        );
+    void UpdateMVPMatrix()
+    {
+        Matrices.View = glm::lookAt(Camera.Position,
+                                    Camera.Position + Camera.Gaze, Camera.Up);
 
-        Matrices.Composite = Matrices.Projection * Matrices.View * Matrices.Model;
+        Matrices.Composite =
+            Matrices.Projection * Matrices.View * Matrices.Model;
 
-        glUniformMatrix4fv(MVPMatrixLocation, 1, GL_FALSE, glm::value_ptr(Matrices.Composite));
+        glUniformMatrix4fv(MVPMatrixLocation, 1, GL_FALSE,
+                           glm::value_ptr(Matrices.Composite));
     }
 
-    void UpdateHeightFactor() {
+    void UpdateHeightFactor()
+    {
         glUniform1f(HeightFactorLocation, HeightFactor);
     }
 
-    void UpdateLightPosition() {
+    void UpdateLightPosition()
+    {
         glUniform3fv(LightPositionLocation, 1, glm::value_ptr(LightPosition));
     }
 
-    void UpdateTextureHorizontalShift() {
+    void UpdateTextureHorizontalShift()
+    {
         glUniform1f(TextureHorizontalShiftLocation, TextureHorizontalShift);
     }
 
-    void Update() {
+    void Update()
+    {
         UpdateCamera();
         UpdateMVPMatrix();
         UpdateHeightFactor();
@@ -321,22 +315,19 @@ struct UIState {
     }
 
 #ifdef DEBUG
-    void Print() {
+    void Print()
+    {
         system("clear");
         std::cout << "HeightFactor = " << HeightFactor << '\n';
-        std::cout << "TextureHorizontalShift = " << TextureHorizontalShift << '\n';
-        std::cout << "CameraPosition = {"
-                  << Camera.Position.x << ", "
-                  << Camera.Position.y << ", "
-                  << Camera.Position.z << "}" << '\n';
-        std::cout << "CameraGaze = {"
-                  << Camera.Gaze.x << ", "
-                  << Camera.Gaze.y << ", "
-                  << Camera.Gaze.z << "}" << '\n';
-        std::cout << "LightPosition = {"
-                  << LightPosition.x << ", "
-                  << LightPosition.y << ", "
-                  << LightPosition.z << "}" << '\n';
+        std::cout << "TextureHorizontalShift = " << TextureHorizontalShift
+                  << '\n';
+        std::cout << "CameraPosition = {" << Camera.Position.x << ", "
+                  << Camera.Position.y << ", " << Camera.Position.z << "}"
+                  << '\n';
+        std::cout << "CameraGaze = {" << Camera.Gaze.x << ", " << Camera.Gaze.y
+                  << ", " << Camera.Gaze.z << "}" << '\n';
+        std::cout << "LightPosition = {" << LightPosition.x << ", "
+                  << LightPosition.y << ", " << LightPosition.z << "}" << '\n';
         std::cout << "Pitch = " << Pitch << '\n';
         std::cout << "Yaw = " << Yaw << '\n';
         std::cout << "Speed = " << Speed << '\n';
@@ -345,7 +336,8 @@ struct UIState {
 } TheState;
 
 // OPENGL CALLBACKS
-void ErrorCallback(int Error, const char *Description) {
+void ErrorCallback(int Error, const char *Description)
+{
     fprintf(stderr, "Error: %s\n", Description);
 }
 
@@ -354,11 +346,12 @@ void FramebufferSizeCallback(GLFWwindow *Window, int Width, int Height)
     glViewport(/* x = */ 0, /* y = */ 0, Width, Height);
 }
 
-void KeyCallback(GLFWwindow *Window, int Key, int ScanCode, int Action, int Mods)
+void KeyCallback(GLFWwindow *Window, int Key, int ScanCode, int Action,
+                 int Mods)
 {
-#define ON_KEY(KeyName) \
-    if (Key == GLFW_KEY_##KeyName \
-        && (Action == GLFW_PRESS || Action == GLFW_REPEAT))
+#define ON_KEY(KeyName)                                                        \
+    if (Key == GLFW_KEY_##KeyName &&                                           \
+        (Action == GLFW_PRESS || Action == GLFW_REPEAT))
 
     ON_KEY(R) TheState.IncrementHeightFactor();
     ON_KEY(F) TheState.DecrementHeightFactor();
@@ -385,16 +378,18 @@ void KeyCallback(GLFWwindow *Window, int Key, int ScanCode, int Action, int Mods
 
         if (!TheState.Window.IsFullScreen) {
             // Save window position and size so that they can be restored.
-            glfwGetWindowPos(Window, &TheState.Window.Position.X, &TheState.Window.Position.Y);
-            glfwGetWindowSize(Window, &TheState.Window.Size.Width, &TheState.Window.Size.Height);
+            glfwGetWindowPos(Window, &TheState.Window.Position.X,
+                             &TheState.Window.Position.Y);
+            glfwGetWindowSize(Window, &TheState.Window.Size.Width,
+                              &TheState.Window.Size.Height);
 
             auto Monitor = glfwGetPrimaryMonitor();
             auto VideoMode = glfwGetVideoMode(Monitor);
             auto Width = VideoMode->width;
             auto Height = VideoMode->height;
 
-            glfwSetWindowMonitor(Window, Monitor, /* xpos = */ 0, /* ypos = */ 0,
-                                 Width, Height, GLFW_DONT_CARE);
+            glfwSetWindowMonitor(Window, Monitor, /* xpos = */ 0,
+                                 /* ypos = */ 0, Width, Height, GLFW_DONT_CARE);
             glViewport(/* x = */ 0, /* y = */ 0, Width, Height);
 
             TheState.Window.IsFullScreen = true;
@@ -403,7 +398,8 @@ void KeyCallback(GLFWwindow *Window, int Key, int ScanCode, int Action, int Mods
             auto Height = TheState.Window.Size.Height;
             auto XOffset = TheState.Window.Position.X;
             auto YOffset = TheState.Window.Position.Y;
-            glfwSetWindowMonitor(Window, nullptr, XOffset, YOffset, Width, Height, GLFW_DONT_CARE);
+            glfwSetWindowMonitor(Window, nullptr, XOffset, YOffset, Width,
+                                 Height, GLFW_DONT_CARE);
             glViewport(/* x = */ 0, /* y = */ 0, Width, Height);
 
             TheState.Window.IsFullScreen = false;
@@ -427,14 +423,17 @@ struct Vertex {
 
 class Shader
 {
-public:
+  public:
     std::string Path;
     GLenum ShaderType;
 
     Shader(const std::string &Path_, GLenum ShaderType_)
-        : Path(Path_), ShaderType(ShaderType_) {}
+        : Path(Path_), ShaderType(ShaderType_)
+    {
+    }
 
-    GLuint Load() {
+    GLuint Load()
+    {
         std::stringstream ShaderSourceBuffer;
         std::string ShaderSource;
         const GLchar *SourceBytes;
@@ -445,7 +444,7 @@ public:
 
         ShaderSource = ShaderSourceBuffer.str();
         SourceLength = ShaderSource.length();
-        SourceBytes = (const GLchar *) ShaderSource.c_str();
+        SourceBytes = (const GLchar *)ShaderSource.c_str();
         ShaderId = glCreateShader(ShaderType);
         glShaderSource(ShaderId, /* count = */ 1, &SourceBytes, &SourceLength);
         glCompileShader(ShaderId);
@@ -454,16 +453,19 @@ public:
 
         return ShaderId;
     }
-private:
+
+  private:
     GLuint ShaderId;
 
-    void CheckErrors() {
+    void CheckErrors()
+    {
         GLint CompilationSuccess;
         char InfoLog[INFO_LOG_SIZE];
 
         glGetShaderiv(ShaderId, GL_COMPILE_STATUS, &CompilationSuccess);
         if (!CompilationSuccess) {
-            glGetShaderInfoLog(ShaderId, INFO_LOG_SIZE, /* length = */ nullptr, InfoLog);
+            glGetShaderInfoLog(ShaderId, INFO_LOG_SIZE, /* length = */ nullptr,
+                               InfoLog);
             std::cerr << InfoLog << std::endl;
             die("Could not compile shader, see above for errors");
         }
@@ -472,8 +474,8 @@ private:
 
 struct HW3Utility {
     // INPUT PATHS
-    std::string VertexShaderPath = "shader.vert";
-    std::string FragmentShaderPath = "shader.frag";
+    std::string VertexShaderPath = "shaders/flat.vert";
+    std::string FragmentShaderPath = "shaders/flat.frag";
     std::string HeightMapPath;
     std::string TexturePath;
 
@@ -489,11 +491,15 @@ struct HW3Utility {
     GLuint VertexBufferObject;
     GLuint ElementBufferObject;
 
-    HW3Utility(const std::string &HeightMapPath_, const std::string &TexturePath_)
-        : HeightMapPath(HeightMapPath_), TexturePath(TexturePath_) {}
+    HW3Utility(const std::string &HeightMapPath_,
+               const std::string &TexturePath_)
+        : HeightMapPath(HeightMapPath_), TexturePath(TexturePath_)
+    {
+    }
 
     // OPENGL ROUTINES
-    void InitializeWindow() {
+    void InitializeWindow()
+    {
         if (!glfwInit()) {
             die("Could not initialize OpenGL");
         }
@@ -505,7 +511,8 @@ struct HW3Utility {
         // Required on macOS.
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
-        Window = glfwCreateWindow(WINDOW_SIZE, WINDOW_SIZE, "CENG477", nullptr, nullptr);
+        Window = glfwCreateWindow(WINDOW_SIZE, WINDOW_SIZE, "CENG477", nullptr,
+                                  nullptr);
 
         if (!Window) {
             glfwTerminate();
@@ -525,10 +532,13 @@ struct HW3Utility {
 #endif
     }
 
-    void InitializeProgram() {
+    void InitializeProgram()
+    {
         ProgramShaderId = glCreateProgram();
-        GLuint VertexShaderId = Shader(VertexShaderPath, GL_VERTEX_SHADER).Load();
-        GLuint FragmentShaderId = Shader(FragmentShaderPath, GL_FRAGMENT_SHADER).Load();
+        GLuint VertexShaderId =
+            Shader(VertexShaderPath, GL_VERTEX_SHADER).Load();
+        GLuint FragmentShaderId =
+            Shader(FragmentShaderPath, GL_FRAGMENT_SHADER).Load();
 
         glAttachShader(ProgramShaderId, VertexShaderId);
         glAttachShader(ProgramShaderId, FragmentShaderId);
@@ -539,7 +549,8 @@ struct HW3Utility {
         char InfoLog[INFO_LOG_SIZE];
         glGetProgramiv(ProgramShaderId, GL_LINK_STATUS, &LinkSuccess);
         if (!LinkSuccess) {
-            glGetProgramInfoLog(ProgramShaderId, INFO_LOG_SIZE, nullptr, InfoLog);
+            glGetProgramInfoLog(ProgramShaderId, INFO_LOG_SIZE, nullptr,
+                                InfoLog);
             std::cerr << InfoLog << std::endl;
             die("Linking shaders failed, see above for linker output");
         }
@@ -555,7 +566,8 @@ struct HW3Utility {
         glEnable(GL_DEPTH_TEST);
     }
 
-    void InitializeTextures() {
+    void InitializeTextures()
+    {
         unsigned char *ImageData;
         GLuint Textures[2];
 
@@ -564,8 +576,10 @@ struct HW3Utility {
         // Load height map
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, Textures[0]);
-        ImageData = LoadImage(HeightMapPath.c_str(), &TextureWidth, &TextureHeight);
-        glTexImage2D(GL_TEXTURE_2D, /* level = */ 0, GL_RGB, TextureWidth, TextureHeight,
+        ImageData =
+            LoadImage(HeightMapPath.c_str(), &TextureWidth, &TextureHeight);
+        glTexImage2D(GL_TEXTURE_2D, /* level = */ 0, GL_RGB, TextureWidth,
+                     TextureHeight,
                      /* border = */ 0, GL_RGB, GL_UNSIGNED_BYTE, ImageData);
         std::free(ImageData);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -575,17 +589,22 @@ struct HW3Utility {
         // Load diffuse map
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, Textures[0]);
-        ImageData = LoadImage(TexturePath.c_str(), &TextureWidth, &TextureHeight);
-        glTexImage2D(GL_TEXTURE_2D, /* level = */ 0, GL_RGB, TextureWidth, TextureHeight,
+        ImageData =
+            LoadImage(TexturePath.c_str(), &TextureWidth, &TextureHeight);
+        glTexImage2D(GL_TEXTURE_2D, /* level = */ 0, GL_RGB, TextureWidth,
+                     TextureHeight,
                      /* border = */ 0, GL_RGB, GL_UNSIGNED_BYTE, ImageData);
         std::free(ImageData);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glGenerateMipmap(GL_TEXTURE_2D);
 
-        auto TextureWidthLocation = glGetUniformLocation(ProgramShaderId, "TextureWidth");
-        auto TextureHeightLocation = glGetUniformLocation(ProgramShaderId, "TextureHeight");
-        auto HeightMapLocation = glGetUniformLocation(ProgramShaderId, "HeightMap");
+        auto TextureWidthLocation =
+            glGetUniformLocation(ProgramShaderId, "TextureWidth");
+        auto TextureHeightLocation =
+            glGetUniformLocation(ProgramShaderId, "TextureHeight");
+        auto HeightMapLocation =
+            glGetUniformLocation(ProgramShaderId, "HeightMap");
         auto TextureLocation = glGetUniformLocation(ProgramShaderId, "Texture");
 
         glUniform1i(TextureWidthLocation, TextureWidth);
@@ -594,103 +613,97 @@ struct HW3Utility {
         glUniform1i(TextureLocation, /* v0 = */ 1);
     }
 
-    void InitializeVertexArrayObject() {
+    void InitializeVertexArrayObject()
+    {
         glGenVertexArrays(/* n = */ 1, &VertexArrayObject);
         glBindVertexArray(VertexArrayObject);
     }
 
-    void InitializeVertexBufferObject() {
+    void InitializeVertexBufferObject()
+    {
         glGenBuffers(/* n = */ 1, &VertexBufferObject);
         glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject);
     }
 
-    void InitializeElementBufferObject() {
+    void InitializeElementBufferObject()
+    {
         glGenBuffers(/* n = */ 1, &ElementBufferObject);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ElementBufferObject);
     }
 
-    void LoadVertexDataToBuffers() {
-        glBufferData(
-            GL_ARRAY_BUFFER,
-            Vertices.size() * sizeof(Vertex),
-            Vertices.data(),
-            GL_STATIC_DRAW
-        );
+    void LoadVertexDataToBuffers()
+    {
+        glBufferData(GL_ARRAY_BUFFER, Vertices.size() * sizeof(Vertex),
+                     Vertices.data(), GL_STATIC_DRAW);
 
-        glBufferData(
-            GL_ELEMENT_ARRAY_BUFFER,
-            Indices.size() * sizeof(int),
-            Indices.data(),
-            GL_STATIC_DRAW
-        );
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, Indices.size() * sizeof(int),
+                     Indices.data(), GL_STATIC_DRAW);
     }
 
-    static void InitializeVertexAttribPointer() {
+    static void InitializeVertexAttribPointer()
+    {
         glVertexAttribPointer(
             /* index = */ 0,
-            /* size = */ 3,
-            GL_FLOAT,
-            GL_FALSE,
-            sizeof(Vertex),
-            reinterpret_cast<void *>(0)
-        );
+            /* size = */ 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+            reinterpret_cast<void *>(0));
         glVertexAttribPointer(
             /* index = */ 1,
-            /* size = */ 2,
-            GL_FLOAT,
-            GL_FALSE,
-            sizeof(Vertex),
-            reinterpret_cast<void *>(offsetof(Vertex, TextureCoordinates))
-        );
+            /* size = */ 2, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+            reinterpret_cast<void *>(offsetof(Vertex, TextureCoordinates)));
 
         glEnableVertexAttribArray(/* index = */ 0);
         glEnableVertexAttribArray(/* index = */ 1);
     }
 
-    void RegisterCallbacks() {
+    void RegisterCallbacks()
+    {
         glfwSetKeyCallback(Window, KeyCallback);
         glfwSetErrorCallback(ErrorCallback);
         glfwSetFramebufferSizeCallback(Window, FramebufferSizeCallback);
     }
 
     // MESH GENERATION
-    void GenerateTerrainVertices() {
-        for (auto z = 0; z < TextureHeight; ++z) {
-            for (auto x = 0; x < TextureWidth; ++x) {
-                Vertices.push_back({
-                   .Position = glm::vec3((float) x, 0.0f, (float) z),
-                   .TextureCoordinates = glm::vec2((float) -x / TextureWidth,
-                                                   (float) -z / TextureHeight)
-               });
-            }
+    void GenerateTerrainVertices()
+    {
+        
+    for (auto z = 0; z < TextureHeight; ++z) {
+        for (auto x = 0; x < TextureWidth; ++x) {
+            Vertices.push_back({
+                .Position = glm::vec3((float) x, 0.0f, (float) z),
+                .TextureCoordinates = glm::vec2((float) -x / TextureWidth,
+                                                (float) -z / TextureHeight)
+            });
         }
+    }
+
     }
 
     void GenerateTerrainIndices()
     {
-        for (auto i = 0; i < TextureHeight - 1; ++i) {
-            for (auto j = 0; j < TextureWidth - 1; ++j) {
-                auto Current = i * TextureWidth + j;
-                auto Right = Current + 1;
-                auto Bottom = Current + TextureWidth;
-                auto BottomRight = Bottom + 1;
+        
+    for (auto i = 0; i < TextureHeight - 1; ++i) {
+        for (auto j = 0; j < TextureWidth - 1; ++j) {
+            auto Current = i * TextureWidth + j;
+            auto Right = Current + 1;
+            auto Bottom = Current + TextureWidth;
+            auto BottomRight = Bottom + 1;
 
-                Indices.push_back(Current);
-                Indices.push_back(Right);
-                Indices.push_back(Bottom);
-                Indices.push_back(Right);
-                Indices.push_back(BottomRight);
-                Indices.push_back(Bottom);
-            }
+            Indices.push_back(Current);
+            Indices.push_back(Right);
+            Indices.push_back(Bottom);
+            Indices.push_back(Right);
+            Indices.push_back(BottomRight);
+            Indices.push_back(Bottom);
         }
     }
 
-    // LIFETIME METHODS
-    void InitializeState() {
-        TheState.Initialize(TextureWidth, TextureHeight);
     }
 
-    void Initialize() {
+    // LIFETIME METHODS
+    void InitializeState() { TheState.Initialize(TextureWidth, TextureHeight); }
+
+    void Initialize()
+    {
         InitializeWindow();
         InitializeProgram();
         InitializeTextures();
@@ -705,7 +718,8 @@ struct HW3Utility {
         InitializeState();
     }
 
-    void MainLoop() {
+    void MainLoop()
+    {
         while (!glfwWindowShouldClose(Window)) {
             auto BGColor = glm::min(1.0f, glm::abs(TheState.Speed) / 5.0f);
             glClearColor(BGColor, BGColor, BGColor, 1.0f);

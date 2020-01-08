@@ -1,8 +1,8 @@
 {% extends "__base.cpp" %}
 
 {% block Variant %}flat{% endblock %}
-{% block VertexShaderPath %}shader.vert{% endblock %}
-{% block FragmentShaderPath %}shader.frag{% endblock %}
+{% block VertexShaderPath %}shaders/flat.vert{% endblock %}
+{% block FragmentShaderPath %}shaders/flat.frag{% endblock %}
 
 {% block GenerateTerrainVertices %}
     for (auto z = 0; z < TextureHeight; ++z) {
