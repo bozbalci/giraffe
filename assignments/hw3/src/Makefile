@@ -22,6 +22,7 @@ hw3_flat: flat.cpp
 .PHONY += codegen
 codegen:
 	cd code_generation; python3 ./generate.py flat.cpp > ../flat.cpp
+	clang-format -i flat.cpp
 #	cd code_generation; python3 ./generate.py sphere.cpp > ../sphere.cpp
 
 codegen-build: codegen hw3_flat
