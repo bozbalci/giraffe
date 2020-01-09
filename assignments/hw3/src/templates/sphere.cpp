@@ -3,6 +3,7 @@
 {% block Variant %}sphere{% endblock %}
 {% block VertexShaderPath %}shaders/sphere.vert{% endblock %}
 {% block FragmentShaderPath %}shaders/sphere.frag{% endblock %}
+{% block HeightFactorInitial %}0.0f{% endblock %}
 
 {% block GenerateTerrainVertices %}
     for (auto z = 0; z < TextureHeight; ++z) {

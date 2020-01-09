@@ -102,7 +102,7 @@ bool ReadFileIntoBuffer(const std::string &Path, std::stringstream &Buffer)
 }
 
 struct UIState {
-    static constexpr auto HEIGHT_FACTOR_INITIAL = 10.0f;
+    static constexpr auto HEIGHT_FACTOR_INITIAL = {% block HeightFactorInitial %}{% endblock %};
     static constexpr auto HEIGHT_FACTOR_UNIT = 0.5f;
     static constexpr auto TEXTURE_HORIZONTAL_SHIFT_INITIAL = 0.0f;
     static constexpr auto TEXTURE_HORIZONTAL_SHIFT_UNIT = 1.0f;

@@ -3,6 +3,7 @@
 {% block Variant %}flat{% endblock %}
 {% block VertexShaderPath %}shaders/flat.vert{% endblock %}
 {% block FragmentShaderPath %}shaders/flat.frag{% endblock %}
+{% block HeightFactorInitial %}10.f{% endblock %}
 
 {% block GenerateTerrainVertices %}
     for (auto z = 0; z < TextureHeight; ++z) {
