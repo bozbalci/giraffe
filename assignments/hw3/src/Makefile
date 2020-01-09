@@ -19,12 +19,15 @@ all: hw3_flat
 hw3_flat: flat.cpp
 	$(CXX) flat.cpp -o hw3_flat $(CXXFLAGS) $(LDFLAGS)
 
+hw3_sphere: sphere.cpp
+	$(CXX) sphere.cpp -o hw3_sphere $(CXXFLAGS) $(LDFLAGS)
+
 .PHONY += codegen
 codegen:
 	cd code_generation; python3 ./generate.py flat.cpp > ../flat.cpp
-#	cd code_generation; python3 ./generate.py sphere.cpp > ../sphere.cpp
+	cd code_generation; python3 ./generate.py sphere.cpp > ../sphere.cpp
 
-codegen-build: codegen hw3_flat
+codegen-build: codegen hw3_flat hw3_sphere
 
 clean:
-	rm -f *.o hw3_flat
+	rm -f *.o hw3_flat hw3_sphere
