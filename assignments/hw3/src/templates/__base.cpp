@@ -35,6 +35,7 @@ GLuint ProgramShaderId;
 
 constexpr auto WINDOW_SIZE = 1000;
 constexpr auto INFO_LOG_SIZE = 512;
+constexpr auto PI = 3.141592653589793238462643383279502884L;
 
 void die(const std::string &msg)
 {
@@ -137,8 +138,8 @@ struct UIState {
     // UNIFORMS
     struct CameraType {
         glm::vec3 Position;
-        glm::vec3 Gaze{0.0f, 0.0f, 0.1f};
-        glm::vec3 Up{0.0f, 1.0f, 0.0f};
+        glm::vec3 Gaze{% block CameraGaze %}{% endblock %};
+        glm::vec3 Up{% block CameraUp %}{% endblock %};
     } Camera;
 
     // WINDOW STATE
@@ -252,11 +253,9 @@ struct UIState {
             glGetUniformLocation(ProgramShaderId, "TextureHorizontalShift");
 
         // Initialize world data
-        Camera.Position = {(float)TextureWidth / 2.0f,
-                           (float)TextureWidth / 10.0f,
-                           (float)-TextureWidth / 4.0f};
-        LightPosition = {(float)TextureWidth / 2.0f, 100.0f,
-                         (float)TextureHeight / 2.0f};
+        Camera.Position = {% block CameraPosition %}{% endblock %};
+
+        LightPosition = {% block LightPosition %}{% endblock %};
 
         // Save this incarnation of the camera so that it can be restored later
         CAMERA_INITIAL = Camera;

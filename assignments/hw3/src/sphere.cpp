@@ -139,7 +139,7 @@ struct UIState {
     struct CameraType {
         glm::vec3 Position;
         glm::vec3 Gaze{0.0f, 0.0f, 1.0f};
-        glm::vec3 Up{0.0f, 1.0f, 0.0f};
+        glm::vec3 Up{0.0f, 0.0f, 1.0f};
     } Camera;
 
     // WINDOW STATE
@@ -253,12 +253,9 @@ struct UIState {
             glGetUniformLocation(ProgramShaderId, "TextureHorizontalShift");
 
         // Initialize world data
-        Camera.Position = {(float)TextureWidth / 2.0f,
-                           (float)TextureWidth / 10.0f,
-                           (float)-TextureWidth / 4.0f};
+        Camera.Position = {0.0f, 600.0f, 0.0f};
 
-        LightPosition = {(float)TextureWidth / 2.0f, 100.0f,
-                         (float)TextureHeight / 2.0f};
+        LightPosition = {0.0f, 1600.0f, 0.0f};
 
         // Save this incarnation of the camera so that it can be restored later
         CAMERA_INITIAL = Camera;
@@ -476,8 +473,8 @@ class Shader
 
 struct HW3Utility {
     // INPUT PATHS
-    std::string VertexShaderPath = "shaders/flat.vert";
-    std::string FragmentShaderPath = "shaders/flat.frag";
+    std::string VertexShaderPath = "shaders/sphere.vert";
+    std::string FragmentShaderPath = "shaders/sphere.frag";
     std::string HeightMapPath;
     std::string TexturePath;
 
@@ -668,12 +665,27 @@ struct HW3Utility {
     void GenerateTerrainVertices()
     {
 
-        for (auto z = 0; z < TextureHeight; ++z) {
-            for (auto x = 0; x < TextureWidth; ++x) {
+        auto Radius = 350;
+        auto NumberOfLongitudeLines = 250;
+        auto NumberOfLatitudeLines = 125;
+
+        auto LongitudeAngleStep = PI / NumberOfLatitudeLines;
+        auto LatitudeAngleStep = 2 * PI / NumberOfLatitudeLines;
+
+        for (auto i = 0; i <= NumberOfLongitudeLines; ++i) {
+            auto LongitudeAngle = (PI / 2) - (i * LongitudeAngleStep);
+            auto XYComponent = Radius * std::cos(LongitudeAngle);
+            auto ZComponent = Radius * std::sin(LongitudeAngle);
+
+            for (auto j = 0; j <= NumberOfLatitudeLines; ++j) {
+                auto LatitudeAngle = j * LatitudeAngleStep;
+
                 Vertices.push_back(
-                    {.Position = glm::vec3((float)x, 0.0f, (float)z),
-                     .TextureCoordinates = glm::vec2(
-                         (float)-x / TextureWidth, (float)-z / TextureHeight)});
+                    {.Position = {XYComponent * std::cos(LatitudeAngle),
+                                  XYComponent * std::cos(LatitudeAngle),
+                                  ZComponent},
+                     .TextureCoordinates = {j / NumberOfLatitudeLines,
+                                            i / NumberOfLongitudeLines}});
             }
         }
     }
@@ -681,19 +693,29 @@ struct HW3Utility {
     void GenerateTerrainIndices()
     {
 
-        for (auto i = 0; i < TextureHeight - 1; ++i) {
-            for (auto j = 0; j < TextureWidth - 1; ++j) {
-                auto Current = i * TextureWidth + j;
-                auto Right = Current + 1;
-                auto Bottom = Current + TextureWidth;
-                auto BottomRight = Bottom + 1;
+        int k1, k2;
 
-                Indices.push_back(Current);
-                Indices.push_back(Right);
-                Indices.push_back(Bottom);
-                Indices.push_back(Right);
-                Indices.push_back(BottomRight);
-                Indices.push_back(Bottom);
+        auto NumberOfLongitudeLines = 250;
+        auto NumberOfLatitudeLines = 125;
+
+        for (int i = 0; i < NumberOfLongitudeLines; ++i) {
+            k1 = i * (NumberOfLatitudeLines + 1);
+            k2 = k1 + NumberOfLatitudeLines + 1;
+
+            for (int j = 0; j < NumberOfLatitudeLines; ++j) {
+                if (i != 0) {
+                    Indices.push_back(k1);
+                    Indices.push_back(k2);
+                    Indices.push_back(k1 + 1);
+                }
+                if (i != NumberOfLongitudeLines - 1) {
+                    Indices.push_back(k1 + 1);
+                    Indices.push_back(k2);
+                    Indices.push_back(k2 + 1);
+                }
+
+                ++k1;
+                ++k2;
             }
         }
     }
@@ -742,7 +764,7 @@ struct HW3Utility {
 int main(int argc, char **argv)
 {
     if (argc < 3) {
-        die("usage: ./hw3_flat [path_to_height_map] [path_to_texture_map]");
+        die("usage: ./hw3_sphere [path_to_height_map] [path_to_texture_map]");
     }
 
     HW3Utility hw3(argv[1], argv[2]);

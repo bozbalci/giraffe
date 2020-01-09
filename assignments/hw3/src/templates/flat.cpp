@@ -4,6 +4,30 @@
 {% block VertexShaderPath %}shaders/flat.vert{% endblock %}
 {% block FragmentShaderPath %}shaders/flat.frag{% endblock %}
 
+{% block CameraPosition %}
+    {
+        (float)TextureWidth / 2.0f,
+        (float)TextureWidth / 10.0f,
+        (float)-TextureWidth / 4.0f
+    }
+{% endblock %}
+
+{% block CameraGaze %}
+    {0.0f, 0.0f, 1.0f}
+{% endblock %}
+
+{% block CameraUp %}
+    {0.0f, 1.0f, 0.0f}
+{% endblock %}
+
+{% block LightPosition %}
+    {
+        (float)TextureWidth / 2.0f,
+        100.0f,
+        (float)TextureHeight / 2.0f
+    }
+{% endblock %}
+
 {% block GenerateTerrainVertices %}
     for (auto z = 0; z < TextureHeight; ++z) {
         for (auto x = 0; x < TextureWidth; ++x) {
