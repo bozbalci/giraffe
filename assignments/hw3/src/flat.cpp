@@ -161,8 +161,7 @@ struct UIState {
     struct {
         glm::mat4 Model{1.0f};
         glm::mat4 View;
-        glm::mat4 Projection =
-            glm::perspective(glm::radians(45.0f), 1.0f, 0.1f, 1000.0f);
+        glm::mat4 Projection = glm::perspective(45.0f, 1.0f, 0.1f, 1000.0f);
         glm::mat4 Composite;
     } Matrices;
 
