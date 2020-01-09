@@ -342,6 +342,8 @@ void ErrorCallback(int Error, const char *Description)
 void FramebufferSizeCallback(GLFWwindow *Window, int Width, int Height)
 {
     glViewport(/* x = */ 0, /* y = */ 0, Width, Height);
+    TheState.Matrices.Projection =
+        glm::perspective(45.0f, (float)Width / Height, 0.1f, 1000.0f);
 }
 
 void KeyCallback(GLFWwindow *Window, int Key, int ScanCode, int Action,
