@@ -4,6 +4,8 @@
 {% block VertexShaderPath %}shaders/flat.vert{% endblock %}
 {% block FragmentShaderPath %}shaders/flat.frag{% endblock %}
 {% block HeightFactorInitial %}10.f{% endblock %}
+{% block PitchInitial %}0.0f{% endblock %};
+{% block YawInitial %}90.0f{% endblock %};
 
 {% block CameraPosition %}
     {
