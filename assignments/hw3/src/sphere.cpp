@@ -670,7 +670,7 @@ struct HW3Utility {
         auto NumberOfLongitudeLines = 250;
         auto NumberOfLatitudeLines = 125;
 
-        auto LongitudeAngleStep = PI / NumberOfLatitudeLines;
+        auto LongitudeAngleStep = PI / NumberOfLongitudeLines;
         auto LatitudeAngleStep = 2 * PI / NumberOfLatitudeLines;
 
         for (auto i = 0; i <= NumberOfLongitudeLines; ++i) {
@@ -683,10 +683,11 @@ struct HW3Utility {
 
                 Vertices.push_back(
                     {.Position = {XYComponent * std::cos(LatitudeAngle),
-                                  XYComponent * std::cos(LatitudeAngle),
+                                  XYComponent * std::sin(LatitudeAngle),
                                   ZComponent},
-                     .TextureCoordinates = {j / NumberOfLatitudeLines,
-                                            i / NumberOfLongitudeLines}});
+                     .TextureCoordinates = {(float)j / NumberOfLatitudeLines,
+                                            (float)i /
+                                                NumberOfLongitudeLines}});
             }
         }
     }
