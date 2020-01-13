@@ -107,11 +107,11 @@ struct UIState {
     static constexpr auto HEIGHT_FACTOR_UNIT = 0.5f;
     static constexpr auto TEXTURE_HORIZONTAL_SHIFT_INITIAL = 0.0f;
     static constexpr auto TEXTURE_HORIZONTAL_SHIFT_UNIT = 1.0f;
-    static constexpr auto PITCH_INITIAL = 0.0f;
+    static constexpr auto PITCH_INITIAL = {% block PitchInitial %}{% endblock %};
     static constexpr auto PITCH_UNIT = 0.05f;
-    static constexpr auto PITCH_MAX = 89.9f;
+    static constexpr auto PITCH_MAX = 90.0f;
     static constexpr auto PITCH_MIN = -PITCH_MAX;
-    static constexpr auto YAW_INITIAL = 90.0f;
+    static constexpr auto YAW_INITIAL = {% block YawInitial %}{% endblock %};
     static constexpr auto YAW_UNIT = 0.05f;
     static constexpr auto YAW_MAX = 360.0f;
     static constexpr auto YAW_MIN = 0.0f;
@@ -267,6 +267,7 @@ struct UIState {
         auto PitchInRadians = glm::radians(Pitch);
 
         Camera.Gaze = glm::normalize(
+                CAMERA_INITIAL.Gaze +
             glm::vec3(std::cos(YawInRadians) * std::cos(PitchInRadians),
                       std::sin(PitchInRadians),
                       std::sin(YawInRadians) * std::cos(PitchInRadians)));

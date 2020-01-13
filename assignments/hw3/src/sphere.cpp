@@ -109,7 +109,7 @@ struct UIState {
     static constexpr auto TEXTURE_HORIZONTAL_SHIFT_UNIT = 1.0f;
     static constexpr auto PITCH_INITIAL = 0.0f;
     static constexpr auto PITCH_UNIT = 0.05f;
-    static constexpr auto PITCH_MAX = 89.9f;
+    static constexpr auto PITCH_MAX = 90.0f;
     static constexpr auto PITCH_MIN = -PITCH_MAX;
     static constexpr auto YAW_INITIAL = 90.0f;
     static constexpr auto YAW_UNIT = 0.05f;
@@ -138,7 +138,7 @@ struct UIState {
     // UNIFORMS
     struct CameraType {
         glm::vec3 Position;
-        glm::vec3 Gaze{0.0f, -1.0f, 0.0f};
+        glm::vec3 Gaze{0.0f, -1.0f, -1.0f};
         glm::vec3 Up{0.0f, 0.0f, 1.0f};
     } Camera;
 
@@ -252,7 +252,7 @@ struct UIState {
             glGetUniformLocation(ProgramShaderId, "TextureHorizontalShift");
 
         // Initialize world data
-        Camera.Position = {0.0f, 600.0f, 0.0f};
+        Camera.Position = {0.0f, 1200.0f, 0.0f};
 
         LightPosition = {0.0f, 1600.0f, 0.0f};
 
@@ -266,6 +266,7 @@ struct UIState {
         auto PitchInRadians = glm::radians(Pitch);
 
         Camera.Gaze = glm::normalize(
+            CAMERA_INITIAL.Gaze +
             glm::vec3(std::cos(YawInRadians) * std::cos(PitchInRadians),
                       std::sin(PitchInRadians),
                       std::sin(YawInRadians) * std::cos(PitchInRadians)));

@@ -4,13 +4,15 @@
 {% block VertexShaderPath %}shaders/sphere.vert{% endblock %}
 {% block FragmentShaderPath %}shaders/sphere.frag{% endblock %}
 {% block HeightFactorInitial %}0.0f{% endblock %}
+{% block PitchInitial %}0.0f{% endblock %};
+{% block YawInitial %}90.0f{% endblock %};
 
 {% block CameraPosition %}
-    {0.0f, 600.0f, 0.0f}
+    {0.0f, 1200.0f, 0.0f}
 {% endblock %}
 
 {% block CameraGaze %}
-    {0.0f, -1.0f, 0.0f}
+    {0.0f, -1.0f, -1.0f}
 {% endblock %}
 
 {% block CameraUp %}
