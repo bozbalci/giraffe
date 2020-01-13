@@ -42,7 +42,7 @@ BERK=e2171791
 DISTNAME=$(YAGMUR)_$(BERK)_opengl.zip
 
 dist: codegen
-	zip $(DISTNAME) shaders/ glm/ flat.cpp sphere.cpp Makefile
+	zip $(DISTNAME) -r shaders/ glm/ flat.cpp sphere.cpp Makefile
 
 distclean:
 	rm -f $(DISTNAME)
