@@ -36,3 +36,13 @@ codegen-clean:
 
 clean:
 	rm -rf *.o *.dSYM hw3_flat hw3_sphere
+
+YAGMUR=e2171783
+BERK=e2171791
+DISTNAME=$(YAGMUR)_$(BERK)_opengl.zip
+
+dist: codegen
+	zip $(DISTNAME) shaders/ flat.cpp sphere.cpp Makefile
+
+distclean:
+	rm -f $(DISTNAME)
