@@ -22,7 +22,7 @@ hw3_flat: flat.cpp
 hw3_sphere: sphere.cpp
 	$(CXX) sphere.cpp -o hw3_sphere $(CXXFLAGS) $(LDFLAGS)
 
-.PHONY += codegen
+.PHONY += codegen codegen-build codegen-clean clean
 codegen:
 	cd code_generation; python3 ./generate.py flat.cpp > ../flat.cpp
 	clang-format -i flat.cpp
@@ -30,6 +30,9 @@ codegen:
 	clang-format -i sphere.cpp
 
 codegen-build: codegen hw3_flat hw3_sphere
+
+codegen-clean:
+	rm -f flat.cpp sphere.cpp
 
 clean:
 	rm -rf *.o *.dSYM hw3_flat hw3_sphere
