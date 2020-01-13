@@ -20,7 +20,7 @@ out vec3 VertexNormal;
 
 void main()
 {
-    VertexTextureCoordinate = vec2(TextureCoordinate.x + (TextureHorizontalShift / TextureWidth),
+    VertexTextureCoordinate = vec2(TextureCoordinate.x + (TextureHorizontalShift / 125),
                                    TextureCoordinate.y);
 
     VertexNormal = normalize(Position);
