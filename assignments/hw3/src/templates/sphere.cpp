@@ -2,7 +2,7 @@
 
 {% block Variant %}sphere{% endblock %}
 {% block VertexShaderPath %}shaders/sphere.vert{% endblock %}
-{% block FragmentShaderPath %}shaders/sphere.frag{% endblock %}
+{% block FragmentShaderPath %}shaders/common.frag{% endblock %}
 {% block HeightFactorInitial %}0.0f{% endblock %}
 {% block PitchInitial %}0.0f{% endblock %};
 {% block YawInitial %}90.0f{% endblock %};

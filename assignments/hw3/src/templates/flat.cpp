@@ -2,10 +2,14 @@
 
 {% block Variant %}flat{% endblock %}
 {% block VertexShaderPath %}shaders/flat.vert{% endblock %}
-{% block FragmentShaderPath %}shaders/flat.frag{% endblock %}
+{% block FragmentShaderPath %}shaders/common.frag{% endblock %}
 {% block HeightFactorInitial %}10.f{% endblock %}
 {% block PitchInitial %}0.0f{% endblock %};
 {% block YawInitial %}90.0f{% endblock %};
+
+{% block Preamble %}
+#define DO_NOT_ADD_GAZE_WHEN_RECALCULATING
+{% endblock %}
 
 {% block CameraPosition %}
     {

@@ -31,6 +31,8 @@
 // Uncomment the following line to enable debug messages.
 // #define DEBUG
 
+#define DO_NOT_ADD_GAZE_WHEN_RECALCULATING
+
 GLuint ProgramShaderId;
 
 constexpr auto WINDOW_SIZE = 1000;
@@ -269,7 +271,9 @@ struct UIState {
         auto PitchInRadians = glm::radians(Pitch);
 
         Camera.Gaze = glm::normalize(
+#ifndef DO_NOT_ADD_GAZE_WHEN_RECALCULATING
             CAMERA_INITIAL.Gaze +
+#endif
             glm::vec3(std::cos(YawInRadians) * std::cos(PitchInRadians),
                       std::sin(PitchInRadians),
                       std::sin(YawInRadians) * std::cos(PitchInRadians)));
@@ -479,7 +483,7 @@ class Shader
 struct HW3Utility {
     // INPUT PATHS
     std::string VertexShaderPath = "shaders/flat.vert";
-    std::string FragmentShaderPath = "shaders/flat.frag";
+    std::string FragmentShaderPath = "shaders/common.frag";
     std::string HeightMapPath;
     std::string TexturePath;
 
@@ -722,7 +726,7 @@ struct HW3Utility {
     void MainLoop()
     {
         while (!glfwWindowShouldClose(Window)) {
-            auto BGColor = glm::min(1.0f, glm::abs(TheState.Speed) / 5.0f);
+            constexpr auto BGColor = 0.0f;
             glClearColor(BGColor, BGColor, BGColor, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
